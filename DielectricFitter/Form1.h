@@ -38,6 +38,7 @@ namespace DielectricFitter {
 	protected: 
 	private: System::Windows::Forms::Button^  button1;
 	private: System::Windows::Forms::OpenFileDialog^  openFileDialog1;
+	private: System::Windows::Forms::TextBox^  textBox1;
 
 	private:
 		/// <summary>
@@ -58,13 +59,18 @@ namespace DielectricFitter {
 			this->chart1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->openFileDialog1 = (gcnew System::Windows::Forms::OpenFileDialog());
+			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->chart1))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// chart1
 			// 
+			chartArea1->AxisX->MajorGrid->Enabled = false;
+			chartArea1->AxisX2->MajorGrid->Enabled = false;
 			chartArea1->AxisY->IsStartedFromZero = false;
+			chartArea1->AxisY->MajorGrid->Enabled = false;
 			chartArea1->AxisY2->IsStartedFromZero = false;
+			chartArea1->AxisY2->MajorGrid->Enabled = false;
 			chartArea1->Name = L"ChartArea1";
 			this->chart1->ChartAreas->Add(chartArea1);
 			this->chart1->Location = System::Drawing::Point(7, 63);
@@ -97,17 +103,27 @@ namespace DielectricFitter {
 			this->openFileDialog1->FileName = L"openFileDialog1";
 			this->openFileDialog1->FileOk += gcnew System::ComponentModel::CancelEventHandler(this, &Form1::openFileDialog1_FileOk);
 			// 
+			// textBox1
+			// 
+			this->textBox1->Location = System::Drawing::Point(83, 12);
+			this->textBox1->Name = L"textBox1";
+			this->textBox1->Size = System::Drawing::Size(106, 20);
+			this->textBox1->TabIndex = 2;
+			this->textBox1->Text = L"0,4108e-12";
+			// 
 			// Form1
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(792, 573);
+			this->Controls->Add(this->textBox1);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->chart1);
 			this->Name = L"Form1";
 			this->Text = L"Dielectric Fitter";
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->chart1))->EndInit();
 			this->ResumeLayout(false);
+			this->PerformLayout();
 
 		}
 #pragma endregion
@@ -116,10 +132,12 @@ namespace DielectricFitter {
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
 				 int i;
 				 int size;
+				 float c0;
 				   if (openFileDialog1->ShowDialog() == ::System::Windows::Forms::DialogResult::OK )
       {
 	chart1->Series["Series1"]->Points->Clear();
 	chart1->Series["Series2"]->Points->Clear();
+	c0=(Convert::ToDouble(textBox1->Text));
 	vector<double> Dataf;
 	vector<double> Dataep;
 	vector<double> Dataeb;
@@ -129,8 +147,8 @@ namespace DielectricFitter {
 	for (i=1;i<=size-2;i++)
 	{
 		cout << i <<";"<<Dataep[i]<<endl;
-	chart1->Series["Series1"]->Points->AddXY(log10(Dataf[i]),Dataep[i]);
-	chart1->Series["Series2"]->Points->AddXY(log10(Dataf[i]),-Dataeb[i]);
+	chart1->Series["Series1"]->Points->AddXY(log10(Dataf[i]),Dataep[i]/c0);
+	chart1->Series["Series2"]->Points->AddXY(log10(Dataf[i]),-Dataeb[i]/c0);
 	}
 	  }
 

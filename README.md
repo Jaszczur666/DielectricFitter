@@ -4,6 +4,6 @@ Dielectric Fitter will be a tool to fit multiple dielectric spectra, and export 
 
 ##List of things to implement:##
 
-*Complex Levenberg Marquardt fitting using Havriliak Negami function, or multiple such functions;
-*Constructing Arrhenius graph, and fitting it to retrieve activation energy;
-*Same with Vogel-Fulcher plot;
+* Complex Levenberg Marquardt fitting using Havriliak Negami function, or multiple such functions;
+* Constructing Arrhenius graph, and fitting it to retrieve activation energy;
+* Same with Vogel-Fulcher plot;
