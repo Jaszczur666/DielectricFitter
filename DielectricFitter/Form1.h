@@ -1,4 +1,5 @@
 #include "Parser.h"
+#include <complex>
 
 namespace DielectricFitter {
 
@@ -56,6 +57,8 @@ namespace DielectricFitter {
 			System::Windows::Forms::DataVisualization::Charting::ChartArea^  chartArea1 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
 			System::Windows::Forms::DataVisualization::Charting::Series^  series1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
 			System::Windows::Forms::DataVisualization::Charting::Series^  series2 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
+			System::Windows::Forms::DataVisualization::Charting::Series^  series3 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
+			System::Windows::Forms::DataVisualization::Charting::Series^  series4 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
 			this->chart1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->openFileDialog1 = (gcnew System::Windows::Forms::OpenFileDialog());
@@ -82,8 +85,17 @@ namespace DielectricFitter {
 			series2->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::Point;
 			series2->Name = L"Series2";
 			series2->YAxisType = System::Windows::Forms::DataVisualization::Charting::AxisType::Secondary;
+			series3->ChartArea = L"ChartArea1";
+			series3->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::Line;
+			series3->Name = L"Series3";
+			series4->ChartArea = L"ChartArea1";
+			series4->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::Line;
+			series4->Name = L"Series4";
+			series4->YAxisType = System::Windows::Forms::DataVisualization::Charting::AxisType::Secondary;
 			this->chart1->Series->Add(series1);
 			this->chart1->Series->Add(series2);
+			this->chart1->Series->Add(series3);
+			this->chart1->Series->Add(series4);
 			this->chart1->Size = System::Drawing::Size(770, 496);
 			this->chart1->TabIndex = 0;
 			this->chart1->Text = L"chart1";
@@ -132,12 +144,16 @@ namespace DielectricFitter {
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
 				 int i;
 				 int size;
-				 float c0;
+				 double c0,ep,eb;
+
 				   if (openFileDialog1->ShowDialog() == ::System::Windows::Forms::DialogResult::OK )
       {
 	chart1->Series["Series1"]->Points->Clear();
 	chart1->Series["Series2"]->Points->Clear();
+	chart1->Series["Series3"]->Points->Clear();
+	chart1->Series["Series4"]->Points->Clear();
 	c0=(Convert::ToDouble(textBox1->Text));
+	complex<double> d;
 	vector<double> Dataf;
 	vector<double> Dataep;
 	vector<double> Dataeb;
@@ -149,6 +165,11 @@ namespace DielectricFitter {
 		cout << i <<";"<<Dataep[i]<<endl;
 	chart1->Series["Series1"]->Points->AddXY(log10(Dataf[i]),Dataep[i]/c0);
 	chart1->Series["Series2"]->Points->AddXY(log10(Dataf[i]),-Dataeb[i]/c0);
+	d=24.99968+(25.49947-24.99968)/(1.0+pow(std::complex <double>(0.0,1.0)*Dataf[i]/109200.96711,1-0.2037));
+	ep= std::real(d);
+	eb=-std::imag(d);//25,61584 24,89592 710729,67865 0,34906
+	chart1->Series["Series3"]->Points->AddXY(log10(Dataf[i]),ep);
+	chart1->Series["Series4"]->Points->AddXY(log10(Dataf[i]),eb);
 	}
 	  }
 
