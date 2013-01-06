@@ -65,20 +65,20 @@ void LoadDielectric(String^ Filename, vector<double>& dataf,vector<double>& data
 			ldataf.push_back (f);
 			ldataep.push_back (ep);
 			ldataeb.push_back (eb);
-			cout<<" "<<f <<" "<<ep<<" "<<eb<<" "<< endl;
-			cout<<"Rozmiar w funkcji = "<<ldataf.size()<<endl;
+			//cout<<" "<<f <<" "<<ep<<" "<<eb<<" "<< endl;
+			//cout<<"Rozmiar w funkcji = "<<ldataf.size()<<endl;
 		}
 		
 			i++;
-			cout <<i<<" "<< x << endl;      
+			//cout <<i<<" "<< x << endl;      
 		}	
 		
 		if (i ==4){
 			ldataf.push_back (f);
 			ldataep.push_back (ep);
 			ldataeb.push_back (eb);
-			cout<<" "<<f <<" "<<ep<<" "<<eb<<" "<< endl;
-			cout<<"Rozmiar w funkcji = "<<ldataf.size()<<endl;
+			//cout<<" "<<f <<" "<<ep<<" "<<eb<<" "<< endl;
+			//cout<<"Rozmiar w funkcji = "<<ldataf.size()<<endl;
 		}
 
 	}
@@ -89,5 +89,17 @@ void LoadDielectric(String^ Filename, vector<double>& dataf,vector<double>& data
 	for (i=1;i<=size-2;i++)
 	{
 		cout << i <<";"<<ldataep[i]<<endl;
+	}
+}
+
+void Normalize(vector<double>& dataep,vector<double>& dataeb,double C0)
+{
+	int size,i;
+	size=dataep.size();
+	for (i=1;i<=size-2;i++)
+{
+	dataep[i]=dataep[i]/C0;
+	dataeb[i]=dataeb[i]/C0;
+
 	}
 }

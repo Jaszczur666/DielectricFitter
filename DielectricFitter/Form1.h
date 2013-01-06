@@ -1,4 +1,5 @@
 #include "Parser.h"
+#include "Fitowanie.h"
 #include <complex>
 
 namespace DielectricFitter {
@@ -40,6 +41,7 @@ namespace DielectricFitter {
 	private: System::Windows::Forms::Button^  button1;
 	private: System::Windows::Forms::OpenFileDialog^  openFileDialog1;
 	private: System::Windows::Forms::TextBox^  textBox1;
+	private: System::Windows::Forms::Button^  button2;
 
 	private:
 		/// <summary>
@@ -63,6 +65,7 @@ namespace DielectricFitter {
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->openFileDialog1 = (gcnew System::Windows::Forms::OpenFileDialog());
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
+			this->button2 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->chart1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -80,16 +83,20 @@ namespace DielectricFitter {
 			this->chart1->Name = L"chart1";
 			series1->ChartArea = L"ChartArea1";
 			series1->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::Point;
+			series1->Color = System::Drawing::Color::Black;
 			series1->Name = L"Series1";
 			series2->ChartArea = L"ChartArea1";
 			series2->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::Point;
+			series2->Color = System::Drawing::Color::Red;
 			series2->Name = L"Series2";
 			series2->YAxisType = System::Windows::Forms::DataVisualization::Charting::AxisType::Secondary;
 			series3->ChartArea = L"ChartArea1";
 			series3->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::Line;
+			series3->Color = System::Drawing::Color::Black;
 			series3->Name = L"Series3";
 			series4->ChartArea = L"ChartArea1";
 			series4->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::Line;
+			series4->Color = System::Drawing::Color::Red;
 			series4->Name = L"Series4";
 			series4->YAxisType = System::Windows::Forms::DataVisualization::Charting::AxisType::Secondary;
 			this->chart1->Series->Add(series1);
@@ -123,11 +130,22 @@ namespace DielectricFitter {
 			this->textBox1->TabIndex = 2;
 			this->textBox1->Text = L"0,4108e-12";
 			// 
+			// button2
+			// 
+			this->button2->Location = System::Drawing::Point(281, 12);
+			this->button2->Name = L"button2";
+			this->button2->Size = System::Drawing::Size(75, 23);
+			this->button2->TabIndex = 3;
+			this->button2->Text = L"button2";
+			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &Form1::button2_Click);
+			// 
 			// Form1
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(792, 573);
+			this->Controls->Add(this->button2);
 			this->Controls->Add(this->textBox1);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->chart1);
@@ -153,27 +171,44 @@ namespace DielectricFitter {
 	chart1->Series["Series3"]->Points->Clear();
 	chart1->Series["Series4"]->Points->Clear();
 	c0=(Convert::ToDouble(textBox1->Text));
+	double es,en,fp,a;
 	complex<double> d;
 	vector<double> Dataf;
 	vector<double> Dataep;
 	vector<double> Dataeb;
     LoadDielectric(openFileDialog1->FileName,Dataf,Dataep,Dataeb);
 	size=Dataf.size();
-	cout<<"Rozmiar = "<<size<<endl;
+	Normalize(Dataep,Dataeb,c0);
+	//cout<<"Rozmiar = "<<size<<endl;
 	for (i=1;i<=size-2;i++)
 	{
-		cout << i <<";"<<Dataep[i]<<endl;
-	chart1->Series["Series1"]->Points->AddXY(log10(Dataf[i]),Dataep[i]/c0);
-	chart1->Series["Series2"]->Points->AddXY(log10(Dataf[i]),-Dataeb[i]/c0);
-	d=24.99968+(25.49947-24.99968)/(1.0+pow(std::complex <double>(0.0,1.0)*Dataf[i]/109200.96711,1-0.2037));
+		//cout << i <<";"<<Dataep[i]<<endl;
+	chart1->Series["Series1"]->Points->AddXY(log10(Dataf[i]),Dataep[i]);
+	chart1->Series["Series2"]->Points->AddXY(log10(Dataf[i]),-Dataeb[i]);
+	
+	}
+	//Fit( Dataf,Dataep,Dataeb,25.61584,24.89592,710729.67865,0.34906 );
+	es=100; //25.49947;
+	en=1;
+	fp=109200.96711;
+	a=0.0;
+//	a=0;
+	Fit( Dataf,Dataep,Dataeb,es,en,fp,a);
+		for (i=1;i<=size-2;i++)
+	{
+	d=en+(es-en)/(1.0+pow(ii*Dataf[i]/fp,1-a));
+//	d=en+(es-en)/(1.0+pow(std::complex <double>(0.0,1.0)*Dataf[i]/fp,1-a));
 	ep= std::real(d);
-	eb=-std::imag(d);//25,61584 24,89592 710729,67865 0,34906
+	eb=-std::imag(d);
 	chart1->Series["Series3"]->Points->AddXY(log10(Dataf[i]),ep);
 	chart1->Series["Series4"]->Points->AddXY(log10(Dataf[i]),eb);
-	}
 	  }
+				   }
+				   
 
 			 }
-	};
+	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
+			 }
+};
 }
 
