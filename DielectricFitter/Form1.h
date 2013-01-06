@@ -71,7 +71,15 @@ namespace DielectricFitter {
 			// 
 			// chart1
 			// 
+			chartArea1->AxisX->IntervalAutoMode = System::Windows::Forms::DataVisualization::Charting::IntervalAutoMode::VariableCount;
+			chartArea1->AxisX->IntervalType = System::Windows::Forms::DataVisualization::Charting::DateTimeIntervalType::Number;
+			chartArea1->AxisX->IsMarginVisible = false;
+			chartArea1->AxisX->IsStartedFromZero = false;
+			chartArea1->AxisX->LabelStyle->Interval = 0;
+			chartArea1->AxisX->LabelStyle->IntervalType = System::Windows::Forms::DataVisualization::Charting::DateTimeIntervalType::Auto;
 			chartArea1->AxisX->MajorGrid->Enabled = false;
+			chartArea1->AxisX->MaximumAutoSize = 85;
+			chartArea1->AxisX->Title = L"log (Czêstotliwoœæ)";
 			chartArea1->AxisX2->MajorGrid->Enabled = false;
 			chartArea1->AxisY->IsStartedFromZero = false;
 			chartArea1->AxisY->MajorGrid->Enabled = false;
@@ -106,6 +114,7 @@ namespace DielectricFitter {
 			this->chart1->Size = System::Drawing::Size(770, 496);
 			this->chart1->TabIndex = 0;
 			this->chart1->Text = L"chart1";
+			this->chart1->Click += gcnew System::EventHandler(this, &Form1::chart1_Click);
 			// 
 			// button1
 			// 
@@ -164,8 +173,8 @@ namespace DielectricFitter {
 				 int size;
 				 double c0,ep,eb;
 
-				   if (openFileDialog1->ShowDialog() == ::System::Windows::Forms::DialogResult::OK )
-      {
+				  /* if (openFileDialog1->ShowDialog() == ::System::Windows::Forms::DialogResult::OK )
+      {*/
 	chart1->Series["Series1"]->Points->Clear();
 	chart1->Series["Series2"]->Points->Clear();
 	chart1->Series["Series3"]->Points->Clear();
@@ -176,7 +185,9 @@ namespace DielectricFitter {
 	vector<double> Dataf;
 	vector<double> Dataep;
 	vector<double> Dataeb;
-    LoadDielectric(openFileDialog1->FileName,Dataf,Dataep,Dataeb);
+    /*LoadDielectric(openFileDialog1->FileName,Dataf,Dataep,Dataeb);
+	*/
+	LoadDielectric("e:\\Data1.txt",Dataf,Dataep,Dataeb);
 	size=Dataf.size();
 	Normalize(Dataep,Dataeb,c0);
 	//cout<<"Rozmiar = "<<size<<endl;
@@ -188,12 +199,12 @@ namespace DielectricFitter {
 	
 	}
 	//Fit( Dataf,Dataep,Dataeb,25.61584,24.89592,710729.67865,0.34906 );
-	es=100; //25.49947;
-	en=1;
-	fp=109200.96711;
-	a=0.0;
+	es=80; //25.49947;
+	en=1.33;
+	fp=45e3;
+	a=0;
 //	a=0;
-	Fit( Dataf,Dataep,Dataeb,es,en,fp,a);
+	TestFit( Dataf,Dataep,Dataeb,es,en,fp,a);
 		for (i=1;i<=size-2;i++)
 	{
 	d=en+(es-en)/(1.0+pow(ii*Dataf[i]/fp,1-a));
@@ -203,12 +214,14 @@ namespace DielectricFitter {
 	chart1->Series["Series3"]->Points->AddXY(log10(Dataf[i]),ep);
 	chart1->Series["Series4"]->Points->AddXY(log10(Dataf[i]),eb);
 	  }
-				   }
+				  // }
 				   
 
 			 }
 	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
 			 }
+private: System::Void chart1_Click(System::Object^  sender, System::EventArgs^  e) {
+		 }
 };
 }
 
