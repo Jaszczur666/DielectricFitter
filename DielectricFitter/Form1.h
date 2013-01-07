@@ -199,12 +199,12 @@ namespace DielectricFitter {
 	
 	}
 	//Fit( Dataf,Dataep,Dataeb,25.61584,24.89592,710729.67865,0.34906 );
-	es=80; //25.49947;
-	en=1.33;
+	es=80;//80; //25.49947;
+	en=1.33;//1.33;
 	fp=45e3;
 	a=0;
 //	a=0;
-	TestFit( Dataf,Dataep,Dataeb,es,en,fp,a);
+	TestFitF( Dataf,Dataep,Dataeb,es,en,fp,a);
 		for (i=1;i<=size-2;i++)
 	{
 	d=en+(es-en)/(1.0+pow(ii*Dataf[i]/fp,1-a));
