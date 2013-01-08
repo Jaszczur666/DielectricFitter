@@ -173,51 +173,46 @@ namespace DielectricFitter {
 				 int size;
 				 double c0,ep,eb;
 
-				  /* if (openFileDialog1->ShowDialog() == ::System::Windows::Forms::DialogResult::OK )
-      {*/
-	chart1->Series["Series1"]->Points->Clear();
-	chart1->Series["Series2"]->Points->Clear();
-	chart1->Series["Series3"]->Points->Clear();
-	chart1->Series["Series4"]->Points->Clear();
-	c0=(Convert::ToDouble(textBox1->Text));
-	double es,en,fp,a;
-	complex<double> d;
-	vector<double> Dataf;
-	vector<double> Dataep;
-	vector<double> Dataeb;
-    /*LoadDielectric(openFileDialog1->FileName,Dataf,Dataep,Dataeb);
-	*/
-	LoadDielectric("e:\\Data1.txt",Dataf,Dataep,Dataeb);
-	size=Dataf.size();
-	Normalize(Dataep,Dataeb,c0);
-	//cout<<"Rozmiar = "<<size<<endl;
-	for (i=1;i<=size-2;i++)
-	{
-		//cout << i <<";"<<Dataep[i]<<endl;
-	chart1->Series["Series1"]->Points->AddXY(log10(Dataf[i]),Dataep[i]);
-	chart1->Series["Series2"]->Points->AddXY(log10(Dataf[i]),-Dataeb[i]);
-	
-	}
-	//Fit( Dataf,Dataep,Dataeb,25.61584,24.89592,710729.67865,0.34906 );
-	es=80;//80; //25.49947;
-	en=1.33;//1.33;
-	fp=45e3;
-	a=0;
-//	a=0;
-	TestFitF( Dataf,Dataep,Dataeb,es,en,fp,a);
-		for (i=1;i<=size-2;i++)
-	{
-	d=en+(es-en)/(1.0+pow(ii*Dataf[i]/fp,1-a));
-//	d=en+(es-en)/(1.0+pow(std::complex <double>(0.0,1.0)*Dataf[i]/fp,1-a));
-	ep= std::real(d);
-	eb=-std::imag(d);
-	chart1->Series["Series3"]->Points->AddXY(log10(Dataf[i]),ep);
-	chart1->Series["Series4"]->Points->AddXY(log10(Dataf[i]),eb);
-	  }
-				  // }
-				   
+				 if (openFileDialog1->ShowDialog() == ::System::Windows::Forms::DialogResult::OK )
+				 {
+					 chart1->Series["Series1"]->Points->Clear();
+					 chart1->Series["Series2"]->Points->Clear();
+					 chart1->Series["Series3"]->Points->Clear();
+					 chart1->Series["Series4"]->Points->Clear();
+					 c0=(Convert::ToDouble(textBox1->Text));
+					 double es,en,fp,a;
+					 complex<double> d;
+					 vector<double> Dataf;
+					 vector<double> Dataep;
+					 vector<double> Dataeb;
+					 LoadDielectric(openFileDialog1->FileName,Dataf,Dataep,Dataeb);
+					 //LoadDielectric("e:\\Data1.txt",Dataf,Dataep,Dataeb);
+					 size=Dataf.size();
+					 Normalize(Dataep,Dataeb,c0);
+					 //cout<<"Rozmiar = "<<size<<endl;
+					 for (i=1;i<=size-2;i++)
+					 {
+						 //cout << i <<";"<<Dataep[i]<<endl;
+						 chart1->Series["Series1"]->Points->AddXY(log10(Dataf[i]),Dataep[i]);
+						 chart1->Series["Series2"]->Points->AddXY(log10(Dataf[i]),-Dataeb[i]);
 
-			 }
+					 }
+
+					 es=20;//80; //25.49947;
+					 en=13;//1.33;
+					 fp=25e3;
+					 a=0;
+					 Fit( Dataf,Dataep,Dataeb,es,en,fp,a);
+					 for (i=1;i<=size-2;i++)
+					 {
+						 d=en+(es-en)/(1.0+pow(ii*Dataf[i]/fp,1-a));
+						 ep= std::real(d);
+						 eb=-std::imag(d);
+						 chart1->Series["Series3"]->Points->AddXY(log10(Dataf[i]),ep);
+						 chart1->Series["Series4"]->Points->AddXY(log10(Dataf[i]),eb);
+					 }
+				 }
+			  }
 	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
 			 }
 private: System::Void chart1_Click(System::Object^  sender, System::EventArgs^  e) {
