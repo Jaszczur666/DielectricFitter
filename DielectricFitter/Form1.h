@@ -71,12 +71,12 @@ namespace DielectricFitter {
 			// 
 			// chart1
 			// 
-			chartArea1->AxisX->IntervalAutoMode = System::Windows::Forms::DataVisualization::Charting::IntervalAutoMode::VariableCount;
-			chartArea1->AxisX->IntervalType = System::Windows::Forms::DataVisualization::Charting::DateTimeIntervalType::Number;
+			//chartArea1->AxisX->IntervalAutoMode = System::Windows::Forms::DataVisualization::Charting::IntervalAutoMode::VariableCount;
+			//chartArea1->AxisX->IntervalType = System::Windows::Forms::DataVisualization::Charting::DateTimeIntervalType::Number;
 			chartArea1->AxisX->IsMarginVisible = false;
 			chartArea1->AxisX->IsStartedFromZero = false;
 			chartArea1->AxisX->LabelStyle->Interval = 0;
-			chartArea1->AxisX->LabelStyle->IntervalType = System::Windows::Forms::DataVisualization::Charting::DateTimeIntervalType::Auto;
+			//chartArea1->AxisX->LabelStyle->IntervalType = System::Windows::Forms::DataVisualization::Charting::DateTimeIntervalType::Auto;
 			chartArea1->AxisX->MajorGrid->Enabled = false;
 			chartArea1->AxisX->MaximumAutoSize = 85;
 			chartArea1->AxisX->Title = L"log (Czêstotliwoœæ)";
@@ -198,10 +198,14 @@ namespace DielectricFitter {
 
 					 }
 
-					 es=20;//80; //25.49947;
-					 en=13;//1.33;
-					 fp=25e3;
-					 a=0;
+					 es=100;//80; //25.49947;
+					 en=33;//1.33;
+					 fp=15e3;
+					 a=0.0;
+					 Fit( Dataf,Dataep,Dataeb,es,en,fp,a);
+					 FitA(Dataf,Dataep,Dataeb,es,en,fp,a);
+					 Fit( Dataf,Dataep,Dataeb,es,en,fp,a);
+					 FitA(Dataf,Dataep,Dataeb,es,en,fp,a);
 					 Fit( Dataf,Dataep,Dataeb,es,en,fp,a);
 					 for (i=1;i<=size-2;i++)
 					 {
@@ -214,6 +218,15 @@ namespace DielectricFitter {
 				 }
 			  }
 	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
+				 vector<double> Dataf;
+				 vector<double> Dataep;
+				 vector<double> Dataeb;
+				 double es,en,fp,a;
+				 es=123;
+				 en=45;
+				 fp=12345;
+				 LoadDielectric("e:\\Sheet1.dat",Dataf,Dataep,Dataeb);
+				// TestFitA(Dataf,Dataep,Dataeb,es,en,fp,a);
 			 }
 private: System::Void chart1_Click(System::Object^  sender, System::EventArgs^  e) {
 		 }

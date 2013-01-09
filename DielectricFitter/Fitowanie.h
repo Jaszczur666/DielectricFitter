@@ -1,6 +1,7 @@
 #define ii std::complex <double>(0.0,1.0)
 #include <complex>
 #include <vector>
+void FitA( vector<double>& dataf,vector<double>& dataep,vector<double>& dataeb,double& es,double& en, double& fp, double& a );
 double chi2( vector<double>& dataf,vector<double>& dataep,vector<double>& dataeb,double es,double en, double lfp, double a )
 {
 	complex <double> d;
@@ -42,14 +43,15 @@ void Fit( vector<double>& dataf,vector<double>& dataep,vector<double>& dataeb,do
 		dfda=(chia-chi0)/eps;
 		nes=es-dfdes*gamma;
 		nen=en-dfden*gamma;
-		nlfp=lfp-1e-3*dfdfp*gamma;
+		nlfp=lfp-2e-3*dfdfp*gamma;
 		na=a-3e-3*dfda*gamma;
+		if (chi0<1e-3) break;
 		chin=chi2( dataf,dataep,dataeb,nes,nen,nlfp,na);
 		if (chin <chi0) {
 			es=nes;
 			en=nen;
 			lfp=nlfp;
-			a=na;
+			//a=na;
 			//cout <<i<<" "<< es<<" "<<en<<" "<<lfp<<" "<<a<<endl;
 		}
 		else
@@ -86,5 +88,21 @@ void TestFitF( vector<double>& dataf,vector<double>& dataep,vector<double>& data
 			chi0=chi2( dataf,dataep,dataeb,es,en,log10(fp),a);
 			cout<<" "<<en<<" "<<es<<" "<< " "<<chi0<<endl;
 		}
+	}
+}
+
+void FitA( vector<double>& dataf,vector<double>& dataep,vector<double>& dataeb,double& es,double& en, double& fp, double& a ){
+	double chi0,chi1;
+	int i;
+	for (i=1;i<100;i++)
+	{
+		chi0=chi2( dataf,dataep,dataeb,es,en,log10(fp),i/100.0);
+		chi1=chi2( dataf,dataep,dataeb,es,en,log10(fp),(1+i)/100.0);
+		if (chi0<chi1)  
+		{
+			a=i/100.;
+				break;
+		}
+		//cout<<" "<<i<<" "<<i/100.<<" "<< " "<<chi0<<endl;
 	}
 }
