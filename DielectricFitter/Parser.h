@@ -35,7 +35,6 @@ void LoadDielectric(String^ Filename, vector<double>& dataf,vector<double>& data
 	f=0;
 	ep=0;
 	eb=0;
-
 	MarshalString(Filename,name);
 	ifstream inpfile(name);
 	getline(inpfile,str);
@@ -46,7 +45,6 @@ void LoadDielectric(String^ Filename, vector<double>& dataf,vector<double>& data
 	{
 		getline(inpfile,str);
 		i=1;
-		//cout<<" "<<f <<" "<<ep<<" "<<eb<<" "<< str<<endl;
 		istringstream ss( str );
 		while (!ss.eof())
 		{
@@ -62,23 +60,18 @@ void LoadDielectric(String^ Filename, vector<double>& dataf,vector<double>& data
 				eb=atof(x.c_str());
 			}
 			if (i ==3){
-			ldataf.push_back (f);
-			ldataep.push_back (ep);
-			ldataeb.push_back (eb);
-			//cout<<" "<<f <<" "<<ep<<" "<<eb<<" "<< endl;
-			//cout<<"Rozmiar w funkcji = "<<ldataf.size()<<endl;
-		}
-		
+				ldataf.push_back (f);
+				ldataep.push_back (ep);
+				ldataeb.push_back (eb);
+			}
+
 			i++;
-			//cout <<i<<" "<< x << endl;      
 		}	
-		
+
 		if (i ==4){
 			ldataf.push_back (f);
 			ldataep.push_back (ep);
 			ldataeb.push_back (eb);
-			//cout<<" "<<f <<" "<<ep<<" "<<eb<<" "<< endl;
-			//cout<<"Rozmiar w funkcji = "<<ldataf.size()<<endl;
 		}
 
 	}
@@ -97,9 +90,9 @@ void Normalize(vector<double>& dataep,vector<double>& dataeb,double C0)
 	int size,i;
 	size=dataep.size();
 	for (i=1;i<=size-2;i++)
-{
-	dataep[i]=dataep[i]/C0;
-	dataeb[i]=dataeb[i]/C0;
+	{
+		dataep[i]=dataep[i]/C0;
+		dataeb[i]=dataeb[i]/C0;
 
 	}
 }

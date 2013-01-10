@@ -56,7 +56,7 @@ void Fit( vector<double>& dataf,vector<double>& dataep,vector<double>& dataeb,do
 		}
 		else
 		{
-			gamma=gamma/pow(10,0.2);
+			gamma=gamma/pow(10,0.5);
 			if (gamma<1e-12) break;
 			cout<<i<<" " << gamma <<endl;
 		}
@@ -101,8 +101,7 @@ void FitA( vector<double>& dataf,vector<double>& dataep,vector<double>& dataeb,d
 		if (chi0<chi1)  
 		{
 			a=i/100.;
-				break;
+			break;
 		}
-		//cout<<" "<<i<<" "<<i/100.<<" "<< " "<<chi0<<endl;
 	}
 }
