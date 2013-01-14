@@ -30,7 +30,7 @@ void Fit( vector<double>& dataf,vector<double>& dataep,vector<double>& dataeb,do
 	double dfdes,dfden,dfdfp,dfda,lfp;
 	double nes,nen,nlfp,na,chin;
 	lfp=log10(fp);
-	cout << es<<" "<<en<<" "<<fp<<" "<<lfp<<" "<<a<<endl;
+	//cout << es<<" "<<en<<" "<<fp<<" "<<lfp<<" "<<a<<endl;
 	for (i=1;i<1000;i++){
 		chi0=chi2( dataf,dataep,dataeb,es,en,lfp,a);
 		chies=chi2( dataf,dataep,dataeb,es+eps,en,lfp,a);
@@ -44,7 +44,7 @@ void Fit( vector<double>& dataf,vector<double>& dataep,vector<double>& dataeb,do
 		nes=es-dfdes*gamma;
 		nen=en-dfden*gamma;
 		nlfp=lfp-2e-3*dfdfp*gamma;
-		na=a-3e-3*dfda*gamma;
+		na=a;//-3e-3*dfda*gamma;
 		if (chi0<1e-3) break;
 		chin=chi2( dataf,dataep,dataeb,nes,nen,nlfp,na);
 		if (chin <chi0) {
@@ -52,13 +52,13 @@ void Fit( vector<double>& dataf,vector<double>& dataep,vector<double>& dataeb,do
 			en=nen;
 			lfp=nlfp;
 			//a=na;
-			//cout <<i<<" "<< es<<" "<<en<<" "<<lfp<<" "<<a<<endl;
+			cout <<i<<" "<< es<<" "<<en<<" "<<lfp<<" "<<a<<endl;
 		}
 		else
 		{
 			gamma=gamma/pow(10,0.5);
 			if (gamma<1e-12) break;
-			cout<<i<<" " << gamma <<endl;
+			//cout<<i<<" " << gamma <<endl;
 		}
 	}
 	fp=pow(10,lfp);
