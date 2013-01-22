@@ -3,7 +3,7 @@
 #include <complex>
 #include <intrin.h>
 #include "Dense"
-
+using Eigen::MatrixXd;
 namespace DielectricFitter {
 
 	using namespace System;
@@ -300,6 +300,7 @@ namespace DielectricFitter {
 				 int i;
 				 int size;
 				 double c0,ep,eb;
+				 MatrixXd parameters(4,1);
 
 				 if (openFileDialog1->ShowDialog() == ::System::Windows::Forms::DialogResult::OK )
 				 {
@@ -332,7 +333,9 @@ namespace DielectricFitter {
 					 en=1;//1.33;
 					 fp=3e5;
 					 a=0.25;
-					 Fit( Dataf,Dataep,Dataeb,es,en,fp,a);
+					 parameters<<100,1,3e5,0.25;
+					 CalculateHessian(Dataf,Dataep,Dataeb,parameters);
+//					 Fit( Dataf,Dataep,Dataeb,es,en,fp,a);
 //					 FitA(Dataf,Dataep,Dataeb,es,en,fp,a);
 //					 Fit( Dataf,Dataep,Dataeb,es,en,fp,a);
 //					 FitA(Dataf,Dataep,Dataeb,es,en,fp,a);

@@ -110,4 +110,5 @@ void FitA( vector<double>& dataf,vector<double>& dataep,vector<double>& dataeb,d
 
 void CalculateHessian(vector<double>& dataf,vector<double>& dataep,vector<double>& dataeb, MatrixXd parameters)
 {
+cout<<parameters;
 }
