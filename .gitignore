@@ -161,3 +161,35 @@ pip-log.txt
 
 # Mac crap
 .DS_Store
+
+DielectricFitter/src/*.*
+DielectricFitter/src/*
+DielectricFitter/Array
+DielectricFitter/Cholesky
+DielectricFitter/CholmodSupport
+DielectricFitter/CMakeLists.txt
+DielectricFitter/Core
+DielectricFitter/Dense
+DielectricFitter/Eigen
+DielectricFitter/Eigen2Support
+DielectricFitter/Eigenvalues
+DielectricFitter/Geometry
+DielectricFitter/Householder
+DielectricFitter/IterativeLinearSolvers
+DielectricFitter/Jacobi
+DielectricFitter/LeastSquares
+DielectricFitter/LU
+DielectricFitter/OrderingMethods
+DielectricFitter/PardisoSupport
+DielectricFitter/PaStiXSupport
+DielectricFitter/QR
+DielectricFitter/QtAlignedMalloc
+DielectricFitter/Sparse
+DielectricFitter/SparseCholesky
+DielectricFitter/SparseCore
+DielectricFitter/StdDeque
+DielectricFitter/StdList
+DielectricFitter/StdVector
+DielectricFitter/SuperLUSupport
+DielectricFitter/SVD
+DielectricFitter/UmfPackSupport

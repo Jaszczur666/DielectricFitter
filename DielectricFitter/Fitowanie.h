@@ -1,6 +1,8 @@
 #define ii std::complex <double>(0.0,1.0)
 #include <complex>
 #include <vector>
+#include "Dense"
+using Eigen::MatrixXd;
 void FitA( vector<double>& dataf,vector<double>& dataep,vector<double>& dataeb,double& es,double& en, double& fp, double& a );
 double chi2( vector<double>& dataf,vector<double>& dataep,vector<double>& dataeb,double es,double en, double lfp, double a )
 {
@@ -104,4 +106,8 @@ void FitA( vector<double>& dataf,vector<double>& dataep,vector<double>& dataeb,d
 			break;
 		}
 	}
+}
+
+void CalculateHessian(vector<double>& dataf,vector<double>& dataep,vector<double>& dataeb, MatrixXd parameters)
+{
 }

@@ -1,6 +1,8 @@
 #include "Parser.h"
 #include "Fitowanie.h"
 #include <complex>
+#include <intrin.h>
+#include "Dense"
 
 namespace DielectricFitter {
 
@@ -331,10 +333,10 @@ namespace DielectricFitter {
 					 fp=3e5;
 					 a=0.25;
 					 Fit( Dataf,Dataep,Dataeb,es,en,fp,a);
-					 FitA(Dataf,Dataep,Dataeb,es,en,fp,a);
-					 Fit( Dataf,Dataep,Dataeb,es,en,fp,a);
-					 FitA(Dataf,Dataep,Dataeb,es,en,fp,a);
-					 Fit( Dataf,Dataep,Dataeb,es,en,fp,a);
+//					 FitA(Dataf,Dataep,Dataeb,es,en,fp,a);
+//					 Fit( Dataf,Dataep,Dataeb,es,en,fp,a);
+//					 FitA(Dataf,Dataep,Dataeb,es,en,fp,a);
+//					 Fit( Dataf,Dataep,Dataeb,es,en,fp,a);
 					 for (i=1;i<=size-2;i++)
 					 {
 						 d=en+(es-en)/(1.0+pow(ii*Dataf[i]/fp,1-a));
