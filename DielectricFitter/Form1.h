@@ -329,12 +329,17 @@ namespace DielectricFitter {
 
 					 }
 
-					 es=123;//80; //25.49947;
-					 en=45;//1.33;
-					 fp=12345;
-					 a=0.35;
+					 es=100;//80; //25.49947;
+					 en=13;//1.33;
+					 fp=16345;
+					 a=0.2;
 					 parameters<<es,en,fp,a;
-					 CalculateHessian(Dataf,Dataep,Dataeb,parameters);
+					 FitLM(Dataf,Dataep,Dataeb,parameters);
+					 es=parameters(0,0);
+					 en=parameters(1,0);
+					 fp=parameters(2,0);
+					 a=parameters(3,0);
+					 cout << es <<" "<<en<<" "<<fp<<" "<<a<<std::endl;
 //					 Fit( Dataf,Dataep,Dataeb,es,en,fp,a);
 //					 FitA(Dataf,Dataep,Dataeb,es,en,fp,a);
 //					 Fit( Dataf,Dataep,Dataeb,es,en,fp,a);
