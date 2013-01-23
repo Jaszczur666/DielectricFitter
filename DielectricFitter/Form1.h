@@ -329,11 +329,11 @@ namespace DielectricFitter {
 
 					 }
 
-					 es=100;//80; //25.49947;
-					 en=1;//1.33;
-					 fp=3e5;
-					 a=0.25;
-					 parameters<<100,1,3e5,0.25;
+					 es=123;//80; //25.49947;
+					 en=45;//1.33;
+					 fp=12345;
+					 a=0.35;
+					 parameters<<es,en,fp,a;
 					 CalculateHessian(Dataf,Dataep,Dataeb,parameters);
 //					 Fit( Dataf,Dataep,Dataeb,es,en,fp,a);
 //					 FitA(Dataf,Dataep,Dataeb,es,en,fp,a);
@@ -355,7 +355,7 @@ namespace DielectricFitter {
 				 vector<double> Dataf;
 				 vector<double> Dataep;
 				 vector<double> Dataeb;
-				 double es,en,fp,a;
+				 double es,en,fp;
 				 es=123;
 				 en=45;
 				 fp=12345;

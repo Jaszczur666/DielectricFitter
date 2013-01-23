@@ -4,6 +4,7 @@
 #include "Dense"
 using Eigen::MatrixXd;
 void FitA( vector<double>& dataf,vector<double>& dataep,vector<double>& dataeb,double& es,double& en, double& fp, double& a );
+void CalculateResidue(double f,double ep,double eb, MatrixXd parameters,double &rp,double&rb);
 double chi2( vector<double>& dataf,vector<double>& dataep,vector<double>& dataeb,double es,double en, double lfp, double a )
 {
 	complex <double> d;
@@ -108,7 +109,54 @@ void FitA( vector<double>& dataf,vector<double>& dataep,vector<double>& dataeb,d
 	}
 }
 
-void CalculateHessian(vector<double>& dataf,vector<double>& dataep,vector<double>& dataeb, MatrixXd parameters)
+void CalculateHessian(vector<double> dataf,vector<double> dataep,vector<double> dataeb, MatrixXd parameters)
 {
-cout<<parameters;
+	int i,size;
+	
+	MatrixXd delta(4,1);
+	MatrixXd Hessian;
+	double rp,rb,rsp,rsb,rnp,rnb,rfb,rfp,rap,rab;
+	double eps;
+	size=dataf.size();
+	MatrixXd Jaco(2*(size-2),4);
+	complex <double> d;
+	eps=1e-6;
+	for (i=1;i<=size-2;i++)
+	{
+	CalculateResidue(dataf[i-1],dataep[i-1],dataeb[i-1],parameters,rp,rb);
+	delta<<1e-9,0,0,0;
+	CalculateResidue(dataf[i-1],dataep[i-1],dataeb[i-1],parameters+delta,rsp,rsb);
+	delta<<0,1e-9,0,0;
+	CalculateResidue(dataf[i-1],dataep[i-1],dataeb[i-1],parameters+delta,rnp,rnb);
+	delta<<0,0,1e-9,0;
+	CalculateResidue(dataf[i-1],dataep[i-1],dataeb[i-1],parameters+delta,rfp,rfb);
+	delta<<0,0,0,1e-9;
+	CalculateResidue(dataf[i-1],dataep[i-1],dataeb[i-1],parameters+delta,rap,rab);
+	Jaco((i-1)*2,0)=(rsp-rp)/1e-9;
+	Jaco((i-1)*2+1,0)=(rsb-rb)/1e-9;
+	Jaco((i-1)*2,1)=(rnp-rp)/1e-9;
+	Jaco((i-1)*2+1,1)=(rnb-rb)/1e-9;
+	Jaco((i-1)*2,2)=(rfp-rp)/1e-9;
+	Jaco((i-1)*2+1,2)=(rfb-rb)/1e-9;
+	Jaco((i-1)*2,3)=(rap-rp)/1e-9;
+	Jaco((i-1)*2+1,3)=(rab-rb)/1e-9;
+	//cout <<i<<" "<< "resid="<<rp<< "' "<<rb<<"'' "<<std::endl;		
+	}
+//	cout <<Jaco;
+	Hessian=Jaco.transpose()*Jaco;
+	cout << Hessian<<std::endl;
+	cout <<"------------------------------------"<<std::endl;
+	cout<<	Hessian.inverse();
+//cout<<parameters;
+}
+
+void CalculateResidue(double f,double ep,double eb, MatrixXd parameters,double &rp,double&rb)
+{
+		double pep,peb;
+		complex <double> d;
+		d=parameters(1)+(parameters(0)-parameters(1))/(1.0+pow(ii*f/parameters(2),1-parameters(3)));
+		pep=std::real(d);
+		peb=std::imag(d);
+		rp=ep-pep;
+		rb=eb-peb;
 }
