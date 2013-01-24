@@ -29,6 +29,9 @@
     <ClCompile Include="AssemblyInfo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Form1.h">
@@ -45,6 +48,9 @@
     </ClInclude>
     <ClInclude Include="Fitowanie.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="removed.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -103,6 +103,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Parser.h" />
+    <ClInclude Include="removed.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="resource.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>

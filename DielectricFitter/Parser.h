@@ -6,7 +6,8 @@
 #include <algorithm>
 using namespace System;
 using namespace std;
-void LoadDielectric(String^ Filename, vector<double>& dataf,vector<double>& dataep,vector<double>& dataeb);
+
+//void LoadDielectric(String^ Filename, vector<double>& dataf,vector<double>& dataep,vector<double>& dataeb);
 void MarshalString ( String ^ s, string& os ) {
 	using namespace Runtime::InteropServices;
 	const char* chars = 
@@ -67,22 +68,23 @@ void LoadDielectric(String^ Filename, vector<double>& dataf,vector<double>& data
 
 			i++;
 		}	
+	//	inpfile.close();
 
-		if (i ==4){
+/*		if (i ==4){
 			ldataf.push_back (f);
 			ldataep.push_back (ep);
 			ldataeb.push_back (eb);
 		}
-
+*/
 	}
 	dataf.swap(ldataf);
 	dataep.swap(ldataep);
 	dataeb.swap(ldataeb);
-	size=ldataf.size();
-	for (i=1;i<=size-2;i++)
+	size=dataf.size();
+/*	for (i=0;i<=size-1;i++)
 	{
-		cout << i <<";"<<ldataep[i]<<endl;
-	}
+		cout << i <<";"<<dataf[i]<<endl;
+	}*/
 }
 
 void Normalize(vector<double>& dataep,vector<double>& dataeb,double C0)
