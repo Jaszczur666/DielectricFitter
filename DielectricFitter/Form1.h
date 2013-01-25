@@ -60,6 +60,7 @@ namespace DielectricFitter {
 	private: System::Windows::Forms::TextBox^  textBox3;
 	private: System::Windows::Forms::TextBox^  textBox4;
 	private: System::Windows::Forms::TextBox^  textBox5;
+	private: System::Windows::Forms::Button^  button3;
 
 	private:
 		/// <summary>
@@ -99,6 +100,7 @@ namespace DielectricFitter {
 			this->textBox3 = (gcnew System::Windows::Forms::TextBox());
 			this->textBox4 = (gcnew System::Windows::Forms::TextBox());
 			this->textBox5 = (gcnew System::Windows::Forms::TextBox());
+			this->button3 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->chart1))->BeginInit();
 			this->tabControl1->SuspendLayout();
 			this->tabPage1->SuspendLayout();
@@ -311,11 +313,22 @@ namespace DielectricFitter {
 			this->textBox5->TabIndex = 9;
 			this->textBox5->Text = L"1";
 			// 
+			// button3
+			// 
+			this->button3->Location = System::Drawing::Point(651, 30);
+			this->button3->Name = L"button3";
+			this->button3->Size = System::Drawing::Size(75, 23);
+			this->button3->TabIndex = 10;
+			this->button3->Text = L"Chi2";
+			this->button3->UseVisualStyleBackColor = true;
+			this->button3->Click += gcnew System::EventHandler(this, &Form1::button3_Click);
+			// 
 			// Form1
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(792, 589);
+			this->Controls->Add(this->button3);
 			this->Controls->Add(this->textBox5);
 			this->Controls->Add(this->textBox4);
 			this->Controls->Add(this->textBox3);
@@ -365,7 +378,7 @@ namespace DielectricFitter {
 					 size=Dataf.size();
 					 Normalize(Dataep,Dataeb,c0);
 					 //cout<<"Rozmiar = "<<size<<endl;
-					 for (i=1;i<=size-2;i++)
+					 for (i=0;i<=size-1;i++)
 					 {
 						 chart1->Series["Series1"]->Points->AddXY(log10(Dataf[i]),Dataep[i]);
 						 chart1->Series["Series2"]->Points->AddXY(log10(Dataf[i]),-Dataeb[i]);
@@ -425,6 +438,29 @@ private: System::Void Form1_ResizeEnd(System::Object^  sender, System::EventArgs
 		 }
 private: System::Void abooutToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 			 
+		 }
+private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e) {
+			  double ep,eb,es,en,fp,a;
+				 int i,size;
+				 MatrixXd parameters(4,1);
+				 complex<double> d;
+				 chart1->Series["Series3"]->Points->Clear();
+				 chart1->Series["Series4"]->Points->Clear();
+				 chart2->Series["Series2"]->Points->Clear();
+				 size=Dataf.size();
+				 es=(Convert::ToDouble(textBox2->Text));
+				 en=(Convert::ToDouble(textBox3->Text));
+				 fp=(Convert::ToDouble(textBox4->Text));
+				 a=(Convert::ToDouble(textBox5->Text));
+				 for (i=1;i<=size-2;i++)
+				 {
+					 d=en+(es-en)/(1.0+pow(ii*Dataf[i]/fp,1-a));
+					 ep= std::real(d);
+					 eb=-std::imag(d);
+					 chart1->Series["Series3"]->Points->AddXY(log10(Dataf[i]),ep);
+					 chart1->Series["Series4"]->Points->AddXY(log10(Dataf[i]),eb);
+					 chart2->Series["Series2"]->Points->AddXY(ep,eb);
+				 }
 		 }
 };
 }

@@ -91,7 +91,7 @@ void Normalize(vector<double>& dataep,vector<double>& dataeb,double C0)
 {
 	int size,i;
 	size=dataep.size();
-	for (i=1;i<=size-2;i++)
+	for (i=0;i<=size-1;i++)
 	{
 		dataep[i]=dataep[i]/C0;
 		dataeb[i]=dataeb[i]/C0;
