@@ -2,6 +2,7 @@
 #include "Fitowanie.h"
 #include <complex>
 #include <intrin.h>
+#include "About.h"
 #include "Dense"
 using Eigen::MatrixXd;
 vector<double> Dataf;
@@ -457,7 +458,8 @@ private: System::Void Form1_ResizeEnd(System::Object^  sender, System::EventArgs
 		
 		 }
 private: System::Void abooutToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
-			 
+		Form^ rgForm = gcnew About();
+		rgForm->Show();			 
 		 }
 private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e) {
 			  double ep,eb,es,en,fp,a;
