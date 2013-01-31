@@ -380,7 +380,7 @@ namespace DielectricFitter {
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
 				 int i;
 				 int size;
-				 double c0;//,ep,eb;
+				 double c0,es,en,fp,a;//,ep,eb;
 				 MatrixXd parameters(4,1);
 
 				 if (openFileDialog1->ShowDialog() == ::System::Windows::Forms::DialogResult::OK )
@@ -392,13 +392,19 @@ namespace DielectricFitter {
 					 chart1->Series["Series3"]->Points->Clear();
 					 chart1->Series["Series4"]->Points->Clear();
 					 c0=(Convert::ToDouble(textBox1->Text));
-//					 double es,en,fp,a;
 					 complex<double> d;
 					 LoadDielectric(openFileDialog1->FileName,Dataf,Dataep,Dataeb);
-					 //LoadDielectric("e:\\Data1.txt",Dataf,Dataep,Dataeb);
 					 size=Dataf.size();
 					 Normalize(Dataep,Dataeb,c0);
-					 //cout<<"Rozmiar = "<<size<<endl;
+					 GuesstimateParameters(Dataf,Dataep,Dataeb,parameters);
+					 es=parameters(0,0);
+					 textBox2->Text=es.ToString();
+					 en=parameters(1,0);
+					 textBox3->Text=en.ToString();
+					 fp=parameters(2,0);
+					 textBox4->Text=fp.ToString();
+					 a=parameters(3,0);
+					 textBox5->Text=a.ToString();
 					 for (i=0;i<=size-1;i++)
 					 {
 						 chart1->Series["Series1"]->Points->AddXY(log10(Dataf[i]),Dataep[i]);
