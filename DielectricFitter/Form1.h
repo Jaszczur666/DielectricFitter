@@ -98,6 +98,7 @@ namespace DielectricFitter {
 			this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
 			this->FileToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->loadFileToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->exitToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->helpToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->abooutToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
@@ -105,7 +106,6 @@ namespace DielectricFitter {
 			this->textBox4 = (gcnew System::Windows::Forms::TextBox());
 			this->textBox5 = (gcnew System::Windows::Forms::TextBox());
 			this->button3 = (gcnew System::Windows::Forms::Button());
-			this->exitToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->chart1))->BeginInit();
 			this->tabControl1->SuspendLayout();
 			this->tabPage1->SuspendLayout();
@@ -154,7 +154,7 @@ namespace DielectricFitter {
 			this->chart1->Series->Add(series2);
 			this->chart1->Series->Add(series3);
 			this->chart1->Series->Add(series4);
-			this->chart1->Size = System::Drawing::Size(759, 501);
+			this->chart1->Size = System::Drawing::Size(1598, 748);
 			this->chart1->TabIndex = 0;
 			this->chart1->Text = L"chart1";
 			this->chart1->Click += gcnew System::EventHandler(this, &Form1::chart1_Click);
@@ -171,8 +171,9 @@ namespace DielectricFitter {
 			// 
 			// openFileDialog1
 			// 
-			this->openFileDialog1->FileName = L"openFileDialog1";
 			this->openFileDialog1->Filter = L"Dat file|*.dat|txt file|*.txt";
+			this->openFileDialog1->FilterIndex = 2;
+			this->openFileDialog1->Multiselect = true;
 			this->openFileDialog1->FileOk += gcnew System::ComponentModel::CancelEventHandler(this, &Form1::openFileDialog1_FileOk);
 			// 
 			// textBox1
@@ -204,7 +205,7 @@ namespace DielectricFitter {
 			this->tabControl1->Margin = System::Windows::Forms::Padding(10);
 			this->tabControl1->Name = L"tabControl1";
 			this->tabControl1->SelectedIndex = 0;
-			this->tabControl1->Size = System::Drawing::Size(773, 533);
+			this->tabControl1->Size = System::Drawing::Size(1612, 780);
 			this->tabControl1->TabIndex = 4;
 			// 
 			// tabPage1
@@ -213,7 +214,7 @@ namespace DielectricFitter {
 			this->tabPage1->Location = System::Drawing::Point(4, 22);
 			this->tabPage1->Name = L"tabPage1";
 			this->tabPage1->Padding = System::Windows::Forms::Padding(3);
-			this->tabPage1->Size = System::Drawing::Size(765, 507);
+			this->tabPage1->Size = System::Drawing::Size(1604, 754);
 			this->tabPage1->TabIndex = 0;
 			this->tabPage1->Text = L"Bode Plot";
 			this->tabPage1->UseVisualStyleBackColor = true;
@@ -260,7 +261,7 @@ namespace DielectricFitter {
 				this->helpToolStripMenuItem});
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			this->menuStrip1->Name = L"menuStrip1";
-			this->menuStrip1->Size = System::Drawing::Size(792, 24);
+			this->menuStrip1->Size = System::Drawing::Size(1631, 24);
 			this->menuStrip1->TabIndex = 5;
 			this->menuStrip1->Text = L"menuStrip1";
 			this->menuStrip1->ItemClicked += gcnew System::Windows::Forms::ToolStripItemClickedEventHandler(this, &Form1::menuStrip1_ItemClicked);
@@ -277,9 +278,16 @@ namespace DielectricFitter {
 			// loadFileToolStripMenuItem
 			// 
 			this->loadFileToolStripMenuItem->Name = L"loadFileToolStripMenuItem";
-			this->loadFileToolStripMenuItem->Size = System::Drawing::Size(152, 22);
+			this->loadFileToolStripMenuItem->Size = System::Drawing::Size(125, 22);
 			this->loadFileToolStripMenuItem->Text = L"Load file";
 			this->loadFileToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::loadFileToolStripMenuItem_Click);
+			// 
+			// exitToolStripMenuItem
+			// 
+			this->exitToolStripMenuItem->Name = L"exitToolStripMenuItem";
+			this->exitToolStripMenuItem->Size = System::Drawing::Size(125, 22);
+			this->exitToolStripMenuItem->Text = L"Exit";
+			this->exitToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::exitToolStripMenuItem_Click);
 			// 
 			// helpToolStripMenuItem
 			// 
@@ -337,18 +345,11 @@ namespace DielectricFitter {
 			this->button3->UseVisualStyleBackColor = true;
 			this->button3->Click += gcnew System::EventHandler(this, &Form1::button3_Click);
 			// 
-			// exitToolStripMenuItem
-			// 
-			this->exitToolStripMenuItem->Name = L"exitToolStripMenuItem";
-			this->exitToolStripMenuItem->Size = System::Drawing::Size(152, 22);
-			this->exitToolStripMenuItem->Text = L"Exit";
-			this->exitToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::exitToolStripMenuItem_Click);
-			// 
 			// Form1
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(792, 589);
+			this->ClientSize = System::Drawing::Size(1631, 836);
 			this->Controls->Add(this->button3);
 			this->Controls->Add(this->textBox5);
 			this->Controls->Add(this->textBox4);
@@ -385,6 +386,7 @@ namespace DielectricFitter {
 
 				 if (openFileDialog1->ShowDialog() == ::System::Windows::Forms::DialogResult::OK )
 				 {
+					 string name;
 					 chart1->Series["Series1"]->Points->Clear();
 					 chart2->Series["Series1"]->Points->Clear();
 					 chart1->Series["Series2"]->Points->Clear();
@@ -412,7 +414,7 @@ namespace DielectricFitter {
 						 chart2->Series["Series1"]->Points->AddXY(Dataep[i],-Dataeb[i]);
 
 					 }
-
+					 button3->PerformClick();
 				
 				 }
 			  }
@@ -468,7 +470,7 @@ private: System::Void abooutToolStripMenuItem_Click(System::Object^  sender, Sys
 		rgForm->Show();			 
 		 }
 private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e) {
-			  double ep,eb,es,en,fp,a;
+			  double ep,eb,es,en,fp,f,a,maxf,minf,df;
 				 int i,size;
 				 MatrixXd parameters(4,1);
 				 complex<double> d;
@@ -476,17 +478,22 @@ private: System::Void button3_Click(System::Object^  sender, System::EventArgs^ 
 				 chart1->Series["Series4"]->Points->Clear();
 				 chart2->Series["Series2"]->Points->Clear();
 				 size=Dataf.size();
+				 minf=Dataf[size-1];
+				 maxf=Dataf[0];
+				 df=log10(maxf)-log10(minf);
 				 es=(Convert::ToDouble(textBox2->Text));
 				 en=(Convert::ToDouble(textBox3->Text));
 				 fp=(Convert::ToDouble(textBox4->Text));
 				 a=(Convert::ToDouble(textBox5->Text));
-				 for (i=0;i<=size-1;i++)
+				 for (i=0;i<=300;i++)
 				 {
-					 d=en+(es-en)/(1.0+pow(ii*Dataf[i]/fp,1-a));
+					 f=log10(minf)+(i/300.0)*df;
+					 d=en+(es-en)/(1.0+pow(ii*pow(10,f)/fp,1-a));
 					 ep= std::real(d);
 					 eb=-std::imag(d);
-					 chart1->Series["Series3"]->Points->AddXY(log10(Dataf[i]),ep);
-					 chart1->Series["Series4"]->Points->AddXY(log10(Dataf[i]),eb);
+					 //cout <<i<<" "<<f <<endl;
+					 chart1->Series["Series3"]->Points->AddXY(f,ep);
+					 chart1->Series["Series4"]->Points->AddXY(f,eb);
 					 chart2->Series["Series2"]->Points->AddXY(ep,eb);
 				 }
 		 }

@@ -32,16 +32,20 @@ void LoadDielectric(String^ Filename, vector<double>& dataf,vector<double>& data
 	vector<double> ldataep;
 	vector<double> ldataeb;
 	double f,ep,eb;
-	int i=0,size;
+	int i=0,size,temppos;
 	f=0;
 	ep=0;
 	eb=0;
 	MarshalString(Filename,name);
 	ifstream inpfile(name);
 	getline(inpfile,str);
+	cout <<str<<endl;
 	getline(inpfile,str);
+	cout <<str<<endl;
+	temppos=str.find("Temp.");
+	cout<<temppos <<endl;
 	getline(inpfile,str);
-
+	cout <<str<<endl;
 	while (!inpfile.eof())
 	{
 		getline(inpfile,str);
