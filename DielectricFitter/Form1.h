@@ -8,6 +8,13 @@ using Eigen::MatrixXd;
 vector<double> Dataf;
 vector<double> Dataep;
 vector<double> Dataeb;
+struct curve{
+vector<double> Dataf;
+vector<double> Dataep;
+vector<double> Dataeb;
+double temperature;
+};
+vector <curve> CurveSet;
 namespace DielectricFitter {
 
 	using namespace System;
@@ -178,7 +185,7 @@ namespace DielectricFitter {
 			// 
 			// textBox1
 			// 
-			this->textBox1->Location = System::Drawing::Point(85, 27);
+			this->textBox1->Location = System::Drawing::Point(576, 27);
 			this->textBox1->Name = L"textBox1";
 			this->textBox1->Size = System::Drawing::Size(106, 20);
 			this->textBox1->TabIndex = 2;
@@ -186,7 +193,7 @@ namespace DielectricFitter {
 			// 
 			// button2
 			// 
-			this->button2->Location = System::Drawing::Point(197, 27);
+			this->button2->Location = System::Drawing::Point(688, 27);
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(75, 23);
 			this->button2->TabIndex = 3;
@@ -226,7 +233,7 @@ namespace DielectricFitter {
 			this->tabPage2->Location = System::Drawing::Point(4, 22);
 			this->tabPage2->Name = L"tabPage2";
 			this->tabPage2->Padding = System::Windows::Forms::Padding(3);
-			this->tabPage2->Size = System::Drawing::Size(765, 507);
+			this->tabPage2->Size = System::Drawing::Size(1604, 754);
 			this->tabPage2->TabIndex = 1;
 			this->tabPage2->Text = L"Cole-Cole";
 			this->tabPage2->UseVisualStyleBackColor = true;
@@ -299,13 +306,13 @@ namespace DielectricFitter {
 			// abooutToolStripMenuItem
 			// 
 			this->abooutToolStripMenuItem->Name = L"abooutToolStripMenuItem";
-			this->abooutToolStripMenuItem->Size = System::Drawing::Size(114, 22);
+			this->abooutToolStripMenuItem->Size = System::Drawing::Size(152, 22);
 			this->abooutToolStripMenuItem->Text = L"About";
 			this->abooutToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::abooutToolStripMenuItem_Click);
 			// 
 			// textBox2
 			// 
-			this->textBox2->Location = System::Drawing::Point(294, 30);
+			this->textBox2->Location = System::Drawing::Point(785, 30);
 			this->textBox2->Name = L"textBox2";
 			this->textBox2->Size = System::Drawing::Size(78, 20);
 			this->textBox2->TabIndex = 6;
@@ -313,7 +320,7 @@ namespace DielectricFitter {
 			// 
 			// textBox3
 			// 
-			this->textBox3->Location = System::Drawing::Point(378, 30);
+			this->textBox3->Location = System::Drawing::Point(869, 30);
 			this->textBox3->Name = L"textBox3";
 			this->textBox3->Size = System::Drawing::Size(78, 20);
 			this->textBox3->TabIndex = 7;
@@ -321,7 +328,7 @@ namespace DielectricFitter {
 			// 
 			// textBox4
 			// 
-			this->textBox4->Location = System::Drawing::Point(462, 30);
+			this->textBox4->Location = System::Drawing::Point(953, 30);
 			this->textBox4->Name = L"textBox4";
 			this->textBox4->Size = System::Drawing::Size(78, 20);
 			this->textBox4->TabIndex = 8;
@@ -329,7 +336,7 @@ namespace DielectricFitter {
 			// 
 			// textBox5
 			// 
-			this->textBox5->Location = System::Drawing::Point(546, 30);
+			this->textBox5->Location = System::Drawing::Point(1037, 30);
 			this->textBox5->Name = L"textBox5";
 			this->textBox5->Size = System::Drawing::Size(78, 20);
 			this->textBox5->TabIndex = 9;
@@ -337,7 +344,7 @@ namespace DielectricFitter {
 			// 
 			// button3
 			// 
-			this->button3->Location = System::Drawing::Point(651, 30);
+			this->button3->Location = System::Drawing::Point(1142, 30);
 			this->button3->Name = L"button3";
 			this->button3->Size = System::Drawing::Size(75, 23);
 			this->button3->TabIndex = 10;
@@ -381,40 +388,48 @@ namespace DielectricFitter {
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
 				 int i;
 				 int size;
-				 double c0,es,en,fp,a;//,ep,eb;
+				 double c0,es,en,fp,a,temperature;//,ep,eb;
+				 curve  SingleCurve;
 				 MatrixXd parameters(4,1);
-
+				 temperature=0.0;
 				 if (openFileDialog1->ShowDialog() == ::System::Windows::Forms::DialogResult::OK )
 				 {
 					 string name;
-					 chart1->Series["Series1"]->Points->Clear();
-					 chart2->Series["Series1"]->Points->Clear();
-					 chart1->Series["Series2"]->Points->Clear();
-					 chart2->Series["Series2"]->Points->Clear();
-					 chart1->Series["Series3"]->Points->Clear();
-					 chart1->Series["Series4"]->Points->Clear();
+					 //chart1->Series["Series1"]->Points->Clear();
+					 //chart2->Series["Series1"]->Points->Clear();
+					 //chart1->Series["Series2"]->Points->Clear();
+					 //chart2->Series["Series2"]->Points->Clear();
+					 //chart1->Series["Series3"]->Points->Clear();
+					 //chart1->Series["Series4"]->Points->Clear();
 					 c0=(Convert::ToDouble(textBox1->Text));
 					 complex<double> d;
-					 LoadDielectric(openFileDialog1->FileName,Dataf,Dataep,Dataeb);
-					 size=Dataf.size();
-					 Normalize(Dataep,Dataeb,c0);
-					 GuesstimateParameters(Dataf,Dataep,Dataeb,parameters);
-					 es=parameters(0,0);
-					 textBox2->Text=es.ToString();
-					 en=parameters(1,0);
-					 textBox3->Text=en.ToString();
-					 fp=parameters(2,0);
-					 textBox4->Text=fp.ToString();
-					 a=parameters(3,0);
-					 textBox5->Text=a.ToString();
-					 for (i=0;i<=size-1;i++)
+					 cout<<"Number of files to load "<<openFileDialog1->FileNames->Length<<endl;
+					 for (i=0;i<openFileDialog1->FileNames->Length;i++)
 					 {
-						 chart1->Series["Series1"]->Points->AddXY(log10(Dataf[i]),Dataep[i]);
-						 chart1->Series["Series2"]->Points->AddXY(log10(Dataf[i]),-Dataeb[i]);
-						 chart2->Series["Series1"]->Points->AddXY(Dataep[i],-Dataeb[i]);
-
+					 LoadDielectric(openFileDialog1->FileNames[i],SingleCurve.Dataf,SingleCurve.Dataep,SingleCurve.Dataeb,SingleCurve.temperature);
+					 size=SingleCurve.Dataf.size();
+					 Normalize(SingleCurve.Dataep,SingleCurve.Dataeb,c0);
+					 CurveSet.push_back(SingleCurve);
 					 }
-					 button3->PerformClick();
+					 //LoadDielectric(openFileDialog1->FileName,SingleCurve.Dataf,SingleCurve.Dataep,SingleCurve.Dataeb,SingleCurve.temperature);
+					 //GuesstimateParameters(SingleCurve.Dataf,SingleCurve.Dataep,SingleCurve.Dataeb,parameters);
+					 //es=parameters(0,0);
+					 //textBox2->Text=es.ToString();
+					 //en=parameters(1,0);
+					 //textBox3->Text=en.ToString();
+					 //fp=parameters(2,0);
+					 //textBox4->Text=fp.ToString();
+					 //a=parameters(3,0);
+					 //textBox5->Text=a.ToString();
+				/*	 for (i=0;i<=size-1;i++)
+					 {
+						 chart1->Series["Series1"]->Points->AddXY(log10(SingleCurve.Dataf[i]),SingleCurve.Dataep[i]);
+						 chart1->Series["Series2"]->Points->AddXY(log10(SingleCurve.Dataf[i]),-SingleCurve.Dataeb[i]);
+						 chart2->Series["Series1"]->Points->AddXY(SingleCurve.Dataep[i],-SingleCurve.Dataeb[i]);
+
+					 }*/
+					 CurveSet.push_back(SingleCurve);
+					 //button3->PerformClick();
 				
 				 }
 			  }

@@ -25,7 +25,7 @@ void MarshalString ( String ^ s, wstring& os ) {
 }
 
 
-void LoadDielectric(String^ Filename, vector<double>& dataf,vector<double>& dataep,vector<double>& dataeb)
+void LoadDielectric(String^ Filename, vector<double>& dataf,vector<double>& dataep,vector<double>& dataeb,double temperature)
 {
 	string name,str;
 	vector<double> ldataf;
@@ -39,13 +39,20 @@ void LoadDielectric(String^ Filename, vector<double>& dataf,vector<double>& data
 	MarshalString(Filename,name);
 	ifstream inpfile(name);
 	getline(inpfile,str);
-	cout <<str<<endl;
+	//cout <<str<<endl;
 	getline(inpfile,str);
-	cout <<str<<endl;
+	//cout <<str<<endl;
 	temppos=str.find("Temp.");
-	cout<<temppos <<endl;
+	//cout<<temppos <<endl;
+	if (temppos !=string::npos) str=str.substr(temppos);
+	temppos=str.find("=");
+	if (temppos !=string::npos) str=str.substr(temppos);
+	temppos=str.find(" ");
+	str=str.substr(1,temppos);
+	//cout<<str <<endl;
+	temperature=atof(str.c_str());
 	getline(inpfile,str);
-	cout <<str<<endl;
+//	cout <<str<<endl;
 	while (!inpfile.eof())
 	{
 		getline(inpfile,str);
@@ -98,7 +105,7 @@ void Normalize(vector<double>& dataep,vector<double>& dataeb,double C0)
 	for (i=0;i<=size-1;i++)
 	{
 		dataep[i]=dataep[i]/C0;
-		dataeb[i]=dataeb[i]/C0;
+		dataeb[i]=-dataeb[i]/C0;
 
 	}
 }
