@@ -216,3 +216,29 @@ void FitLMLog(vector<double> Dataf, vector<double>Dataep, vector<double> Dataeb,
 	cout <<(double(end - start) / CLOCKS_PER_SEC)<<" "<< CLOCKS_PER_SEC<<endl;
 	return;
 }
+private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
+			 					 //chart1->Series["Series1"]->Points->Clear();
+					 //chart2->Series["Series1"]->Points->Clear();
+					 //chart1->Series["Series2"]->Points->Clear();
+					 //chart2->Series["Series2"]->Points->Clear();
+					 //chart1->Series["Series3"]->Points->Clear();
+					 //chart1->Series["Series4"]->Points->Clear();
+			 					 //LoadDielectric(openFileDialog1->FileName,SingleCurve.Dataf,SingleCurve.Dataep,SingleCurve.Dataeb,SingleCurve.temperature);
+					 //GuesstimateParameters(SingleCurve.Dataf,SingleCurve.Dataep,SingleCurve.Dataeb,parameters);
+					 //es=parameters(0,0);
+					 //textBox2->Text=es.ToString();
+					 //en=parameters(1,0);
+					 //textBox3->Text=en.ToString();
+					 //fp=parameters(2,0);
+					 //textBox4->Text=fp.ToString();
+					 //a=parameters(3,0);
+					 //textBox5->Text=a.ToString();
+				/*	 for (i=0;i<=size-1;i++)
+					 {
+						 chart1->Series["Series1"]->Points->AddXY(log10(SingleCurve.Dataf[i]),SingleCurve.Dataep[i]);
+						 chart1->Series["Series2"]->Points->AddXY(log10(SingleCurve.Dataf[i]),-SingleCurve.Dataeb[i]);
+						 chart2->Series["Series1"]->Points->AddXY(SingleCurve.Dataep[i],-SingleCurve.Dataeb[i]);
+
+					 }*/
+					 //button3->PerformClick();
+		 }
