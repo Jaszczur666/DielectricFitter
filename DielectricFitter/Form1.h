@@ -4,6 +4,7 @@
 #include <intrin.h>
 #include "About.h"
 #include "Dense"
+using  System::IO::StreamWriter;
 using Eigen::MatrixXd;
 vector<double> Dataf;
 vector<double> Dataep;
@@ -85,6 +86,13 @@ namespace DielectricFitter {
 	private: System::Windows::Forms::CheckBox^  checkBox1;
 	private: System::Windows::Forms::Button^  button7;
 	private: System::Windows::Forms::TextBox^  textBox9;
+	private: System::Windows::Forms::ToolStripMenuItem^  saveToolStripMenuItem;
+	private: System::Windows::Forms::SaveFileDialog^  saveFileDialog1;
+	private: System::Windows::Forms::TabPage^  tabPage3;
+	private: System::Windows::Forms::TabPage^  tabPage4;
+	private: System::Windows::Forms::DataVisualization::Charting::Chart^  chart3;
+	private: System::Windows::Forms::Button^  button8;
+	private: System::Windows::Forms::DataVisualization::Charting::Chart^  chart4;
 
 	private:
 		/// <summary>
@@ -99,14 +107,21 @@ namespace DielectricFitter {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			System::Windows::Forms::DataVisualization::Charting::ChartArea^  chartArea1 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
-			System::Windows::Forms::DataVisualization::Charting::Series^  series1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
-			System::Windows::Forms::DataVisualization::Charting::Series^  series2 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
-			System::Windows::Forms::DataVisualization::Charting::Series^  series3 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
-			System::Windows::Forms::DataVisualization::Charting::Series^  series4 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
-			System::Windows::Forms::DataVisualization::Charting::ChartArea^  chartArea2 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
-			System::Windows::Forms::DataVisualization::Charting::Series^  series5 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
-			System::Windows::Forms::DataVisualization::Charting::Series^  series6 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
+			System::Windows::Forms::DataVisualization::Charting::ChartArea^  chartArea5 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
+			System::Windows::Forms::DataVisualization::Charting::Series^  series12 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
+			System::Windows::Forms::DataVisualization::Charting::Series^  series13 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
+			System::Windows::Forms::DataVisualization::Charting::Series^  series14 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
+			System::Windows::Forms::DataVisualization::Charting::Series^  series15 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
+			System::Windows::Forms::DataVisualization::Charting::ChartArea^  chartArea6 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
+			System::Windows::Forms::DataVisualization::Charting::Series^  series16 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
+			System::Windows::Forms::DataVisualization::Charting::Series^  series17 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
+			System::Windows::Forms::DataVisualization::Charting::ChartArea^  chartArea7 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
+			System::Windows::Forms::DataVisualization::Charting::Series^  series18 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
+			System::Windows::Forms::DataVisualization::Charting::Series^  series19 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
+			System::Windows::Forms::DataVisualization::Charting::Series^  series20 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
+			System::Windows::Forms::DataVisualization::Charting::ChartArea^  chartArea8 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
+			System::Windows::Forms::DataVisualization::Charting::Series^  series21 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
+			System::Windows::Forms::DataVisualization::Charting::Series^  series22 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
 			this->chart1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->openFileDialog1 = (gcnew System::Windows::Forms::OpenFileDialog());
@@ -116,9 +131,14 @@ namespace DielectricFitter {
 			this->tabPage1 = (gcnew System::Windows::Forms::TabPage());
 			this->tabPage2 = (gcnew System::Windows::Forms::TabPage());
 			this->chart2 = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
+			this->tabPage3 = (gcnew System::Windows::Forms::TabPage());
+			this->chart3 = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
+			this->tabPage4 = (gcnew System::Windows::Forms::TabPage());
+			this->chart4 = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
 			this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
 			this->FileToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->loadFileToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->saveToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->exitToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->helpToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->abooutToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
@@ -137,11 +157,17 @@ namespace DielectricFitter {
 			this->checkBox1 = (gcnew System::Windows::Forms::CheckBox());
 			this->button7 = (gcnew System::Windows::Forms::Button());
 			this->textBox9 = (gcnew System::Windows::Forms::TextBox());
+			this->saveFileDialog1 = (gcnew System::Windows::Forms::SaveFileDialog());
+			this->button8 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->chart1))->BeginInit();
 			this->tabControl1->SuspendLayout();
 			this->tabPage1->SuspendLayout();
 			this->tabPage2->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->chart2))->BeginInit();
+			this->tabPage3->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->chart3))->BeginInit();
+			this->tabPage4->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->chart4))->BeginInit();
 			this->menuStrip1->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -150,44 +176,50 @@ namespace DielectricFitter {
 			this->chart1->BorderlineWidth = 0;
 			this->chart1->BorderSkin->BorderColor = System::Drawing::Color::DimGray;
 			this->chart1->BorderSkin->BorderWidth = 0;
-			chartArea1->AxisX->IsMarginVisible = false;
-			chartArea1->AxisX->IsStartedFromZero = false;
-			chartArea1->AxisX->LabelStyle->Interval = 0;
-			chartArea1->AxisX->MajorGrid->Enabled = false;
-			chartArea1->AxisX->MaximumAutoSize = 85;
-			chartArea1->AxisX->Title = L"log (frequency)";
-			chartArea1->AxisX2->MajorGrid->Enabled = false;
-			chartArea1->AxisY->IsStartedFromZero = false;
-			chartArea1->AxisY->MajorGrid->Enabled = false;
-			chartArea1->AxisY2->IsStartedFromZero = false;
-			chartArea1->AxisY2->MajorGrid->Enabled = false;
-			chartArea1->Name = L"ChartArea1";
-			this->chart1->ChartAreas->Add(chartArea1);
+			chartArea5->AxisX->Interval = 0.2;
+			chartArea5->AxisX->IntervalAutoMode = System::Windows::Forms::DataVisualization::Charting::IntervalAutoMode::VariableCount;
+			chartArea5->AxisX->IntervalOffsetType = System::Windows::Forms::DataVisualization::Charting::DateTimeIntervalType::Number;
+			chartArea5->AxisX->IntervalType = System::Windows::Forms::DataVisualization::Charting::DateTimeIntervalType::Number;
+			chartArea5->AxisX->IsMarginVisible = false;
+			chartArea5->AxisX->IsStartedFromZero = false;
+			chartArea5->AxisX->LabelStyle->Interval = 0;
+			chartArea5->AxisX->MajorGrid->Enabled = false;
+			chartArea5->AxisX->MajorTickMark->Interval = 0;
+			chartArea5->AxisX->MajorTickMark->TickMarkStyle = System::Windows::Forms::DataVisualization::Charting::TickMarkStyle::AcrossAxis;
+			chartArea5->AxisX->MaximumAutoSize = 90;
+			chartArea5->AxisX->Title = L"log (frequency)";
+			chartArea5->AxisX2->MajorGrid->Enabled = false;
+			chartArea5->AxisY->IsStartedFromZero = false;
+			chartArea5->AxisY->MajorGrid->Enabled = false;
+			chartArea5->AxisY2->IsStartedFromZero = false;
+			chartArea5->AxisY2->MajorGrid->Enabled = false;
+			chartArea5->Name = L"ChartArea1";
+			this->chart1->ChartAreas->Add(chartArea5);
 			this->chart1->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->chart1->Location = System::Drawing::Point(3, 3);
 			this->chart1->Name = L"chart1";
-			series1->ChartArea = L"ChartArea1";
-			series1->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::Point;
-			series1->Color = System::Drawing::Color::Black;
-			series1->Name = L"Series1";
-			series2->ChartArea = L"ChartArea1";
-			series2->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::Point;
-			series2->Color = System::Drawing::Color::Red;
-			series2->Name = L"Series2";
-			series2->YAxisType = System::Windows::Forms::DataVisualization::Charting::AxisType::Secondary;
-			series3->ChartArea = L"ChartArea1";
-			series3->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::FastLine;
-			series3->Color = System::Drawing::Color::Black;
-			series3->Name = L"Series3";
-			series4->ChartArea = L"ChartArea1";
-			series4->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::FastLine;
-			series4->Color = System::Drawing::Color::Red;
-			series4->Name = L"Series4";
-			series4->YAxisType = System::Windows::Forms::DataVisualization::Charting::AxisType::Secondary;
-			this->chart1->Series->Add(series1);
-			this->chart1->Series->Add(series2);
-			this->chart1->Series->Add(series3);
-			this->chart1->Series->Add(series4);
+			series12->ChartArea = L"ChartArea1";
+			series12->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::Point;
+			series12->Color = System::Drawing::Color::Black;
+			series12->Name = L"Series1";
+			series13->ChartArea = L"ChartArea1";
+			series13->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::Point;
+			series13->Color = System::Drawing::Color::Red;
+			series13->Name = L"Series2";
+			series13->YAxisType = System::Windows::Forms::DataVisualization::Charting::AxisType::Secondary;
+			series14->ChartArea = L"ChartArea1";
+			series14->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::FastLine;
+			series14->Color = System::Drawing::Color::Black;
+			series14->Name = L"Series3";
+			series15->ChartArea = L"ChartArea1";
+			series15->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::FastLine;
+			series15->Color = System::Drawing::Color::Red;
+			series15->Name = L"Series4";
+			series15->YAxisType = System::Windows::Forms::DataVisualization::Charting::AxisType::Secondary;
+			this->chart1->Series->Add(series12);
+			this->chart1->Series->Add(series13);
+			this->chart1->Series->Add(series14);
+			this->chart1->Series->Add(series15);
 			this->chart1->Size = System::Drawing::Size(1420, 748);
 			this->chart1->TabIndex = 0;
 			this->chart1->Text = L"chart1";
@@ -216,7 +248,7 @@ namespace DielectricFitter {
 			this->textBox1->Name = L"textBox1";
 			this->textBox1->Size = System::Drawing::Size(68, 20);
 			this->textBox1->TabIndex = 2;
-			this->textBox1->Text = L"0,4108e-12";
+			this->textBox1->Text = L"1";
 			// 
 			// button2
 			// 
@@ -235,6 +267,8 @@ namespace DielectricFitter {
 				| System::Windows::Forms::AnchorStyles::Right));
 			this->tabControl1->Controls->Add(this->tabPage1);
 			this->tabControl1->Controls->Add(this->tabPage2);
+			this->tabControl1->Controls->Add(this->tabPage3);
+			this->tabControl1->Controls->Add(this->tabPage4);
 			this->tabControl1->Location = System::Drawing::Point(0, 50);
 			this->tabControl1->Margin = System::Windows::Forms::Padding(10);
 			this->tabControl1->Name = L"tabControl1";
@@ -260,32 +294,116 @@ namespace DielectricFitter {
 			this->tabPage2->Location = System::Drawing::Point(4, 22);
 			this->tabPage2->Name = L"tabPage2";
 			this->tabPage2->Padding = System::Windows::Forms::Padding(3);
-			this->tabPage2->Size = System::Drawing::Size(1604, 754);
+			this->tabPage2->Size = System::Drawing::Size(1426, 754);
 			this->tabPage2->TabIndex = 1;
 			this->tabPage2->Text = L"Cole-Cole";
 			this->tabPage2->UseVisualStyleBackColor = true;
 			// 
 			// chart2
 			// 
-			chartArea2->AxisX->MajorGrid->Enabled = false;
-			chartArea2->AxisY->MajorGrid->Enabled = false;
-			chartArea2->Name = L"ChartArea1";
-			this->chart2->ChartAreas->Add(chartArea2);
+			chartArea6->AxisX->MajorGrid->Enabled = false;
+			chartArea6->AxisY->MajorGrid->Enabled = false;
+			chartArea6->Name = L"ChartArea1";
+			this->chart2->ChartAreas->Add(chartArea6);
 			this->chart2->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->chart2->Location = System::Drawing::Point(3, 3);
 			this->chart2->Name = L"chart2";
-			series5->ChartArea = L"ChartArea1";
-			series5->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::Point;
-			series5->Name = L"Series1";
-			series6->ChartArea = L"ChartArea1";
-			series6->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::FastLine;
-			series6->Name = L"Series2";
-			this->chart2->Series->Add(series5);
-			this->chart2->Series->Add(series6);
-			this->chart2->Size = System::Drawing::Size(1598, 748);
+			series16->ChartArea = L"ChartArea1";
+			series16->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::Point;
+			series16->Name = L"Series1";
+			series17->ChartArea = L"ChartArea1";
+			series17->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::FastLine;
+			series17->Name = L"Series2";
+			this->chart2->Series->Add(series16);
+			this->chart2->Series->Add(series17);
+			this->chart2->Size = System::Drawing::Size(1420, 748);
 			this->chart2->TabIndex = 0;
 			this->chart2->Text = L"chart2";
 			this->chart2->Resize += gcnew System::EventHandler(this, &Form1::chart2_Resize);
+			// 
+			// tabPage3
+			// 
+			this->tabPage3->Controls->Add(this->chart3);
+			this->tabPage3->Location = System::Drawing::Point(4, 22);
+			this->tabPage3->Name = L"tabPage3";
+			this->tabPage3->Padding = System::Windows::Forms::Padding(3);
+			this->tabPage3->Size = System::Drawing::Size(1426, 754);
+			this->tabPage3->TabIndex = 2;
+			this->tabPage3->Text = L"Parameters";
+			this->tabPage3->UseVisualStyleBackColor = true;
+			// 
+			// chart3
+			// 
+			chartArea7->AxisX->MajorGrid->Enabled = false;
+			chartArea7->AxisY->MajorGrid->Enabled = false;
+			chartArea7->Name = L"ChartArea1";
+			this->chart3->ChartAreas->Add(chartArea7);
+			this->chart3->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->chart3->Location = System::Drawing::Point(3, 3);
+			this->chart3->Name = L"chart3";
+			series18->ChartArea = L"ChartArea1";
+			series18->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::Line;
+			series18->Color = System::Drawing::Color::Black;
+			series18->Name = L"Series1";
+			series19->ChartArea = L"ChartArea1";
+			series19->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::Line;
+			series19->Color = System::Drawing::Color::Red;
+			series19->Name = L"Series2";
+			series20->ChartArea = L"ChartArea1";
+			series20->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::Line;
+			series20->Color = System::Drawing::Color::ForestGreen;
+			series20->Name = L"Series3";
+			series20->XValueType = System::Windows::Forms::DataVisualization::Charting::ChartValueType::Double;
+			this->chart3->Series->Add(series18);
+			this->chart3->Series->Add(series19);
+			this->chart3->Series->Add(series20);
+			this->chart3->Size = System::Drawing::Size(1420, 748);
+			this->chart3->TabIndex = 0;
+			this->chart3->Text = L"chart3";
+			// 
+			// tabPage4
+			// 
+			this->tabPage4->Controls->Add(this->chart4);
+			this->tabPage4->Location = System::Drawing::Point(4, 22);
+			this->tabPage4->Name = L"tabPage4";
+			this->tabPage4->Padding = System::Windows::Forms::Padding(3);
+			this->tabPage4->Size = System::Drawing::Size(1426, 754);
+			this->tabPage4->TabIndex = 3;
+			this->tabPage4->Text = L"Arrhenius";
+			this->tabPage4->UseVisualStyleBackColor = true;
+			// 
+			// chart4
+			// 
+			chartArea8->AxisX->IsMarginVisible = false;
+			chartArea8->AxisX->IsStartedFromZero = false;
+			chartArea8->AxisX->MajorGrid->Enabled = false;
+			chartArea8->AxisY->IsMarginVisible = false;
+			chartArea8->AxisY->IsStartedFromZero = false;
+			chartArea8->AxisY->MajorGrid->Enabled = false;
+			chartArea8->AxisY2->IsMarginVisible = false;
+			chartArea8->AxisY2->IsStartedFromZero = false;
+			chartArea8->AxisY2->MajorGrid->Enabled = false;
+			chartArea8->Name = L"ChartArea1";
+			this->chart4->ChartAreas->Add(chartArea8);
+			this->chart4->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->chart4->Location = System::Drawing::Point(3, 3);
+			this->chart4->Name = L"chart4";
+			series21->ChartArea = L"ChartArea1";
+			series21->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::Point;
+			series21->Color = System::Drawing::Color::Red;
+			series21->Name = L"Series1";
+			series21->YValuesPerPoint = 2;
+			series22->ChartArea = L"ChartArea1";
+			series22->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::Point;
+			series22->Color = System::Drawing::Color::ForestGreen;
+			series22->Name = L"Series2";
+			series22->YAxisType = System::Windows::Forms::DataVisualization::Charting::AxisType::Secondary;
+			this->chart4->Series->Add(series21);
+			this->chart4->Series->Add(series22);
+			this->chart4->Size = System::Drawing::Size(1420, 748);
+			this->chart4->TabIndex = 0;
+			this->chart4->Text = L"chart4";
+			this->chart4->Click += gcnew System::EventHandler(this, &Form1::chart4_Click);
 			// 
 			// menuStrip1
 			// 
@@ -302,8 +420,8 @@ namespace DielectricFitter {
 			// 
 			// FileToolStripMenuItem
 			// 
-			this->FileToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {this->loadFileToolStripMenuItem, 
-				this->exitToolStripMenuItem});
+			this->FileToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(3) {this->loadFileToolStripMenuItem, 
+				this->saveToolStripMenuItem, this->exitToolStripMenuItem});
 			this->FileToolStripMenuItem->Name = L"FileToolStripMenuItem";
 			this->FileToolStripMenuItem->Size = System::Drawing::Size(35, 20);
 			this->FileToolStripMenuItem->Text = L"File";
@@ -315,6 +433,13 @@ namespace DielectricFitter {
 			this->loadFileToolStripMenuItem->Size = System::Drawing::Size(125, 22);
 			this->loadFileToolStripMenuItem->Text = L"Load file";
 			this->loadFileToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::loadFileToolStripMenuItem_Click);
+			// 
+			// saveToolStripMenuItem
+			// 
+			this->saveToolStripMenuItem->Name = L"saveToolStripMenuItem";
+			this->saveToolStripMenuItem->Size = System::Drawing::Size(125, 22);
+			this->saveToolStripMenuItem->Text = L"Save";
+			this->saveToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::saveToolStripMenuItem_Click);
 			// 
 			// exitToolStripMenuItem
 			// 
@@ -446,7 +571,7 @@ namespace DielectricFitter {
 			// checkBox1
 			// 
 			this->checkBox1->AutoSize = true;
-			this->checkBox1->Location = System::Drawing::Point(384, 26);
+			this->checkBox1->Location = System::Drawing::Point(393, 25);
 			this->checkBox1->Name = L"checkBox1";
 			this->checkBox1->Size = System::Drawing::Size(100, 17);
 			this->checkBox1->TabIndex = 18;
@@ -473,11 +598,26 @@ namespace DielectricFitter {
 			this->textBox9->WordWrap = false;
 			this->textBox9->TextChanged += gcnew System::EventHandler(this, &Form1::textBox9_TextChanged);
 			// 
+			// saveFileDialog1
+			// 
+			this->saveFileDialog1->FileOk += gcnew System::ComponentModel::CancelEventHandler(this, &Form1::saveFileDialog1_FileOk);
+			// 
+			// button8
+			// 
+			this->button8->Location = System::Drawing::Point(418, 43);
+			this->button8->Name = L"button8";
+			this->button8->Size = System::Drawing::Size(46, 23);
+			this->button8->TabIndex = 21;
+			this->button8->Text = L"Plot";
+			this->button8->UseVisualStyleBackColor = true;
+			this->button8->Click += gcnew System::EventHandler(this, &Form1::button8_Click);
+			// 
 			// Form1
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1453, 836);
+			this->Controls->Add(this->button8);
 			this->Controls->Add(this->textBox9);
 			this->Controls->Add(this->button7);
 			this->Controls->Add(this->checkBox1);
@@ -507,6 +647,10 @@ namespace DielectricFitter {
 			this->tabPage1->ResumeLayout(false);
 			this->tabPage2->ResumeLayout(false);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->chart2))->EndInit();
+			this->tabPage3->ResumeLayout(false);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->chart3))->EndInit();
+			this->tabPage4->ResumeLayout(false);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->chart4))->EndInit();
 			this->menuStrip1->ResumeLayout(false);
 			this->menuStrip1->PerformLayout();
 			this->ResumeLayout(false);
@@ -565,6 +709,7 @@ namespace DielectricFitter {
 				 chart1->Series["Series3"]->Points->Clear();
 				 chart1->Series["Series4"]->Points->Clear();
 				 chart2->Series["Series2"]->Points->Clear();
+
 				 size=CurveSet[Position-1].Dataf.size();
 				 es=(Convert::ToDouble(textBox2->Text));
 				 en=(Convert::ToDouble(textBox3->Text));
@@ -776,12 +921,48 @@ private: System::Void button7_Click(System::Object^  sender, System::EventArgs^ 
 			 //temperature=CurveSet[Position-1].temperature;
 			 //cout << temperature;
 			 //textBox9->Text+=temperature.ToString()+" "+textBox2->Text+" "+textBox3->Text+" "+textBox4->Text+" "+textBox5->Text+" "+textBox6->Text+" "+textBox7->Text+" "+textBox8->Text+System::Environment::NewLine;
+			 textBox9->Text="";
 			 for (i=0;i<size;i++){
 				if(CurveSet[i].fitted) textBox9->Text+=CurveSet[i].temperature+" "+CurveSet[i].en+" "+CurveSet[i].de1+" "+CurveSet[i].fp1+" "+CurveSet[i].a1+" "+CurveSet[i].de2+" "+CurveSet[i].fp2+" "+CurveSet[i].a2+System::Environment::NewLine;
 			 }
 
 		 }
 private: System::Void textBox9_TextChanged(System::Object^  sender, System::EventArgs^  e) {
+		 }
+private: System::Void saveToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+
+			 if (saveFileDialog1->ShowDialog() == ::System::Windows::Forms::DialogResult::OK ){
+				 StreamWriter^ sw = gcnew StreamWriter(saveFileDialog1->FileName);
+				 sw->WriteLine(textBox9->Text);
+				 sw->Close();
+				 cout <<"Ssave";
+			 }
+		 }
+private: System::Void saveFileDialog1_FileOk(System::Object^  sender, System::ComponentModel::CancelEventArgs^  e) {
+		 }
+private: System::Void button8_Click(System::Object^  sender, System::EventArgs^  e) {
+			 chart3->Series["Series1"]->Points->Clear();
+			 chart3->Series["Series2"]->Points->Clear();
+			 chart4->Series["Series1"]->Points->Clear();
+			 chart4->Series["Series2"]->Points->Clear();
+			 chart3->Series["Series3"]->Points->Clear();
+			 int i,size;
+			 double temperature;
+			 size=CurveSet.size();
+			 //cout << temperature;
+			 //textBox9->Text+=temperature.ToString()+" "+textBox2->Text+" "+textBox3->Text+" "+textBox4->Text+" "+textBox5->Text+" "+textBox6->Text+" "+textBox7->Text+" "+textBox8->Text+System::Environment::NewLine;
+			 for (i=0;i<size;i++){
+				 if(CurveSet[i].fitted){
+					 temperature=CurveSet[i].temperature;
+					 chart3->Series["Series1"]->Points->AddXY(temperature,CurveSet[i].en);
+					 chart3->Series["Series2"]->Points->AddXY(temperature,CurveSet[i].de1);
+					 chart3->Series["Series3"]->Points->AddXY(temperature,CurveSet[i].de2);
+					 chart4->Series["Series1"]->Points->AddXY(1.0/(temperature+273.15),log(CurveSet[i].fp1));
+					 chart4->Series["Series2"]->Points->AddXY(1.0/(temperature+273.15),log(CurveSet[i].fp2));
+				 }
+			 }
+		 }
+private: System::Void chart4_Click(System::Object^  sender, System::EventArgs^  e) {
 		 }
 };
 }
