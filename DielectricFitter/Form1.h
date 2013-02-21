@@ -13,6 +13,9 @@ vector<double> Dataf;
 vector<double> Dataep;
 vector<double> Dataeb;
 double temperature;
+double en,de1,fp1,a1,de2,fp2,a2;
+bool fitted;
+bool twofunctions;
 };
 vector <curve> CurveSet;
 int Position;
@@ -79,6 +82,9 @@ namespace DielectricFitter {
 	private: System::Windows::Forms::TextBox^  textBox6;
 	private: System::Windows::Forms::TextBox^  textBox7;
 	private: System::Windows::Forms::TextBox^  textBox8;
+	private: System::Windows::Forms::CheckBox^  checkBox1;
+	private: System::Windows::Forms::Button^  button7;
+	private: System::Windows::Forms::TextBox^  textBox9;
 
 	private:
 		/// <summary>
@@ -128,6 +134,9 @@ namespace DielectricFitter {
 			this->textBox6 = (gcnew System::Windows::Forms::TextBox());
 			this->textBox7 = (gcnew System::Windows::Forms::TextBox());
 			this->textBox8 = (gcnew System::Windows::Forms::TextBox());
+			this->checkBox1 = (gcnew System::Windows::Forms::CheckBox());
+			this->button7 = (gcnew System::Windows::Forms::Button());
+			this->textBox9 = (gcnew System::Windows::Forms::TextBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->chart1))->BeginInit();
 			this->tabControl1->SuspendLayout();
 			this->tabPage1->SuspendLayout();
@@ -138,12 +147,15 @@ namespace DielectricFitter {
 			// 
 			// chart1
 			// 
+			this->chart1->BorderlineWidth = 0;
+			this->chart1->BorderSkin->BorderColor = System::Drawing::Color::DimGray;
+			this->chart1->BorderSkin->BorderWidth = 0;
 			chartArea1->AxisX->IsMarginVisible = false;
 			chartArea1->AxisX->IsStartedFromZero = false;
 			chartArea1->AxisX->LabelStyle->Interval = 0;
 			chartArea1->AxisX->MajorGrid->Enabled = false;
 			chartArea1->AxisX->MaximumAutoSize = 85;
-			chartArea1->AxisX->Title = L"log (Czêstotliwoœæ)";
+			chartArea1->AxisX->Title = L"log (frequency)";
 			chartArea1->AxisX2->MajorGrid->Enabled = false;
 			chartArea1->AxisY->IsStartedFromZero = false;
 			chartArea1->AxisY->MajorGrid->Enabled = false;
@@ -176,7 +188,7 @@ namespace DielectricFitter {
 			this->chart1->Series->Add(series2);
 			this->chart1->Series->Add(series3);
 			this->chart1->Series->Add(series4);
-			this->chart1->Size = System::Drawing::Size(1598, 748);
+			this->chart1->Size = System::Drawing::Size(1420, 748);
 			this->chart1->TabIndex = 0;
 			this->chart1->Text = L"chart1";
 			this->chart1->Click += gcnew System::EventHandler(this, &Form1::chart1_Click);
@@ -210,7 +222,7 @@ namespace DielectricFitter {
 			// 
 			this->button2->Location = System::Drawing::Point(282, 20);
 			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(32, 23);
+			this->button2->Size = System::Drawing::Size(39, 23);
 			this->button2->TabIndex = 3;
 			this->button2->Text = L"Fit";
 			this->button2->UseVisualStyleBackColor = true;
@@ -227,7 +239,7 @@ namespace DielectricFitter {
 			this->tabControl1->Margin = System::Windows::Forms::Padding(10);
 			this->tabControl1->Name = L"tabControl1";
 			this->tabControl1->SelectedIndex = 0;
-			this->tabControl1->Size = System::Drawing::Size(1612, 780);
+			this->tabControl1->Size = System::Drawing::Size(1434, 780);
 			this->tabControl1->TabIndex = 4;
 			// 
 			// tabPage1
@@ -236,7 +248,7 @@ namespace DielectricFitter {
 			this->tabPage1->Location = System::Drawing::Point(4, 22);
 			this->tabPage1->Name = L"tabPage1";
 			this->tabPage1->Padding = System::Windows::Forms::Padding(3);
-			this->tabPage1->Size = System::Drawing::Size(1604, 754);
+			this->tabPage1->Size = System::Drawing::Size(1426, 754);
 			this->tabPage1->TabIndex = 0;
 			this->tabPage1->Text = L"Bode Plot";
 			this->tabPage1->UseVisualStyleBackColor = true;
@@ -283,7 +295,7 @@ namespace DielectricFitter {
 				this->helpToolStripMenuItem});
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			this->menuStrip1->Name = L"menuStrip1";
-			this->menuStrip1->Size = System::Drawing::Size(1631, 24);
+			this->menuStrip1->Size = System::Drawing::Size(1453, 24);
 			this->menuStrip1->TabIndex = 5;
 			this->menuStrip1->Text = L"menuStrip1";
 			this->menuStrip1->ItemClicked += gcnew System::Windows::Forms::ToolStripItemClickedEventHandler(this, &Form1::menuStrip1_ItemClicked);
@@ -327,7 +339,7 @@ namespace DielectricFitter {
 			// 
 			// textBox2
 			// 
-			this->textBox2->Location = System::Drawing::Point(422, 20);
+			this->textBox2->Location = System::Drawing::Point(499, 22);
 			this->textBox2->Name = L"textBox2";
 			this->textBox2->Size = System::Drawing::Size(78, 20);
 			this->textBox2->TabIndex = 6;
@@ -335,7 +347,7 @@ namespace DielectricFitter {
 			// 
 			// textBox3
 			// 
-			this->textBox3->Location = System::Drawing::Point(506, 20);
+			this->textBox3->Location = System::Drawing::Point(583, 22);
 			this->textBox3->Name = L"textBox3";
 			this->textBox3->Size = System::Drawing::Size(78, 20);
 			this->textBox3->TabIndex = 7;
@@ -343,7 +355,7 @@ namespace DielectricFitter {
 			// 
 			// textBox4
 			// 
-			this->textBox4->Location = System::Drawing::Point(590, 20);
+			this->textBox4->Location = System::Drawing::Point(667, 22);
 			this->textBox4->Name = L"textBox4";
 			this->textBox4->Size = System::Drawing::Size(78, 20);
 			this->textBox4->TabIndex = 8;
@@ -351,7 +363,7 @@ namespace DielectricFitter {
 			// 
 			// textBox5
 			// 
-			this->textBox5->Location = System::Drawing::Point(674, 20);
+			this->textBox5->Location = System::Drawing::Point(751, 22);
 			this->textBox5->Name = L"textBox5";
 			this->textBox5->Size = System::Drawing::Size(78, 20);
 			this->textBox5->TabIndex = 9;
@@ -359,7 +371,7 @@ namespace DielectricFitter {
 			// 
 			// button3
 			// 
-			this->button3->Location = System::Drawing::Point(1116, 17);
+			this->button3->Location = System::Drawing::Point(1159, 23);
 			this->button3->Name = L"button3";
 			this->button3->Size = System::Drawing::Size(75, 23);
 			this->button3->TabIndex = 10;
@@ -398,17 +410,18 @@ namespace DielectricFitter {
 			// 
 			// button6
 			// 
-			this->button6->Location = System::Drawing::Point(320, 20);
+			this->button6->FlatAppearance->BorderSize = 0;
+			this->button6->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->button6->Location = System::Drawing::Point(327, 19);
 			this->button6->Name = L"button6";
-			this->button6->Size = System::Drawing::Size(75, 23);
+			this->button6->Size = System::Drawing::Size(39, 23);
 			this->button6->TabIndex = 14;
-			this->button6->Text = L"Fit2";
 			this->button6->UseVisualStyleBackColor = true;
 			this->button6->Click += gcnew System::EventHandler(this, &Form1::button6_Click);
 			// 
 			// textBox6
 			// 
-			this->textBox6->Location = System::Drawing::Point(758, 20);
+			this->textBox6->Location = System::Drawing::Point(835, 22);
 			this->textBox6->Name = L"textBox6";
 			this->textBox6->Size = System::Drawing::Size(100, 20);
 			this->textBox6->TabIndex = 15;
@@ -416,7 +429,7 @@ namespace DielectricFitter {
 			// 
 			// textBox7
 			// 
-			this->textBox7->Location = System::Drawing::Point(864, 19);
+			this->textBox7->Location = System::Drawing::Point(941, 21);
 			this->textBox7->Name = L"textBox7";
 			this->textBox7->Size = System::Drawing::Size(100, 20);
 			this->textBox7->TabIndex = 16;
@@ -424,17 +437,50 @@ namespace DielectricFitter {
 			// 
 			// textBox8
 			// 
-			this->textBox8->Location = System::Drawing::Point(970, 19);
+			this->textBox8->Location = System::Drawing::Point(1047, 21);
 			this->textBox8->Name = L"textBox8";
 			this->textBox8->Size = System::Drawing::Size(100, 20);
 			this->textBox8->TabIndex = 17;
 			this->textBox8->Text = L"1";
 			// 
+			// checkBox1
+			// 
+			this->checkBox1->AutoSize = true;
+			this->checkBox1->Location = System::Drawing::Point(384, 26);
+			this->checkBox1->Name = L"checkBox1";
+			this->checkBox1->Size = System::Drawing::Size(100, 17);
+			this->checkBox1->TabIndex = 18;
+			this->checkBox1->Text = L"Use 2 functions";
+			this->checkBox1->UseVisualStyleBackColor = true;
+			// 
+			// button7
+			// 
+			this->button7->Location = System::Drawing::Point(327, 19);
+			this->button7->Name = L"button7";
+			this->button7->Size = System::Drawing::Size(42, 23);
+			this->button7->TabIndex = 19;
+			this->button7->Text = L"Store";
+			this->button7->UseVisualStyleBackColor = true;
+			this->button7->Click += gcnew System::EventHandler(this, &Form1::button7_Click);
+			// 
+			// textBox9
+			// 
+			this->textBox9->Location = System::Drawing::Point(1240, 12);
+			this->textBox9->Multiline = true;
+			this->textBox9->Name = L"textBox9";
+			this->textBox9->Size = System::Drawing::Size(203, 57);
+			this->textBox9->TabIndex = 20;
+			this->textBox9->WordWrap = false;
+			this->textBox9->TextChanged += gcnew System::EventHandler(this, &Form1::textBox9_TextChanged);
+			// 
 			// Form1
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1631, 836);
+			this->ClientSize = System::Drawing::Size(1453, 836);
+			this->Controls->Add(this->textBox9);
+			this->Controls->Add(this->button7);
+			this->Controls->Add(this->checkBox1);
 			this->Controls->Add(this->textBox8);
 			this->Controls->Add(this->textBox7);
 			this->Controls->Add(this->textBox6);
@@ -489,6 +535,7 @@ namespace DielectricFitter {
 						 LoadDielectric(openFileDialog1->FileNames[i],SingleCurve.Dataf,SingleCurve.Dataep,SingleCurve.Dataeb,SingleCurve.temperature);
 						 size=SingleCurve.Dataf.size();
 						 Normalize(SingleCurve.Dataep,SingleCurve.Dataeb,c0);
+						 SingleCurve.fitted=false;
 						 CurveSet.push_back(SingleCurve);
 					 }
 					 label1->Text="1/"+CurveSet.size().ToString();
@@ -514,6 +561,7 @@ namespace DielectricFitter {
 				 int i,size;
 				 MatrixXd parameters(4,1);
 				 complex<double> d;
+				 if (!checkBox1->Checked){
 				 chart1->Series["Series3"]->Points->Clear();
 				 chart1->Series["Series4"]->Points->Clear();
 				 chart2->Series["Series2"]->Points->Clear();
@@ -532,6 +580,15 @@ namespace DielectricFitter {
 				 textBox4->Text=fp.ToString();
 				 a=parameters(3,0);
 				 textBox5->Text=a.ToString();
+				 CurveSet[Position-1].en=en;
+				 CurveSet[Position-1].de1=es-en;
+				 CurveSet[Position-1].fp1=fp;
+				 CurveSet[Position-1].a1=a;
+				 CurveSet[Position-1].fitted=true;
+				 CurveSet[Position-1].de2=0;
+				 CurveSet[Position-1].fp2=1;
+				 CurveSet[Position-1].a2=0;
+				 CurveSet[Position-1].twofunctions=false;
 				 //					 cout << es <<" "<<en<<" "<<fp<<" "<<a<<std::endl;
 				 for (i=0;i<=size-1;i++)
 				 {
@@ -541,7 +598,8 @@ namespace DielectricFitter {
 					 chart1->Series["Series3"]->Points->AddXY(log10(CurveSet[Position-1].Dataf[i]),ep);
 					 chart1->Series["Series4"]->Points->AddXY(log10(CurveSet[Position-1].Dataf[i]),eb);
 					 chart2->Series["Series2"]->Points->AddXY(ep,eb);
-				 }
+				 }}
+				 else button6->PerformClick();
 			 }
 private: System::Void chart1_Click(System::Object^  sender, System::EventArgs^  e) {
 		 }
@@ -561,7 +619,7 @@ private: System::Void abooutToolStripMenuItem_Click(System::Object^  sender, Sys
 		rgForm->Show();			 
 		 }
 private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e) {
-			  double ep,eb,es,en,fp,f,a,maxf,minf,df;
+			  double ep,eb,es,en,fp,f,a,maxf,minf,df,de2,fp2,a2;
 				 int i,size;
 				 MatrixXd parameters(4,1);
 				 complex<double> d;
@@ -576,10 +634,17 @@ private: System::Void button3_Click(System::Object^  sender, System::EventArgs^ 
 				 en=(Convert::ToDouble(textBox3->Text));
 				 fp=(Convert::ToDouble(textBox4->Text));
 				 a=(Convert::ToDouble(textBox5->Text));
+				 de2=(Convert::ToDouble(textBox6->Text));
+				 fp2=(Convert::ToDouble(textBox7->Text));
+				 a2=(Convert::ToDouble(textBox8->Text));
 				 for (i=0;i<=300;i++)
 				 {
 					 f=log10(minf)+(i/300.0)*df;
-					 d=en+(es-en)/(1.0+pow(ii*pow(10,f)/fp,1-a));
+					 if (!checkBox1->Checked) 
+					 {
+						 d=en+(es-en)/(1.0+pow(ii*pow(10,f)/fp,1-a));
+					 }
+					 else d=es+en/(1.0+pow(ii*pow(10,f)/fp,1-a))+de2/(1.0+pow(ii*pow(10,f)/fp2,1-a2));
 					 ep= std::real(d);
 					 eb=-std::imag(d);
 					 //cout <<i<<" "<<f <<endl;
@@ -604,14 +669,24 @@ private: System::Void button5_Click(System::Object^  sender, System::EventArgs^ 
 			 chart2->Series["Series2"]->Points->Clear();
 			 chart1->Series["Series3"]->Points->Clear();
 			 chart1->Series["Series4"]->Points->Clear();
-					 size=CurveSet[Position-1].Dataf.size();
-					  for (i=0;i<=size-1;i++)
-					 {
-						 chart1->Series["Series1"]->Points->AddXY(log10(CurveSet[Position-1].Dataf[i]),CurveSet[Position-1].Dataep[i]);
-						 chart1->Series["Series2"]->Points->AddXY(log10(CurveSet[Position-1].Dataf[i]),-CurveSet[Position-1].Dataeb[i]);
-						 chart2->Series["Series1"]->Points->AddXY(CurveSet[Position-1].Dataep[i],-CurveSet[Position-1].Dataeb[i]);
+			 if (CurveSet[Position-1].fitted){
+				 textBox2->Text=CurveSet[Position-1].en.ToString();
+				 textBox3->Text=CurveSet[Position-1].de1.ToString();
+				 textBox4->Text=CurveSet[Position-1].fp1.ToString();
+				 textBox5->Text=CurveSet[Position-1].a1.ToString();
+				 textBox6->Text=CurveSet[Position-1].de2.ToString();
+				 textBox7->Text=CurveSet[Position-1].fp2.ToString();
+				 textBox8->Text=CurveSet[Position-1].a2.ToString();
+				 button3->PerformClick();
+			 }
+			 size=CurveSet[Position-1].Dataf.size();
+			 for (i=0;i<=size-1;i++)
+			 {
+				 chart1->Series["Series1"]->Points->AddXY(log10(CurveSet[Position-1].Dataf[i]),CurveSet[Position-1].Dataep[i]);
+				 chart1->Series["Series2"]->Points->AddXY(log10(CurveSet[Position-1].Dataf[i]),-CurveSet[Position-1].Dataeb[i]);
+				 chart2->Series["Series1"]->Points->AddXY(CurveSet[Position-1].Dataep[i],-CurveSet[Position-1].Dataeb[i]);
 
-					 }
+			 }
 		 }
 private: System::Void button4_Click(System::Object^  sender, System::EventArgs^  e) {
 			 		 int i,size;
@@ -623,7 +698,17 @@ private: System::Void button4_Click(System::Object^  sender, System::EventArgs^ 
 			 chart2->Series["Series2"]->Points->Clear();
 			 chart1->Series["Series3"]->Points->Clear();
 			 chart1->Series["Series4"]->Points->Clear();
-					 size=CurveSet[Position-1].Dataf.size();
+			 if (CurveSet[Position-1].fitted){
+				 textBox2->Text=CurveSet[Position-1].en.ToString();
+				 textBox3->Text=CurveSet[Position-1].de1.ToString();
+				 textBox4->Text=CurveSet[Position-1].fp1.ToString();
+				 textBox5->Text=CurveSet[Position-1].a1.ToString();
+				 textBox6->Text=CurveSet[Position-1].de2.ToString();
+				 textBox7->Text=CurveSet[Position-1].fp2.ToString();
+				 textBox8->Text=CurveSet[Position-1].a2.ToString();
+				 button3->PerformClick();
+			 }
+			 size=CurveSet[Position-1].Dataf.size();
 					  for (i=0;i<=size-1;i++)
 					 {
 						 chart1->Series["Series1"]->Points->AddXY(log10(CurveSet[Position-1].Dataf[i]),CurveSet[Position-1].Dataep[i]);
@@ -640,7 +725,7 @@ private: System::Void button6_Click(System::Object^  sender, System::EventArgs^ 
 			 MatrixXd parameters(7,1);
 			 chart1->Series["Series3"]->Points->Clear();
 			 chart1->Series["Series4"]->Points->Clear();
-			chart2->Series["Series2"]->Points->Clear();
+			 chart2->Series["Series2"]->Points->Clear();
 			 es=(Convert::ToDouble(textBox2->Text));
 			 de1=(Convert::ToDouble(textBox3->Text));
 			 fp1=(Convert::ToDouble(textBox4->Text));
@@ -658,15 +743,24 @@ private: System::Void button6_Click(System::Object^  sender, System::EventArgs^ 
 			 textBox4->Text=fp1.ToString();
 			 a1=parameters(3,0);
 			 textBox5->Text=a1.ToString();
-			  de2=parameters(4,0);
+			 de2=parameters(4,0);
 			 textBox6->Text=de2.ToString();
-			  fp2=parameters(5,0);
+			 fp2=parameters(5,0);
 			 textBox7->Text=fp2.ToString();
-			  a2=parameters(6,0);
+			 a2=parameters(6,0);
 			 textBox8->Text=a2.ToString();
 			 size=CurveSet[Position-1].Dataf.size();
-			 		 for (i=0;i<=size-1;i++)
-				 {
+			 CurveSet[Position-1].en=es;
+			 CurveSet[Position-1].de1=de1;
+			 CurveSet[Position-1].fp1=fp1;
+			 CurveSet[Position-1].a1=a1;
+			 CurveSet[Position-1].fitted=true;
+			 CurveSet[Position-1].de2=de2;
+			 CurveSet[Position-1].fp2=fp2;
+			 CurveSet[Position-1].a2=a2;
+			 CurveSet[Position-1].twofunctions=true;
+			 for (i=0;i<=size-1;i++)
+			 {
 					 d=es+de1/(1.0+pow(ii*CurveSet[Position-1].Dataf[i]/fp1,1-a1))+de2/(1.0+pow(ii*CurveSet[Position-1].Dataf[i]/fp2,1-a2));
 					 ep= std::real(d);
 					 eb=-std::imag(d);
@@ -674,6 +768,20 @@ private: System::Void button6_Click(System::Object^  sender, System::EventArgs^ 
 					 chart1->Series["Series4"]->Points->AddXY(log10(CurveSet[Position-1].Dataf[i]),eb);
 					 chart2->Series["Series2"]->Points->AddXY(ep,eb);
 				 }
+		 }
+private: System::Void button7_Click(System::Object^  sender, System::EventArgs^  e) {
+			 double temperature;
+			 int i,size;
+			 size=CurveSet.size();
+			 //temperature=CurveSet[Position-1].temperature;
+			 //cout << temperature;
+			 //textBox9->Text+=temperature.ToString()+" "+textBox2->Text+" "+textBox3->Text+" "+textBox4->Text+" "+textBox5->Text+" "+textBox6->Text+" "+textBox7->Text+" "+textBox8->Text+System::Environment::NewLine;
+			 for (i=0;i<size;i++){
+				if(CurveSet[i].fitted) textBox9->Text+=CurveSet[i].temperature+" "+CurveSet[i].en+" "+CurveSet[i].de1+" "+CurveSet[i].fp1+" "+CurveSet[i].a1+" "+CurveSet[i].de2+" "+CurveSet[i].fp2+" "+CurveSet[i].a2+System::Environment::NewLine;
+			 }
+
+		 }
+private: System::Void textBox9_TextChanged(System::Object^  sender, System::EventArgs^  e) {
 		 }
 };
 }
