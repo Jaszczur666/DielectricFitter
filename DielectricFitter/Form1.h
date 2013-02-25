@@ -19,7 +19,7 @@ bool fitted;
 bool twofunctions;
 };
 vector <curve> CurveSet;
-int Position;
+size_t  Position;
 namespace DielectricFitter {
 
 	using namespace System;
@@ -236,7 +236,7 @@ namespace DielectricFitter {
 			this->chart1->Series->Add(series4);
 			this->chart1->Series->Add(series5);
 			this->chart1->Series->Add(series6);
-			this->chart1->Size = System::Drawing::Size(1420, 748);
+			this->chart1->Size = System::Drawing::Size(1439, 748);
 			this->chart1->TabIndex = 0;
 			this->chart1->Text = L"chart1";
 			this->chart1->Click += gcnew System::EventHandler(this, &Form1::chart1_Click);
@@ -289,7 +289,7 @@ namespace DielectricFitter {
 			this->tabControl1->Margin = System::Windows::Forms::Padding(10);
 			this->tabControl1->Name = L"tabControl1";
 			this->tabControl1->SelectedIndex = 0;
-			this->tabControl1->Size = System::Drawing::Size(1434, 780);
+			this->tabControl1->Size = System::Drawing::Size(1453, 780);
 			this->tabControl1->TabIndex = 4;
 			// 
 			// tabPage1
@@ -298,7 +298,7 @@ namespace DielectricFitter {
 			this->tabPage1->Location = System::Drawing::Point(4, 22);
 			this->tabPage1->Name = L"tabPage1";
 			this->tabPage1->Padding = System::Windows::Forms::Padding(3);
-			this->tabPage1->Size = System::Drawing::Size(1426, 754);
+			this->tabPage1->Size = System::Drawing::Size(1445, 754);
 			this->tabPage1->TabIndex = 0;
 			this->tabPage1->Text = L"Bode Plot";
 			this->tabPage1->UseVisualStyleBackColor = true;
@@ -310,7 +310,7 @@ namespace DielectricFitter {
 			this->tabPage2->Location = System::Drawing::Point(4, 22);
 			this->tabPage2->Name = L"tabPage2";
 			this->tabPage2->Padding = System::Windows::Forms::Padding(3);
-			this->tabPage2->Size = System::Drawing::Size(1426, 754);
+			this->tabPage2->Size = System::Drawing::Size(1445, 754);
 			this->tabPage2->TabIndex = 1;
 			this->tabPage2->Text = L"Cole-Cole";
 			this->tabPage2->UseVisualStyleBackColor = true;
@@ -355,7 +355,7 @@ namespace DielectricFitter {
 			this->tabPage3->Location = System::Drawing::Point(4, 22);
 			this->tabPage3->Name = L"tabPage3";
 			this->tabPage3->Padding = System::Windows::Forms::Padding(3);
-			this->tabPage3->Size = System::Drawing::Size(1426, 754);
+			this->tabPage3->Size = System::Drawing::Size(1445, 754);
 			this->tabPage3->TabIndex = 2;
 			this->tabPage3->Text = L"Parameters";
 			this->tabPage3->UseVisualStyleBackColor = true;
@@ -396,7 +396,7 @@ namespace DielectricFitter {
 			this->tabPage4->Location = System::Drawing::Point(4, 22);
 			this->tabPage4->Name = L"tabPage4";
 			this->tabPage4->Padding = System::Windows::Forms::Padding(3);
-			this->tabPage4->Size = System::Drawing::Size(1426, 754);
+			this->tabPage4->Size = System::Drawing::Size(1445, 754);
 			this->tabPage4->TabIndex = 3;
 			this->tabPage4->Text = L"Arrhenius";
 			this->tabPage4->UseVisualStyleBackColor = true;
@@ -426,10 +426,9 @@ namespace DielectricFitter {
 			series15->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::Point;
 			series15->Color = System::Drawing::Color::ForestGreen;
 			series15->Name = L"Series2";
-			series15->YAxisType = System::Windows::Forms::DataVisualization::Charting::AxisType::Secondary;
 			this->chart4->Series->Add(series14);
 			this->chart4->Series->Add(series15);
-			this->chart4->Size = System::Drawing::Size(1420, 748);
+			this->chart4->Size = System::Drawing::Size(1439, 748);
 			this->chart4->TabIndex = 0;
 			this->chart4->Text = L"chart4";
 			this->chart4->Click += gcnew System::EventHandler(this, &Form1::chart4_Click);
@@ -730,8 +729,8 @@ namespace DielectricFitter {
 				 }
 			 }
 	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
-				 double ep,eb,es,en,fp,a;
-				 int i,size;
+				 double es,en,fp,a;
+				 int size;
 				 MatrixXd parameters(4,1);
 				 complex<double> d;
 				 if (!checkBox1->Checked){
@@ -915,8 +914,8 @@ private: System::Void button4_Click(System::Object^  sender, System::EventArgs^ 
 
 		 }
 private: System::Void button6_Click(System::Object^  sender, System::EventArgs^  e) {
-			 double es,de1,fp1,a1,de2,fp2,a2,ep,eb;
-			 int i,size;
+			 double es,de1,fp1,a1,de2,fp2,a2;
+			 int size;
 			 complex<double> d;
 			 MatrixXd parameters(7,1);
 			 chart1->Series["Series3"]->Points->Clear();
@@ -967,7 +966,6 @@ private: System::Void button6_Click(System::Object^  sender, System::EventArgs^ 
 			 button3->PerformClick();
 		 }
 private: System::Void button7_Click(System::Object^  sender, System::EventArgs^  e) {
-			 double temperature;
 			 int i,size;
 			 size=CurveSet.size();
 			 //temperature=CurveSet[Position-1].temperature;

@@ -192,11 +192,11 @@ void GuesstimateParameters(vector<double> Dataf, vector<double>Dataep, vector<do
 
 void FitLM(vector<double> Dataf, vector<double>Dataep, vector<double> Dataeb,MatrixXd &parameters)
 {
-	int i;
+	int i,size,size2;
 	double lambda;
 	double chi2,chi2n,chi2c;
 	bool growing;
-	MatrixXd Hessian,Hessiandiag, Grad, newParams;
+	MatrixXd Hessian,Hessiandiag, Grad, newParams,error;
 	growing=false;
 	lambda=1/1024.0;
 	chi2=0;
@@ -226,18 +226,27 @@ void FitLM(vector<double> Dataf, vector<double>Dataep, vector<double> Dataeb,Mat
 		//cout << i <<" "<<(chi2c-chi2)/chi2 <<" "<<chi2<<" "<<parameters.transpose() <<endl;	//<<"|"<<newParams.transpose() <<std::endl;
 
 	}
-	end=clock();
+	size=parameters.rows();
+	size2=Dataf.size();
+	cout << "rozmiary ="<<size<<" "<<size2<<endl;
+	error=(Hessiandiag.inverse().diagonal()*chi2/(size2-size));
+	for (i=0;i<size;i++) error(i)=sqrt(error(i));
+	/*cout<<Hessian.inverse()<<endl;
+		cout <<"-----------------------------------------------------------------------"<<endl;
+	cout<<error<<endl<< "----------------------------------------------------- "<<endl;
+	cout <<chi2<<endl;
+	*/end=clock();
 	cout <<(double(end - start) / CLOCKS_PER_SEC)<<" "<< CLOCKS_PER_SEC<<endl;
 	return;
 }
 
 void FitLM2(vector<double> Dataf, vector<double>Dataep, vector<double> Dataeb,MatrixXd &parameters)
 {
-	int i;
+	int i,size,size2;
 	double lambda;
 	double chi2,chi2n,chi2c;
 	bool growing;
-	MatrixXd Hessian,Hessiandiag, Grad, newParams;
+	MatrixXd Hessian,Hessiandiag, Grad, newParams,error;
 	growing=false;
 	lambda=1/1024.0;
 	chi2=0;
@@ -267,6 +276,13 @@ void FitLM2(vector<double> Dataf, vector<double>Dataep, vector<double> Dataeb,Ma
 		//cout << i <<" "<<(chi2c-chi2)/chi2 <<" "<<chi2<<" "<<parameters.transpose() <<endl;	//<<"|"<<newParams.transpose() <<std::endl;
 
 	}
+	size=parameters.rows();
+	size2=Dataf.size();
+	cout << "rozmiary ="<<size<<" "<<size2<<endl;
+	error=(Hessiandiag.inverse().diagonal()*chi2/(size2-size));
+	for (i=0;i<size;i++) error(i)=sqrt(error(i));
+	cout<<error<<endl<< "----------------------------------------------------- "<<endl;
+	cout <<chi2<<endl;
 	end=clock();
 	cout <<(double(end - start) / CLOCKS_PER_SEC)<<" "<< CLOCKS_PER_SEC<<endl;
 	return;
