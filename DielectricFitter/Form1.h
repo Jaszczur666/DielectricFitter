@@ -93,6 +93,7 @@ namespace DielectricFitter {
 	private: System::Windows::Forms::DataVisualization::Charting::Chart^  chart3;
 	private: System::Windows::Forms::Button^  button8;
 	private: System::Windows::Forms::DataVisualization::Charting::Chart^  chart4;
+	private: System::Windows::Forms::Label^  label2;
 
 	private:
 		/// <summary>
@@ -126,6 +127,7 @@ namespace DielectricFitter {
 			System::Windows::Forms::DataVisualization::Charting::ChartArea^  chartArea4 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
 			System::Windows::Forms::DataVisualization::Charting::Series^  series14 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
 			System::Windows::Forms::DataVisualization::Charting::Series^  series15 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
+			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(Form1::typeid));
 			this->chart1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->openFileDialog1 = (gcnew System::Windows::Forms::OpenFileDialog());
@@ -163,6 +165,7 @@ namespace DielectricFitter {
 			this->textBox9 = (gcnew System::Windows::Forms::TextBox());
 			this->saveFileDialog1 = (gcnew System::Windows::Forms::SaveFileDialog());
 			this->button8 = (gcnew System::Windows::Forms::Button());
+			this->label2 = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->chart1))->BeginInit();
 			this->tabControl1->SuspendLayout();
 			this->tabPage1->SuspendLayout();
@@ -236,14 +239,14 @@ namespace DielectricFitter {
 			this->chart1->Series->Add(series4);
 			this->chart1->Series->Add(series5);
 			this->chart1->Series->Add(series6);
-			this->chart1->Size = System::Drawing::Size(1439, 748);
+			this->chart1->Size = System::Drawing::Size(1270, 688);
 			this->chart1->TabIndex = 0;
 			this->chart1->Text = L"chart1";
 			this->chart1->Click += gcnew System::EventHandler(this, &Form1::chart1_Click);
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(0, 23);
+			this->button1->Location = System::Drawing::Point(4, 31);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(75, 23);
 			this->button1->TabIndex = 1;
@@ -260,15 +263,15 @@ namespace DielectricFitter {
 			// 
 			// textBox1
 			// 
-			this->textBox1->Location = System::Drawing::Point(208, 23);
+			this->textBox1->Location = System::Drawing::Point(255, 32);
 			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(68, 20);
+			this->textBox1->Size = System::Drawing::Size(25, 20);
 			this->textBox1->TabIndex = 2;
 			this->textBox1->Text = L"1";
 			// 
 			// button2
 			// 
-			this->button2->Location = System::Drawing::Point(282, 20);
+			this->button2->Location = System::Drawing::Point(286, 31);
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(39, 23);
 			this->button2->TabIndex = 3;
@@ -285,11 +288,11 @@ namespace DielectricFitter {
 			this->tabControl1->Controls->Add(this->tabPage2);
 			this->tabControl1->Controls->Add(this->tabPage3);
 			this->tabControl1->Controls->Add(this->tabPage4);
-			this->tabControl1->Location = System::Drawing::Point(0, 50);
+			this->tabControl1->Location = System::Drawing::Point(0, 67);
 			this->tabControl1->Margin = System::Windows::Forms::Padding(10);
 			this->tabControl1->Name = L"tabControl1";
 			this->tabControl1->SelectedIndex = 0;
-			this->tabControl1->Size = System::Drawing::Size(1453, 780);
+			this->tabControl1->Size = System::Drawing::Size(1284, 720);
 			this->tabControl1->TabIndex = 4;
 			// 
 			// tabPage1
@@ -298,7 +301,7 @@ namespace DielectricFitter {
 			this->tabPage1->Location = System::Drawing::Point(4, 22);
 			this->tabPage1->Name = L"tabPage1";
 			this->tabPage1->Padding = System::Windows::Forms::Padding(3);
-			this->tabPage1->Size = System::Drawing::Size(1445, 754);
+			this->tabPage1->Size = System::Drawing::Size(1276, 694);
 			this->tabPage1->TabIndex = 0;
 			this->tabPage1->Text = L"Bode Plot";
 			this->tabPage1->UseVisualStyleBackColor = true;
@@ -310,7 +313,7 @@ namespace DielectricFitter {
 			this->tabPage2->Location = System::Drawing::Point(4, 22);
 			this->tabPage2->Name = L"tabPage2";
 			this->tabPage2->Padding = System::Windows::Forms::Padding(3);
-			this->tabPage2->Size = System::Drawing::Size(1445, 754);
+			this->tabPage2->Size = System::Drawing::Size(1276, 694);
 			this->tabPage2->TabIndex = 1;
 			this->tabPage2->Text = L"Cole-Cole";
 			this->tabPage2->UseVisualStyleBackColor = true;
@@ -344,7 +347,7 @@ namespace DielectricFitter {
 			this->chart2->Series->Add(series8);
 			this->chart2->Series->Add(series9);
 			this->chart2->Series->Add(series10);
-			this->chart2->Size = System::Drawing::Size(1420, 748);
+			this->chart2->Size = System::Drawing::Size(1270, 688);
 			this->chart2->TabIndex = 0;
 			this->chart2->Text = L"chart2";
 			this->chart2->Resize += gcnew System::EventHandler(this, &Form1::chart2_Resize);
@@ -355,7 +358,7 @@ namespace DielectricFitter {
 			this->tabPage3->Location = System::Drawing::Point(4, 22);
 			this->tabPage3->Name = L"tabPage3";
 			this->tabPage3->Padding = System::Windows::Forms::Padding(3);
-			this->tabPage3->Size = System::Drawing::Size(1445, 754);
+			this->tabPage3->Size = System::Drawing::Size(1276, 694);
 			this->tabPage3->TabIndex = 2;
 			this->tabPage3->Text = L"Parameters";
 			this->tabPage3->UseVisualStyleBackColor = true;
@@ -386,7 +389,7 @@ namespace DielectricFitter {
 			this->chart3->Series->Add(series11);
 			this->chart3->Series->Add(series12);
 			this->chart3->Series->Add(series13);
-			this->chart3->Size = System::Drawing::Size(1420, 748);
+			this->chart3->Size = System::Drawing::Size(1270, 688);
 			this->chart3->TabIndex = 0;
 			this->chart3->Text = L"chart3";
 			// 
@@ -396,7 +399,7 @@ namespace DielectricFitter {
 			this->tabPage4->Location = System::Drawing::Point(4, 22);
 			this->tabPage4->Name = L"tabPage4";
 			this->tabPage4->Padding = System::Windows::Forms::Padding(3);
-			this->tabPage4->Size = System::Drawing::Size(1445, 754);
+			this->tabPage4->Size = System::Drawing::Size(1276, 694);
 			this->tabPage4->TabIndex = 3;
 			this->tabPage4->Text = L"Arrhenius";
 			this->tabPage4->UseVisualStyleBackColor = true;
@@ -428,7 +431,7 @@ namespace DielectricFitter {
 			series15->Name = L"Series2";
 			this->chart4->Series->Add(series14);
 			this->chart4->Series->Add(series15);
-			this->chart4->Size = System::Drawing::Size(1439, 748);
+			this->chart4->Size = System::Drawing::Size(1270, 688);
 			this->chart4->TabIndex = 0;
 			this->chart4->Text = L"chart4";
 			this->chart4->Click += gcnew System::EventHandler(this, &Form1::chart4_Click);
@@ -441,7 +444,7 @@ namespace DielectricFitter {
 				this->helpToolStripMenuItem});
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			this->menuStrip1->Name = L"menuStrip1";
-			this->menuStrip1->Size = System::Drawing::Size(1453, 24);
+			this->menuStrip1->Size = System::Drawing::Size(1284, 24);
 			this->menuStrip1->TabIndex = 5;
 			this->menuStrip1->Text = L"menuStrip1";
 			this->menuStrip1->ItemClicked += gcnew System::Windows::Forms::ToolStripItemClickedEventHandler(this, &Form1::menuStrip1_ItemClicked);
@@ -492,7 +495,7 @@ namespace DielectricFitter {
 			// 
 			// textBox2
 			// 
-			this->textBox2->Location = System::Drawing::Point(499, 22);
+			this->textBox2->Location = System::Drawing::Point(503, 32);
 			this->textBox2->Name = L"textBox2";
 			this->textBox2->Size = System::Drawing::Size(78, 20);
 			this->textBox2->TabIndex = 6;
@@ -500,7 +503,7 @@ namespace DielectricFitter {
 			// 
 			// textBox3
 			// 
-			this->textBox3->Location = System::Drawing::Point(583, 22);
+			this->textBox3->Location = System::Drawing::Point(594, 32);
 			this->textBox3->Name = L"textBox3";
 			this->textBox3->Size = System::Drawing::Size(78, 20);
 			this->textBox3->TabIndex = 7;
@@ -508,7 +511,7 @@ namespace DielectricFitter {
 			// 
 			// textBox4
 			// 
-			this->textBox4->Location = System::Drawing::Point(667, 22);
+			this->textBox4->Location = System::Drawing::Point(685, 32);
 			this->textBox4->Name = L"textBox4";
 			this->textBox4->Size = System::Drawing::Size(78, 20);
 			this->textBox4->TabIndex = 8;
@@ -516,7 +519,7 @@ namespace DielectricFitter {
 			// 
 			// textBox5
 			// 
-			this->textBox5->Location = System::Drawing::Point(751, 22);
+			this->textBox5->Location = System::Drawing::Point(776, 32);
 			this->textBox5->Name = L"textBox5";
 			this->textBox5->Size = System::Drawing::Size(78, 20);
 			this->textBox5->TabIndex = 9;
@@ -524,27 +527,27 @@ namespace DielectricFitter {
 			// 
 			// button3
 			// 
-			this->button3->Location = System::Drawing::Point(1159, 23);
+			this->button3->Location = System::Drawing::Point(1133, 31);
 			this->button3->Name = L"button3";
 			this->button3->Size = System::Drawing::Size(75, 23);
-			this->button3->TabIndex = 10;
+			this->button3->TabIndex = 13;
 			this->button3->Text = L"Chi2";
 			this->button3->UseVisualStyleBackColor = true;
 			this->button3->Click += gcnew System::EventHandler(this, &Form1::button3_Click);
 			// 
 			// button4
 			// 
-			this->button4->Location = System::Drawing::Point(85, 23);
+			this->button4->Location = System::Drawing::Point(89, 31);
 			this->button4->Name = L"button4";
 			this->button4->Size = System::Drawing::Size(24, 23);
-			this->button4->TabIndex = 11;
+			this->button4->TabIndex = 15;
 			this->button4->Text = L"<";
 			this->button4->UseVisualStyleBackColor = true;
 			this->button4->Click += gcnew System::EventHandler(this, &Form1::button4_Click);
 			// 
 			// button5
 			// 
-			this->button5->Location = System::Drawing::Point(115, 23);
+			this->button5->Location = System::Drawing::Point(119, 31);
 			this->button5->Name = L"button5";
 			this->button5->Size = System::Drawing::Size(24, 23);
 			this->button5->TabIndex = 12;
@@ -555,10 +558,10 @@ namespace DielectricFitter {
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(155, 30);
+			this->label1->Location = System::Drawing::Point(149, 36);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(13, 13);
-			this->label1->TabIndex = 13;
+			this->label1->TabIndex = 14;
 			this->label1->Text = L"1";
 			// 
 			// button6
@@ -574,32 +577,32 @@ namespace DielectricFitter {
 			// 
 			// textBox6
 			// 
-			this->textBox6->Location = System::Drawing::Point(835, 22);
+			this->textBox6->Location = System::Drawing::Point(867, 32);
 			this->textBox6->Name = L"textBox6";
-			this->textBox6->Size = System::Drawing::Size(100, 20);
-			this->textBox6->TabIndex = 15;
+			this->textBox6->Size = System::Drawing::Size(78, 20);
+			this->textBox6->TabIndex = 10;
 			this->textBox6->Text = L"1";
 			// 
 			// textBox7
 			// 
-			this->textBox7->Location = System::Drawing::Point(941, 21);
+			this->textBox7->Location = System::Drawing::Point(958, 32);
 			this->textBox7->Name = L"textBox7";
-			this->textBox7->Size = System::Drawing::Size(100, 20);
-			this->textBox7->TabIndex = 16;
+			this->textBox7->Size = System::Drawing::Size(78, 20);
+			this->textBox7->TabIndex = 11;
 			this->textBox7->Text = L"1";
 			// 
 			// textBox8
 			// 
-			this->textBox8->Location = System::Drawing::Point(1047, 21);
+			this->textBox8->Location = System::Drawing::Point(1049, 32);
 			this->textBox8->Name = L"textBox8";
-			this->textBox8->Size = System::Drawing::Size(100, 20);
-			this->textBox8->TabIndex = 17;
+			this->textBox8->Size = System::Drawing::Size(78, 20);
+			this->textBox8->TabIndex = 12;
 			this->textBox8->Text = L"1";
 			// 
 			// checkBox1
 			// 
 			this->checkBox1->AutoSize = true;
-			this->checkBox1->Location = System::Drawing::Point(393, 25);
+			this->checkBox1->Location = System::Drawing::Point(397, 34);
 			this->checkBox1->Name = L"checkBox1";
 			this->checkBox1->Size = System::Drawing::Size(100, 17);
 			this->checkBox1->TabIndex = 18;
@@ -608,7 +611,7 @@ namespace DielectricFitter {
 			// 
 			// button7
 			// 
-			this->button7->Location = System::Drawing::Point(327, 19);
+			this->button7->Location = System::Drawing::Point(331, 31);
 			this->button7->Name = L"button7";
 			this->button7->Size = System::Drawing::Size(42, 23);
 			this->button7->TabIndex = 19;
@@ -632,7 +635,7 @@ namespace DielectricFitter {
 			// 
 			// button8
 			// 
-			this->button8->Location = System::Drawing::Point(418, 43);
+			this->button8->Location = System::Drawing::Point(422, 55);
 			this->button8->Name = L"button8";
 			this->button8->Size = System::Drawing::Size(46, 23);
 			this->button8->TabIndex = 21;
@@ -640,11 +643,22 @@ namespace DielectricFitter {
 			this->button8->UseVisualStyleBackColor = true;
 			this->button8->Click += gcnew System::EventHandler(this, &Form1::button8_Click);
 			// 
+			// label2
+			// 
+			this->label2->AutoSize = true;
+			this->label2->Location = System::Drawing::Point(214, 36);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(10, 13);
+			this->label2->TabIndex = 22;
+			this->label2->Text = L"-";
+			// 
 			// Form1
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1453, 836);
+			this->ClientSize = System::Drawing::Size(1284, 785);
+			this->Controls->Add(this->textBox1);
+			this->Controls->Add(this->label2);
 			this->Controls->Add(this->button8);
 			this->Controls->Add(this->textBox9);
 			this->Controls->Add(this->button7);
@@ -663,9 +677,9 @@ namespace DielectricFitter {
 			this->Controls->Add(this->textBox2);
 			this->Controls->Add(this->tabControl1);
 			this->Controls->Add(this->button2);
-			this->Controls->Add(this->textBox1);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->menuStrip1);
+			this->Icon = (cli::safe_cast<System::Drawing::Icon^  >(resources->GetObject(L"$this.Icon")));
 			this->MainMenuStrip = this->menuStrip1;
 			this->Name = L"Form1";
 			this->Text = L"Dielectric Fitter";
@@ -773,6 +787,7 @@ namespace DielectricFitter {
 					 chart2->Series["Series2"]->Points->AddXY(ep,eb);
 				 }*/
 				 button3->PerformClick();
+				 //button8->PerformClick();
 				 }
 				 else button6->PerformClick();
 			 }
@@ -818,9 +833,9 @@ private: System::Void button3_Click(System::Object^  sender, System::EventArgs^ 
 				 de2=(Convert::ToDouble(textBox6->Text));
 				 fp2=(Convert::ToDouble(textBox7->Text));
 				 a2=(Convert::ToDouble(textBox8->Text));
-				 for (i=0;i<=300;i++)
+				 for (i=0;i<=100;i++)
 				 {
-					 f=log10(minf)+(i/300.0)*df;
+					 f=log10(minf)+(i/100.0)*df;
 					 if (!checkBox1->Checked) 
 					 {
 						 d=en+(es-en)/(1.0+pow(ii*pow(10,f)/fp,1-a));
@@ -858,10 +873,11 @@ private: System::Void button5_Click(System::Object^  sender, System::EventArgs^ 
 			 chart2->Series["Series1"]->Points->Clear();
 			 chart1->Series["Series2"]->Points->Clear();
 			 chart2->Series["Series2"]->Points->Clear();
-			  chart1->Series["Series5"]->Points->Clear();
-				 chart1->Series["Series6"]->Points->Clear();
+			 chart1->Series["Series5"]->Points->Clear();
+			 chart1->Series["Series6"]->Points->Clear();
 			 chart1->Series["Series3"]->Points->Clear();
 			 chart1->Series["Series4"]->Points->Clear();
+			 label2->Text=CurveSet[Position-1].temperature.ToString();
 			 if (CurveSet[Position-1].fitted){
 				 textBox2->Text=CurveSet[Position-1].en.ToString();
 				 textBox3->Text=CurveSet[Position-1].de1.ToString();
@@ -885,6 +901,7 @@ private: System::Void button4_Click(System::Object^  sender, System::EventArgs^ 
 			 		 int i,size;
 			 if (Position>1) Position--;
 			 label1->Text=Position.ToString()+"/"+CurveSet.size();
+			  label2->Text=CurveSet[Position-1].temperature.ToString();
 			 chart1->Series["Series1"]->Points->Clear();
 			  chart1->Series["Series5"]->Points->Clear();
 				 chart1->Series["Series6"]->Points->Clear();
@@ -964,6 +981,7 @@ private: System::Void button6_Click(System::Object^  sender, System::EventArgs^ 
 					 chart2->Series["Series2"]->Points->AddXY(ep,eb);
 				 }*/
 			 button3->PerformClick();
+			 //button8->PerformClick();
 		 }
 private: System::Void button7_Click(System::Object^  sender, System::EventArgs^  e) {
 			 int i,size;
@@ -980,12 +998,12 @@ private: System::Void button7_Click(System::Object^  sender, System::EventArgs^ 
 private: System::Void textBox9_TextChanged(System::Object^  sender, System::EventArgs^  e) {
 		 }
 private: System::Void saveToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
-
+			button7->PerformClick();
 			 if (saveFileDialog1->ShowDialog() == ::System::Windows::Forms::DialogResult::OK ){
 				 StreamWriter^ sw = gcnew StreamWriter(saveFileDialog1->FileName);
 				 sw->WriteLine(textBox9->Text);
 				 sw->Close();
-				 cout <<"Ssave";
+				 cout <<"Fit parameters saved";
 			 }
 		 }
 private: System::Void saveFileDialog1_FileOk(System::Object^  sender, System::ComponentModel::CancelEventArgs^  e) {
