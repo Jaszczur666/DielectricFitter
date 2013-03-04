@@ -703,7 +703,7 @@ namespace DielectricFitter {
 	private: System::Void openFileDialog1_FileOk(System::Object^  sender, System::ComponentModel::CancelEventArgs^  e) {
 			 }
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
-				 int i;
+				 int i,numload;
 				 int size;
 				 double c0,temperature;//,ep,eb;
 				 curve  SingleCurve;
@@ -715,14 +715,16 @@ namespace DielectricFitter {
 					 CurveSet.clear();
 					 c0=(Convert::ToDouble(textBox1->Text));
 					 complex<double> d;
-					 cout<<"Number of files to load "<<openFileDialog1->FileNames->Length<<endl;
-					 for (i=0;i<openFileDialog1->FileNames->Length;i++)
+					 numload=openFileDialog1->FileNames->Length;
+					 cout<<"Number of files to load "<<numload<<endl;
+					 for (i=0;i<numload;i++)
 					 {
 						 LoadDielectric(openFileDialog1->FileNames[i],SingleCurve.Dataf,SingleCurve.Dataep,SingleCurve.Dataeb,SingleCurve.temperature);
 						 size=SingleCurve.Dataf.size();
 						 Normalize(SingleCurve.Dataep,SingleCurve.Dataeb,c0);
 						 SingleCurve.fitted=false;
 						 CurveSet.push_back(SingleCurve);
+						 cout << 100*i/numload<<"%"<<endl;
 					 }
 					 label1->Text="1/"+CurveSet.size().ToString();
 					 Position=1;
@@ -733,6 +735,9 @@ namespace DielectricFitter {
 					 chart1->Series["Series3"]->Points->Clear();
 					 chart1->Series["Series4"]->Points->Clear();
 					 size=CurveSet[Position-1].Dataf.size();
+					 label1->Text=Position.ToString()+"/"+CurveSet.size();
+					 label2->Text=CurveSet[0].temperature.ToString();
+
 					 for (i=0;i<=size-1;i++)
 					 {
 						 chart1->Series["Series1"]->Points->AddXY(log10(CurveSet[Position-1].Dataf[i]),CurveSet[Position-1].Dataep[i]);
@@ -869,10 +874,13 @@ private: System::Void button5_Click(System::Object^  sender, System::EventArgs^ 
 			 int i,size;
 			 if (Position<CurveSet.size()) Position++;
 			 label1->Text=Position.ToString()+"/"+CurveSet.size();
+			 this->Text=openFileDialog1->FileNames[Position-1];
 			 chart1->Series["Series1"]->Points->Clear();
 			 chart2->Series["Series1"]->Points->Clear();
 			 chart1->Series["Series2"]->Points->Clear();
 			 chart2->Series["Series2"]->Points->Clear();
+			 chart2->Series["Series3"]->Points->Clear();
+			 chart2->Series["Series4"]->Points->Clear();
 			 chart1->Series["Series5"]->Points->Clear();
 			 chart1->Series["Series6"]->Points->Clear();
 			 chart1->Series["Series3"]->Points->Clear();
@@ -900,6 +908,7 @@ private: System::Void button5_Click(System::Object^  sender, System::EventArgs^ 
 private: System::Void button4_Click(System::Object^  sender, System::EventArgs^  e) {
 			 		 int i,size;
 			 if (Position>1) Position--;
+			 this->Text=openFileDialog1->FileNames[Position-1];
 			 label1->Text=Position.ToString()+"/"+CurveSet.size();
 			  label2->Text=CurveSet[Position-1].temperature.ToString();
 			 chart1->Series["Series1"]->Points->Clear();
