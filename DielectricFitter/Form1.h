@@ -94,6 +94,8 @@ namespace DielectricFitter {
 	private: System::Windows::Forms::Button^  button8;
 	private: System::Windows::Forms::DataVisualization::Charting::Chart^  chart4;
 	private: System::Windows::Forms::Label^  label2;
+	private: System::Windows::Forms::ToolStripMenuItem^  writeTemperatureDependenciesToolStripMenuItem;
+	private: System::Windows::Forms::SaveFileDialog^  saveFileDialog2;
 
 	private:
 		/// <summary>
@@ -144,6 +146,7 @@ namespace DielectricFitter {
 			this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
 			this->FileToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->loadFileToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->writeTemperatureDependenciesToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->saveToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->exitToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->helpToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
@@ -166,6 +169,7 @@ namespace DielectricFitter {
 			this->saveFileDialog1 = (gcnew System::Windows::Forms::SaveFileDialog());
 			this->button8 = (gcnew System::Windows::Forms::Button());
 			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->saveFileDialog2 = (gcnew System::Windows::Forms::SaveFileDialog());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->chart1))->BeginInit();
 			this->tabControl1->SuspendLayout();
 			this->tabPage1->SuspendLayout();
@@ -451,8 +455,8 @@ namespace DielectricFitter {
 			// 
 			// FileToolStripMenuItem
 			// 
-			this->FileToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(3) {this->loadFileToolStripMenuItem, 
-				this->saveToolStripMenuItem, this->exitToolStripMenuItem});
+			this->FileToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(4) {this->loadFileToolStripMenuItem, 
+				this->writeTemperatureDependenciesToolStripMenuItem, this->saveToolStripMenuItem, this->exitToolStripMenuItem});
 			this->FileToolStripMenuItem->Name = L"FileToolStripMenuItem";
 			this->FileToolStripMenuItem->Size = System::Drawing::Size(35, 20);
 			this->FileToolStripMenuItem->Text = L"File";
@@ -461,21 +465,28 @@ namespace DielectricFitter {
 			// loadFileToolStripMenuItem
 			// 
 			this->loadFileToolStripMenuItem->Name = L"loadFileToolStripMenuItem";
-			this->loadFileToolStripMenuItem->Size = System::Drawing::Size(125, 22);
+			this->loadFileToolStripMenuItem->Size = System::Drawing::Size(244, 22);
 			this->loadFileToolStripMenuItem->Text = L"Load file";
 			this->loadFileToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::loadFileToolStripMenuItem_Click);
+			// 
+			// writeTemperatureDependenciesToolStripMenuItem
+			// 
+			this->writeTemperatureDependenciesToolStripMenuItem->Name = L"writeTemperatureDependenciesToolStripMenuItem";
+			this->writeTemperatureDependenciesToolStripMenuItem->Size = System::Drawing::Size(244, 22);
+			this->writeTemperatureDependenciesToolStripMenuItem->Text = L"Save Temperature Dependencies";
+			this->writeTemperatureDependenciesToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::writeTemperatureDependenciesToolStripMenuItem_Click);
 			// 
 			// saveToolStripMenuItem
 			// 
 			this->saveToolStripMenuItem->Name = L"saveToolStripMenuItem";
-			this->saveToolStripMenuItem->Size = System::Drawing::Size(125, 22);
-			this->saveToolStripMenuItem->Text = L"Save";
+			this->saveToolStripMenuItem->Size = System::Drawing::Size(244, 22);
+			this->saveToolStripMenuItem->Text = L"Save Fit Parameters";
 			this->saveToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::saveToolStripMenuItem_Click);
 			// 
 			// exitToolStripMenuItem
 			// 
 			this->exitToolStripMenuItem->Name = L"exitToolStripMenuItem";
-			this->exitToolStripMenuItem->Size = System::Drawing::Size(125, 22);
+			this->exitToolStripMenuItem->Size = System::Drawing::Size(244, 22);
 			this->exitToolStripMenuItem->Text = L"Exit";
 			this->exitToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::exitToolStripMenuItem_Click);
 			// 
@@ -1040,6 +1051,20 @@ private: System::Void button8_Click(System::Object^  sender, System::EventArgs^ 
 			 }
 		 }
 private: System::Void chart4_Click(System::Object^  sender, System::EventArgs^  e) {
+		 }
+private: System::Void writeTemperatureDependenciesToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+			 int i,j;
+			 if (saveFileDialog1->ShowDialog() == ::System::Windows::Forms::DialogResult::OK ){
+				 for (i=0;i<CurveSet[0].Dataf.size();i++)
+				 {
+					 StreamWriter^ sw = gcnew StreamWriter(saveFileDialog1->FileName+i.ToString()+".dat");
+					 sw->WriteLine("Frequency = "+ CurveSet[0].Dataf[i]);
+					 for (j=0;j<CurveSet.size();j++){
+						 sw->WriteLine(CurveSet[j].temperature+" "+ CurveSet[j].Dataep[i]+" "+-CurveSet[j].Dataeb[i]);
+					 }
+					 sw->Close();
+				 }
+			 }
 		 }
 };
 }
