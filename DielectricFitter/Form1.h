@@ -96,6 +96,13 @@ namespace DielectricFitter {
 	private: System::Windows::Forms::Label^  label2;
 	private: System::Windows::Forms::ToolStripMenuItem^  writeTemperatureDependenciesToolStripMenuItem;
 	private: System::Windows::Forms::SaveFileDialog^  saveFileDialog2;
+	private: System::Windows::Forms::Label^  label3;
+	private: System::Windows::Forms::Label^  label4;
+	private: System::Windows::Forms::Label^  label5;
+	private: System::Windows::Forms::Label^  label6;
+	private: System::Windows::Forms::Label^  label7;
+	private: System::Windows::Forms::Label^  label8;
+	private: System::Windows::Forms::Label^  label9;
 
 	private:
 		/// <summary>
@@ -170,6 +177,13 @@ namespace DielectricFitter {
 			this->button8 = (gcnew System::Windows::Forms::Button());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->saveFileDialog2 = (gcnew System::Windows::Forms::SaveFileDialog());
+			this->label3 = (gcnew System::Windows::Forms::Label());
+			this->label4 = (gcnew System::Windows::Forms::Label());
+			this->label5 = (gcnew System::Windows::Forms::Label());
+			this->label6 = (gcnew System::Windows::Forms::Label());
+			this->label7 = (gcnew System::Windows::Forms::Label());
+			this->label8 = (gcnew System::Windows::Forms::Label());
+			this->label9 = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->chart1))->BeginInit();
 			this->tabControl1->SuspendLayout();
 			this->tabPage1->SuspendLayout();
@@ -663,11 +677,88 @@ namespace DielectricFitter {
 			this->label2->TabIndex = 22;
 			this->label2->Text = L"-";
 			// 
+			// label3
+			// 
+			this->label3->AutoSize = true;
+			this->label3->Location = System::Drawing::Point(503, 9);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(20, 13);
+			this->label3->TabIndex = 23;
+			this->label3->Text = L"En";
+			this->label3->Click += gcnew System::EventHandler(this, &Form1::label3_Click);
+			// 
+			// label4
+			// 
+			this->label4->AutoSize = true;
+			this->label4->Location = System::Drawing::Point(594, 9);
+			this->label4->Name = L"label4";
+			this->label4->Size = System::Drawing::Size(25, 13);
+			this->label4->TabIndex = 24;
+			this->label4->Text = L"de1";
+			this->label4->Click += gcnew System::EventHandler(this, &Form1::label4_Click);
+			// 
+			// label5
+			// 
+			this->label5->AutoSize = true;
+			this->label5->Location = System::Drawing::Point(685, 9);
+			this->label5->Name = L"label5";
+			this->label5->Size = System::Drawing::Size(22, 13);
+			this->label5->TabIndex = 25;
+			this->label5->Text = L"fp1";
+			this->label5->Click += gcnew System::EventHandler(this, &Form1::label5_Click);
+			// 
+			// label6
+			// 
+			this->label6->AutoSize = true;
+			this->label6->Location = System::Drawing::Point(776, 9);
+			this->label6->Name = L"label6";
+			this->label6->Size = System::Drawing::Size(19, 13);
+			this->label6->TabIndex = 26;
+			this->label6->Text = L"a1";
+			this->label6->Click += gcnew System::EventHandler(this, &Form1::label6_Click);
+			// 
+			// label7
+			// 
+			this->label7->AutoSize = true;
+			this->label7->Location = System::Drawing::Point(958, 9);
+			this->label7->Name = L"label7";
+			this->label7->Size = System::Drawing::Size(22, 13);
+			this->label7->TabIndex = 27;
+			this->label7->Text = L"fp2";
+			this->label7->Click += gcnew System::EventHandler(this, &Form1::label7_Click);
+			// 
+			// label8
+			// 
+			this->label8->AutoSize = true;
+			this->label8->Location = System::Drawing::Point(867, 9);
+			this->label8->Name = L"label8";
+			this->label8->Size = System::Drawing::Size(25, 13);
+			this->label8->TabIndex = 27;
+			this->label8->Text = L"de2";
+			this->label8->Click += gcnew System::EventHandler(this, &Form1::label8_Click);
+			// 
+			// label9
+			// 
+			this->label9->AutoSize = true;
+			this->label9->Location = System::Drawing::Point(1049, 9);
+			this->label9->Name = L"label9";
+			this->label9->Size = System::Drawing::Size(19, 13);
+			this->label9->TabIndex = 28;
+			this->label9->Text = L"a2";
+			this->label9->Click += gcnew System::EventHandler(this, &Form1::label9_Click);
+			// 
 			// Form1
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1284, 785);
+			this->Controls->Add(this->label9);
+			this->Controls->Add(this->label8);
+			this->Controls->Add(this->label7);
+			this->Controls->Add(this->label6);
+			this->Controls->Add(this->label5);
+			this->Controls->Add(this->label4);
+			this->Controls->Add(this->label3);
 			this->Controls->Add(this->textBox1);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->button8);
@@ -759,7 +850,7 @@ namespace DielectricFitter {
 				 }
 			 }
 	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
-				 double es,en,fp,a;
+				 double es,en,fp,a,pom;
 				 int size;
 				 MatrixXd parameters(4,1);
 				 complex<double> d;
@@ -769,22 +860,26 @@ namespace DielectricFitter {
 				 chart2->Series["Series2"]->Points->Clear();
 
 				 size=CurveSet[Position-1].Dataf.size();
-				 es=(Convert::ToDouble(textBox2->Text));
-				 en=(Convert::ToDouble(textBox3->Text));
+				 en=(Convert::ToDouble(textBox2->Text));
+				 es=(Convert::ToDouble(textBox3->Text));
 				 fp=(Convert::ToDouble(textBox4->Text));
 				 a=(Convert::ToDouble(textBox5->Text));
+				 pom=en;
+				 en=es+en;
+				 es=pom;
 				 parameters<<es,en,fp,a;
 				 FitLM(CurveSet[Position-1].Dataf,CurveSet[Position-1].Dataep,CurveSet[Position-1].Dataeb,parameters);
 				 es=parameters(0,0);
-				 textBox2->Text=es.ToString();
 				 en=parameters(1,0);
-				 textBox3->Text=en.ToString();
 				 fp=parameters(2,0);
-				 textBox4->Text=fp.ToString();
 				 a=parameters(3,0);
+				 es=es-en;
+				 textBox2->Text=en.ToString();
+				 textBox3->Text=es.ToString();
+				 textBox4->Text=fp.ToString();
 				 textBox5->Text=a.ToString();
 				 CurveSet[Position-1].en=en;
-				 CurveSet[Position-1].de1=es-en;
+				 CurveSet[Position-1].de1=es;
 				 CurveSet[Position-1].fp1=fp;
 				 CurveSet[Position-1].a1=a;
 				 CurveSet[Position-1].fitted=true;
@@ -854,7 +949,7 @@ private: System::Void button3_Click(System::Object^  sender, System::EventArgs^ 
 					 f=log10(minf)+(i/100.0)*df;
 					 if (!checkBox1->Checked) 
 					 {
-						 d=en+(es-en)/(1.0+pow(ii*pow(10,f)/fp,1-a));
+						 d=es+en/(1.0+pow(ii*pow(10,f)/fp,1-a));
 					 }
 					 else d=es+en/(1.0+pow(ii*pow(10,f)/fp,1-a))+de2/(1.0+pow(ii*pow(10,f)/fp2,1-a2));
 						 d1=en/(1.0+pow(ii*pow(10,f)/fp,1-a));
@@ -869,10 +964,10 @@ private: System::Void button3_Click(System::Object^  sender, System::EventArgs^ 
 					 chart1->Series["Series3"]->Points->AddXY(f,ep);
 					 chart1->Series["Series4"]->Points->AddXY(f,eb);
 					 chart1->Series["Series5"]->Points->AddXY(f,eb1);
-					 chart1->Series["Series6"]->Points->AddXY(f,eb2);
+					 if (CurveSet[Position-1].twofunctions) chart1->Series["Series6"]->Points->AddXY(f,eb2);
 					 chart2->Series["Series2"]->Points->AddXY(ep,eb);
-					 chart2->Series["Series3"]->Points->AddXY(ep1,eb1);
-					 chart2->Series["Series4"]->Points->AddXY(ep2,eb2);
+					 if (CurveSet[Position-1].twofunctions) chart2->Series["Series3"]->Points->AddXY(ep1,eb1);
+					 if (CurveSet[Position-1].twofunctions) chart2->Series["Series4"]->Points->AddXY(ep2,eb2);
 				 }
 		 }
 private: System::Void loadFileToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -1065,6 +1160,20 @@ private: System::Void writeTemperatureDependenciesToolStripMenuItem_Click(System
 					 sw->Close();
 				 }
 			 }
+		 }
+private: System::Void label3_Click(System::Object^  sender, System::EventArgs^  e) {
+		 }
+private: System::Void label8_Click(System::Object^  sender, System::EventArgs^  e) {
+		 }
+private: System::Void label7_Click(System::Object^  sender, System::EventArgs^  e) {
+		 }
+private: System::Void label6_Click(System::Object^  sender, System::EventArgs^  e) {
+		 }
+private: System::Void label5_Click(System::Object^  sender, System::EventArgs^  e) {
+		 }
+private: System::Void label4_Click(System::Object^  sender, System::EventArgs^  e) {
+		 }
+private: System::Void label9_Click(System::Object^  sender, System::EventArgs^  e) {
 		 }
 };
 }
