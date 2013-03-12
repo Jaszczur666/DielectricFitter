@@ -20,6 +20,7 @@ bool twofunctions;
 };
 vector <curve> CurveSet;
 size_t  Position;
+const double pi  =3.1415926535897932384626433;
 namespace DielectricFitter {
 
 	using namespace System;
@@ -103,6 +104,7 @@ namespace DielectricFitter {
 	private: System::Windows::Forms::Label^  label7;
 	private: System::Windows::Forms::Label^  label8;
 	private: System::Windows::Forms::Label^  label9;
+	private: System::Windows::Forms::ToolStripMenuItem^  impedanceToolStripMenuItem;
 
 	private:
 		/// <summary>
@@ -155,6 +157,7 @@ namespace DielectricFitter {
 			this->loadFileToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->writeTemperatureDependenciesToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->saveToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->impedanceToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->exitToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->helpToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->abooutToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
@@ -469,8 +472,8 @@ namespace DielectricFitter {
 			// 
 			// FileToolStripMenuItem
 			// 
-			this->FileToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(4) {this->loadFileToolStripMenuItem, 
-				this->writeTemperatureDependenciesToolStripMenuItem, this->saveToolStripMenuItem, this->exitToolStripMenuItem});
+			this->FileToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(5) {this->loadFileToolStripMenuItem, 
+				this->writeTemperatureDependenciesToolStripMenuItem, this->saveToolStripMenuItem, this->impedanceToolStripMenuItem, this->exitToolStripMenuItem});
 			this->FileToolStripMenuItem->Name = L"FileToolStripMenuItem";
 			this->FileToolStripMenuItem->Size = System::Drawing::Size(35, 20);
 			this->FileToolStripMenuItem->Text = L"File";
@@ -496,6 +499,13 @@ namespace DielectricFitter {
 			this->saveToolStripMenuItem->Size = System::Drawing::Size(244, 22);
 			this->saveToolStripMenuItem->Text = L"Save Fit Parameters";
 			this->saveToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::saveToolStripMenuItem_Click);
+			// 
+			// impedanceToolStripMenuItem
+			// 
+			this->impedanceToolStripMenuItem->Name = L"impedanceToolStripMenuItem";
+			this->impedanceToolStripMenuItem->Size = System::Drawing::Size(244, 22);
+			this->impedanceToolStripMenuItem->Text = L"Impedance";
+			this->impedanceToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::impedanceToolStripMenuItem_Click);
 			// 
 			// exitToolStripMenuItem
 			// 
@@ -1174,6 +1184,33 @@ private: System::Void label5_Click(System::Object^  sender, System::EventArgs^  
 private: System::Void label4_Click(System::Object^  sender, System::EventArgs^  e) {
 		 }
 private: System::Void label9_Click(System::Object^  sender, System::EventArgs^  e) {
+		 }
+private: System::Void impedanceToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+			 double vaccap,ep,eb,poprawka,zs2;
+			 int i,j,size,size2;
+			 complex<double> eps;
+			 complex<double> zs;
+			 if (saveFileDialog1->ShowDialog() == ::System::Windows::Forms::DialogResult::OK ){
+			 vaccap=pi*(3.e-3*3.e-3/0.75e-3)*8.85e-12;
+			 size=CurveSet[0].Dataf.size();
+			 size2=CurveSet.size();
+			 for (j=0;j<size2;j++){
+				 //cout << CurveSet[j].temperature <<" "<<  Correction(CurveSet[j].temperature) <<endl;
+			 StreamWriter^ sw = gcnew StreamWriter(saveFileDialog1->FileName+j.ToString()+".dat");
+			 sw->WriteLine("Temperature = "+ CurveSet[j].temperature);
+			 sw->WriteLine("Freq. [Hz]\tZs' [Ohms]\tZs'' [Ohms]");
+			 for (i=0;i<size;i++){
+			 ep=CurveSet[j].Dataep[i]-Correction(CurveSet[j].temperature);
+			 eb=CurveSet[j].Dataeb[i];
+			 eps=ep+ii*eb;
+			 zs=(-ii*1.0/eps)/(vaccap*2.0*pi*CurveSet[j].Dataf[i]);
+			 sw->WriteLine(CurveSet[j].Dataf[i]+"\t"+real(zs)+"\t"+imag(zs)+"\t"+ep+"\t"+eb);
+			 //cout <<CurveSet[j].Dataf[i]<<" " <<real(zs)<< " "<<imag(zs)<<endl;
+			 }
+			 sw->Close();
+			 }
+
+			 }
 		 }
 };
 }

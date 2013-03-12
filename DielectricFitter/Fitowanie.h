@@ -287,3 +287,10 @@ void FitLM2(vector<double> Dataf, vector<double>Dataep, vector<double> Dataeb,Ma
 	cout <<(double(end - start) / CLOCKS_PER_SEC)<<" "<< CLOCKS_PER_SEC<<endl;
 	return;
 }
+
+double Correction(double temperature)
+{
+if (temperature < -50) return 0;
+if ((temperature > -50)&&(temperature<-45)  ) return 0.51*(temperature+50)/5;
+if (temperature > -45) return 0.51;
+}
