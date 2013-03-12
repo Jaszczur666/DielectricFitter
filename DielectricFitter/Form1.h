@@ -105,6 +105,7 @@ namespace DielectricFitter {
 	private: System::Windows::Forms::Label^  label8;
 	private: System::Windows::Forms::Label^  label9;
 	private: System::Windows::Forms::ToolStripMenuItem^  impedanceToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^  saveTempImpedanceToolStripMenuItem;
 
 	private:
 		/// <summary>
@@ -187,6 +188,7 @@ namespace DielectricFitter {
 			this->label7 = (gcnew System::Windows::Forms::Label());
 			this->label8 = (gcnew System::Windows::Forms::Label());
 			this->label9 = (gcnew System::Windows::Forms::Label());
+			this->saveTempImpedanceToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->chart1))->BeginInit();
 			this->tabControl1->SuspendLayout();
 			this->tabPage1->SuspendLayout();
@@ -472,8 +474,9 @@ namespace DielectricFitter {
 			// 
 			// FileToolStripMenuItem
 			// 
-			this->FileToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(5) {this->loadFileToolStripMenuItem, 
-				this->writeTemperatureDependenciesToolStripMenuItem, this->saveToolStripMenuItem, this->impedanceToolStripMenuItem, this->exitToolStripMenuItem});
+			this->FileToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(6) {this->loadFileToolStripMenuItem, 
+				this->writeTemperatureDependenciesToolStripMenuItem, this->saveToolStripMenuItem, this->saveTempImpedanceToolStripMenuItem, this->impedanceToolStripMenuItem, 
+				this->exitToolStripMenuItem});
 			this->FileToolStripMenuItem->Name = L"FileToolStripMenuItem";
 			this->FileToolStripMenuItem->Size = System::Drawing::Size(35, 20);
 			this->FileToolStripMenuItem->Text = L"File";
@@ -756,6 +759,13 @@ namespace DielectricFitter {
 			this->label9->TabIndex = 28;
 			this->label9->Text = L"a2";
 			this->label9->Click += gcnew System::EventHandler(this, &Form1::label9_Click);
+			// 
+			// saveTempImpedanceToolStripMenuItem
+			// 
+			this->saveTempImpedanceToolStripMenuItem->Name = L"saveTempImpedanceToolStripMenuItem";
+			this->saveTempImpedanceToolStripMenuItem->Size = System::Drawing::Size(244, 22);
+			this->saveTempImpedanceToolStripMenuItem->Text = L"Save temp. impedance";
+			this->saveTempImpedanceToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::saveTempImpedanceToolStripMenuItem_Click);
 			// 
 			// Form1
 			// 
@@ -1210,6 +1220,28 @@ private: System::Void impedanceToolStripMenuItem_Click(System::Object^  sender, 
 			 sw->Close();
 			 }
 
+			 }
+		 }
+private: System::Void saveTempImpedanceToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+			 int i,j;
+			 double ep,eb,vaccap;
+			 complex<double> eps;
+			 complex<double> zs;
+			 if (saveFileDialog1->ShowDialog() == ::System::Windows::Forms::DialogResult::OK ){
+				 for (i=0;i<CurveSet[0].Dataf.size();i++)
+				 {
+					 StreamWriter^ sw = gcnew StreamWriter(saveFileDialog1->FileName+i.ToString()+".dat");
+					 sw->WriteLine("Frequency = "+ CurveSet[0].Dataf[i]);
+					 for (j=0;j<CurveSet.size();j++){
+						 vaccap=pi*(3.e-3*3.e-3/0.75e-3)*8.85e-12;
+						 ep=CurveSet[j].Dataep[i]-Correction(CurveSet[j].temperature);
+						 eb=CurveSet[j].Dataeb[i];
+						 eps=ep+ii*eb;
+						 zs=(-ii*1.0/eps)/(vaccap*2.0*pi*CurveSet[j].Dataf[i]);
+						 sw->WriteLine(CurveSet[j].temperature+" "+ real(zs)+" "+imag(zs)+" "+ep+" "+eb);
+					 }
+					 sw->Close();
+				 }
 			 }
 		 }
 };
