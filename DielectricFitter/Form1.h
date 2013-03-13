@@ -106,6 +106,15 @@ namespace DielectricFitter {
 	private: System::Windows::Forms::Label^  label9;
 	private: System::Windows::Forms::ToolStripMenuItem^  impedanceToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  saveTempImpedanceToolStripMenuItem;
+	private: System::Windows::Forms::TabPage^  tabPage5;
+	private: System::Windows::Forms::TableLayoutPanel^  tableLayoutPanel1;
+	private: System::Windows::Forms::DataVisualization::Charting::Chart^  chart5;
+	private: System::Windows::Forms::Panel^  panel1;
+	private: System::Windows::Forms::TextBox^  textBox12;
+	private: System::Windows::Forms::Button^  button9;
+	private: System::Windows::Forms::TextBox^  textBox11;
+	private: System::Windows::Forms::TextBox^  textBox10;
+
 
 	private:
 		/// <summary>
@@ -139,6 +148,10 @@ namespace DielectricFitter {
 			System::Windows::Forms::DataVisualization::Charting::ChartArea^  chartArea4 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
 			System::Windows::Forms::DataVisualization::Charting::Series^  series14 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
 			System::Windows::Forms::DataVisualization::Charting::Series^  series15 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
+			System::Windows::Forms::DataVisualization::Charting::ChartArea^  chartArea5 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
+			System::Windows::Forms::DataVisualization::Charting::Series^  series16 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
+			System::Windows::Forms::DataVisualization::Charting::Series^  series17 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
+			System::Windows::Forms::DataVisualization::Charting::Series^  series18 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
 			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(Form1::typeid));
 			this->chart1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
 			this->button1 = (gcnew System::Windows::Forms::Button());
@@ -153,11 +166,20 @@ namespace DielectricFitter {
 			this->chart3 = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
 			this->tabPage4 = (gcnew System::Windows::Forms::TabPage());
 			this->chart4 = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
+			this->tabPage5 = (gcnew System::Windows::Forms::TabPage());
+			this->tableLayoutPanel1 = (gcnew System::Windows::Forms::TableLayoutPanel());
+			this->chart5 = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
+			this->panel1 = (gcnew System::Windows::Forms::Panel());
+			this->textBox12 = (gcnew System::Windows::Forms::TextBox());
+			this->button9 = (gcnew System::Windows::Forms::Button());
+			this->textBox11 = (gcnew System::Windows::Forms::TextBox());
+			this->textBox10 = (gcnew System::Windows::Forms::TextBox());
 			this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
 			this->FileToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->loadFileToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->writeTemperatureDependenciesToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->saveToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->saveTempImpedanceToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->impedanceToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->exitToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->helpToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
@@ -188,7 +210,6 @@ namespace DielectricFitter {
 			this->label7 = (gcnew System::Windows::Forms::Label());
 			this->label8 = (gcnew System::Windows::Forms::Label());
 			this->label9 = (gcnew System::Windows::Forms::Label());
-			this->saveTempImpedanceToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->chart1))->BeginInit();
 			this->tabControl1->SuspendLayout();
 			this->tabPage1->SuspendLayout();
@@ -198,6 +219,10 @@ namespace DielectricFitter {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->chart3))->BeginInit();
 			this->tabPage4->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->chart4))->BeginInit();
+			this->tabPage5->SuspendLayout();
+			this->tableLayoutPanel1->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->chart5))->BeginInit();
+			this->panel1->SuspendLayout();
 			this->menuStrip1->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -311,6 +336,7 @@ namespace DielectricFitter {
 			this->tabControl1->Controls->Add(this->tabPage2);
 			this->tabControl1->Controls->Add(this->tabPage3);
 			this->tabControl1->Controls->Add(this->tabPage4);
+			this->tabControl1->Controls->Add(this->tabPage5);
 			this->tabControl1->Location = System::Drawing::Point(0, 67);
 			this->tabControl1->Margin = System::Windows::Forms::Padding(10);
 			this->tabControl1->Name = L"tabControl1";
@@ -459,6 +485,111 @@ namespace DielectricFitter {
 			this->chart4->Text = L"chart4";
 			this->chart4->Click += gcnew System::EventHandler(this, &Form1::chart4_Click);
 			// 
+			// tabPage5
+			// 
+			this->tabPage5->Controls->Add(this->tableLayoutPanel1);
+			this->tabPage5->Location = System::Drawing::Point(4, 22);
+			this->tabPage5->Name = L"tabPage5";
+			this->tabPage5->Padding = System::Windows::Forms::Padding(3);
+			this->tabPage5->Size = System::Drawing::Size(1276, 694);
+			this->tabPage5->TabIndex = 4;
+			this->tabPage5->Text = L"Correction";
+			this->tabPage5->UseVisualStyleBackColor = true;
+			// 
+			// tableLayoutPanel1
+			// 
+			this->tableLayoutPanel1->AutoSize = true;
+			this->tableLayoutPanel1->ColumnCount = 1;
+			this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 
+				100)));
+			this->tableLayoutPanel1->Controls->Add(this->chart5, 0, 1);
+			this->tableLayoutPanel1->Controls->Add(this->panel1, 0, 0);
+			this->tableLayoutPanel1->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->tableLayoutPanel1->Location = System::Drawing::Point(3, 3);
+			this->tableLayoutPanel1->Name = L"tableLayoutPanel1";
+			this->tableLayoutPanel1->RowCount = 2;
+			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 30)));
+			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle()));
+			this->tableLayoutPanel1->Size = System::Drawing::Size(1270, 688);
+			this->tableLayoutPanel1->TabIndex = 2;
+			this->tableLayoutPanel1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &Form1::tableLayoutPanel1_Paint);
+			// 
+			// chart5
+			// 
+			chartArea5->AxisX->MajorGrid->Enabled = false;
+			chartArea5->AxisY->IsStartedFromZero = false;
+			chartArea5->AxisY->MajorGrid->Enabled = false;
+			chartArea5->AxisY2->MajorGrid->Enabled = false;
+			chartArea5->Name = L"ChartArea1";
+			this->chart5->ChartAreas->Add(chartArea5);
+			this->chart5->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->chart5->Location = System::Drawing::Point(3, 33);
+			this->chart5->Name = L"chart5";
+			series16->ChartArea = L"ChartArea1";
+			series16->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::Point;
+			series16->Name = L"Series1";
+			series17->ChartArea = L"ChartArea1";
+			series17->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::Point;
+			series17->Name = L"Series2";
+			series18->ChartArea = L"ChartArea1";
+			series18->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::Line;
+			series18->Name = L"Series3";
+			series18->YAxisType = System::Windows::Forms::DataVisualization::Charting::AxisType::Secondary;
+			this->chart5->Series->Add(series16);
+			this->chart5->Series->Add(series17);
+			this->chart5->Series->Add(series18);
+			this->chart5->Size = System::Drawing::Size(1264, 652);
+			this->chart5->TabIndex = 1;
+			this->chart5->Text = L"chart5";
+			this->chart5->Click += gcnew System::EventHandler(this, &Form1::chart5_Click);
+			// 
+			// panel1
+			// 
+			this->panel1->BackColor = System::Drawing::SystemColors::Control;
+			this->panel1->Controls->Add(this->textBox12);
+			this->panel1->Controls->Add(this->button9);
+			this->panel1->Controls->Add(this->textBox11);
+			this->panel1->Controls->Add(this->textBox10);
+			this->panel1->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->panel1->Location = System::Drawing::Point(3, 3);
+			this->panel1->Name = L"panel1";
+			this->panel1->Size = System::Drawing::Size(1264, 24);
+			this->panel1->TabIndex = 2;
+			// 
+			// textBox12
+			// 
+			this->textBox12->Location = System::Drawing::Point(471, 4);
+			this->textBox12->Name = L"textBox12";
+			this->textBox12->Size = System::Drawing::Size(100, 20);
+			this->textBox12->TabIndex = 3;
+			this->textBox12->Text = L"0,8";
+			// 
+			// button9
+			// 
+			this->button9->Location = System::Drawing::Point(28, 0);
+			this->button9->Name = L"button9";
+			this->button9->Size = System::Drawing::Size(75, 23);
+			this->button9->TabIndex = 2;
+			this->button9->Text = L"Poka¿";
+			this->button9->UseVisualStyleBackColor = true;
+			this->button9->Click += gcnew System::EventHandler(this, &Form1::button9_Click);
+			// 
+			// textBox11
+			// 
+			this->textBox11->Location = System::Drawing::Point(330, 4);
+			this->textBox11->Name = L"textBox11";
+			this->textBox11->Size = System::Drawing::Size(100, 20);
+			this->textBox11->TabIndex = 1;
+			this->textBox11->Text = L"0,3";
+			// 
+			// textBox10
+			// 
+			this->textBox10->Location = System::Drawing::Point(182, 4);
+			this->textBox10->Name = L"textBox10";
+			this->textBox10->Size = System::Drawing::Size(100, 20);
+			this->textBox10->TabIndex = 0;
+			this->textBox10->Text = L"-52";
+			// 
 			// menuStrip1
 			// 
 			this->menuStrip1->BackColor = System::Drawing::SystemColors::Control;
@@ -502,6 +633,13 @@ namespace DielectricFitter {
 			this->saveToolStripMenuItem->Size = System::Drawing::Size(244, 22);
 			this->saveToolStripMenuItem->Text = L"Save Fit Parameters";
 			this->saveToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::saveToolStripMenuItem_Click);
+			// 
+			// saveTempImpedanceToolStripMenuItem
+			// 
+			this->saveTempImpedanceToolStripMenuItem->Name = L"saveTempImpedanceToolStripMenuItem";
+			this->saveTempImpedanceToolStripMenuItem->Size = System::Drawing::Size(244, 22);
+			this->saveTempImpedanceToolStripMenuItem->Text = L"Save temp. impedance";
+			this->saveTempImpedanceToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::saveTempImpedanceToolStripMenuItem_Click);
 			// 
 			// impedanceToolStripMenuItem
 			// 
@@ -760,13 +898,6 @@ namespace DielectricFitter {
 			this->label9->Text = L"a2";
 			this->label9->Click += gcnew System::EventHandler(this, &Form1::label9_Click);
 			// 
-			// saveTempImpedanceToolStripMenuItem
-			// 
-			this->saveTempImpedanceToolStripMenuItem->Name = L"saveTempImpedanceToolStripMenuItem";
-			this->saveTempImpedanceToolStripMenuItem->Size = System::Drawing::Size(244, 22);
-			this->saveTempImpedanceToolStripMenuItem->Text = L"Save temp. impedance";
-			this->saveTempImpedanceToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::saveTempImpedanceToolStripMenuItem_Click);
-			// 
 			// Form1
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -815,6 +946,12 @@ namespace DielectricFitter {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->chart3))->EndInit();
 			this->tabPage4->ResumeLayout(false);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->chart4))->EndInit();
+			this->tabPage5->ResumeLayout(false);
+			this->tabPage5->PerformLayout();
+			this->tableLayoutPanel1->ResumeLayout(false);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->chart5))->EndInit();
+			this->panel1->ResumeLayout(false);
+			this->panel1->PerformLayout();
 			this->menuStrip1->ResumeLayout(false);
 			this->menuStrip1->PerformLayout();
 			this->ResumeLayout(false);
@@ -1210,7 +1347,7 @@ private: System::Void impedanceToolStripMenuItem_Click(System::Object^  sender, 
 			 sw->WriteLine("Temperature = "+ CurveSet[j].temperature);
 			 sw->WriteLine("Freq. [Hz]\tZs' [Ohms]\tZs'' [Ohms]");
 			 for (i=0;i<size;i++){
-			 ep=CurveSet[j].Dataep[i]-Correction(CurveSet[j].temperature);
+			 ep=CurveSet[j].Dataep[i]-Correction(CurveSet[j].temperature,-50,0.3,0.8);
 			 eb=CurveSet[j].Dataeb[i];
 			 eps=ep+ii*eb;
 			 zs=(-ii*1.0/eps)/(vaccap*2.0*pi*CurveSet[j].Dataf[i]);
@@ -1234,13 +1371,36 @@ private: System::Void saveTempImpedanceToolStripMenuItem_Click(System::Object^  
 					 sw->WriteLine("Frequency = "+ CurveSet[0].Dataf[i]);
 					 for (j=0;j<CurveSet.size();j++){
 						 vaccap=pi*(3.e-3*3.e-3/0.75e-3)*8.85e-12;
-						 ep=CurveSet[j].Dataep[i]-Correction(CurveSet[j].temperature);
+						 ep=CurveSet[j].Dataep[i]-Correction(CurveSet[j].temperature,-50,0.34,0.98);
 						 eb=CurveSet[j].Dataeb[i];
 						 eps=ep+ii*eb;
 						 zs=(-ii*1.0/eps)/(vaccap*2.0*pi*CurveSet[j].Dataf[i]);
 						 sw->WriteLine(CurveSet[j].temperature+" "+ real(zs)+" "+imag(zs)+" "+ep+" "+eb);
 					 }
 					 sw->Close();
+				 }
+			 }
+		 }
+private: System::Void tableLayoutPanel1_Paint(System::Object^  sender, System::Windows::Forms::PaintEventArgs^  e) {
+		 }
+private: System::Void chart5_Click(System::Object^  sender, System::EventArgs^  e) {
+		 }
+private: System::Void button9_Click(System::Object^  sender, System::EventArgs^  e) {
+			 int i,size;
+			 double temperature,midt,jump,scale;
+			 	 size=CurveSet.size();
+				 chart5->Series["Series1"]->Points->Clear();
+				 chart5->Series["Series2"]->Points->Clear();
+				 chart5->Series["Series3"]->Points->Clear();
+				 midt=(Convert::ToDouble(textBox10->Text));
+				 scale=(Convert::ToDouble(textBox11->Text));
+				 jump=(Convert::ToDouble(textBox12->Text));
+			 for (i=0;i<size;i++){
+				 temperature=CurveSet[i].temperature;
+				 if ((temperature > -65)&&(temperature<-35)){
+				 chart5->Series["Series1"]->Points->AddXY(temperature,CurveSet[i].Dataep[10]);
+				 chart5->Series["Series2"]->Points->AddXY(temperature,CurveSet[i].Dataep[10]-Correction(temperature,midt,scale,jump));
+				 chart5->Series["Series3"]->Points->AddXY(temperature,Correction(temperature,midt,scale,jump));
 				 }
 			 }
 		 }

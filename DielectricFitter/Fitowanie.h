@@ -288,9 +288,16 @@ void FitLM2(vector<double> Dataf, vector<double>Dataep, vector<double> Dataeb,Ma
 	return;
 }
 
-double Correction(double temperature)
+double Correction(double temperature,double midjumptemp, double scalex,double jump)
 {
-if (temperature < -50) return 0;
-if ((temperature > -50)&&(temperature<-45)  ) return 0.51*(temperature+50)/5;
-if (temperature > -45) return 0.51;
+	double corr;
+	//startx=-52.0;
+	//endx=-45.0;
+	//scalex=0.3;
+	//jump=0.7;
+	corr=0.5*jump*(1+tanh(scalex*(temperature-midjumptemp)));
+//if (temperature <= startx) corr=0;
+//if ((temperature > startx)&&(temperature<endx)  ) corr=jump*(temperature-startx)/(endx-startx);
+//if (temperature >= startx) corr=0.8;
+	return corr;
 }
