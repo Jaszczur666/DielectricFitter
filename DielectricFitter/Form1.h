@@ -5,6 +5,7 @@
 #include "About.h"
 #include "Dense"
 using  System::IO::StreamWriter;
+using namespace System::Globalization;
 using Eigen::MatrixXd;
 vector<double> Dataf;
 vector<double> Dataep;
@@ -20,7 +21,7 @@ bool twofunctions;
 };
 vector <curve> CurveSet;
 size_t  Position,Positionfreq;
-double vacuumcapacity;
+double vacuumcapacity=1.0;
 const double pi  =3.1415926535897932384626433;
 namespace DielectricFitter {
 
@@ -1509,6 +1510,9 @@ private: System::Void label9_Click(System::Object^  sender, System::EventArgs^  
 		 }
 private: System::Void impedanceToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 			 double ep,eb;
+			 CultureInfo^ MyCI = gcnew CultureInfo( "en-US",false );
+			 NumberFormatInfo^ nfi = MyCI->NumberFormat;
+			 nfi->NumberDecimalSeparator = ".";
 			 size_t  i,j,size,size2;
 			 complex<double> eps;
 			 complex<double> zs;
@@ -1525,12 +1529,12 @@ private: System::Void impedanceToolStripMenuItem_Click(System::Object^  sender, 
 			 eb=CurveSet[j].Dataeb[i];
 			 eps=ep+ii*eb;
 			 zs=(-ii*1.0/eps)/(vacuumcapacity*2.0*pi*CurveSet[j].Dataf[i]);
-			 sw->WriteLine(CurveSet[j].Dataf[i]+"\t"+real(zs)+"\t"+imag(zs)+"\t"+ep+"\t"+eb);
+			 sw->WriteLine(CurveSet[j].Dataf[i].ToString("e6",nfi)+"\t"+real(zs).ToString("g6",nfi)+"\t"+imag(zs).ToString("g6",nfi)+"\t"+ep.ToString("g6",nfi)+"\t"+eb.ToString("g6",nfi));
 			 //cout <<CurveSet[j].Dataf[i]<<" " <<real(zs)<< " "<<imag(zs)<<endl;
 			 }
 			 sw->Close();
 			 }
-
+			 
 			 }
 		 }
 private: System::Void saveTempImpedanceToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -1538,6 +1542,9 @@ private: System::Void saveTempImpedanceToolStripMenuItem_Click(System::Object^  
 			 double ep,eb;
 			 complex<double> eps;
 			 complex<double> zs;
+			 			 CultureInfo^ MyCI = gcnew CultureInfo( "en-US",false );
+			 NumberFormatInfo^ nfi = MyCI->NumberFormat;
+			 nfi->NumberDecimalSeparator = ".";
 			 if (saveFileDialog1->ShowDialog() == ::System::Windows::Forms::DialogResult::OK ){
 				 for (i=0;i<CurveSet[0].Dataf.size();i++)
 				 {
@@ -1548,7 +1555,7 @@ private: System::Void saveTempImpedanceToolStripMenuItem_Click(System::Object^  
 						 eb=CurveSet[j].Dataeb[i];
 						 eps=ep+ii*eb;
 						 zs=(-ii*1.0/eps)/(vacuumcapacity*2.0*pi*CurveSet[j].Dataf[i]);
-						 sw->WriteLine(CurveSet[j].temperature+" "+ real(zs)+" "+imag(zs)+" "+ep+" "+eb);
+						 sw->WriteLine(CurveSet[j].temperature.ToString("g5",nfi)+" "+ real(zs).ToString("g6",nfi)+" "+imag(zs).ToString("g6",nfi)+" "+ep.ToString("g6",nfi)+" "+eb.ToString("g6",nfi));
 					 }
 					 sw->Close();
 				 }
