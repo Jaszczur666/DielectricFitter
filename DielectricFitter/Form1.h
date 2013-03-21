@@ -130,6 +130,11 @@ namespace DielectricFitter {
 	private: System::Windows::Forms::Button^  button13;
 	private: System::Windows::Forms::Label^  label12;
 	private: System::Windows::Forms::Label^  label11;
+	private: System::Windows::Forms::TextBox^  corgraphmax;
+	private: System::Windows::Forms::TextBox^  corgraphmin;
+
+
+
 
 
 
@@ -196,6 +201,8 @@ namespace DielectricFitter {
 			this->textBox11 = (gcnew System::Windows::Forms::TextBox());
 			this->textBox10 = (gcnew System::Windows::Forms::TextBox());
 			this->tabPage6 = (gcnew System::Windows::Forms::TabPage());
+			this->label12 = (gcnew System::Windows::Forms::Label());
+			this->label11 = (gcnew System::Windows::Forms::Label());
 			this->CapacityLabel1 = (gcnew System::Windows::Forms::Label());
 			this->CalcGeomCap = (gcnew System::Windows::Forms::Button());
 			this->textBoxheigth = (gcnew System::Windows::Forms::TextBox());
@@ -238,8 +245,8 @@ namespace DielectricFitter {
 			this->label9 = (gcnew System::Windows::Forms::Label());
 			this->progressBar1 = (gcnew System::Windows::Forms::ProgressBar());
 			this->button13 = (gcnew System::Windows::Forms::Button());
-			this->label11 = (gcnew System::Windows::Forms::Label());
-			this->label12 = (gcnew System::Windows::Forms::Label());
+			this->corgraphmin = (gcnew System::Windows::Forms::TextBox());
+			this->corgraphmax = (gcnew System::Windows::Forms::TextBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->chart1))->BeginInit();
 			this->tabControl1->SuspendLayout();
 			this->tabPage1->SuspendLayout();
@@ -578,6 +585,8 @@ namespace DielectricFitter {
 			// panel1
 			// 
 			this->panel1->BackColor = System::Drawing::SystemColors::Control;
+			this->panel1->Controls->Add(this->corgraphmax);
+			this->panel1->Controls->Add(this->corgraphmin);
 			this->panel1->Controls->Add(this->label10);
 			this->panel1->Controls->Add(this->button12);
 			this->panel1->Controls->Add(this->button11);
@@ -680,6 +689,24 @@ namespace DielectricFitter {
 			this->tabPage6->TabIndex = 5;
 			this->tabPage6->Text = L"Sample Geometry";
 			this->tabPage6->UseVisualStyleBackColor = true;
+			// 
+			// label12
+			// 
+			this->label12->AutoSize = true;
+			this->label12->Location = System::Drawing::Point(172, 44);
+			this->label12->Name = L"label12";
+			this->label12->Size = System::Drawing::Size(19, 13);
+			this->label12->TabIndex = 5;
+			this->label12->Text = L"h=";
+			// 
+			// label11
+			// 
+			this->label11->AutoSize = true;
+			this->label11->Location = System::Drawing::Point(40, 44);
+			this->label11->Name = L"label11";
+			this->label11->Size = System::Drawing::Size(16, 13);
+			this->label11->TabIndex = 4;
+			this->label11->Text = L"r=";
 			// 
 			// CapacityLabel1
 			// 
@@ -1048,23 +1075,22 @@ namespace DielectricFitter {
 			this->button13->UseVisualStyleBackColor = true;
 			this->button13->Click += gcnew System::EventHandler(this, &Form1::button13_Click);
 			// 
-			// label11
+			// corgraphmin
 			// 
-			this->label11->AutoSize = true;
-			this->label11->Location = System::Drawing::Point(40, 44);
-			this->label11->Name = L"label11";
-			this->label11->Size = System::Drawing::Size(16, 13);
-			this->label11->TabIndex = 4;
-			this->label11->Text = L"r=";
+			this->corgraphmin->Location = System::Drawing::Point(698, 0);
+			this->corgraphmin->Name = L"corgraphmin";
+			this->corgraphmin->Size = System::Drawing::Size(100, 20);
+			this->corgraphmin->TabIndex = 8;
+			this->corgraphmin->Text = L"-60";
+			this->corgraphmin->TextChanged += gcnew System::EventHandler(this, &Form1::textBox13_TextChanged);
 			// 
-			// label12
+			// corgraphmax
 			// 
-			this->label12->AutoSize = true;
-			this->label12->Location = System::Drawing::Point(172, 44);
-			this->label12->Name = L"label12";
-			this->label12->Size = System::Drawing::Size(19, 13);
-			this->label12->TabIndex = 5;
-			this->label12->Text = L"h=";
+			this->corgraphmax->Location = System::Drawing::Point(835, 1);
+			this->corgraphmax->Name = L"corgraphmax";
+			this->corgraphmax->Size = System::Drawing::Size(100, 20);
+			this->corgraphmax->TabIndex = 9;
+			this->corgraphmax->Text = L"-10";
 			// 
 			// Form1
 			// 
@@ -1567,7 +1593,7 @@ private: System::Void chart5_Click(System::Object^  sender, System::EventArgs^  
 		 }
 private: System::Void button9_Click(System::Object^  sender, System::EventArgs^  e) {
 			 int i,size;
-			 double temperature,midt,jump,scale;
+			 double temperature,midt,jump,scale,maxx,minx;
 			 	 size=CurveSet.size();
 				 label10->Text=Positionfreq.ToString();
 				 chart5->Series["Series1"]->Points->Clear();
@@ -1576,9 +1602,11 @@ private: System::Void button9_Click(System::Object^  sender, System::EventArgs^ 
 				 midt=(Convert::ToDouble(textBox10->Text));
 				 scale=(Convert::ToDouble(textBox11->Text));
 				 jump=(Convert::ToDouble(textBox12->Text));
+				 minx=(Convert::ToDouble(corgraphmin->Text));
+				 maxx=(Convert::ToDouble(corgraphmax->Text));
 			 for (i=0;i<size;i++){
 				 temperature=CurveSet[i].temperature;
-				 if ((temperature > -65)&&(temperature<-5)){
+				 if ((temperature > minx)&&(temperature<maxx)){
 				 chart5->Series["Series1"]->Points->AddXY(temperature,CurveSet[i].Dataep[Positionfreq-1]);
 				 chart5->Series["Series2"]->Points->AddXY(temperature,CurveSet[i].Dataep[Positionfreq-1]-Correction(temperature,midt,scale,jump));
 				 chart5->Series["Series3"]->Points->AddXY(temperature,Correction(temperature,midt,scale,jump));
@@ -1622,6 +1650,8 @@ private: System::Void button13_Click(System::Object^  sender, System::EventArgs^
 			 }
 		 }
 private: System::Void CapacityLabel1_Click(System::Object^  sender, System::EventArgs^  e) {
+		 }
+private: System::Void textBox13_TextChanged(System::Object^  sender, System::EventArgs^  e) {
 		 }
 };
 }
