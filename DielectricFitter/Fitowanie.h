@@ -194,17 +194,17 @@ void FitLM(vector<double> Dataf, vector<double>Dataep, vector<double> Dataeb,Mat
 {
 	int i,size,size2;
 	double lambda;
-	double chi2,chi2n,chi2c;
-	bool growing;
+	double chi2,chi2n;//,chi2c;
+//	bool growing;
 	MatrixXd Hessian,Hessiandiag, Grad, newParams,error;
-	growing=false;
+//	growing=false;
 	lambda=1/1024.0;
 	chi2=0;
 	clock_t start, end;
 	start=clock();
 	for(i=1;i<100;i++)
 	{
-		chi2c=chi2;
+//		chi2c=chi2;
 		CalculateHessian(Dataf,Dataep,Dataeb,parameters, Hessian, Grad,chi2);
 		Hessiandiag=Hessian.diagonal().asDiagonal();
 		newParams=parameters-((Hessian+lambda*Hessiandiag).inverse()*Grad);
@@ -212,12 +212,12 @@ void FitLM(vector<double> Dataf, vector<double>Dataep, vector<double> Dataeb,Mat
 		if (chi2n<chi2){
 			parameters=newParams;
 			lambda=lambda*8;
-			growing=false;
+			//growing=false;
 		}
 		else
 		{
 			lambda=lambda/8.0;
-			growing=true;
+//			growing=true;
 		}
 		if (parameters(2)<0) parameters(2)=-parameters(2);
 		if (parameters(3)<0) parameters(3)=0;
@@ -244,17 +244,17 @@ void FitLM2(vector<double> Dataf, vector<double>Dataep, vector<double> Dataeb,Ma
 {
 	int i,size,size2;
 	double lambda;
-	double chi2,chi2n,chi2c;
-	bool growing;
+	double chi2,chi2n;//,chi2c;
+//	bool growing;
 	MatrixXd Hessian,Hessiandiag, Grad, newParams,error;
-	growing=false;
+//	growing=false;
 	lambda=1/1024.0;
 	chi2=0;
 	clock_t start, end;
 	start=clock();
 	for(i=1;i<100;i++)
 	{
-		chi2c=chi2;
+		//chi2c=chi2;
 		CalculateHessian2(Dataf,Dataep,Dataeb,parameters, Hessian, Grad,chi2);
 		Hessiandiag=Hessian.diagonal().asDiagonal();
 		newParams=parameters-((Hessian+lambda*Hessiandiag).inverse()*Grad);
@@ -262,12 +262,12 @@ void FitLM2(vector<double> Dataf, vector<double>Dataep, vector<double> Dataeb,Ma
 		if (chi2n<chi2){
 			parameters=newParams;
 			lambda=lambda*8;
-			growing=false;
+//			growing=false;
 		}
 		else
 		{
 			lambda=lambda/8.0;
-			growing=true;
+//			growing=true;
 		}
 		if (parameters(2)<0) parameters(2)=-parameters(2);
 		if (parameters(3)<0) parameters(3)=0;

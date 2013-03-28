@@ -132,6 +132,15 @@ namespace DielectricFitter {
 	private: System::Windows::Forms::Label^  label11;
 	private: System::Windows::Forms::TextBox^  corgraphmax;
 	private: System::Windows::Forms::TextBox^  corgraphmin;
+	private: System::Windows::Forms::Label^  label14;
+	private: System::Windows::Forms::Label^  label13;
+	private: System::Windows::Forms::Button^  toepsbutton;
+	private: System::Windows::Forms::TextBox^  textBoxheight2;
+
+	private: System::Windows::Forms::TextBox^  textBoxsurface;
+
+	private: System::Windows::Forms::Button^  GeomButton2;
+private: System::Windows::Forms::Label^  CapacityLabel2;
 
 
 
@@ -192,6 +201,8 @@ namespace DielectricFitter {
 			this->tableLayoutPanel1 = (gcnew System::Windows::Forms::TableLayoutPanel());
 			this->chart5 = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
+			this->corgraphmax = (gcnew System::Windows::Forms::TextBox());
+			this->corgraphmin = (gcnew System::Windows::Forms::TextBox());
 			this->label10 = (gcnew System::Windows::Forms::Label());
 			this->button12 = (gcnew System::Windows::Forms::Button());
 			this->button11 = (gcnew System::Windows::Forms::Button());
@@ -201,6 +212,13 @@ namespace DielectricFitter {
 			this->textBox11 = (gcnew System::Windows::Forms::TextBox());
 			this->textBox10 = (gcnew System::Windows::Forms::TextBox());
 			this->tabPage6 = (gcnew System::Windows::Forms::TabPage());
+			this->CapacityLabel2 = (gcnew System::Windows::Forms::Label());
+			this->label14 = (gcnew System::Windows::Forms::Label());
+			this->label13 = (gcnew System::Windows::Forms::Label());
+			this->toepsbutton = (gcnew System::Windows::Forms::Button());
+			this->textBoxheight2 = (gcnew System::Windows::Forms::TextBox());
+			this->textBoxsurface = (gcnew System::Windows::Forms::TextBox());
+			this->GeomButton2 = (gcnew System::Windows::Forms::Button());
 			this->label12 = (gcnew System::Windows::Forms::Label());
 			this->label11 = (gcnew System::Windows::Forms::Label());
 			this->CapacityLabel1 = (gcnew System::Windows::Forms::Label());
@@ -245,8 +263,6 @@ namespace DielectricFitter {
 			this->label9 = (gcnew System::Windows::Forms::Label());
 			this->progressBar1 = (gcnew System::Windows::Forms::ProgressBar());
 			this->button13 = (gcnew System::Windows::Forms::Button());
-			this->corgraphmin = (gcnew System::Windows::Forms::TextBox());
-			this->corgraphmax = (gcnew System::Windows::Forms::TextBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->chart1))->BeginInit();
 			this->tabControl1->SuspendLayout();
 			this->tabPage1->SuspendLayout();
@@ -601,6 +617,23 @@ namespace DielectricFitter {
 			this->panel1->Size = System::Drawing::Size(1264, 24);
 			this->panel1->TabIndex = 2;
 			// 
+			// corgraphmax
+			// 
+			this->corgraphmax->Location = System::Drawing::Point(835, 1);
+			this->corgraphmax->Name = L"corgraphmax";
+			this->corgraphmax->Size = System::Drawing::Size(100, 20);
+			this->corgraphmax->TabIndex = 9;
+			this->corgraphmax->Text = L"-10";
+			// 
+			// corgraphmin
+			// 
+			this->corgraphmin->Location = System::Drawing::Point(698, 0);
+			this->corgraphmin->Name = L"corgraphmin";
+			this->corgraphmin->Size = System::Drawing::Size(100, 20);
+			this->corgraphmin->TabIndex = 8;
+			this->corgraphmin->Text = L"-60";
+			this->corgraphmin->TextChanged += gcnew System::EventHandler(this, &Form1::textBox13_TextChanged);
+			// 
 			// label10
 			// 
 			this->label10->AutoSize = true;
@@ -676,6 +709,13 @@ namespace DielectricFitter {
 			// 
 			// tabPage6
 			// 
+			this->tabPage6->Controls->Add(this->CapacityLabel2);
+			this->tabPage6->Controls->Add(this->label14);
+			this->tabPage6->Controls->Add(this->label13);
+			this->tabPage6->Controls->Add(this->toepsbutton);
+			this->tabPage6->Controls->Add(this->textBoxheight2);
+			this->tabPage6->Controls->Add(this->textBoxsurface);
+			this->tabPage6->Controls->Add(this->GeomButton2);
 			this->tabPage6->Controls->Add(this->label12);
 			this->tabPage6->Controls->Add(this->label11);
 			this->tabPage6->Controls->Add(this->CapacityLabel1);
@@ -689,6 +729,70 @@ namespace DielectricFitter {
 			this->tabPage6->TabIndex = 5;
 			this->tabPage6->Text = L"Sample Geometry";
 			this->tabPage6->UseVisualStyleBackColor = true;
+			// 
+			// CapacityLabel2
+			// 
+			this->CapacityLabel2->AutoSize = true;
+			this->CapacityLabel2->Location = System::Drawing::Point(315, 150);
+			this->CapacityLabel2->Name = L"CapacityLabel2";
+			this->CapacityLabel2->Size = System::Drawing::Size(41, 13);
+			this->CapacityLabel2->TabIndex = 12;
+			this->CapacityLabel2->Text = L"C0=-pF";
+			// 
+			// label14
+			// 
+			this->label14->AutoSize = true;
+			this->label14->Location = System::Drawing::Point(37, 147);
+			this->label14->Name = L"label14";
+			this->label14->Size = System::Drawing::Size(20, 13);
+			this->label14->TabIndex = 11;
+			this->label14->Text = L"S=";
+			// 
+			// label13
+			// 
+			this->label13->AutoSize = true;
+			this->label13->Location = System::Drawing::Point(174, 147);
+			this->label13->Name = L"label13";
+			this->label13->Size = System::Drawing::Size(19, 13);
+			this->label13->TabIndex = 10;
+			this->label13->Text = L"h=";
+			// 
+			// toepsbutton
+			// 
+			this->toepsbutton->Location = System::Drawing::Point(64, 201);
+			this->toepsbutton->Name = L"toepsbutton";
+			this->toepsbutton->Size = System::Drawing::Size(75, 23);
+			this->toepsbutton->TabIndex = 9;
+			this->toepsbutton->Text = L"Transform data";
+			this->toepsbutton->UseVisualStyleBackColor = true;
+			this->toepsbutton->Click += gcnew System::EventHandler(this, &Form1::toepsbutton_Click);
+			// 
+			// textBoxheight2
+			// 
+			this->textBoxheight2->Location = System::Drawing::Point(199, 143);
+			this->textBoxheight2->Name = L"textBoxheight2";
+			this->textBoxheight2->Size = System::Drawing::Size(100, 20);
+			this->textBoxheight2->TabIndex = 8;
+			this->textBoxheight2->Text = L"0,9";
+			// 
+			// textBoxsurface
+			// 
+			this->textBoxsurface->Location = System::Drawing::Point(64, 143);
+			this->textBoxsurface->Name = L"textBoxsurface";
+			this->textBoxsurface->Size = System::Drawing::Size(100, 20);
+			this->textBoxsurface->TabIndex = 7;
+			this->textBoxsurface->Text = L"32,5";
+			this->textBoxsurface->TextChanged += gcnew System::EventHandler(this, &Form1::textBox13_TextChanged_1);
+			// 
+			// GeomButton2
+			// 
+			this->GeomButton2->Location = System::Drawing::Point(64, 88);
+			this->GeomButton2->Name = L"GeomButton2";
+			this->GeomButton2->Size = System::Drawing::Size(75, 23);
+			this->GeomButton2->TabIndex = 6;
+			this->GeomButton2->Text = L"Calculate";
+			this->GeomButton2->UseVisualStyleBackColor = true;
+			this->GeomButton2->Click += gcnew System::EventHandler(this, &Form1::GeomButton2_Click);
 			// 
 			// label12
 			// 
@@ -1075,23 +1179,6 @@ namespace DielectricFitter {
 			this->button13->UseVisualStyleBackColor = true;
 			this->button13->Click += gcnew System::EventHandler(this, &Form1::button13_Click);
 			// 
-			// corgraphmin
-			// 
-			this->corgraphmin->Location = System::Drawing::Point(698, 0);
-			this->corgraphmin->Name = L"corgraphmin";
-			this->corgraphmin->Size = System::Drawing::Size(100, 20);
-			this->corgraphmin->TabIndex = 8;
-			this->corgraphmin->Text = L"-60";
-			this->corgraphmin->TextChanged += gcnew System::EventHandler(this, &Form1::textBox13_TextChanged);
-			// 
-			// corgraphmax
-			// 
-			this->corgraphmax->Location = System::Drawing::Point(835, 1);
-			this->corgraphmax->Name = L"corgraphmax";
-			this->corgraphmax->Size = System::Drawing::Size(100, 20);
-			this->corgraphmax->TabIndex = 9;
-			this->corgraphmax->Text = L"-10";
-			// 
 			// Form1
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -1160,15 +1247,14 @@ namespace DielectricFitter {
 	private: System::Void openFileDialog1_FileOk(System::Object^  sender, System::ComponentModel::CancelEventArgs^  e) {
 			 }
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
-				 int i,numload;
-				 int size;
-				 double c0,temperature;//,ep,eb;
+				 
 				 curve  SingleCurve;
 				 MatrixXd parameters(4,1);
-				 temperature=0.0;
 				 if (openFileDialog1->ShowDialog() == ::System::Windows::Forms::DialogResult::OK )
 				 {
-					 string name;
+				 double c0;//,ep,eb;
+				 int i,numload;
+				 int size;
 					 CurveSet.clear();
 					 c0=(Convert::ToDouble(textBox1->Text));
 					 complex<double> d;
@@ -1209,16 +1295,13 @@ namespace DielectricFitter {
 				 }
 			 }
 	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
-				 double es,en,fp,a,pom;
-				 int size;
 				 MatrixXd parameters(4,1);
 				 complex<double> d;
 				 if (!checkBox1->Checked){
 				 chart1->Series["Series3"]->Points->Clear();
 				 chart1->Series["Series4"]->Points->Clear();
 				 chart2->Series["Series2"]->Points->Clear();
-
-				 size=CurveSet[Position-1].Dataf.size();
+				 double es,en,fp,a,pom;
 				 en=(Convert::ToDouble(textBox2->Text));
 				 es=(Convert::ToDouble(textBox3->Text));
 				 fp=(Convert::ToDouble(textBox4->Text));
@@ -1322,7 +1405,7 @@ private: System::Void button3_Click(System::Object^  sender, System::EventArgs^ 
 					 //cout <<i<<" "<<f <<endl;
 					 chart1->Series["Series3"]->Points->AddXY(f,ep);
 					 chart1->Series["Series4"]->Points->AddXY(f,eb);
-					 chart1->Series["Series5"]->Points->AddXY(f,eb1);
+					 //chart1->Series["Series5"]->Points->AddXY(f,eb1);
 					 if (CurveSet[Position-1].twofunctions) chart1->Series["Series6"]->Points->AddXY(f,eb2);
 					 chart2->Series["Series2"]->Points->AddXY(ep,eb);
 					 if (CurveSet[Position-1].twofunctions) chart2->Series["Series3"]->Points->AddXY(ep1,eb1);
@@ -1406,7 +1489,6 @@ private: System::Void button4_Click(System::Object^  sender, System::EventArgs^ 
 		 }
 private: System::Void button6_Click(System::Object^  sender, System::EventArgs^  e) {
 			 double es,de1,fp1,a1,de2,fp2,a2;
-			 int size;
 			 complex<double> d;
 			 MatrixXd parameters(7,1);
 			 chart1->Series["Series3"]->Points->Clear();
@@ -1435,7 +1517,6 @@ private: System::Void button6_Click(System::Object^  sender, System::EventArgs^ 
 			 textBox7->Text=fp2.ToString();
 			 a2=parameters(6,0);
 			 textBox8->Text=a2.ToString();
-			 size=CurveSet[Position-1].Dataf.size();
 			 CurveSet[Position-1].en=es;
 			 CurveSet[Position-1].de1=de1;
 			 CurveSet[Position-1].fp1=fp1;
@@ -1507,8 +1588,8 @@ private: System::Void button8_Click(System::Object^  sender, System::EventArgs^ 
 private: System::Void chart4_Click(System::Object^  sender, System::EventArgs^  e) {
 		 }
 private: System::Void writeTemperatureDependenciesToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
-			 size_t  i,j;
 			 if (saveFileDialog1->ShowDialog() == ::System::Windows::Forms::DialogResult::OK ){
+			 			 size_t  i,j;
 				 for (i=0;i<CurveSet[0].Dataf.size();i++)
 				 {
 					 StreamWriter^ sw = gcnew StreamWriter(saveFileDialog1->FileName+i.ToString()+".dat");
@@ -1535,14 +1616,14 @@ private: System::Void label4_Click(System::Object^  sender, System::EventArgs^  
 private: System::Void label9_Click(System::Object^  sender, System::EventArgs^  e) {
 		 }
 private: System::Void impedanceToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
-			 double ep,eb;
 			 CultureInfo^ MyCI = gcnew CultureInfo( "en-US",false );
 			 NumberFormatInfo^ nfi = MyCI->NumberFormat;
 			 nfi->NumberDecimalSeparator = ".";
-			 size_t  i,j,size,size2;
 			 complex<double> eps;
 			 complex<double> zs;
 			 if (saveFileDialog1->ShowDialog() == ::System::Windows::Forms::DialogResult::OK ){
+			size_t  i,j,size,size2;
+			 double ep,eb;
 			 size=CurveSet[0].Dataf.size();
 			 size2=CurveSet.size();
 			 for (j=0;j<size2;j++){
@@ -1564,14 +1645,14 @@ private: System::Void impedanceToolStripMenuItem_Click(System::Object^  sender, 
 			 }
 		 }
 private: System::Void saveTempImpedanceToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
-			 size_t  i,j;
-			 double ep,eb;
 			 complex<double> eps;
 			 complex<double> zs;
 			 			 CultureInfo^ MyCI = gcnew CultureInfo( "en-US",false );
 			 NumberFormatInfo^ nfi = MyCI->NumberFormat;
 			 nfi->NumberDecimalSeparator = ".";
 			 if (saveFileDialog1->ShowDialog() == ::System::Windows::Forms::DialogResult::OK ){
+			 size_t  i,j;
+			 double ep,eb;
 				 for (i=0;i<CurveSet[0].Dataf.size();i++)
 				 {
 					 StreamWriter^ sw = gcnew StreamWriter(saveFileDialog1->FileName+i.ToString()+".dat");
@@ -1652,6 +1733,23 @@ private: System::Void button13_Click(System::Object^  sender, System::EventArgs^
 private: System::Void CapacityLabel1_Click(System::Object^  sender, System::EventArgs^  e) {
 		 }
 private: System::Void textBox13_TextChanged(System::Object^  sender, System::EventArgs^  e) {
+		 }
+private: System::Void textBox13_TextChanged_1(System::Object^  sender, System::EventArgs^  e) {
+		 }
+private: System::Void GeomButton2_Click(System::Object^  sender, System::EventArgs^  e) {
+			  double r,d,c0;
+			 r=(Convert::ToDouble(textBoxsurface->Text));
+			 d=(Convert::ToDouble(textBoxheight2->Text));
+			 c0=8.85e-12*r*1e-6/(d*1.0e-3);
+			 vacuumcapacity=c0;
+			 CapacityLabel2->Text="C0= "+(c0/1.0e-12).ToString("G5") + " pF";
+		 }
+private: System::Void toepsbutton_Click(System::Object^  sender, System::EventArgs^  e) {
+			 size_t size,i;
+			 size=CurveSet.size();
+			 for (i=0;i<size;i++){
+			 Normalize(CurveSet[i].Dataep,CurveSet[i].Dataeb,vacuumcapacity);
+			 }
 		 }
 };
 }

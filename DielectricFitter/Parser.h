@@ -32,7 +32,7 @@ void LoadDielectric(String^ Filename, vector<double>& dataf,vector<double>& data
 	vector<double> ldataep;
 	vector<double> ldataeb;
 	double f,ep,eb;
-	int i=0,size,temppos;
+	int i=0,temppos;
 	f=0;
 	ep=0;
 	eb=0;
@@ -91,7 +91,7 @@ void LoadDielectric(String^ Filename, vector<double>& dataf,vector<double>& data
 	dataf.swap(ldataf);
 	dataep.swap(ldataep);
 	dataeb.swap(ldataeb);
-	size=dataf.size();
+//	size=dataf.size();
 /*	for (i=0;i<=size-1;i++)
 	{
 		cout << i <<";"<<dataf[i]<<endl;
@@ -106,6 +106,18 @@ void Normalize(vector<double>& dataep,vector<double>& dataeb,double C0)
 	{
 		dataep[i]=dataep[i]/C0;
 		dataeb[i]=-dataeb[i]/C0;
+
+	}
+}
+
+void NormalizeCapacity(vector<double>& dataep,vector<double>& dataeb,double C0)
+{
+	int size,i;
+	size=dataep.size();
+	for (i=0;i<=size-1;i++)
+	{
+		dataep[i]=dataep[i]/C0;
+		dataeb[i]=dataeb[i]/C0;
 
 	}
 }
