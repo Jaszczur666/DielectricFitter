@@ -344,7 +344,6 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 			this->chart1->Size = System::Drawing::Size(1270, 688);
 			this->chart1->TabIndex = 0;
 			this->chart1->Text = L"chart1";
-			this->chart1->Click += gcnew System::EventHandler(this, &Form1::chart1_Click);
 			// 
 			// button1
 			// 
@@ -409,7 +408,6 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 			this->tabPage1->TabIndex = 0;
 			this->tabPage1->Text = L"Bode Plot";
 			this->tabPage1->UseVisualStyleBackColor = true;
-			this->tabPage1->Click += gcnew System::EventHandler(this, &Form1::tabPage1_Click);
 			// 
 			// tabPage2
 			// 
@@ -454,7 +452,6 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 			this->chart2->Size = System::Drawing::Size(1270, 688);
 			this->chart2->TabIndex = 0;
 			this->chart2->Text = L"chart2";
-			this->chart2->Resize += gcnew System::EventHandler(this, &Form1::chart2_Resize);
 			// 
 			// tabPage3
 			// 
@@ -567,7 +564,6 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle()));
 			this->tableLayoutPanel1->Size = System::Drawing::Size(1270, 688);
 			this->tableLayoutPanel1->TabIndex = 2;
-			this->tableLayoutPanel1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &Form1::tableLayoutPanel1_Paint);
 			// 
 			// chart5
 			// 
@@ -596,7 +592,6 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 			this->chart5->Size = System::Drawing::Size(1264, 652);
 			this->chart5->TabIndex = 1;
 			this->chart5->Text = L"chart5";
-			this->chart5->Click += gcnew System::EventHandler(this, &Form1::chart5_Click);
 			// 
 			// panel1
 			// 
@@ -632,7 +627,6 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 			this->corgraphmin->Size = System::Drawing::Size(100, 20);
 			this->corgraphmin->TabIndex = 8;
 			this->corgraphmin->Text = L"-60";
-			this->corgraphmin->TextChanged += gcnew System::EventHandler(this, &Form1::textBox13_TextChanged);
 			// 
 			// label10
 			// 
@@ -782,7 +776,6 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 			this->textBoxsurface->Size = System::Drawing::Size(100, 20);
 			this->textBoxsurface->TabIndex = 7;
 			this->textBoxsurface->Text = L"32,5";
-			this->textBoxsurface->TextChanged += gcnew System::EventHandler(this, &Form1::textBox13_TextChanged_1);
 			// 
 			// GeomButton2
 			// 
@@ -820,7 +813,6 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 			this->CapacityLabel1->Size = System::Drawing::Size(41, 13);
 			this->CapacityLabel1->TabIndex = 3;
 			this->CapacityLabel1->Text = L"C0=-pF";
-			this->CapacityLabel1->Click += gcnew System::EventHandler(this, &Form1::CapacityLabel1_Click);
 			// 
 			// CalcGeomCap
 			// 
@@ -859,7 +851,6 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 			this->menuStrip1->Size = System::Drawing::Size(1284, 24);
 			this->menuStrip1->TabIndex = 5;
 			this->menuStrip1->Text = L"menuStrip1";
-			this->menuStrip1->ItemClicked += gcnew System::Windows::Forms::ToolStripItemClickedEventHandler(this, &Form1::menuStrip1_ItemClicked);
 			// 
 			// FileToolStripMenuItem
 			// 
@@ -869,7 +860,6 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 			this->FileToolStripMenuItem->Name = L"FileToolStripMenuItem";
 			this->FileToolStripMenuItem->Size = System::Drawing::Size(35, 20);
 			this->FileToolStripMenuItem->Text = L"File";
-			this->FileToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::plikToolStripMenuItem_Click);
 			// 
 			// loadFileToolStripMenuItem
 			// 
@@ -1096,7 +1086,6 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 			this->label3->Size = System::Drawing::Size(20, 13);
 			this->label3->TabIndex = 23;
 			this->label3->Text = L"En";
-			this->label3->Click += gcnew System::EventHandler(this, &Form1::label3_Click);
 			// 
 			// label4
 			// 
@@ -1106,7 +1095,6 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 			this->label4->Size = System::Drawing::Size(25, 13);
 			this->label4->TabIndex = 24;
 			this->label4->Text = L"de1";
-			this->label4->Click += gcnew System::EventHandler(this, &Form1::label4_Click);
 			// 
 			// label5
 			// 
@@ -1116,7 +1104,6 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 			this->label5->Size = System::Drawing::Size(22, 13);
 			this->label5->TabIndex = 25;
 			this->label5->Text = L"fp1";
-			this->label5->Click += gcnew System::EventHandler(this, &Form1::label5_Click);
 			// 
 			// label6
 			// 
@@ -1126,7 +1113,6 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 			this->label6->Size = System::Drawing::Size(19, 13);
 			this->label6->TabIndex = 26;
 			this->label6->Text = L"a1";
-			this->label6->Click += gcnew System::EventHandler(this, &Form1::label6_Click);
 			// 
 			// label7
 			// 
@@ -1136,7 +1122,6 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 			this->label7->Size = System::Drawing::Size(22, 13);
 			this->label7->TabIndex = 27;
 			this->label7->Text = L"fp2";
-			this->label7->Click += gcnew System::EventHandler(this, &Form1::label7_Click);
 			// 
 			// label8
 			// 
@@ -1146,7 +1131,6 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 			this->label8->Size = System::Drawing::Size(25, 13);
 			this->label8->TabIndex = 27;
 			this->label8->Text = L"de2";
-			this->label8->Click += gcnew System::EventHandler(this, &Form1::label8_Click);
 			// 
 			// label9
 			// 
@@ -1156,7 +1140,6 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 			this->label9->Size = System::Drawing::Size(19, 13);
 			this->label9->TabIndex = 28;
 			this->label9->Text = L"a2";
-			this->label9->Click += gcnew System::EventHandler(this, &Form1::label9_Click);
 			// 
 			// progressBar1
 			// 
@@ -1219,7 +1202,6 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 			this->MainMenuStrip = this->menuStrip1;
 			this->Name = L"Form1";
 			this->Text = L"Dielectric Fitter";
-			this->ResizeEnd += gcnew System::EventHandler(this, &Form1::Form1_ResizeEnd);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->chart1))->EndInit();
 			this->tabControl1->ResumeLayout(false);
 			this->tabPage1->ResumeLayout(false);
@@ -1344,19 +1326,7 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 				 }
 				 else button6->PerformClick();
 			 }
-private: System::Void chart1_Click(System::Object^  sender, System::EventArgs^  e) {
-		 }
-private: System::Void tabPage1_Click(System::Object^  sender, System::EventArgs^  e) {
-		 }
-private: System::Void plikToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
-		 }
-private: System::Void menuStrip1_ItemClicked(System::Object^  sender, System::Windows::Forms::ToolStripItemClickedEventArgs^  e) {
-		 }
-private: System::Void chart2_Resize(System::Object^  sender, System::EventArgs^  e) {
-		 }
-private: System::Void Form1_ResizeEnd(System::Object^  sender, System::EventArgs^  e) {
-		
-		 }
+
 private: System::Void abooutToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 		Form^ rgForm = gcnew About();
 		rgForm->Show();			 
@@ -1601,20 +1571,6 @@ private: System::Void writeTemperatureDependenciesToolStripMenuItem_Click(System
 				 }
 			 }
 		 }
-private: System::Void label3_Click(System::Object^  sender, System::EventArgs^  e) {
-		 }
-private: System::Void label8_Click(System::Object^  sender, System::EventArgs^  e) {
-		 }
-private: System::Void label7_Click(System::Object^  sender, System::EventArgs^  e) {
-		 }
-private: System::Void label6_Click(System::Object^  sender, System::EventArgs^  e) {
-		 }
-private: System::Void label5_Click(System::Object^  sender, System::EventArgs^  e) {
-		 }
-private: System::Void label4_Click(System::Object^  sender, System::EventArgs^  e) {
-		 }
-private: System::Void label9_Click(System::Object^  sender, System::EventArgs^  e) {
-		 }
 private: System::Void impedanceToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 			 CultureInfo^ MyCI = gcnew CultureInfo( "en-US",false );
 			 NumberFormatInfo^ nfi = MyCI->NumberFormat;
@@ -1667,10 +1623,6 @@ private: System::Void saveTempImpedanceToolStripMenuItem_Click(System::Object^  
 					 sw->Close();
 				 }
 			 }
-		 }
-private: System::Void tableLayoutPanel1_Paint(System::Object^  sender, System::Windows::Forms::PaintEventArgs^  e) {
-		 }
-private: System::Void chart5_Click(System::Object^  sender, System::EventArgs^  e) {
 		 }
 private: System::Void button9_Click(System::Object^  sender, System::EventArgs^  e) {
 			 int i,size;
@@ -1730,12 +1682,7 @@ private: System::Void button13_Click(System::Object^  sender, System::EventArgs^
 				 button2->PerformClick();
 			 }
 		 }
-private: System::Void CapacityLabel1_Click(System::Object^  sender, System::EventArgs^  e) {
-		 }
-private: System::Void textBox13_TextChanged(System::Object^  sender, System::EventArgs^  e) {
-		 }
-private: System::Void textBox13_TextChanged_1(System::Object^  sender, System::EventArgs^  e) {
-		 }
+
 private: System::Void GeomButton2_Click(System::Object^  sender, System::EventArgs^  e) {
 			  double r,d,c0;
 			 r=(Convert::ToDouble(textBoxsurface->Text));
