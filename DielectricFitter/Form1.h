@@ -59,10 +59,10 @@ namespace DielectricFitter {
 		}
 	private: System::Windows::Forms::DataVisualization::Charting::Chart^  chart1;
 	protected: 
-	private: System::Windows::Forms::Button^  button1;
+	private: System::Windows::Forms::Button^  LoadButton;
 	private: System::Windows::Forms::OpenFileDialog^  openFileDialog1;
 	private: System::Windows::Forms::TextBox^  textBox1;
-	private: System::Windows::Forms::Button^  button2;
+	private: System::Windows::Forms::Button^  FitButton;
 	private: System::Windows::Forms::TabControl^  tabControl1;
 	private: System::Windows::Forms::TabPage^  tabPage1;
 	private: System::Windows::Forms::TabPage^  tabPage2;
@@ -76,17 +76,17 @@ namespace DielectricFitter {
 	private: System::Windows::Forms::TextBox^  textBox3;
 	private: System::Windows::Forms::TextBox^  textBox4;
 	private: System::Windows::Forms::TextBox^  textBox5;
-	private: System::Windows::Forms::Button^  button3;
+	private: System::Windows::Forms::Button^  ChiSqrButton;
 	private: System::Windows::Forms::ToolStripMenuItem^  loadFileToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  exitToolStripMenuItem;
-	private: System::Windows::Forms::Button^  button4;
-	private: System::Windows::Forms::Button^  button5;
+	private: System::Windows::Forms::Button^  PrevCurveButton;
+	private: System::Windows::Forms::Button^  NextCurveButton;
 	private: System::Windows::Forms::Label^  label1;
-	private: System::Windows::Forms::Button^  button6;
+	private: System::Windows::Forms::Button^  Fit2Button;
 	private: System::Windows::Forms::TextBox^  textBox6;
 	private: System::Windows::Forms::TextBox^  textBox7;
 	private: System::Windows::Forms::TextBox^  textBox8;
-	private: System::Windows::Forms::CheckBox^  checkBox1;
+	private: System::Windows::Forms::CheckBox^  TwoFunCheckBox;
 	private: System::Windows::Forms::Button^  button7;
 	private: System::Windows::Forms::TextBox^  textBox9;
 	private: System::Windows::Forms::ToolStripMenuItem^  saveToolStripMenuItem;
@@ -94,11 +94,11 @@ namespace DielectricFitter {
 	private: System::Windows::Forms::TabPage^  tabPage3;
 	private: System::Windows::Forms::TabPage^  tabPage4;
 	private: System::Windows::Forms::DataVisualization::Charting::Chart^  chart3;
-	private: System::Windows::Forms::Button^  button8;
+	private: System::Windows::Forms::Button^  PlotButton;
 	private: System::Windows::Forms::DataVisualization::Charting::Chart^  chart4;
 	private: System::Windows::Forms::Label^  label2;
 	private: System::Windows::Forms::ToolStripMenuItem^  writeTemperatureDependenciesToolStripMenuItem;
-	private: System::Windows::Forms::SaveFileDialog^  saveFileDialog2;
+
 	private: System::Windows::Forms::Label^  label3;
 	private: System::Windows::Forms::Label^  label4;
 	private: System::Windows::Forms::Label^  label5;
@@ -161,6 +161,7 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 		void InitializeComponent(void)
 		{
 			System::Windows::Forms::DataVisualization::Charting::ChartArea^  chartArea1 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
+			System::Windows::Forms::DataVisualization::Charting::Legend^  legend1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
 			System::Windows::Forms::DataVisualization::Charting::Series^  series1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
 			System::Windows::Forms::DataVisualization::Charting::Series^  series2 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
 			System::Windows::Forms::DataVisualization::Charting::Series^  series3 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
@@ -185,10 +186,10 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 			System::Windows::Forms::DataVisualization::Charting::Series^  series18 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
 			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(Form1::typeid));
 			this->chart1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
-			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->LoadButton = (gcnew System::Windows::Forms::Button());
 			this->openFileDialog1 = (gcnew System::Windows::Forms::OpenFileDialog());
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
-			this->button2 = (gcnew System::Windows::Forms::Button());
+			this->FitButton = (gcnew System::Windows::Forms::Button());
 			this->tabControl1 = (gcnew System::Windows::Forms::TabControl());
 			this->tabPage1 = (gcnew System::Windows::Forms::TabPage());
 			this->tabPage2 = (gcnew System::Windows::Forms::TabPage());
@@ -239,21 +240,20 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 			this->textBox3 = (gcnew System::Windows::Forms::TextBox());
 			this->textBox4 = (gcnew System::Windows::Forms::TextBox());
 			this->textBox5 = (gcnew System::Windows::Forms::TextBox());
-			this->button3 = (gcnew System::Windows::Forms::Button());
-			this->button4 = (gcnew System::Windows::Forms::Button());
-			this->button5 = (gcnew System::Windows::Forms::Button());
+			this->ChiSqrButton = (gcnew System::Windows::Forms::Button());
+			this->PrevCurveButton = (gcnew System::Windows::Forms::Button());
+			this->NextCurveButton = (gcnew System::Windows::Forms::Button());
 			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->button6 = (gcnew System::Windows::Forms::Button());
+			this->Fit2Button = (gcnew System::Windows::Forms::Button());
 			this->textBox6 = (gcnew System::Windows::Forms::TextBox());
 			this->textBox7 = (gcnew System::Windows::Forms::TextBox());
 			this->textBox8 = (gcnew System::Windows::Forms::TextBox());
-			this->checkBox1 = (gcnew System::Windows::Forms::CheckBox());
+			this->TwoFunCheckBox = (gcnew System::Windows::Forms::CheckBox());
 			this->button7 = (gcnew System::Windows::Forms::Button());
 			this->textBox9 = (gcnew System::Windows::Forms::TextBox());
 			this->saveFileDialog1 = (gcnew System::Windows::Forms::SaveFileDialog());
-			this->button8 = (gcnew System::Windows::Forms::Button());
+			this->PlotButton = (gcnew System::Windows::Forms::Button());
 			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->saveFileDialog2 = (gcnew System::Windows::Forms::SaveFileDialog());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->label5 = (gcnew System::Windows::Forms::Label());
@@ -305,35 +305,44 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 			chartArea1->Name = L"ChartArea1";
 			this->chart1->ChartAreas->Add(chartArea1);
 			this->chart1->Dock = System::Windows::Forms::DockStyle::Fill;
+			legend1->Docking = System::Windows::Forms::DataVisualization::Charting::Docking::Top;
+			legend1->Name = L"Legend1";
+			this->chart1->Legends->Add(legend1);
 			this->chart1->Location = System::Drawing::Point(3, 3);
 			this->chart1->Name = L"chart1";
 			series1->ChartArea = L"ChartArea1";
 			series1->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::Point;
 			series1->Color = System::Drawing::Color::Black;
-			series1->Name = L"Series1";
+			series1->Legend = L"Legend1";
+			series1->Name = L"Eps\' experimental";
 			series2->ChartArea = L"ChartArea1";
 			series2->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::Point;
 			series2->Color = System::Drawing::Color::Red;
-			series2->Name = L"Series2";
+			series2->Legend = L"Legend1";
+			series2->Name = L"Eps\'\' experimental";
 			series2->YAxisType = System::Windows::Forms::DataVisualization::Charting::AxisType::Secondary;
 			series3->ChartArea = L"ChartArea1";
 			series3->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::FastLine;
 			series3->Color = System::Drawing::Color::Black;
-			series3->Name = L"Series3";
+			series3->Legend = L"Legend1";
+			series3->Name = L"Eps\' fit";
 			series4->ChartArea = L"ChartArea1";
 			series4->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::FastLine;
 			series4->Color = System::Drawing::Color::Red;
-			series4->Name = L"Series4";
+			series4->Legend = L"Legend1";
+			series4->Name = L"Eps\'\' fit";
 			series4->YAxisType = System::Windows::Forms::DataVisualization::Charting::AxisType::Secondary;
 			series5->ChartArea = L"ChartArea1";
 			series5->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::FastLine;
 			series5->Color = System::Drawing::Color::Red;
-			series5->Name = L"Series5";
+			series5->Legend = L"Legend1";
+			series5->Name = L"Eps\'\' function 1";
 			series5->YAxisType = System::Windows::Forms::DataVisualization::Charting::AxisType::Secondary;
 			series6->ChartArea = L"ChartArea1";
 			series6->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::FastLine;
 			series6->Color = System::Drawing::Color::Red;
-			series6->Name = L"Series6";
+			series6->Legend = L"Legend1";
+			series6->Name = L"Eps\'\' Function 2";
 			series6->YAxisType = System::Windows::Forms::DataVisualization::Charting::AxisType::Secondary;
 			this->chart1->Series->Add(series1);
 			this->chart1->Series->Add(series2);
@@ -345,15 +354,15 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 			this->chart1->TabIndex = 0;
 			this->chart1->Text = L"chart1";
 			// 
-			// button1
+			// LoadButton
 			// 
-			this->button1->Location = System::Drawing::Point(4, 31);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(75, 23);
-			this->button1->TabIndex = 1;
-			this->button1->Text = L"Load";
-			this->button1->UseVisualStyleBackColor = true;
-			this->button1->Click += gcnew System::EventHandler(this, &Form1::button1_Click);
+			this->LoadButton->Location = System::Drawing::Point(4, 31);
+			this->LoadButton->Name = L"LoadButton";
+			this->LoadButton->Size = System::Drawing::Size(75, 23);
+			this->LoadButton->TabIndex = 1;
+			this->LoadButton->Text = L"Load";
+			this->LoadButton->UseVisualStyleBackColor = true;
+			this->LoadButton->Click += gcnew System::EventHandler(this, &Form1::button1_Click);
 			// 
 			// openFileDialog1
 			// 
@@ -370,15 +379,15 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 			this->textBox1->TabIndex = 2;
 			this->textBox1->Text = L"1";
 			// 
-			// button2
+			// FitButton
 			// 
-			this->button2->Location = System::Drawing::Point(286, 31);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(39, 23);
-			this->button2->TabIndex = 3;
-			this->button2->Text = L"Fit";
-			this->button2->UseVisualStyleBackColor = true;
-			this->button2->Click += gcnew System::EventHandler(this, &Form1::button2_Click);
+			this->FitButton->Location = System::Drawing::Point(286, 31);
+			this->FitButton->Name = L"FitButton";
+			this->FitButton->Size = System::Drawing::Size(39, 23);
+			this->FitButton->TabIndex = 3;
+			this->FitButton->Text = L"Fit";
+			this->FitButton->UseVisualStyleBackColor = true;
+			this->FitButton->Click += gcnew System::EventHandler(this, &Form1::button2_Click);
 			// 
 			// tabControl1
 			// 
@@ -535,7 +544,6 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 			this->chart4->Size = System::Drawing::Size(1270, 688);
 			this->chart4->TabIndex = 0;
 			this->chart4->Text = L"chart4";
-			this->chart4->Click += gcnew System::EventHandler(this, &Form1::chart4_Click);
 			// 
 			// tabPage5
 			// 
@@ -949,35 +957,35 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 			this->textBox5->TabIndex = 9;
 			this->textBox5->Text = L"1";
 			// 
-			// button3
+			// ChiSqrButton
 			// 
-			this->button3->Location = System::Drawing::Point(1133, 31);
-			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(75, 23);
-			this->button3->TabIndex = 13;
-			this->button3->Text = L"Chi2";
-			this->button3->UseVisualStyleBackColor = true;
-			this->button3->Click += gcnew System::EventHandler(this, &Form1::button3_Click);
+			this->ChiSqrButton->Location = System::Drawing::Point(1133, 31);
+			this->ChiSqrButton->Name = L"ChiSqrButton";
+			this->ChiSqrButton->Size = System::Drawing::Size(75, 23);
+			this->ChiSqrButton->TabIndex = 13;
+			this->ChiSqrButton->Text = L"Chi2";
+			this->ChiSqrButton->UseVisualStyleBackColor = true;
+			this->ChiSqrButton->Click += gcnew System::EventHandler(this, &Form1::button3_Click);
 			// 
-			// button4
+			// PrevCurveButton
 			// 
-			this->button4->Location = System::Drawing::Point(89, 31);
-			this->button4->Name = L"button4";
-			this->button4->Size = System::Drawing::Size(24, 23);
-			this->button4->TabIndex = 15;
-			this->button4->Text = L"<";
-			this->button4->UseVisualStyleBackColor = true;
-			this->button4->Click += gcnew System::EventHandler(this, &Form1::button4_Click);
+			this->PrevCurveButton->Location = System::Drawing::Point(89, 31);
+			this->PrevCurveButton->Name = L"PrevCurveButton";
+			this->PrevCurveButton->Size = System::Drawing::Size(24, 23);
+			this->PrevCurveButton->TabIndex = 15;
+			this->PrevCurveButton->Text = L"<";
+			this->PrevCurveButton->UseVisualStyleBackColor = true;
+			this->PrevCurveButton->Click += gcnew System::EventHandler(this, &Form1::button4_Click);
 			// 
-			// button5
+			// NextCurveButton
 			// 
-			this->button5->Location = System::Drawing::Point(119, 31);
-			this->button5->Name = L"button5";
-			this->button5->Size = System::Drawing::Size(24, 23);
-			this->button5->TabIndex = 12;
-			this->button5->Text = L">";
-			this->button5->UseVisualStyleBackColor = true;
-			this->button5->Click += gcnew System::EventHandler(this, &Form1::button5_Click);
+			this->NextCurveButton->Location = System::Drawing::Point(119, 31);
+			this->NextCurveButton->Name = L"NextCurveButton";
+			this->NextCurveButton->Size = System::Drawing::Size(24, 23);
+			this->NextCurveButton->TabIndex = 12;
+			this->NextCurveButton->Text = L">";
+			this->NextCurveButton->UseVisualStyleBackColor = true;
+			this->NextCurveButton->Click += gcnew System::EventHandler(this, &Form1::button5_Click);
 			// 
 			// label1
 			// 
@@ -988,16 +996,16 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 			this->label1->TabIndex = 14;
 			this->label1->Text = L"1";
 			// 
-			// button6
+			// Fit2Button
 			// 
-			this->button6->FlatAppearance->BorderSize = 0;
-			this->button6->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->button6->Location = System::Drawing::Point(334, 29);
-			this->button6->Name = L"button6";
-			this->button6->Size = System::Drawing::Size(39, 23);
-			this->button6->TabIndex = 14;
-			this->button6->UseVisualStyleBackColor = true;
-			this->button6->Click += gcnew System::EventHandler(this, &Form1::button6_Click);
+			this->Fit2Button->FlatAppearance->BorderSize = 0;
+			this->Fit2Button->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->Fit2Button->Location = System::Drawing::Point(334, 29);
+			this->Fit2Button->Name = L"Fit2Button";
+			this->Fit2Button->Size = System::Drawing::Size(39, 23);
+			this->Fit2Button->TabIndex = 14;
+			this->Fit2Button->UseVisualStyleBackColor = true;
+			this->Fit2Button->Click += gcnew System::EventHandler(this, &Form1::button6_Click);
 			// 
 			// textBox6
 			// 
@@ -1023,15 +1031,15 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 			this->textBox8->TabIndex = 12;
 			this->textBox8->Text = L"1";
 			// 
-			// checkBox1
+			// TwoFunCheckBox
 			// 
-			this->checkBox1->AutoSize = true;
-			this->checkBox1->Location = System::Drawing::Point(397, 34);
-			this->checkBox1->Name = L"checkBox1";
-			this->checkBox1->Size = System::Drawing::Size(100, 17);
-			this->checkBox1->TabIndex = 18;
-			this->checkBox1->Text = L"Use 2 functions";
-			this->checkBox1->UseVisualStyleBackColor = true;
+			this->TwoFunCheckBox->AutoSize = true;
+			this->TwoFunCheckBox->Location = System::Drawing::Point(397, 34);
+			this->TwoFunCheckBox->Name = L"TwoFunCheckBox";
+			this->TwoFunCheckBox->Size = System::Drawing::Size(100, 17);
+			this->TwoFunCheckBox->TabIndex = 18;
+			this->TwoFunCheckBox->Text = L"Use 2 functions";
+			this->TwoFunCheckBox->UseVisualStyleBackColor = true;
 			// 
 			// button7
 			// 
@@ -1053,21 +1061,16 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 			this->textBox9->Size = System::Drawing::Size(10, 13);
 			this->textBox9->TabIndex = 20;
 			this->textBox9->WordWrap = false;
-			this->textBox9->TextChanged += gcnew System::EventHandler(this, &Form1::textBox9_TextChanged);
 			// 
-			// saveFileDialog1
+			// PlotButton
 			// 
-			this->saveFileDialog1->FileOk += gcnew System::ComponentModel::CancelEventHandler(this, &Form1::saveFileDialog1_FileOk);
-			// 
-			// button8
-			// 
-			this->button8->Location = System::Drawing::Point(422, 55);
-			this->button8->Name = L"button8";
-			this->button8->Size = System::Drawing::Size(46, 23);
-			this->button8->TabIndex = 21;
-			this->button8->Text = L"Plot";
-			this->button8->UseVisualStyleBackColor = true;
-			this->button8->Click += gcnew System::EventHandler(this, &Form1::button8_Click);
+			this->PlotButton->Location = System::Drawing::Point(422, 55);
+			this->PlotButton->Name = L"PlotButton";
+			this->PlotButton->Size = System::Drawing::Size(46, 23);
+			this->PlotButton->TabIndex = 21;
+			this->PlotButton->Text = L"Plot";
+			this->PlotButton->UseVisualStyleBackColor = true;
+			this->PlotButton->Click += gcnew System::EventHandler(this, &Form1::button8_Click);
 			// 
 			// label2
 			// 
@@ -1178,25 +1181,25 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->textBox1);
 			this->Controls->Add(this->label2);
-			this->Controls->Add(this->button8);
+			this->Controls->Add(this->PlotButton);
 			this->Controls->Add(this->textBox9);
 			this->Controls->Add(this->button7);
-			this->Controls->Add(this->checkBox1);
+			this->Controls->Add(this->TwoFunCheckBox);
 			this->Controls->Add(this->textBox8);
 			this->Controls->Add(this->textBox7);
 			this->Controls->Add(this->textBox6);
-			this->Controls->Add(this->button6);
+			this->Controls->Add(this->Fit2Button);
 			this->Controls->Add(this->label1);
-			this->Controls->Add(this->button5);
-			this->Controls->Add(this->button4);
-			this->Controls->Add(this->button3);
+			this->Controls->Add(this->NextCurveButton);
+			this->Controls->Add(this->PrevCurveButton);
+			this->Controls->Add(this->ChiSqrButton);
 			this->Controls->Add(this->textBox5);
 			this->Controls->Add(this->textBox4);
 			this->Controls->Add(this->textBox3);
 			this->Controls->Add(this->textBox2);
 			this->Controls->Add(this->tabControl1);
-			this->Controls->Add(this->button2);
-			this->Controls->Add(this->button1);
+			this->Controls->Add(this->FitButton);
+			this->Controls->Add(this->LoadButton);
 			this->Controls->Add(this->menuStrip1);
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^  >(resources->GetObject(L"$this.Icon")));
 			this->MainMenuStrip = this->menuStrip1;
@@ -1257,21 +1260,21 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 					 label1->Text="1/"+CurveSet.size().ToString();
 					 Position=1;
 					 Positionfreq=1;
-					 chart1->Series["Series1"]->Points->Clear();
+					 chart1->Series[0]->Points->Clear();
 					 chart2->Series["Series1"]->Points->Clear();
-					 chart1->Series["Series2"]->Points->Clear();
+					 chart1->Series[1]->Points->Clear();
 					 chart2->Series["Series2"]->Points->Clear();
-					 chart1->Series["Series3"]->Points->Clear();
-					 chart1->Series["Series4"]->Points->Clear();
+					 chart1->Series[2]->Points->Clear();
+					 chart1->Series[3]->Points->Clear();
 					 size=CurveSet[Position-1].Dataf.size();
 					 label1->Text=Position.ToString()+"/"+CurveSet.size();
 					 label2->Text=CurveSet[0].temperature.ToString();
 					 progressBar1->Visible=false;
 					 for (i=0;i<=size-1;i++)
 					 {
-						 chart1->Series["Series1"]->Points->AddXY(log10(CurveSet[Position-1].Dataf[i]),CurveSet[Position-1].Dataep[i]);
-						 chart1->Series["Series2"]->Points->AddXY(log10(CurveSet[Position-1].Dataf[i]),-CurveSet[Position-1].Dataeb[i]);
-						 chart2->Series["Series1"]->Points->AddXY(CurveSet[Position-1].Dataep[i],-CurveSet[Position-1].Dataeb[i]);
+						 chart1->Series[0]->Points->AddXY(log10(CurveSet[Position-1].Dataf[i]),CurveSet[Position-1].Dataep[i]);
+						 chart1->Series[1]->Points->AddXY(log10(CurveSet[Position-1].Dataf[i]),-CurveSet[Position-1].Dataeb[i]);
+						 chart2->Series[0]->Points->AddXY(CurveSet[Position-1].Dataep[i],-CurveSet[Position-1].Dataeb[i]);
 
 					 }
 				 }
@@ -1279,9 +1282,9 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
 				 MatrixXd parameters(4,1);
 				 complex<double> d;
-				 if (!checkBox1->Checked){
-				 chart1->Series["Series3"]->Points->Clear();
-				 chart1->Series["Series4"]->Points->Clear();
+				 if (!TwoFunCheckBox->Checked){
+				 chart1->Series[2]->Points->Clear();
+				 chart1->Series[3]->Points->Clear();
 				 chart2->Series["Series2"]->Points->Clear();
 				 double es,en,fp,a,pom;
 				 en=(Convert::ToDouble(textBox2->Text));
@@ -1317,14 +1320,14 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 					 d=en+(es-en)/(1.0+pow(ii*CurveSet[Position-1].Dataf[i]/fp,1-a));
 					 ep= std::real(d);
 					 eb=-std::imag(d);
-					 chart1->Series["Series3"]->Points->AddXY(log10(CurveSet[Position-1].Dataf[i]),ep);
-					 chart1->Series["Series4"]->Points->AddXY(log10(CurveSet[Position-1].Dataf[i]),eb);
+					 chart1->Series[2]->Points->AddXY(log10(CurveSet[Position-1].Dataf[i]),ep);
+					 chart1->Series[3]->Points->AddXY(log10(CurveSet[Position-1].Dataf[i]),eb);
 					 chart2->Series["Series2"]->Points->AddXY(ep,eb);
 				 }*/
-				 button3->PerformClick();
-				 //button8->PerformClick();
+				 ChiSqrButton->PerformClick();
+				 //PlotButton->PerformClick();
 				 }
-				 else button6->PerformClick();
+				 else Fit2Button->PerformClick();
 			 }
 
 private: System::Void abooutToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -1338,10 +1341,10 @@ private: System::Void button3_Click(System::Object^  sender, System::EventArgs^ 
 				 complex<double> d;
 				 complex<double> d2;
 				 complex<double> d1;
-				 chart1->Series["Series3"]->Points->Clear();
-				 chart1->Series["Series4"]->Points->Clear();
-				 chart1->Series["Series5"]->Points->Clear();
-				 chart1->Series["Series6"]->Points->Clear();
+				 chart1->Series[2]->Points->Clear();
+				 chart1->Series[3]->Points->Clear();
+				 chart1->Series[4]->Points->Clear();
+				 chart1->Series[5]->Points->Clear();
 				 chart2->Series["Series2"]->Points->Clear();
 				 chart2->Series["Series3"]->Points->Clear();
 				 chart2->Series["Series4"]->Points->Clear();
@@ -1359,7 +1362,7 @@ private: System::Void button3_Click(System::Object^  sender, System::EventArgs^ 
 				 for (i=0;i<=100;i++)
 				 {
 					 f=log10(minf)+(i/100.0)*df;
-					 if (!checkBox1->Checked) 
+					 if (!TwoFunCheckBox->Checked) 
 					 {
 						 d=es+en/(1.0+pow(ii*pow(10,f)/fp,1-a));
 					 }
@@ -1373,17 +1376,17 @@ private: System::Void button3_Click(System::Object^  sender, System::EventArgs^ 
 					 ep1=std::real(d1)+es+de2;
 					 ep2=std::real(d2)+es;
 					 //cout <<i<<" "<<f <<endl;
-					 chart1->Series["Series3"]->Points->AddXY(f,ep);
-					 chart1->Series["Series4"]->Points->AddXY(f,eb);
-					 //chart1->Series["Series5"]->Points->AddXY(f,eb1);
-					 if (CurveSet[Position-1].twofunctions) chart1->Series["Series6"]->Points->AddXY(f,eb2);
+					 chart1->Series[2]->Points->AddXY(f,ep);
+					 chart1->Series[3]->Points->AddXY(f,eb);
+					 chart1->Series[4]->Points->AddXY(f,eb1);
+					 if (CurveSet[Position-1].twofunctions) chart1->Series[5]->Points->AddXY(f,eb2);
 					 chart2->Series["Series2"]->Points->AddXY(ep,eb);
 					 if (CurveSet[Position-1].twofunctions) chart2->Series["Series3"]->Points->AddXY(ep1,eb1);
 					 if (CurveSet[Position-1].twofunctions) chart2->Series["Series4"]->Points->AddXY(ep2,eb2);
 				 }
 		 }
 private: System::Void loadFileToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
-			 button1->PerformClick();
+			 LoadButton->PerformClick();
 		 }
 private: System::Void exitToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 			 exit(0);
@@ -1393,16 +1396,16 @@ private: System::Void button5_Click(System::Object^  sender, System::EventArgs^ 
 			 if (Position<CurveSet.size()) Position++;
 			 label1->Text=Position.ToString()+"/"+CurveSet.size();
 			 this->Text=openFileDialog1->FileNames[Position-1];
-			 chart1->Series["Series1"]->Points->Clear();
+			 chart1->Series[0]->Points->Clear();
 			 chart2->Series["Series1"]->Points->Clear();
-			 chart1->Series["Series2"]->Points->Clear();
+			 chart1->Series[1]->Points->Clear();
 			 chart2->Series["Series2"]->Points->Clear();
 			 chart2->Series["Series3"]->Points->Clear();
 			 chart2->Series["Series4"]->Points->Clear();
-			 chart1->Series["Series5"]->Points->Clear();
-			 chart1->Series["Series6"]->Points->Clear();
-			 chart1->Series["Series3"]->Points->Clear();
-			 chart1->Series["Series4"]->Points->Clear();
+			 chart1->Series[4]->Points->Clear();
+			 chart1->Series[5]->Points->Clear();
+			 chart1->Series[2]->Points->Clear();
+			 chart1->Series[3]->Points->Clear();
 			 label2->Text=CurveSet[Position-1].temperature.ToString();
 			 if (CurveSet[Position-1].fitted){
 				 textBox2->Text=CurveSet[Position-1].en.ToString();
@@ -1412,13 +1415,13 @@ private: System::Void button5_Click(System::Object^  sender, System::EventArgs^ 
 				 textBox6->Text=CurveSet[Position-1].de2.ToString();
 				 textBox7->Text=CurveSet[Position-1].fp2.ToString();
 				 textBox8->Text=CurveSet[Position-1].a2.ToString();
-				 button3->PerformClick();
+				 ChiSqrButton->PerformClick();
 			 }
 			 size=CurveSet[Position-1].Dataf.size();
 			 for (i=0;i<=size-1;i++)
 			 {
-				 chart1->Series["Series1"]->Points->AddXY(log10(CurveSet[Position-1].Dataf[i]),CurveSet[Position-1].Dataep[i]);
-				 chart1->Series["Series2"]->Points->AddXY(log10(CurveSet[Position-1].Dataf[i]),-CurveSet[Position-1].Dataeb[i]);
+				 chart1->Series[0]->Points->AddXY(log10(CurveSet[Position-1].Dataf[i]),CurveSet[Position-1].Dataep[i]);
+				 chart1->Series[1]->Points->AddXY(log10(CurveSet[Position-1].Dataf[i]),-CurveSet[Position-1].Dataeb[i]);
 				 chart2->Series["Series1"]->Points->AddXY(CurveSet[Position-1].Dataep[i],-CurveSet[Position-1].Dataeb[i]);
 
 			 }
@@ -1429,14 +1432,14 @@ private: System::Void button4_Click(System::Object^  sender, System::EventArgs^ 
 			 this->Text=openFileDialog1->FileNames[Position-1];
 			 label1->Text=Position.ToString()+"/"+CurveSet.size();
 			  label2->Text=CurveSet[Position-1].temperature.ToString();
-			 chart1->Series["Series1"]->Points->Clear();
-			  chart1->Series["Series5"]->Points->Clear();
-				 chart1->Series["Series6"]->Points->Clear();
+			 chart1->Series[0]->Points->Clear();
+			  chart1->Series[4]->Points->Clear();
+				 chart1->Series[5]->Points->Clear();
 			 chart2->Series["Series1"]->Points->Clear();
-			 chart1->Series["Series2"]->Points->Clear();
+			 chart1->Series[1]->Points->Clear();
 			 chart2->Series["Series2"]->Points->Clear();
-			 chart1->Series["Series3"]->Points->Clear();
-			 chart1->Series["Series4"]->Points->Clear();
+			 chart1->Series[2]->Points->Clear();
+			 chart1->Series[3]->Points->Clear();
 			 if (CurveSet[Position-1].fitted){
 				 textBox2->Text=CurveSet[Position-1].en.ToString();
 				 textBox3->Text=CurveSet[Position-1].de1.ToString();
@@ -1445,13 +1448,13 @@ private: System::Void button4_Click(System::Object^  sender, System::EventArgs^ 
 				 textBox6->Text=CurveSet[Position-1].de2.ToString();
 				 textBox7->Text=CurveSet[Position-1].fp2.ToString();
 				 textBox8->Text=CurveSet[Position-1].a2.ToString();
-				 button3->PerformClick();
+				 ChiSqrButton->PerformClick();
 			 }
 			 size=CurveSet[Position-1].Dataf.size();
 					  for (i=0;i<=size-1;i++)
 					 {
-						 chart1->Series["Series1"]->Points->AddXY(log10(CurveSet[Position-1].Dataf[i]),CurveSet[Position-1].Dataep[i]);
-						 chart1->Series["Series2"]->Points->AddXY(log10(CurveSet[Position-1].Dataf[i]),-CurveSet[Position-1].Dataeb[i]);
+						 chart1->Series[0]->Points->AddXY(log10(CurveSet[Position-1].Dataf[i]),CurveSet[Position-1].Dataep[i]);
+						 chart1->Series[1]->Points->AddXY(log10(CurveSet[Position-1].Dataf[i]),-CurveSet[Position-1].Dataeb[i]);
 						 chart2->Series["Series1"]->Points->AddXY(CurveSet[Position-1].Dataep[i],-CurveSet[Position-1].Dataeb[i]);
 
 					 }
@@ -1461,8 +1464,8 @@ private: System::Void button6_Click(System::Object^  sender, System::EventArgs^ 
 			 double es,de1,fp1,a1,de2,fp2,a2;
 			 complex<double> d;
 			 MatrixXd parameters(7,1);
-			 chart1->Series["Series3"]->Points->Clear();
-			 chart1->Series["Series4"]->Points->Clear();
+			 chart1->Series[2]->Points->Clear();
+			 chart1->Series[3]->Points->Clear();
 			 chart2->Series["Series2"]->Points->Clear();
 			 es=(Convert::ToDouble(textBox2->Text));
 			 de1=(Convert::ToDouble(textBox3->Text));
@@ -1501,12 +1504,12 @@ private: System::Void button6_Click(System::Object^  sender, System::EventArgs^ 
 					 d=es+de1/(1.0+pow(ii*CurveSet[Position-1].Dataf[i]/fp1,1-a1))+de2/(1.0+pow(ii*CurveSet[Position-1].Dataf[i]/fp2,1-a2));
 					 ep= std::real(d);
 					 eb=-std::imag(d);
-					 chart1->Series["Series3"]->Points->AddXY(log10(CurveSet[Position-1].Dataf[i]),ep);
-					 chart1->Series["Series4"]->Points->AddXY(log10(CurveSet[Position-1].Dataf[i]),eb);
+					 chart1->Series[2]->Points->AddXY(log10(CurveSet[Position-1].Dataf[i]),ep);
+					 chart1->Series[3]->Points->AddXY(log10(CurveSet[Position-1].Dataf[i]),eb);
 					 chart2->Series["Series2"]->Points->AddXY(ep,eb);
 				 }*/
-			 button3->PerformClick();
-			 //button8->PerformClick();
+			 ChiSqrButton->PerformClick();
+			 //PlotButton->PerformClick();
 		 }
 private: System::Void button7_Click(System::Object^  sender, System::EventArgs^  e) {
 			 int i,size;
@@ -1520,8 +1523,6 @@ private: System::Void button7_Click(System::Object^  sender, System::EventArgs^ 
 			 }
 
 		 }
-private: System::Void textBox9_TextChanged(System::Object^  sender, System::EventArgs^  e) {
-		 }
 private: System::Void saveToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 			button7->PerformClick();
 			 if (saveFileDialog1->ShowDialog() == ::System::Windows::Forms::DialogResult::OK ){
@@ -1530,8 +1531,6 @@ private: System::Void saveToolStripMenuItem_Click(System::Object^  sender, Syste
 				 sw->Close();
 				 cout <<"Fit parameters saved";
 			 }
-		 }
-private: System::Void saveFileDialog1_FileOk(System::Object^  sender, System::ComponentModel::CancelEventArgs^  e) {
 		 }
 private: System::Void button8_Click(System::Object^  sender, System::EventArgs^  e) {
 			 chart3->Series["Series1"]->Points->Clear();
@@ -1554,8 +1553,6 @@ private: System::Void button8_Click(System::Object^  sender, System::EventArgs^ 
 					 chart4->Series["Series2"]->Points->AddXY(1.0/(temperature+273.15),log(CurveSet[i].fp2));
 				 }
 			 }
-		 }
-private: System::Void chart4_Click(System::Object^  sender, System::EventArgs^  e) {
 		 }
 private: System::Void writeTemperatureDependenciesToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 			 if (saveFileDialog1->ShowDialog() == ::System::Windows::Forms::DialogResult::OK ){
@@ -1678,8 +1675,8 @@ private: System::Void CalcGeomCap_Click(System::Object^  sender, System::EventAr
 private: System::Void button13_Click(System::Object^  sender, System::EventArgs^  e) {
 			 int i;
 			 for (i=1;i<=20;i++){
-				 button5->PerformClick();
-				 button2->PerformClick();
+				 NextCurveButton->PerformClick();
+				 FitButton->PerformClick();
 			 }
 		 }
 
