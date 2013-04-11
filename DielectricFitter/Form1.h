@@ -141,6 +141,8 @@ namespace DielectricFitter {
 
 	private: System::Windows::Forms::Button^  GeomButton2;
 private: System::Windows::Forms::Label^  CapacityLabel2;
+private: System::Windows::Forms::TableLayoutPanel^  tableLayoutPanel2;
+private: System::Windows::Forms::Panel^  panel2;
 
 
 
@@ -263,6 +265,8 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 			this->label9 = (gcnew System::Windows::Forms::Label());
 			this->progressBar1 = (gcnew System::Windows::Forms::ProgressBar());
 			this->button13 = (gcnew System::Windows::Forms::Button());
+			this->tableLayoutPanel2 = (gcnew System::Windows::Forms::TableLayoutPanel());
+			this->panel2 = (gcnew System::Windows::Forms::Panel());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->chart1))->BeginInit();
 			this->tabControl1->SuspendLayout();
 			this->tabPage1->SuspendLayout();
@@ -278,6 +282,8 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 			this->panel1->SuspendLayout();
 			this->tabPage6->SuspendLayout();
 			this->menuStrip1->SuspendLayout();
+			this->tableLayoutPanel2->SuspendLayout();
+			this->panel2->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// chart1
@@ -350,7 +356,7 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 			this->chart1->Series->Add(series4);
 			this->chart1->Series->Add(series5);
 			this->chart1->Series->Add(series6);
-			this->chart1->Size = System::Drawing::Size(1270, 688);
+			this->chart1->Size = System::Drawing::Size(1086, 682);
 			this->chart1->TabIndex = 0;
 			this->chart1->Text = L"chart1";
 			// 
@@ -381,7 +387,7 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 			// 
 			// FitButton
 			// 
-			this->FitButton->Location = System::Drawing::Point(286, 31);
+			this->FitButton->Location = System::Drawing::Point(17, 240);
 			this->FitButton->Name = L"FitButton";
 			this->FitButton->Size = System::Drawing::Size(39, 23);
 			this->FitButton->TabIndex = 3;
@@ -404,16 +410,16 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 			this->tabControl1->Margin = System::Windows::Forms::Padding(10);
 			this->tabControl1->Name = L"tabControl1";
 			this->tabControl1->SelectedIndex = 0;
-			this->tabControl1->Size = System::Drawing::Size(1284, 720);
+			this->tabControl1->Size = System::Drawing::Size(1246, 720);
 			this->tabControl1->TabIndex = 4;
 			// 
 			// tabPage1
 			// 
-			this->tabPage1->Controls->Add(this->chart1);
+			this->tabPage1->Controls->Add(this->tableLayoutPanel2);
 			this->tabPage1->Location = System::Drawing::Point(4, 22);
 			this->tabPage1->Name = L"tabPage1";
 			this->tabPage1->Padding = System::Windows::Forms::Padding(3);
-			this->tabPage1->Size = System::Drawing::Size(1276, 694);
+			this->tabPage1->Size = System::Drawing::Size(1238, 694);
 			this->tabPage1->TabIndex = 0;
 			this->tabPage1->Text = L"Bode Plot";
 			this->tabPage1->UseVisualStyleBackColor = true;
@@ -424,7 +430,7 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 			this->tabPage2->Location = System::Drawing::Point(4, 22);
 			this->tabPage2->Name = L"tabPage2";
 			this->tabPage2->Padding = System::Windows::Forms::Padding(3);
-			this->tabPage2->Size = System::Drawing::Size(1276, 694);
+			this->tabPage2->Size = System::Drawing::Size(1238, 694);
 			this->tabPage2->TabIndex = 1;
 			this->tabPage2->Text = L"Cole-Cole";
 			this->tabPage2->UseVisualStyleBackColor = true;
@@ -458,7 +464,7 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 			this->chart2->Series->Add(series8);
 			this->chart2->Series->Add(series9);
 			this->chart2->Series->Add(series10);
-			this->chart2->Size = System::Drawing::Size(1270, 688);
+			this->chart2->Size = System::Drawing::Size(1232, 688);
 			this->chart2->TabIndex = 0;
 			this->chart2->Text = L"chart2";
 			// 
@@ -468,7 +474,7 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 			this->tabPage3->Location = System::Drawing::Point(4, 22);
 			this->tabPage3->Name = L"tabPage3";
 			this->tabPage3->Padding = System::Windows::Forms::Padding(3);
-			this->tabPage3->Size = System::Drawing::Size(1276, 694);
+			this->tabPage3->Size = System::Drawing::Size(1238, 694);
 			this->tabPage3->TabIndex = 2;
 			this->tabPage3->Text = L"Parameters";
 			this->tabPage3->UseVisualStyleBackColor = true;
@@ -499,7 +505,7 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 			this->chart3->Series->Add(series11);
 			this->chart3->Series->Add(series12);
 			this->chart3->Series->Add(series13);
-			this->chart3->Size = System::Drawing::Size(1270, 688);
+			this->chart3->Size = System::Drawing::Size(1232, 688);
 			this->chart3->TabIndex = 0;
 			this->chart3->Text = L"chart3";
 			// 
@@ -509,7 +515,7 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 			this->tabPage4->Location = System::Drawing::Point(4, 22);
 			this->tabPage4->Name = L"tabPage4";
 			this->tabPage4->Padding = System::Windows::Forms::Padding(3);
-			this->tabPage4->Size = System::Drawing::Size(1276, 694);
+			this->tabPage4->Size = System::Drawing::Size(1238, 694);
 			this->tabPage4->TabIndex = 3;
 			this->tabPage4->Text = L"Arrhenius";
 			this->tabPage4->UseVisualStyleBackColor = true;
@@ -541,7 +547,7 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 			series15->Name = L"Series2";
 			this->chart4->Series->Add(series14);
 			this->chart4->Series->Add(series15);
-			this->chart4->Size = System::Drawing::Size(1270, 688);
+			this->chart4->Size = System::Drawing::Size(1232, 688);
 			this->chart4->TabIndex = 0;
 			this->chart4->Text = L"chart4";
 			// 
@@ -551,7 +557,7 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 			this->tabPage5->Location = System::Drawing::Point(4, 22);
 			this->tabPage5->Name = L"tabPage5";
 			this->tabPage5->Padding = System::Windows::Forms::Padding(3);
-			this->tabPage5->Size = System::Drawing::Size(1276, 694);
+			this->tabPage5->Size = System::Drawing::Size(1238, 694);
 			this->tabPage5->TabIndex = 4;
 			this->tabPage5->Text = L"Correction";
 			this->tabPage5->UseVisualStyleBackColor = true;
@@ -570,7 +576,7 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 			this->tableLayoutPanel1->RowCount = 2;
 			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 30)));
 			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle()));
-			this->tableLayoutPanel1->Size = System::Drawing::Size(1270, 688);
+			this->tableLayoutPanel1->Size = System::Drawing::Size(1232, 688);
 			this->tableLayoutPanel1->TabIndex = 2;
 			// 
 			// chart5
@@ -597,7 +603,7 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 			this->chart5->Series->Add(series16);
 			this->chart5->Series->Add(series17);
 			this->chart5->Series->Add(series18);
-			this->chart5->Size = System::Drawing::Size(1264, 652);
+			this->chart5->Size = System::Drawing::Size(1226, 652);
 			this->chart5->TabIndex = 1;
 			this->chart5->Text = L"chart5";
 			// 
@@ -617,7 +623,7 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 			this->panel1->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->panel1->Location = System::Drawing::Point(3, 3);
 			this->panel1->Name = L"panel1";
-			this->panel1->Size = System::Drawing::Size(1264, 24);
+			this->panel1->Size = System::Drawing::Size(1226, 24);
 			this->panel1->TabIndex = 2;
 			// 
 			// corgraphmax
@@ -727,7 +733,7 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 			this->tabPage6->Location = System::Drawing::Point(4, 22);
 			this->tabPage6->Name = L"tabPage6";
 			this->tabPage6->Padding = System::Windows::Forms::Padding(3);
-			this->tabPage6->Size = System::Drawing::Size(1276, 694);
+			this->tabPage6->Size = System::Drawing::Size(1238, 694);
 			this->tabPage6->TabIndex = 5;
 			this->tabPage6->Text = L"Sample Geometry";
 			this->tabPage6->UseVisualStyleBackColor = true;
@@ -856,7 +862,7 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 				this->helpToolStripMenuItem});
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			this->menuStrip1->Name = L"menuStrip1";
-			this->menuStrip1->Size = System::Drawing::Size(1284, 24);
+			this->menuStrip1->Size = System::Drawing::Size(1246, 24);
 			this->menuStrip1->TabIndex = 5;
 			this->menuStrip1->Text = L"menuStrip1";
 			// 
@@ -927,7 +933,7 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 			// 
 			// textBox2
 			// 
-			this->textBox2->Location = System::Drawing::Point(503, 32);
+			this->textBox2->Location = System::Drawing::Point(56, 12);
 			this->textBox2->Name = L"textBox2";
 			this->textBox2->Size = System::Drawing::Size(78, 20);
 			this->textBox2->TabIndex = 6;
@@ -935,7 +941,7 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 			// 
 			// textBox3
 			// 
-			this->textBox3->Location = System::Drawing::Point(594, 32);
+			this->textBox3->Location = System::Drawing::Point(56, 38);
 			this->textBox3->Name = L"textBox3";
 			this->textBox3->Size = System::Drawing::Size(78, 20);
 			this->textBox3->TabIndex = 7;
@@ -943,7 +949,7 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 			// 
 			// textBox4
 			// 
-			this->textBox4->Location = System::Drawing::Point(685, 32);
+			this->textBox4->Location = System::Drawing::Point(56, 64);
 			this->textBox4->Name = L"textBox4";
 			this->textBox4->Size = System::Drawing::Size(78, 20);
 			this->textBox4->TabIndex = 8;
@@ -951,7 +957,7 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 			// 
 			// textBox5
 			// 
-			this->textBox5->Location = System::Drawing::Point(776, 32);
+			this->textBox5->Location = System::Drawing::Point(56, 90);
 			this->textBox5->Name = L"textBox5";
 			this->textBox5->Size = System::Drawing::Size(78, 20);
 			this->textBox5->TabIndex = 9;
@@ -959,7 +965,7 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 			// 
 			// ChiSqrButton
 			// 
-			this->ChiSqrButton->Location = System::Drawing::Point(1133, 31);
+			this->ChiSqrButton->Location = System::Drawing::Point(59, 241);
 			this->ChiSqrButton->Name = L"ChiSqrButton";
 			this->ChiSqrButton->Size = System::Drawing::Size(75, 23);
 			this->ChiSqrButton->TabIndex = 13;
@@ -1009,7 +1015,8 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 			// 
 			// textBox6
 			// 
-			this->textBox6->Location = System::Drawing::Point(867, 32);
+			this->textBox6->BackColor = System::Drawing::SystemColors::ScrollBar;
+			this->textBox6->Location = System::Drawing::Point(56, 116);
 			this->textBox6->Name = L"textBox6";
 			this->textBox6->Size = System::Drawing::Size(78, 20);
 			this->textBox6->TabIndex = 10;
@@ -1017,7 +1024,8 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 			// 
 			// textBox7
 			// 
-			this->textBox7->Location = System::Drawing::Point(958, 32);
+			this->textBox7->BackColor = System::Drawing::SystemColors::ScrollBar;
+			this->textBox7->Location = System::Drawing::Point(56, 142);
 			this->textBox7->Name = L"textBox7";
 			this->textBox7->Size = System::Drawing::Size(78, 20);
 			this->textBox7->TabIndex = 11;
@@ -1025,7 +1033,8 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 			// 
 			// textBox8
 			// 
-			this->textBox8->Location = System::Drawing::Point(1049, 32);
+			this->textBox8->BackColor = System::Drawing::SystemColors::ScrollBar;
+			this->textBox8->Location = System::Drawing::Point(56, 168);
 			this->textBox8->Name = L"textBox8";
 			this->textBox8->Size = System::Drawing::Size(78, 20);
 			this->textBox8->TabIndex = 12;
@@ -1034,7 +1043,7 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 			// TwoFunCheckBox
 			// 
 			this->TwoFunCheckBox->AutoSize = true;
-			this->TwoFunCheckBox->Location = System::Drawing::Point(397, 34);
+			this->TwoFunCheckBox->Location = System::Drawing::Point(17, 203);
 			this->TwoFunCheckBox->Name = L"TwoFunCheckBox";
 			this->TwoFunCheckBox->Size = System::Drawing::Size(100, 17);
 			this->TwoFunCheckBox->TabIndex = 18;
@@ -1084,7 +1093,7 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(503, 9);
+			this->label3->Location = System::Drawing::Point(17, 26);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(20, 13);
 			this->label3->TabIndex = 23;
@@ -1093,7 +1102,7 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 			// label4
 			// 
 			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(594, 9);
+			this->label4->Location = System::Drawing::Point(14, 49);
 			this->label4->Name = L"label4";
 			this->label4->Size = System::Drawing::Size(25, 13);
 			this->label4->TabIndex = 24;
@@ -1102,7 +1111,7 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 			// label5
 			// 
 			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(685, 9);
+			this->label5->Location = System::Drawing::Point(14, 75);
 			this->label5->Name = L"label5";
 			this->label5->Size = System::Drawing::Size(22, 13);
 			this->label5->TabIndex = 25;
@@ -1111,7 +1120,7 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 			// label6
 			// 
 			this->label6->AutoSize = true;
-			this->label6->Location = System::Drawing::Point(776, 9);
+			this->label6->Location = System::Drawing::Point(14, 101);
 			this->label6->Name = L"label6";
 			this->label6->Size = System::Drawing::Size(19, 13);
 			this->label6->TabIndex = 26;
@@ -1120,7 +1129,7 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 			// label7
 			// 
 			this->label7->AutoSize = true;
-			this->label7->Location = System::Drawing::Point(958, 9);
+			this->label7->Location = System::Drawing::Point(14, 153);
 			this->label7->Name = L"label7";
 			this->label7->Size = System::Drawing::Size(22, 13);
 			this->label7->TabIndex = 27;
@@ -1129,7 +1138,7 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 			// label8
 			// 
 			this->label8->AutoSize = true;
-			this->label8->Location = System::Drawing::Point(867, 9);
+			this->label8->Location = System::Drawing::Point(14, 127);
 			this->label8->Name = L"label8";
 			this->label8->Size = System::Drawing::Size(25, 13);
 			this->label8->TabIndex = 27;
@@ -1138,7 +1147,7 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 			// label9
 			// 
 			this->label9->AutoSize = true;
-			this->label9->Location = System::Drawing::Point(1049, 9);
+			this->label9->Location = System::Drawing::Point(14, 175);
 			this->label9->Name = L"label9";
 			this->label9->Size = System::Drawing::Size(19, 13);
 			this->label9->TabIndex = 28;
@@ -1157,7 +1166,7 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 			// 
 			// button13
 			// 
-			this->button13->Location = System::Drawing::Point(685, 55);
+			this->button13->Location = System::Drawing::Point(17, 269);
 			this->button13->Name = L"button13";
 			this->button13->Size = System::Drawing::Size(32, 23);
 			this->button13->TabIndex = 30;
@@ -1165,40 +1174,65 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 			this->button13->UseVisualStyleBackColor = true;
 			this->button13->Click += gcnew System::EventHandler(this, &Form1::button13_Click);
 			// 
+			// tableLayoutPanel2
+			// 
+			this->tableLayoutPanel2->ColumnCount = 2;
+			this->tableLayoutPanel2->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 
+				88.67172F)));
+			this->tableLayoutPanel2->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 
+				11.32828F)));
+			this->tableLayoutPanel2->Controls->Add(this->chart1, 0, 0);
+			this->tableLayoutPanel2->Controls->Add(this->panel2, 1, 0);
+			this->tableLayoutPanel2->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->tableLayoutPanel2->Location = System::Drawing::Point(3, 3);
+			this->tableLayoutPanel2->Name = L"tableLayoutPanel2";
+			this->tableLayoutPanel2->RowCount = 1;
+			this->tableLayoutPanel2->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 100)));
+			this->tableLayoutPanel2->Size = System::Drawing::Size(1232, 688);
+			this->tableLayoutPanel2->TabIndex = 1;
+			// 
+			// panel2
+			// 
+			this->panel2->Controls->Add(this->button13);
+			this->panel2->Controls->Add(this->label3);
+			this->panel2->Controls->Add(this->textBox2);
+			this->panel2->Controls->Add(this->label5);
+			this->panel2->Controls->Add(this->label6);
+			this->panel2->Controls->Add(this->label8);
+			this->panel2->Controls->Add(this->label9);
+			this->panel2->Controls->Add(this->label7);
+			this->panel2->Controls->Add(this->TwoFunCheckBox);
+			this->panel2->Controls->Add(this->label4);
+			this->panel2->Controls->Add(this->textBox3);
+			this->panel2->Controls->Add(this->textBox4);
+			this->panel2->Controls->Add(this->textBox5);
+			this->panel2->Controls->Add(this->textBox6);
+			this->panel2->Controls->Add(this->ChiSqrButton);
+			this->panel2->Controls->Add(this->FitButton);
+			this->panel2->Controls->Add(this->textBox7);
+			this->panel2->Controls->Add(this->textBox8);
+			this->panel2->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->panel2->Location = System::Drawing::Point(1095, 3);
+			this->panel2->Name = L"panel2";
+			this->panel2->Size = System::Drawing::Size(134, 682);
+			this->panel2->TabIndex = 1;
+			// 
 			// Form1
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1284, 785);
-			this->Controls->Add(this->button13);
+			this->ClientSize = System::Drawing::Size(1246, 785);
 			this->Controls->Add(this->progressBar1);
-			this->Controls->Add(this->label9);
-			this->Controls->Add(this->label8);
-			this->Controls->Add(this->label7);
-			this->Controls->Add(this->label6);
-			this->Controls->Add(this->label5);
-			this->Controls->Add(this->label4);
-			this->Controls->Add(this->label3);
 			this->Controls->Add(this->textBox1);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->PlotButton);
 			this->Controls->Add(this->textBox9);
 			this->Controls->Add(this->button7);
-			this->Controls->Add(this->TwoFunCheckBox);
-			this->Controls->Add(this->textBox8);
-			this->Controls->Add(this->textBox7);
-			this->Controls->Add(this->textBox6);
 			this->Controls->Add(this->Fit2Button);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->NextCurveButton);
 			this->Controls->Add(this->PrevCurveButton);
-			this->Controls->Add(this->ChiSqrButton);
-			this->Controls->Add(this->textBox5);
-			this->Controls->Add(this->textBox4);
-			this->Controls->Add(this->textBox3);
-			this->Controls->Add(this->textBox2);
 			this->Controls->Add(this->tabControl1);
-			this->Controls->Add(this->FitButton);
 			this->Controls->Add(this->LoadButton);
 			this->Controls->Add(this->menuStrip1);
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^  >(resources->GetObject(L"$this.Icon")));
@@ -1224,6 +1258,9 @@ private: System::Windows::Forms::Label^  CapacityLabel2;
 			this->tabPage6->PerformLayout();
 			this->menuStrip1->ResumeLayout(false);
 			this->menuStrip1->PerformLayout();
+			this->tableLayoutPanel2->ResumeLayout(false);
+			this->panel2->ResumeLayout(false);
+			this->panel2->PerformLayout();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
