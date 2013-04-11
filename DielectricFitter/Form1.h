@@ -72,10 +72,10 @@ namespace DielectricFitter {
 
 	private: System::Windows::Forms::ToolStripMenuItem^  helpToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  abooutToolStripMenuItem;
-	private: System::Windows::Forms::TextBox^  textBox2;
-	private: System::Windows::Forms::TextBox^  textBox3;
-	private: System::Windows::Forms::TextBox^  textBox4;
-	private: System::Windows::Forms::TextBox^  textBox5;
+	private: System::Windows::Forms::TextBox^  tbeps;
+	private: System::Windows::Forms::TextBox^  tbde1;
+	private: System::Windows::Forms::TextBox^  tbf1;
+	private: System::Windows::Forms::TextBox^  tba1;
 	private: System::Windows::Forms::Button^  ChiSqrButton;
 	private: System::Windows::Forms::ToolStripMenuItem^  loadFileToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  exitToolStripMenuItem;
@@ -83,9 +83,9 @@ namespace DielectricFitter {
 	private: System::Windows::Forms::Button^  NextCurveButton;
 	private: System::Windows::Forms::Label^  label1;
 	private: System::Windows::Forms::Button^  Fit2Button;
-	private: System::Windows::Forms::TextBox^  textBox6;
-	private: System::Windows::Forms::TextBox^  textBox7;
-	private: System::Windows::Forms::TextBox^  textBox8;
+	private: System::Windows::Forms::TextBox^  tbde2;
+	private: System::Windows::Forms::TextBox^  tbfp2;
+	private: System::Windows::Forms::TextBox^  tba2;
 	private: System::Windows::Forms::CheckBox^  TwoFunCheckBox;
 	private: System::Windows::Forms::Button^  button7;
 	private: System::Windows::Forms::TextBox^  textBox9;
@@ -238,18 +238,18 @@ private: System::Windows::Forms::Panel^  panel2;
 			this->exitToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->helpToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->abooutToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox3 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox4 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox5 = (gcnew System::Windows::Forms::TextBox());
+			this->tbeps = (gcnew System::Windows::Forms::TextBox());
+			this->tbde1 = (gcnew System::Windows::Forms::TextBox());
+			this->tbf1 = (gcnew System::Windows::Forms::TextBox());
+			this->tba1 = (gcnew System::Windows::Forms::TextBox());
 			this->ChiSqrButton = (gcnew System::Windows::Forms::Button());
 			this->PrevCurveButton = (gcnew System::Windows::Forms::Button());
 			this->NextCurveButton = (gcnew System::Windows::Forms::Button());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->Fit2Button = (gcnew System::Windows::Forms::Button());
-			this->textBox6 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox7 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox8 = (gcnew System::Windows::Forms::TextBox());
+			this->tbde2 = (gcnew System::Windows::Forms::TextBox());
+			this->tbfp2 = (gcnew System::Windows::Forms::TextBox());
+			this->tba2 = (gcnew System::Windows::Forms::TextBox());
 			this->TwoFunCheckBox = (gcnew System::Windows::Forms::CheckBox());
 			this->button7 = (gcnew System::Windows::Forms::Button());
 			this->textBox9 = (gcnew System::Windows::Forms::TextBox());
@@ -931,37 +931,37 @@ private: System::Windows::Forms::Panel^  panel2;
 			this->abooutToolStripMenuItem->Text = L"About";
 			this->abooutToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::abooutToolStripMenuItem_Click);
 			// 
-			// textBox2
+			// tbeps
 			// 
-			this->textBox2->Location = System::Drawing::Point(56, 12);
-			this->textBox2->Name = L"textBox2";
-			this->textBox2->Size = System::Drawing::Size(78, 20);
-			this->textBox2->TabIndex = 6;
-			this->textBox2->Text = L"1";
+			this->tbeps->Location = System::Drawing::Point(56, 12);
+			this->tbeps->Name = L"tbeps";
+			this->tbeps->Size = System::Drawing::Size(78, 20);
+			this->tbeps->TabIndex = 6;
+			this->tbeps->Text = L"1";
 			// 
-			// textBox3
+			// tbde1
 			// 
-			this->textBox3->Location = System::Drawing::Point(56, 38);
-			this->textBox3->Name = L"textBox3";
-			this->textBox3->Size = System::Drawing::Size(78, 20);
-			this->textBox3->TabIndex = 7;
-			this->textBox3->Text = L"1";
+			this->tbde1->Location = System::Drawing::Point(56, 38);
+			this->tbde1->Name = L"tbde1";
+			this->tbde1->Size = System::Drawing::Size(78, 20);
+			this->tbde1->TabIndex = 7;
+			this->tbde1->Text = L"1";
 			// 
-			// textBox4
+			// tbf1
 			// 
-			this->textBox4->Location = System::Drawing::Point(56, 64);
-			this->textBox4->Name = L"textBox4";
-			this->textBox4->Size = System::Drawing::Size(78, 20);
-			this->textBox4->TabIndex = 8;
-			this->textBox4->Text = L"1";
+			this->tbf1->Location = System::Drawing::Point(56, 64);
+			this->tbf1->Name = L"tbf1";
+			this->tbf1->Size = System::Drawing::Size(78, 20);
+			this->tbf1->TabIndex = 8;
+			this->tbf1->Text = L"1";
 			// 
-			// textBox5
+			// tba1
 			// 
-			this->textBox5->Location = System::Drawing::Point(56, 90);
-			this->textBox5->Name = L"textBox5";
-			this->textBox5->Size = System::Drawing::Size(78, 20);
-			this->textBox5->TabIndex = 9;
-			this->textBox5->Text = L"1";
+			this->tba1->Location = System::Drawing::Point(56, 90);
+			this->tba1->Name = L"tba1";
+			this->tba1->Size = System::Drawing::Size(78, 20);
+			this->tba1->TabIndex = 9;
+			this->tba1->Text = L"1";
 			// 
 			// ChiSqrButton
 			// 
@@ -1013,32 +1013,32 @@ private: System::Windows::Forms::Panel^  panel2;
 			this->Fit2Button->UseVisualStyleBackColor = true;
 			this->Fit2Button->Click += gcnew System::EventHandler(this, &Form1::button6_Click);
 			// 
-			// textBox6
+			// tbde2
 			// 
-			this->textBox6->BackColor = System::Drawing::SystemColors::ScrollBar;
-			this->textBox6->Location = System::Drawing::Point(56, 116);
-			this->textBox6->Name = L"textBox6";
-			this->textBox6->Size = System::Drawing::Size(78, 20);
-			this->textBox6->TabIndex = 10;
-			this->textBox6->Text = L"1";
+			this->tbde2->BackColor = System::Drawing::SystemColors::ScrollBar;
+			this->tbde2->Location = System::Drawing::Point(56, 116);
+			this->tbde2->Name = L"tbde2";
+			this->tbde2->Size = System::Drawing::Size(78, 20);
+			this->tbde2->TabIndex = 10;
+			this->tbde2->Text = L"1";
 			// 
-			// textBox7
+			// tbfp2
 			// 
-			this->textBox7->BackColor = System::Drawing::SystemColors::ScrollBar;
-			this->textBox7->Location = System::Drawing::Point(56, 142);
-			this->textBox7->Name = L"textBox7";
-			this->textBox7->Size = System::Drawing::Size(78, 20);
-			this->textBox7->TabIndex = 11;
-			this->textBox7->Text = L"1";
+			this->tbfp2->BackColor = System::Drawing::SystemColors::ScrollBar;
+			this->tbfp2->Location = System::Drawing::Point(56, 142);
+			this->tbfp2->Name = L"tbfp2";
+			this->tbfp2->Size = System::Drawing::Size(78, 20);
+			this->tbfp2->TabIndex = 11;
+			this->tbfp2->Text = L"1";
 			// 
-			// textBox8
+			// tba2
 			// 
-			this->textBox8->BackColor = System::Drawing::SystemColors::ScrollBar;
-			this->textBox8->Location = System::Drawing::Point(56, 168);
-			this->textBox8->Name = L"textBox8";
-			this->textBox8->Size = System::Drawing::Size(78, 20);
-			this->textBox8->TabIndex = 12;
-			this->textBox8->Text = L"1";
+			this->tba2->BackColor = System::Drawing::SystemColors::ScrollBar;
+			this->tba2->Location = System::Drawing::Point(56, 168);
+			this->tba2->Name = L"tba2";
+			this->tba2->Size = System::Drawing::Size(78, 20);
+			this->tba2->TabIndex = 12;
+			this->tba2->Text = L"1";
 			// 
 			// TwoFunCheckBox
 			// 
@@ -1195,7 +1195,7 @@ private: System::Windows::Forms::Panel^  panel2;
 			// 
 			this->panel2->Controls->Add(this->button13);
 			this->panel2->Controls->Add(this->label3);
-			this->panel2->Controls->Add(this->textBox2);
+			this->panel2->Controls->Add(this->tbeps);
 			this->panel2->Controls->Add(this->label5);
 			this->panel2->Controls->Add(this->label6);
 			this->panel2->Controls->Add(this->label8);
@@ -1203,14 +1203,14 @@ private: System::Windows::Forms::Panel^  panel2;
 			this->panel2->Controls->Add(this->label7);
 			this->panel2->Controls->Add(this->TwoFunCheckBox);
 			this->panel2->Controls->Add(this->label4);
-			this->panel2->Controls->Add(this->textBox3);
-			this->panel2->Controls->Add(this->textBox4);
-			this->panel2->Controls->Add(this->textBox5);
-			this->panel2->Controls->Add(this->textBox6);
+			this->panel2->Controls->Add(this->tbde1);
+			this->panel2->Controls->Add(this->tbf1);
+			this->panel2->Controls->Add(this->tba1);
+			this->panel2->Controls->Add(this->tbde2);
 			this->panel2->Controls->Add(this->ChiSqrButton);
 			this->panel2->Controls->Add(this->FitButton);
-			this->panel2->Controls->Add(this->textBox7);
-			this->panel2->Controls->Add(this->textBox8);
+			this->panel2->Controls->Add(this->tbfp2);
+			this->panel2->Controls->Add(this->tba2);
 			this->panel2->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->panel2->Location = System::Drawing::Point(1095, 3);
 			this->panel2->Name = L"panel2";
@@ -1324,10 +1324,10 @@ private: System::Windows::Forms::Panel^  panel2;
 				 chart1->Series[3]->Points->Clear();
 				 chart2->Series["Series2"]->Points->Clear();
 				 double es,en,fp,a,pom;
-				 en=(Convert::ToDouble(textBox2->Text));
-				 es=(Convert::ToDouble(textBox3->Text));
-				 fp=(Convert::ToDouble(textBox4->Text));
-				 a=(Convert::ToDouble(textBox5->Text));
+				 en=(Convert::ToDouble(tbeps->Text));
+				 es=(Convert::ToDouble(tbde1->Text));
+				 fp=(Convert::ToDouble(tbf1->Text));
+				 a=(Convert::ToDouble(tba1->Text));
 				 pom=en;
 				 en=es+en;
 				 es=pom;
@@ -1338,10 +1338,10 @@ private: System::Windows::Forms::Panel^  panel2;
 				 fp=parameters(2,0);
 				 a=parameters(3,0);
 				 es=es-en;
-				 textBox2->Text=en.ToString();
-				 textBox3->Text=es.ToString();
-				 textBox4->Text=fp.ToString();
-				 textBox5->Text=a.ToString();
+				 tbeps->Text=en.ToString();
+				 tbde1->Text=es.ToString();
+				 tbf1->Text=fp.ToString();
+				 tba1->Text=a.ToString();
 				 CurveSet[Position-1].en=en;
 				 CurveSet[Position-1].de1=es;
 				 CurveSet[Position-1].fp1=fp;
@@ -1389,13 +1389,13 @@ private: System::Void button3_Click(System::Object^  sender, System::EventArgs^ 
 				 minf=CurveSet[Position-1].Dataf[size-1];
 				 maxf=CurveSet[Position-1].Dataf[0];
 				 df=log10(maxf)-log10(minf);
-				 es=(Convert::ToDouble(textBox2->Text));
-				 en=(Convert::ToDouble(textBox3->Text));
-				 fp=(Convert::ToDouble(textBox4->Text));
-				 a=(Convert::ToDouble(textBox5->Text));
-				 de2=(Convert::ToDouble(textBox6->Text));
-				 fp2=(Convert::ToDouble(textBox7->Text));
-				 a2=(Convert::ToDouble(textBox8->Text));
+				 es=(Convert::ToDouble(tbeps->Text));
+				 en=(Convert::ToDouble(tbde1->Text));
+				 fp=(Convert::ToDouble(tbf1->Text));
+				 a=(Convert::ToDouble(tba1->Text));
+				 de2=(Convert::ToDouble(tbde2->Text));
+				 fp2=(Convert::ToDouble(tbfp2->Text));
+				 a2=(Convert::ToDouble(tba2->Text));
 				 for (i=0;i<=100;i++)
 				 {
 					 f=log10(minf)+(i/100.0)*df;
@@ -1445,13 +1445,13 @@ private: System::Void button5_Click(System::Object^  sender, System::EventArgs^ 
 			 chart1->Series[3]->Points->Clear();
 			 label2->Text=CurveSet[Position-1].temperature.ToString();
 			 if (CurveSet[Position-1].fitted){
-				 textBox2->Text=CurveSet[Position-1].en.ToString();
-				 textBox3->Text=CurveSet[Position-1].de1.ToString();
-				 textBox4->Text=CurveSet[Position-1].fp1.ToString();
-				 textBox5->Text=CurveSet[Position-1].a1.ToString();
-				 textBox6->Text=CurveSet[Position-1].de2.ToString();
-				 textBox7->Text=CurveSet[Position-1].fp2.ToString();
-				 textBox8->Text=CurveSet[Position-1].a2.ToString();
+				 tbeps->Text=CurveSet[Position-1].en.ToString();
+				 tbde1->Text=CurveSet[Position-1].de1.ToString();
+				 tbf1->Text=CurveSet[Position-1].fp1.ToString();
+				 tba1->Text=CurveSet[Position-1].a1.ToString();
+				 tbde2->Text=CurveSet[Position-1].de2.ToString();
+				 tbfp2->Text=CurveSet[Position-1].fp2.ToString();
+				 tba2->Text=CurveSet[Position-1].a2.ToString();
 				 ChiSqrButton->PerformClick();
 			 }
 			 size=CurveSet[Position-1].Dataf.size();
@@ -1478,13 +1478,13 @@ private: System::Void button4_Click(System::Object^  sender, System::EventArgs^ 
 			 chart1->Series[2]->Points->Clear();
 			 chart1->Series[3]->Points->Clear();
 			 if (CurveSet[Position-1].fitted){
-				 textBox2->Text=CurveSet[Position-1].en.ToString();
-				 textBox3->Text=CurveSet[Position-1].de1.ToString();
-				 textBox4->Text=CurveSet[Position-1].fp1.ToString();
-				 textBox5->Text=CurveSet[Position-1].a1.ToString();
-				 textBox6->Text=CurveSet[Position-1].de2.ToString();
-				 textBox7->Text=CurveSet[Position-1].fp2.ToString();
-				 textBox8->Text=CurveSet[Position-1].a2.ToString();
+				 tbeps->Text=CurveSet[Position-1].en.ToString();
+				 tbde1->Text=CurveSet[Position-1].de1.ToString();
+				 tbf1->Text=CurveSet[Position-1].fp1.ToString();
+				 tba1->Text=CurveSet[Position-1].a1.ToString();
+				 tbde2->Text=CurveSet[Position-1].de2.ToString();
+				 tbfp2->Text=CurveSet[Position-1].fp2.ToString();
+				 tba2->Text=CurveSet[Position-1].a2.ToString();
 				 ChiSqrButton->PerformClick();
 			 }
 			 size=CurveSet[Position-1].Dataf.size();
@@ -1504,29 +1504,29 @@ private: System::Void button6_Click(System::Object^  sender, System::EventArgs^ 
 			 chart1->Series[2]->Points->Clear();
 			 chart1->Series[3]->Points->Clear();
 			 chart2->Series["Series2"]->Points->Clear();
-			 es=(Convert::ToDouble(textBox2->Text));
-			 de1=(Convert::ToDouble(textBox3->Text));
-			 fp1=(Convert::ToDouble(textBox4->Text));
-			 a1=(Convert::ToDouble(textBox5->Text));
-			 de2=(Convert::ToDouble(textBox6->Text));
-			 fp2=(Convert::ToDouble(textBox7->Text));
-			 a2=(Convert::ToDouble(textBox8->Text));
+			 es=(Convert::ToDouble(tbeps->Text));
+			 de1=(Convert::ToDouble(tbde1->Text));
+			 fp1=(Convert::ToDouble(tbf1->Text));
+			 a1=(Convert::ToDouble(tba1->Text));
+			 de2=(Convert::ToDouble(tbde2->Text));
+			 fp2=(Convert::ToDouble(tbfp2->Text));
+			 a2=(Convert::ToDouble(tba2->Text));
 			 parameters<<es,de1,fp1,a1,de2,fp2,a2;
 			 FitLM2(CurveSet[Position-1].Dataf,CurveSet[Position-1].Dataep,CurveSet[Position-1].Dataeb,parameters);
 			 es=parameters(0,0);
-			 textBox2->Text=es.ToString();
+			 tbeps->Text=es.ToString();
 			 de1=parameters(1,0);
-			 textBox3->Text=de1.ToString();
+			 tbde1->Text=de1.ToString();
 			 fp1=parameters(2,0);
-			 textBox4->Text=fp1.ToString();
+			 tbf1->Text=fp1.ToString();
 			 a1=parameters(3,0);
-			 textBox5->Text=a1.ToString();
+			 tba1->Text=a1.ToString();
 			 de2=parameters(4,0);
-			 textBox6->Text=de2.ToString();
+			 tbde2->Text=de2.ToString();
 			 fp2=parameters(5,0);
-			 textBox7->Text=fp2.ToString();
+			 tbfp2->Text=fp2.ToString();
 			 a2=parameters(6,0);
-			 textBox8->Text=a2.ToString();
+			 tba2->Text=a2.ToString();
 			 CurveSet[Position-1].en=es;
 			 CurveSet[Position-1].de1=de1;
 			 CurveSet[Position-1].fp1=fp1;
@@ -1553,7 +1553,7 @@ private: System::Void button7_Click(System::Object^  sender, System::EventArgs^ 
 			 size=CurveSet.size();
 			 //temperature=CurveSet[Position-1].temperature;
 			 //cout << temperature;
-			 //textBox9->Text+=temperature.ToString()+" "+textBox2->Text+" "+textBox3->Text+" "+textBox4->Text+" "+textBox5->Text+" "+textBox6->Text+" "+textBox7->Text+" "+textBox8->Text+System::Environment::NewLine;
+			 //textBox9->Text+=temperature.ToString()+" "+tbeps->Text+" "+tbde1->Text+" "+tbf1->Text+" "+tba1->Text+" "+tbde2->Text+" "+tbfp2->Text+" "+tba2->Text+System::Environment::NewLine;
 			 textBox9->Text="";
 			 for (i=0;i<size;i++){
 				if(CurveSet[i].fitted) textBox9->Text+=CurveSet[i].temperature+" "+CurveSet[i].en+" "+CurveSet[i].de1+" "+CurveSet[i].fp1+" "+CurveSet[i].a1+" "+CurveSet[i].de2+" "+CurveSet[i].fp2+" "+CurveSet[i].a2+System::Environment::NewLine;
@@ -1579,7 +1579,7 @@ private: System::Void button8_Click(System::Object^  sender, System::EventArgs^ 
 			 double temperature;
 			 size=CurveSet.size();
 			 //cout << temperature;
-			 //textBox9->Text+=temperature.ToString()+" "+textBox2->Text+" "+textBox3->Text+" "+textBox4->Text+" "+textBox5->Text+" "+textBox6->Text+" "+textBox7->Text+" "+textBox8->Text+System::Environment::NewLine;
+			 //textBox9->Text+=temperature.ToString()+" "+tbeps->Text+" "+tbde1->Text+" "+tbf1->Text+" "+tba1->Text+" "+tbde2->Text+" "+tbfp2->Text+" "+tba2->Text+System::Environment::NewLine;
 			 for (i=0;i<size;i++){
 				 if(CurveSet[i].fitted){
 					 temperature=CurveSet[i].temperature;
