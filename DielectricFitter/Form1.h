@@ -202,6 +202,7 @@ private: System::Windows::Forms::Panel^  panel2;
 			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->label6 = (gcnew System::Windows::Forms::Label());
 			this->label8 = (gcnew System::Windows::Forms::Label());
+			this->Fit2Button = (gcnew System::Windows::Forms::Button());
 			this->label9 = (gcnew System::Windows::Forms::Label());
 			this->label7 = (gcnew System::Windows::Forms::Label());
 			this->TwoFunCheckBox = (gcnew System::Windows::Forms::CheckBox());
@@ -260,7 +261,6 @@ private: System::Windows::Forms::Panel^  panel2;
 			this->PrevCurveButton = (gcnew System::Windows::Forms::Button());
 			this->NextCurveButton = (gcnew System::Windows::Forms::Button());
 			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->Fit2Button = (gcnew System::Windows::Forms::Button());
 			this->button7 = (gcnew System::Windows::Forms::Button());
 			this->textBox9 = (gcnew System::Windows::Forms::TextBox());
 			this->saveFileDialog1 = (gcnew System::Windows::Forms::SaveFileDialog());
@@ -368,7 +368,7 @@ private: System::Windows::Forms::Panel^  panel2;
 			this->LoadButton->TabIndex = 1;
 			this->LoadButton->Text = L"Load";
 			this->LoadButton->UseVisualStyleBackColor = true;
-			this->LoadButton->Click += gcnew System::EventHandler(this, &Form1::button1_Click);
+			this->LoadButton->Click += gcnew System::EventHandler(this, &Form1::LoadButton_Click);
 			// 
 			// openFileDialog1
 			// 
@@ -393,7 +393,7 @@ private: System::Windows::Forms::Panel^  panel2;
 			this->FitButton->TabIndex = 3;
 			this->FitButton->Text = L"Fit";
 			this->FitButton->UseVisualStyleBackColor = true;
-			this->FitButton->Click += gcnew System::EventHandler(this, &Form1::button2_Click);
+			this->FitButton->Click += gcnew System::EventHandler(this, &Form1::FitButton_Click);
 			// 
 			// tabControl1
 			// 
@@ -522,6 +522,18 @@ private: System::Windows::Forms::Panel^  panel2;
 			this->label8->TabIndex = 27;
 			this->label8->Text = L"de2";
 			// 
+			// Fit2Button
+			// 
+			this->Fit2Button->BackColor = System::Drawing::SystemColors::ButtonFace;
+			this->Fit2Button->FlatAppearance->BorderSize = 0;
+			this->Fit2Button->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->Fit2Button->Location = System::Drawing::Point(20, 361);
+			this->Fit2Button->Name = L"Fit2Button";
+			this->Fit2Button->Size = System::Drawing::Size(39, 23);
+			this->Fit2Button->TabIndex = 14;
+			this->Fit2Button->UseVisualStyleBackColor = false;
+			this->Fit2Button->Click += gcnew System::EventHandler(this, &Form1::Fit2Button_Click);
+			// 
 			// label9
 			// 
 			this->label9->AutoSize = true;
@@ -600,7 +612,7 @@ private: System::Windows::Forms::Panel^  panel2;
 			this->ChiSqrButton->TabIndex = 13;
 			this->ChiSqrButton->Text = L"Chi2";
 			this->ChiSqrButton->UseVisualStyleBackColor = true;
-			this->ChiSqrButton->Click += gcnew System::EventHandler(this, &Form1::button3_Click);
+			this->ChiSqrButton->Click += gcnew System::EventHandler(this, &Form1::ChiSqrButton_Click);
 			// 
 			// tbfp2
 			// 
@@ -1135,7 +1147,7 @@ private: System::Windows::Forms::Panel^  panel2;
 			this->PrevCurveButton->TabIndex = 15;
 			this->PrevCurveButton->Text = L"<";
 			this->PrevCurveButton->UseVisualStyleBackColor = true;
-			this->PrevCurveButton->Click += gcnew System::EventHandler(this, &Form1::button4_Click);
+			this->PrevCurveButton->Click += gcnew System::EventHandler(this, &Form1::PrevCurveButton_Click);
 			// 
 			// NextCurveButton
 			// 
@@ -1145,7 +1157,7 @@ private: System::Windows::Forms::Panel^  panel2;
 			this->NextCurveButton->TabIndex = 12;
 			this->NextCurveButton->Text = L">";
 			this->NextCurveButton->UseVisualStyleBackColor = true;
-			this->NextCurveButton->Click += gcnew System::EventHandler(this, &Form1::button5_Click);
+			this->NextCurveButton->Click += gcnew System::EventHandler(this, &Form1::NextCurveButton_Click);
 			// 
 			// label1
 			// 
@@ -1155,18 +1167,6 @@ private: System::Windows::Forms::Panel^  panel2;
 			this->label1->Size = System::Drawing::Size(13, 13);
 			this->label1->TabIndex = 14;
 			this->label1->Text = L"1";
-			// 
-			// Fit2Button
-			// 
-			this->Fit2Button->BackColor = System::Drawing::SystemColors::ActiveCaptionText;
-			this->Fit2Button->FlatAppearance->BorderSize = 0;
-			this->Fit2Button->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->Fit2Button->Location = System::Drawing::Point(20, 361);
-			this->Fit2Button->Name = L"Fit2Button";
-			this->Fit2Button->Size = System::Drawing::Size(39, 23);
-			this->Fit2Button->TabIndex = 14;
-			this->Fit2Button->UseVisualStyleBackColor = false;
-			this->Fit2Button->Click += gcnew System::EventHandler(this, &Form1::button6_Click);
 			// 
 			// button7
 			// 
@@ -1197,7 +1197,7 @@ private: System::Windows::Forms::Panel^  panel2;
 			this->PlotButton->TabIndex = 21;
 			this->PlotButton->Text = L"Plot";
 			this->PlotButton->UseVisualStyleBackColor = true;
-			this->PlotButton->Click += gcnew System::EventHandler(this, &Form1::button8_Click);
+			this->PlotButton->Click += gcnew System::EventHandler(this, &Form1::PlotButton_Click);
 			// 
 			// label2
 			// 
@@ -1269,7 +1269,7 @@ private: System::Windows::Forms::Panel^  panel2;
 #pragma endregion
 	private: System::Void openFileDialog1_FileOk(System::Object^  sender, System::ComponentModel::CancelEventArgs^  e) {
 			 }
-	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
+	private: System::Void LoadButton_Click(System::Object^  sender, System::EventArgs^  e) {
 				 
 				 curve  SingleCurve;
 				 MatrixXd parameters(4,1);
@@ -1317,7 +1317,7 @@ private: System::Windows::Forms::Panel^  panel2;
 					 }
 				 }
 			 }
-	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
+	private: System::Void FitButton_Click(System::Object^  sender, System::EventArgs^  e) {
 				 MatrixXd parameters(4,1);
 				 complex<double> d;
 				 if (!TwoFunCheckBox->Checked){
@@ -1372,7 +1372,7 @@ private: System::Void abooutToolStripMenuItem_Click(System::Object^  sender, Sys
 		Form^ rgForm = gcnew About();
 		rgForm->Show();			 
 		 }
-private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e) {
+private: System::Void ChiSqrButton_Click(System::Object^  sender, System::EventArgs^  e) {
 			  double ep,ep1,ep2,eb,eb1,eb2,es,en,fp,f,a,maxf,minf,df,de2,fp2,a2;
 				 int i,size;
 				 MatrixXd parameters(4,1);
@@ -1429,7 +1429,7 @@ private: System::Void loadFileToolStripMenuItem_Click(System::Object^  sender, S
 private: System::Void exitToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 			 exit(0);
 		 }
-private: System::Void button5_Click(System::Object^  sender, System::EventArgs^  e) {
+private: System::Void NextCurveButton_Click(System::Object^  sender, System::EventArgs^  e) {
 			 int i,size;
 			 if (Position<CurveSet.size()) Position++;
 			 label1->Text=Position.ToString()+"/"+CurveSet.size();
@@ -1464,7 +1464,7 @@ private: System::Void button5_Click(System::Object^  sender, System::EventArgs^ 
 
 			 }
 		 }
-private: System::Void button4_Click(System::Object^  sender, System::EventArgs^  e) {
+private: System::Void PrevCurveButton_Click(System::Object^  sender, System::EventArgs^  e) {
 			 		 int i,size;
 			 if (Position>1) Position--;
 			 this->Text=openFileDialog1->FileNames[Position-1];
@@ -1498,7 +1498,7 @@ private: System::Void button4_Click(System::Object^  sender, System::EventArgs^ 
 					 }
 
 		 }
-private: System::Void button6_Click(System::Object^  sender, System::EventArgs^  e) {
+private: System::Void Fit2Button_Click(System::Object^  sender, System::EventArgs^  e) {
 			 double es,de1,fp1,a1,de2,fp2,a2;
 			 complex<double> d;
 			 MatrixXd parameters(7,1);
@@ -1570,7 +1570,7 @@ private: System::Void saveToolStripMenuItem_Click(System::Object^  sender, Syste
 				 cout <<"Fit parameters saved";
 			 }
 		 }
-private: System::Void button8_Click(System::Object^  sender, System::EventArgs^  e) {
+private: System::Void PlotButton_Click(System::Object^  sender, System::EventArgs^  e) {
 			 chart3->Series["Series1"]->Points->Clear();
 			 chart3->Series["Series2"]->Points->Clear();
 			 chart4->Series["Series1"]->Points->Clear();
