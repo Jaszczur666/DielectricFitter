@@ -301,3 +301,120 @@ double Correction(double temperature,double midjumptemp, double scalex,double ju
 //if (temperature >= startx) corr=0.8;
 	return corr;
 }
+
+std::complex<double> HNRelaxation(double frequency,MatrixXd parameters){
+	complex <double> d;
+	d=parameters(0)+parameters(1)/pow((1.0+pow(ii*frequency/parameters(2),parameters(3))),parameters(4));
+	return d;
+}
+std::complex<double> RelaxationFunction(int type,double frequency,MatrixXd parameters){
+	complex <double> d;
+	d=0;
+	if (type=1) d=parameters(0)+parameters(1)/(1.0+pow(ii*frequency/parameters(2),parameters(3)));
+	return d;
+}
+
+
+void CalculateResidueGeneral(int type,double f,double ep,double eb, MatrixXd parameters,double &rp,double&rb)
+{
+	double pep,peb;
+	complex <double> d;
+	d=RelaxationFunction(type,f,parameters);
+	pep=std::real(d);
+	peb=std::imag(d);
+	rp=ep-pep;
+	rb=eb-peb;
+}
+
+void CalculateHessianGeneral(vector<double> dataf,vector<double> dataep,vector<double> dataeb, int type, MatrixXd parameters,MatrixXd &Hess, MatrixXd &Grad, double &chi2)
+{
+	int i,j,size,parsize;
+	MatrixXd Hessian;
+	double rp,rb,rsp,rsb,rnp,rnb,rfb,rfp,rap,rab;
+	double eps;
+	size=dataf.size();
+	parsize=parameters.rows();
+	MatrixXd delta(parsize,1);
+	MatrixXd Jaco(2*size,parsize);
+	MatrixXd Res(2*size,1);
+	complex <double> d;
+	eps=1e-7;
+	chi2=0;
+	for (i=0;i<=size-1;i++)
+	{
+		CalculateResidueGeneral(type,dataf[i],dataep[i],dataeb[i],parameters,rp,rb);
+		for (j=0;j<parsize;j++){
+		delta=MatrixXd::Zero(parsize,1);
+		delta(j,0)=eps;
+		CalculateResidueGeneral(type,dataf[i],dataep[i],dataeb[i],parameters+delta,rsp,rsb);
+		Jaco(i*2,j)=(rsp-rp)/eps;
+		Jaco(i*2+1,j)=(rsb-rb)/eps;
+		}
+		Res(i*2,0)=rp;
+		Res(i*2+1,0)=rb;
+		chi2=chi2+0.5*(rp*rp+rb*rb);
+	}
+	Hess=Jaco.transpose()*Jaco;
+	Grad=Jaco.transpose()*Res;
+}
+
+double chi2MatGeneral( vector<double>& dataf,vector<double>& dataep,vector<double>& dataeb,int type,MatrixXd parameters)
+{
+	complex <double> d;
+	int i, size;
+	double ep,eb;
+	double chi2temp=0.0;
+	size=dataf.size();
+	for (i=0;i<=size-1;i++)
+	{
+		d=RelaxationFunction(type,dataf[i],parameters);
+		ep= std::real(d);
+		eb=-std::imag(d);
+		chi2temp=chi2temp+pow(dataep[i]-ep,2.0)+pow(dataeb[i]+eb,2.0);
+	}
+	return chi2temp/2.0;
+}
+
+void FitLMGeneral(vector<double> Dataf, vector<double>Dataep, vector<double> Dataeb,int type,MatrixXd &parameters)
+{
+	int i,size,size2;
+	double lambda;
+	double chi2,chi2n;//,chi2c;
+//	bool growing;
+	MatrixXd Hessian,Hessiandiag, Grad, newParams,error;
+//	growing=false;
+	lambda=1/1024.0;
+	chi2=0;
+	clock_t start, end;
+	start=clock();
+	for(i=1;i<100;i++)
+	{
+		//chi2c=chi2;
+		CalculateHessianGeneral(Dataf,Dataep,Dataeb,type,parameters, Hessian, Grad,chi2);
+		Hessiandiag=Hessian.diagonal().asDiagonal();
+		newParams=parameters-((Hessian+lambda*Hessiandiag).inverse()*Grad);
+		chi2n=chi2MatGeneral(Dataf,Dataep,Dataeb,type,newParams);
+		if (chi2n<chi2){
+			parameters=newParams;
+			lambda=lambda*8;
+		}
+		else
+		{
+			lambda=lambda/8.0;
+		}
+		if (parameters(2)<0) parameters(2)=-parameters(2);
+		if (parameters(3)<0) parameters(3)=0;
+		if (parameters(3)>1) parameters(3)=0;
+
+	}
+	size=parameters.rows();
+	size2=Dataf.size();
+	cout << "rozmiary ="<<size<<" "<<size2<<endl;
+	error=(Hessiandiag.inverse().diagonal()*chi2/(size2-size));
+	for (i=0;i<size;i++) error(i)=sqrt(error(i));
+	cout<<error<<endl<< "----------------------------------------------------- "<<endl;
+	cout <<chi2<<endl;
+	end=clock();
+	cout <<(double(end - start) / CLOCKS_PER_SEC)<<" "<< CLOCKS_PER_SEC<<endl;
+	return;
+}

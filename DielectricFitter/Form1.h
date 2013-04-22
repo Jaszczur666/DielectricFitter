@@ -1552,6 +1552,12 @@ private: System::Void Fit2Button_Click(System::Object^  sender, System::EventArg
 private: System::Void button7_Click(System::Object^  sender, System::EventArgs^  e) {
 			 int i,size;
 			 size=CurveSet.size();
+			 MatrixXd param(4,1);
+			  param<<1.33,78.67,45e3,1;
+			 MatrixXd h,j;
+			 Double chi2;
+			CalculateHessianGeneral(CurveSet[0].Dataf,CurveSet[0].Dataep,CurveSet[0].Dataeb,1,param,h,j,chi2);
+			cout << chi2<<endl;
 			 //temperature=CurveSet[Position-1].temperature;
 			 //cout << temperature;
 			 //textBox9->Text+=temperature.ToString()+" "+tbeps->Text+" "+tbde1->Text+" "+tbf1->Text+" "+tba1->Text+" "+tbde2->Text+" "+tbfp2->Text+" "+tba2->Text+System::Environment::NewLine;
