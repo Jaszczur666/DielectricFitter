@@ -313,13 +313,13 @@ complex <double> d;
 d=parameters(0)+parameters(1)/(1.0+pow(ii*frequency/parameters(2),1-parameters(3)))+parameters(4)/(1.0+pow(ii*frequency/parameters(5),1-parameters(6)));
 return d;
 }
-std::complex<double> RelaxationFunction(int type,double frequency,MatrixXd parameters){
+std::complex<double> RelaxationFunction(int type,double frequency,const MatrixXd &parameters){
 	complex <double> d;
 	int parsize;
 	d=0;
 	parsize=parameters.rows();
-	if (type=1) d=parameters(0)+parameters(1)/(1.0+pow(ii*frequency/parameters(2),1-parameters(3)));
-//	if ((type=2)&&(parsize=6))  d=DoubleColeDavidson(frequency,parameters);
+	if (type==1) d=parameters(0)+parameters(1)/(1.0+pow(ii*frequency/parameters(2),1-parameters(3)));
+	if ((type==2)&&(parsize==6))  d=DoubleColeDavidson(frequency,parameters);
 	return d;
 }
 
@@ -339,7 +339,7 @@ void CalculateHessianGeneral(vector<double> dataf,vector<double> dataep,vector<d
 {
 	int i,j,size,parsize;
 	MatrixXd Hessian;
-	double rp,rb,rsp,rsb,rnp,rnb,rfb,rfp,rap,rab;
+	double rp,rb,rsp,rsb;
 	double eps;
 	size=dataf.size();
 	parsize=parameters.rows();
@@ -420,6 +420,6 @@ void FitLMGeneral(vector<double> Dataf, vector<double>Dataep, vector<double> Dat
 	//cout<<error<<endl<< "----------------------------------------------------- "<<endl;
 	cout <<chi2<<endl;
 	end=clock();
-	cout <<(double(end - start) / CLOCKS_PER_SEC);//<<" "<< CLOCKS_PER_SEC<<endl;
+	cout <<(double(end - start) / CLOCKS_PER_SEC) <<" s"<<endl;//<<" "<< CLOCKS_PER_SEC<<endl;
 	return;
 }
