@@ -313,13 +313,19 @@ complex <double> d;
 d=parameters(0)+parameters(1)/(1.0+pow(ii*frequency/parameters(2),1-parameters(3)))+parameters(4)/(1.0+pow(ii*frequency/parameters(5),1-parameters(6)));
 return d;
 }
+std::complex<double> TripleColeDavidson(double frequency,MatrixXd parameters){
+complex <double> d;
+d=parameters(0)+parameters(1)/(1.0+pow(ii*frequency/parameters(2),1-parameters(3)))+parameters(4)/(1.0+pow(ii*frequency/parameters(5),1-parameters(6)))+parameters(7)/(1.0+pow(ii*frequency/parameters(8),1-parameters(9)));
+return d;
+}
 std::complex<double> RelaxationFunction(int type,double frequency,const MatrixXd &parameters){
 	complex <double> d;
 	int parsize;
 	d=0;
 	parsize=parameters.rows();
 	if (type==1) d=parameters(0)+parameters(1)/(1.0+pow(ii*frequency/parameters(2),1-parameters(3)));
-	if ((type==2)&&(parsize==6))  d=DoubleColeDavidson(frequency,parameters);
+	if (type==2)  d=DoubleColeDavidson(frequency,parameters);
+	if (type==3)  d=TripleColeDavidson(frequency,parameters);
 	return d;
 }
 

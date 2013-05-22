@@ -143,6 +143,14 @@ namespace DielectricFitter {
 private: System::Windows::Forms::Label^  CapacityLabel2;
 private: System::Windows::Forms::TableLayoutPanel^  tableLayoutPanel2;
 private: System::Windows::Forms::Panel^  panel2;
+private: System::Windows::Forms::Label^  label17;
+private: System::Windows::Forms::Label^  label16;
+private: System::Windows::Forms::Label^  label15;
+private: System::Windows::Forms::TextBox^  tbde3;
+private: System::Windows::Forms::TextBox^  tbfp3;
+private: System::Windows::Forms::TextBox^  tba3;
+private: System::Windows::Forms::NumericUpDown^  Funnum;
+
 
 
 
@@ -196,6 +204,13 @@ private: System::Windows::Forms::Panel^  panel2;
 			this->tabPage1 = (gcnew System::Windows::Forms::TabPage());
 			this->tableLayoutPanel2 = (gcnew System::Windows::Forms::TableLayoutPanel());
 			this->panel2 = (gcnew System::Windows::Forms::Panel());
+			this->Funnum = (gcnew System::Windows::Forms::NumericUpDown());
+			this->label17 = (gcnew System::Windows::Forms::Label());
+			this->label16 = (gcnew System::Windows::Forms::Label());
+			this->label15 = (gcnew System::Windows::Forms::Label());
+			this->tbde3 = (gcnew System::Windows::Forms::TextBox());
+			this->tbfp3 = (gcnew System::Windows::Forms::TextBox());
+			this->tba3 = (gcnew System::Windows::Forms::TextBox());
 			this->button13 = (gcnew System::Windows::Forms::Button());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->tbeps = (gcnew System::Windows::Forms::TextBox());
@@ -272,6 +287,7 @@ private: System::Windows::Forms::Panel^  panel2;
 			this->tabPage1->SuspendLayout();
 			this->tableLayoutPanel2->SuspendLayout();
 			this->panel2->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->Funnum))->BeginInit();
 			this->tabPage2->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->chart2))->BeginInit();
 			this->tabPage3->SuspendLayout();
@@ -387,7 +403,7 @@ private: System::Windows::Forms::Panel^  panel2;
 			// 
 			// FitButton
 			// 
-			this->FitButton->Location = System::Drawing::Point(17, 240);
+			this->FitButton->Location = System::Drawing::Point(17, 392);
 			this->FitButton->Name = L"FitButton";
 			this->FitButton->Size = System::Drawing::Size(39, 23);
 			this->FitButton->TabIndex = 3;
@@ -443,6 +459,13 @@ private: System::Windows::Forms::Panel^  panel2;
 			// 
 			// panel2
 			// 
+			this->panel2->Controls->Add(this->Funnum);
+			this->panel2->Controls->Add(this->label17);
+			this->panel2->Controls->Add(this->label16);
+			this->panel2->Controls->Add(this->label15);
+			this->panel2->Controls->Add(this->tbde3);
+			this->panel2->Controls->Add(this->tbfp3);
+			this->panel2->Controls->Add(this->tba3);
 			this->panel2->Controls->Add(this->button13);
 			this->panel2->Controls->Add(this->label3);
 			this->panel2->Controls->Add(this->tbeps);
@@ -468,9 +491,74 @@ private: System::Windows::Forms::Panel^  panel2;
 			this->panel2->Size = System::Drawing::Size(134, 682);
 			this->panel2->TabIndex = 1;
 			// 
+			// Funnum
+			// 
+			this->Funnum->Location = System::Drawing::Point(17, 329);
+			this->Funnum->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {3, 0, 0, 0});
+			this->Funnum->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) {1, 0, 0, 0});
+			this->Funnum->Name = L"Funnum";
+			this->Funnum->Size = System::Drawing::Size(36, 20);
+			this->Funnum->TabIndex = 37;
+			this->Funnum->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) {1, 0, 0, 0});
+			this->Funnum->ValueChanged += gcnew System::EventHandler(this, &Form1::Funnum_ValueChanged);
+			// 
+			// label17
+			// 
+			this->label17->AutoSize = true;
+			this->label17->Location = System::Drawing::Point(14, 201);
+			this->label17->Name = L"label17";
+			this->label17->Size = System::Drawing::Size(25, 13);
+			this->label17->TabIndex = 36;
+			this->label17->Text = L"de3";
+			// 
+			// label16
+			// 
+			this->label16->AutoSize = true;
+			this->label16->Location = System::Drawing::Point(14, 227);
+			this->label16->Name = L"label16";
+			this->label16->Size = System::Drawing::Size(22, 13);
+			this->label16->TabIndex = 35;
+			this->label16->Text = L"fp3";
+			// 
+			// label15
+			// 
+			this->label15->AutoSize = true;
+			this->label15->Location = System::Drawing::Point(14, 253);
+			this->label15->Name = L"label15";
+			this->label15->Size = System::Drawing::Size(19, 13);
+			this->label15->TabIndex = 34;
+			this->label15->Text = L"a3";
+			// 
+			// tbde3
+			// 
+			this->tbde3->BackColor = System::Drawing::SystemColors::ScrollBar;
+			this->tbde3->Location = System::Drawing::Point(56, 194);
+			this->tbde3->Name = L"tbde3";
+			this->tbde3->Size = System::Drawing::Size(78, 20);
+			this->tbde3->TabIndex = 33;
+			this->tbde3->Text = L"1";
+			// 
+			// tbfp3
+			// 
+			this->tbfp3->BackColor = System::Drawing::SystemColors::ScrollBar;
+			this->tbfp3->Location = System::Drawing::Point(56, 220);
+			this->tbfp3->Name = L"tbfp3";
+			this->tbfp3->Size = System::Drawing::Size(78, 20);
+			this->tbfp3->TabIndex = 32;
+			this->tbfp3->Text = L"1";
+			// 
+			// tba3
+			// 
+			this->tba3->BackColor = System::Drawing::SystemColors::ScrollBar;
+			this->tba3->Location = System::Drawing::Point(56, 246);
+			this->tba3->Name = L"tba3";
+			this->tba3->Size = System::Drawing::Size(78, 20);
+			this->tba3->TabIndex = 31;
+			this->tba3->Text = L"1";
+			// 
 			// button13
 			// 
-			this->button13->Location = System::Drawing::Point(17, 269);
+			this->button13->Location = System::Drawing::Point(17, 421);
 			this->button13->Name = L"button13";
 			this->button13->Size = System::Drawing::Size(32, 23);
 			this->button13->TabIndex = 30;
@@ -481,7 +569,7 @@ private: System::Windows::Forms::Panel^  panel2;
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(17, 26);
+			this->label3->Location = System::Drawing::Point(14, 19);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(20, 13);
 			this->label3->TabIndex = 23;
@@ -498,7 +586,7 @@ private: System::Windows::Forms::Panel^  panel2;
 			// label5
 			// 
 			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(14, 75);
+			this->label5->Location = System::Drawing::Point(14, 71);
 			this->label5->Name = L"label5";
 			this->label5->Size = System::Drawing::Size(22, 13);
 			this->label5->TabIndex = 25;
@@ -507,7 +595,7 @@ private: System::Windows::Forms::Panel^  panel2;
 			// label6
 			// 
 			this->label6->AutoSize = true;
-			this->label6->Location = System::Drawing::Point(14, 101);
+			this->label6->Location = System::Drawing::Point(14, 97);
 			this->label6->Name = L"label6";
 			this->label6->Size = System::Drawing::Size(19, 13);
 			this->label6->TabIndex = 26;
@@ -516,7 +604,7 @@ private: System::Windows::Forms::Panel^  panel2;
 			// label8
 			// 
 			this->label8->AutoSize = true;
-			this->label8->Location = System::Drawing::Point(14, 127);
+			this->label8->Location = System::Drawing::Point(14, 123);
 			this->label8->Name = L"label8";
 			this->label8->Size = System::Drawing::Size(25, 13);
 			this->label8->TabIndex = 27;
@@ -527,7 +615,7 @@ private: System::Windows::Forms::Panel^  panel2;
 			this->Fit2Button->BackColor = System::Drawing::SystemColors::ButtonFace;
 			this->Fit2Button->FlatAppearance->BorderSize = 0;
 			this->Fit2Button->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->Fit2Button->Location = System::Drawing::Point(20, 361);
+			this->Fit2Button->Location = System::Drawing::Point(17, 326);
 			this->Fit2Button->Name = L"Fit2Button";
 			this->Fit2Button->Size = System::Drawing::Size(39, 23);
 			this->Fit2Button->TabIndex = 14;
@@ -546,7 +634,7 @@ private: System::Windows::Forms::Panel^  panel2;
 			// label7
 			// 
 			this->label7->AutoSize = true;
-			this->label7->Location = System::Drawing::Point(14, 153);
+			this->label7->Location = System::Drawing::Point(14, 149);
 			this->label7->Name = L"label7";
 			this->label7->Size = System::Drawing::Size(22, 13);
 			this->label7->TabIndex = 27;
@@ -555,7 +643,7 @@ private: System::Windows::Forms::Panel^  panel2;
 			// TwoFunCheckBox
 			// 
 			this->TwoFunCheckBox->AutoSize = true;
-			this->TwoFunCheckBox->Location = System::Drawing::Point(17, 203);
+			this->TwoFunCheckBox->Location = System::Drawing::Point(17, 355);
 			this->TwoFunCheckBox->Name = L"TwoFunCheckBox";
 			this->TwoFunCheckBox->Size = System::Drawing::Size(100, 17);
 			this->TwoFunCheckBox->TabIndex = 18;
@@ -565,7 +653,7 @@ private: System::Windows::Forms::Panel^  panel2;
 			// label4
 			// 
 			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(14, 49);
+			this->label4->Location = System::Drawing::Point(14, 45);
 			this->label4->Name = L"label4";
 			this->label4->Size = System::Drawing::Size(25, 13);
 			this->label4->TabIndex = 24;
@@ -606,7 +694,7 @@ private: System::Windows::Forms::Panel^  panel2;
 			// 
 			// ChiSqrButton
 			// 
-			this->ChiSqrButton->Location = System::Drawing::Point(59, 241);
+			this->ChiSqrButton->Location = System::Drawing::Point(59, 393);
 			this->ChiSqrButton->Name = L"ChiSqrButton";
 			this->ChiSqrButton->Size = System::Drawing::Size(75, 23);
 			this->ChiSqrButton->TabIndex = 13;
@@ -1246,6 +1334,7 @@ private: System::Windows::Forms::Panel^  panel2;
 			this->tableLayoutPanel2->ResumeLayout(false);
 			this->panel2->ResumeLayout(false);
 			this->panel2->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->Funnum))->EndInit();
 			this->tabPage2->ResumeLayout(false);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->chart2))->EndInit();
 			this->tabPage3->ResumeLayout(false);
@@ -1320,53 +1409,78 @@ private: System::Windows::Forms::Panel^  panel2;
 	private: System::Void FitButton_Click(System::Object^  sender, System::EventArgs^  e) {
 				 MatrixXd parameters(4,1);
 				 complex<double> d;
-				 if (!TwoFunCheckBox->Checked){
+				 double en,de,fp,a,de2,fp2,a2,de3,fp3,a3,pom;
+				 int funnum;
+				 funnum=Funnum->Value.ToInt32(Funnum->Value);
 				 chart1->Series[2]->Points->Clear();
 				 chart1->Series[3]->Points->Clear();
 				 chart2->Series["Series2"]->Points->Clear();
-				 double es,en,fp,a,pom;
 				 en=(Convert::ToDouble(tbeps->Text));
-				 es=(Convert::ToDouble(tbde1->Text));
+				 de=(Convert::ToDouble(tbde1->Text));
 				 fp=(Convert::ToDouble(tbf1->Text));
 				 a=(Convert::ToDouble(tba1->Text));
-				 pom=en;
-				 en=es+en;
-				 es=pom;
-				 parameters<<es,en,fp,a;
-				 FitLMGeneral(CurveSet[Position-1].Dataf,CurveSet[Position-1].Dataep,CurveSet[Position-1].Dataeb,1,parameters);
+				 de2=(Convert::ToDouble(tbde2->Text));
+				 fp2=(Convert::ToDouble(tbfp2->Text));
+				 a2=(Convert::ToDouble(tba2->Text));
+				 de3=(Convert::ToDouble(tbde3->Text));
+				 fp3=(Convert::ToDouble(tbfp3->Text));
+				 a3=(Convert::ToDouble(tba3->Text));
+				 if (funnum==1){
+					 parameters<<en,de,fp,a;
+				 };
+				 if (funnum==2){
+					 parameters.resize(7,1);
+					 parameters<<en,de,fp,a,de2,fp2,a2;
+				 };
+				 if (funnum==3){
+					 parameters.resize(10,1);
+					 parameters<<en,de,fp,a,de2,fp2,a2,de3,fp3,a3;
+				 };
+				 FitLMGeneral(CurveSet[Position-1].Dataf,CurveSet[Position-1].Dataep,CurveSet[Position-1].Dataeb,funnum,parameters);
 				 en=parameters(0,0);
-				 es=parameters(1,0);
+				 de=parameters(1,0);
 				 fp=parameters(2,0);
 				 a=parameters(3,0);
-//				 es=es-en;
+				 de2=0;
+				 fp2=0;
+				 a2=0;
+				 de3=0;
+				 fp3=0;
+				 a3=0;
+				 if (Funnum->Value==2){
+					 de2=parameters(4,0);
+					 fp2=parameters(5,0);
+					 a2=parameters(6,0);
+				 };
+				  if (Funnum->Value==3){
+					   de2=parameters(4,0);
+					 fp2=parameters(5,0);
+					 a2=parameters(6,0);
+					 de3=parameters(7,0);
+					 fp3=parameters(8,0);
+					 a3=parameters(9,0);
+				 };
 				 tbeps->Text=en.ToString();
-				 tbde1->Text=es.ToString();
+				 tbde1->Text=de.ToString();
 				 tbf1->Text=fp.ToString();
 				 tba1->Text=a.ToString();
+				 tbde2->Text=de2.ToString();
+				 tbfp2->Text=fp2.ToString();
+				 tba2->Text=a2.ToString();
+				  tbde3->Text=de3.ToString();
+				 tbfp3->Text=fp3.ToString();
+				 tba3->Text=a3.ToString();
 				 CurveSet[Position-1].en=en;
-				 CurveSet[Position-1].de1=es;
+				 CurveSet[Position-1].de1=de;
 				 CurveSet[Position-1].fp1=fp;
 				 CurveSet[Position-1].a1=a;
 				 CurveSet[Position-1].fitted=true;
-				 CurveSet[Position-1].de2=0;
-				 CurveSet[Position-1].fp2=1;
-				 CurveSet[Position-1].a2=0;
+				 CurveSet[Position-1].de2=de2;
+				 CurveSet[Position-1].fp2=fp2;
+				 CurveSet[Position-1].a2=a2;
 				 CurveSet[Position-1].twofunctions=false;
-				 //					 cout << es <<" "<<en<<" "<<fp<<" "<<a<<std::endl;
-				 /*for (i=0;i<=size-1;i++)
-				 {
-					 d=en+(es-en)/(1.0+pow(ii*CurveSet[Position-1].Dataf[i]/fp,1-a));
-					 ep= std::real(d);
-					 eb=-std::imag(d);
-					 chart1->Series[2]->Points->AddXY(log10(CurveSet[Position-1].Dataf[i]),ep);
-					 chart1->Series[3]->Points->AddXY(log10(CurveSet[Position-1].Dataf[i]),eb);
-					 chart2->Series["Series2"]->Points->AddXY(ep,eb);
-				 }*/
 				 ChiSqrButton->PerformClick();
-				 //PlotButton->PerformClick();
 				 }
-				 else Fit2Button->PerformClick();
-			 }
 
 private: System::Void abooutToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 		Form^ rgForm = gcnew About();
@@ -1416,7 +1530,7 @@ private: System::Void ChiSqrButton_Click(System::Object^  sender, System::EventA
 					 //cout <<i<<" "<<f <<endl;
 					 chart1->Series[2]->Points->AddXY(f,ep);
 					 chart1->Series[3]->Points->AddXY(f,eb);
-					 chart1->Series[4]->Points->AddXY(f,eb1);
+					// chart1->Series[4]->Points->AddXY(f,eb1);
 					 if (CurveSet[Position-1].twofunctions) chart1->Series[5]->Points->AddXY(f,eb2);
 					 chart2->Series["Series2"]->Points->AddXY(ep,eb);
 					 if (CurveSet[Position-1].twofunctions) chart2->Series["Series3"]->Points->AddXY(ep1,eb1);
@@ -1736,6 +1850,38 @@ private: System::Void toepsbutton_Click(System::Object^  sender, System::EventAr
 			 size=CurveSet.size();
 			 for (i=0;i<size;i++){
 			 Normalize(CurveSet[i].Dataep,CurveSet[i].Dataeb,vacuumcapacity);
+			 }
+		 }
+private: System::Void Funnum_ValueChanged(System::Object^  sender, System::EventArgs^  e) {
+			 int helper;
+			 helper=Funnum->Value.ToInt16(Funnum->Value);
+			 cout << "Helper "<<helper<<endl;
+			 switch (helper){
+			 case 1: {
+					 tbfp2->BackColor = System::Drawing::SystemColors::Control;
+					 tbde2->BackColor = System::Drawing::SystemColors::Control;
+					 tba2->BackColor = System::Drawing::SystemColors::Control;
+					 tbfp3->BackColor = System::Drawing::SystemColors::Control;
+					 tbde3->BackColor = System::Drawing::SystemColors::Control;
+					 tba3->BackColor = System::Drawing::SystemColors::Control;
+					 break;
+					 };
+			 case 2: {tbfp2->BackColor = System::Drawing::SystemColors::Window;
+					 tbde2->BackColor = System::Drawing::SystemColors::Window;
+					 tba2->BackColor = System::Drawing::SystemColors::Window;
+					 tbfp3->BackColor = System::Drawing::SystemColors::ScrollBar;
+					 tbde3->BackColor = System::Drawing::SystemColors::ScrollBar;
+					 tba3->BackColor = System::Drawing::SystemColors::ScrollBar;
+					 break;
+					 };
+				 case 3: {tbfp2->BackColor = System::Drawing::SystemColors::Window;
+					 tbde2->BackColor = System::Drawing::SystemColors::Window;
+					 tba2->BackColor = System::Drawing::SystemColors::Window;
+					 tbfp3->BackColor = System::Drawing::SystemColors::Window;
+					 tbde3->BackColor = System::Drawing::SystemColors::Window;
+					 tba3->BackColor = System::Drawing::SystemColors::Window;
+					 break;
+					 };
 			 }
 		 }
 };
