@@ -1487,12 +1487,14 @@ private: System::Void abooutToolStripMenuItem_Click(System::Object^  sender, Sys
 		rgForm->Show();			 
 		 }
 private: System::Void ChiSqrButton_Click(System::Object^  sender, System::EventArgs^  e) {
-			  double ep,ep1,ep2,eb,eb1,eb2,es,en,fp,f,a,maxf,minf,df,de2,fp2,a2;
+			  double ep,ep1,ep2,eb,eb1,eb2,de,de3,fp3,a3,en,fp,f,a,maxf,minf,df,de2,fp2,a2;
 				 int i,size;
-				 MatrixXd parameters(4,1);
+				 MatrixXd parameters;
 				 complex<double> d;
 				 complex<double> d2;
 				 complex<double> d1;
+				 int funnum;
+				 funnum=Funnum->Value.ToInt16(Funnum->Value);
 				 chart1->Series[2]->Points->Clear();
 				 chart1->Series[3]->Points->Clear();
 				 chart1->Series[4]->Points->Clear();
@@ -1504,38 +1506,48 @@ private: System::Void ChiSqrButton_Click(System::Object^  sender, System::EventA
 				 minf=CurveSet[Position-1].Dataf[size-1];
 				 maxf=CurveSet[Position-1].Dataf[0];
 				 df=log10(maxf)-log10(minf);
-				 es=(Convert::ToDouble(tbeps->Text));
-				 en=(Convert::ToDouble(tbde1->Text));
+				 en=(Convert::ToDouble(tbeps->Text));
+				 de=(Convert::ToDouble(tbde1->Text));
 				 fp=(Convert::ToDouble(tbf1->Text));
 				 a=(Convert::ToDouble(tba1->Text));
 				 de2=(Convert::ToDouble(tbde2->Text));
 				 fp2=(Convert::ToDouble(tbfp2->Text));
 				 a2=(Convert::ToDouble(tba2->Text));
+				 de3=(Convert::ToDouble(tbde3->Text));
+				 fp3=(Convert::ToDouble(tbfp3->Text));
+				 a3=(Convert::ToDouble(tba3->Text));
+				 if (funnum==1) {
+					 parameters.resize(4,1);
+					 parameters<<en,de,fp,a;
+				 };
+				  if (funnum==2) {
+					 parameters.resize(7,1);
+					 parameters<<en,de,fp,a,de2,fp2,a2;
+				 };
+				   if (funnum==3) {
+					 parameters.resize(10,1);
+					 parameters<<en,de,fp,a,de2,fp2,a2,de3,fp3,a3;
+				 };
 				 for (i=0;i<=100;i++)
 				 {
-					 f=log10(minf)+(i/100.0)*df;
-					 if (!TwoFunCheckBox->Checked) 
-					 {
-						 d=es+en/(1.0+pow(ii*pow(10,f)/fp,1-a));
-					 }
-					 else d=es+en/(1.0+pow(ii*pow(10,f)/fp,1-a))+de2/(1.0+pow(ii*pow(10,f)/fp2,1-a2));
-						 d1=en/(1.0+pow(ii*pow(10,f)/fp,1-a));
-						 d2=de2/(1.0+pow(ii*pow(10,f)/fp2,1-a2));
+					 f=pow(10,log10(minf)+(i/100.0)*df);
+					 d=RelaxationFunction(funnum,f,parameters);
+					 //cout<<"Debug1234 " << parameters<<endl;
 					 ep= std::real(d);
 					 eb=-std::imag(d);
-					 eb1=-std::imag(d1);
-					 eb2=-std::imag(d2);
-					 ep1=std::real(d1)+es+de2;
-					 ep2=std::real(d2)+es;
+					 //eb1=-std::imag(d1);
+					 //eb2=-std::imag(d2);
+					 //ep1=std::real(d1)+en+de2;
+					 //ep2=std::real(d2)+en;
 					 //cout <<i<<" "<<f <<endl;
-					 chart1->Series[2]->Points->AddXY(f,ep);
-					 chart1->Series[3]->Points->AddXY(f,eb);
+					 chart1->Series[2]->Points->AddXY(log10(f),ep);
+					 chart1->Series[3]->Points->AddXY(log10(f),eb);
 					// chart1->Series[4]->Points->AddXY(f,eb1);
-					 if (CurveSet[Position-1].twofunctions) chart1->Series[5]->Points->AddXY(f,eb2);
+					 //if (CurveSet[Position-1].twofunctions) chart1->Series[5]->Points->AddXY(f,eb2);
 					 chart2->Series["Series2"]->Points->AddXY(ep,eb);
-					 if (CurveSet[Position-1].twofunctions) chart2->Series["Series3"]->Points->AddXY(ep1,eb1);
+				/*	 if (CurveSet[Position-1].twofunctions) chart2->Series["Series3"]->Points->AddXY(ep1,eb1);
 					 if (CurveSet[Position-1].twofunctions) chart2->Series["Series4"]->Points->AddXY(ep2,eb2);
-				 }
+				 */}
 		 }
 private: System::Void loadFileToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 			 LoadButton->PerformClick();

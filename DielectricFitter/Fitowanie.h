@@ -323,9 +323,11 @@ std::complex<double> RelaxationFunction(int type,double frequency,const MatrixXd
 	int parsize;
 	d=0;
 	parsize=parameters.rows();
-	if (type==1) d=parameters(0)+parameters(1)/(1.0+pow(ii*frequency/parameters(2),1-parameters(3)));
+	//cout <<"Debug 4321 " <<parameters(0)<<" "<<parameters(1)<<" "<<parameters(2)<<" "<<parameters(3)<<endl;
+	if (type==1)  d=parameters(0)+parameters(1)/(1.0+pow(ii*frequency/parameters(2),1-parameters(3)));
 	if (type==2)  d=DoubleColeDavidson(frequency,parameters);
 	if (type==3)  d=TripleColeDavidson(frequency,parameters);
+	//cout<<d<<endl;
 	return d;
 }
 
