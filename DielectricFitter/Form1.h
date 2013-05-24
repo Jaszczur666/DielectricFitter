@@ -15,7 +15,7 @@ vector<double> Dataf;
 vector<double> Dataep;
 vector<double> Dataeb;
 double temperature;
-double en,de1,fp1,a1,de2,fp2,a2;
+double en,de1,fp1,a1,de2,fp2,a2,de3,fp3,a3;
 bool fitted;
 bool twofunctions;
 };
@@ -1478,7 +1478,10 @@ private: System::Windows::Forms::NumericUpDown^  Funnum;
 				 CurveSet[Position-1].de2=de2;
 				 CurveSet[Position-1].fp2=fp2;
 				 CurveSet[Position-1].a2=a2;
-				 CurveSet[Position-1].twofunctions=false;
+				  CurveSet[Position-1].de3=de3;
+				 CurveSet[Position-1].fp3=fp3;
+				 CurveSet[Position-1].a3=a3;
+				 
 				 ChiSqrButton->PerformClick();
 				 }
 
@@ -1579,6 +1582,9 @@ private: System::Void NextCurveButton_Click(System::Object^  sender, System::Eve
 				 tbde2->Text=CurveSet[Position-1].de2.ToString();
 				 tbfp2->Text=CurveSet[Position-1].fp2.ToString();
 				 tba2->Text=CurveSet[Position-1].a2.ToString();
+				 tbde3->Text=CurveSet[Position-1].de3.ToString();
+				 tbfp3->Text=CurveSet[Position-1].fp3.ToString();
+				 tba3->Text=CurveSet[Position-1].a3.ToString();
 				 ChiSqrButton->PerformClick();
 			 }
 			 size=CurveSet[Position-1].Dataf.size();
@@ -1612,6 +1618,9 @@ private: System::Void PrevCurveButton_Click(System::Object^  sender, System::Eve
 				 tbde2->Text=CurveSet[Position-1].de2.ToString();
 				 tbfp2->Text=CurveSet[Position-1].fp2.ToString();
 				 tba2->Text=CurveSet[Position-1].a2.ToString();
+				 tbde3->Text=CurveSet[Position-1].de3.ToString();
+				 tbfp3->Text=CurveSet[Position-1].fp3.ToString();
+				 tba3->Text=CurveSet[Position-1].a3.ToString("e4");
 				 ChiSqrButton->PerformClick();
 			 }
 			 size=CurveSet[Position-1].Dataf.size();
@@ -1693,10 +1702,17 @@ private: System::Void button7_Click(System::Object^  sender, System::EventArgs^ 
 
 		 }
 private: System::Void saveToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
-			button7->PerformClick();
+			 CultureInfo^ MyCI = gcnew CultureInfo( "en-US",false );
+			 int i,size;
+			 NumberFormatInfo^ nfi = MyCI->NumberFormat;
+			 nfi->NumberDecimalSeparator = ".";
+			 //button7->PerformClick();
+			 size=CurveSet.size();
 			 if (saveFileDialog1->ShowDialog() == ::System::Windows::Forms::DialogResult::OK ){
 				 StreamWriter^ sw = gcnew StreamWriter(saveFileDialog1->FileName);
-				 sw->WriteLine(textBox9->Text);
+				 for (i=0;i<size;i++){
+					 if(CurveSet[i].fitted) sw->WriteLine(CurveSet[i].temperature.ToString("g6",nfi)+" "+CurveSet[i].en.ToString("g6",nfi)+" "+CurveSet[i].de1.ToString("g6",nfi)+" "+CurveSet[i].fp1.ToString("g6",nfi)+" "+CurveSet[i].a1.ToString("g6",nfi)+" "+CurveSet[i].de2.ToString("g6",nfi)+" "+CurveSet[i].fp2.ToString("g6",nfi)+" "+CurveSet[i].a2.ToString("g6",nfi));
+				 }
 				 sw->Close();
 				 cout <<"Fit parameters saved";
 			 }
@@ -1769,7 +1785,7 @@ private: System::Void impedanceToolStripMenuItem_Click(System::Object^  sender, 
 private: System::Void saveTempImpedanceToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 			 complex<double> eps;
 			 complex<double> zs;
-			 			 CultureInfo^ MyCI = gcnew CultureInfo( "en-US",false );
+			 CultureInfo^ MyCI = gcnew CultureInfo( "en-US",false );
 			 NumberFormatInfo^ nfi = MyCI->NumberFormat;
 			 nfi->NumberDecimalSeparator = ".";
 			 if (saveFileDialog1->ShowDialog() == ::System::Windows::Forms::DialogResult::OK ){
