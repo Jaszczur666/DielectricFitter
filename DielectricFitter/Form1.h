@@ -1711,7 +1711,7 @@ private: System::Void saveToolStripMenuItem_Click(System::Object^  sender, Syste
 			 if (saveFileDialog1->ShowDialog() == ::System::Windows::Forms::DialogResult::OK ){
 				 StreamWriter^ sw = gcnew StreamWriter(saveFileDialog1->FileName);
 				 for (i=0;i<size;i++){
-					 if(CurveSet[i].fitted) sw->WriteLine(CurveSet[i].temperature.ToString("g6",nfi)+" "+CurveSet[i].en.ToString("g6",nfi)+" "+CurveSet[i].de1.ToString("g6",nfi)+" "+CurveSet[i].fp1.ToString("g6",nfi)+" "+CurveSet[i].a1.ToString("g6",nfi)+" "+CurveSet[i].de2.ToString("g6",nfi)+" "+CurveSet[i].fp2.ToString("g6",nfi)+" "+CurveSet[i].a2.ToString("g6",nfi));
+					 if(CurveSet[i].fitted) sw->WriteLine(CurveSet[i].temperature.ToString("g6",nfi)+" "+CurveSet[i].en.ToString("g6",nfi)+" "+CurveSet[i].de1.ToString("g6",nfi)+" "+CurveSet[i].fp1.ToString("g6",nfi)+" "+CurveSet[i].a1.ToString("g6",nfi)+" "+CurveSet[i].de2.ToString("g6",nfi)+" "+CurveSet[i].fp2.ToString("g6",nfi)+" "+CurveSet[i].a2.ToString("g6",nfi)+" "+CurveSet[i].de3.ToString("g6",nfi)+" "+CurveSet[i].fp3.ToString("g6",nfi)+" "+CurveSet[i].a3.ToString("g6",nfi));
 				 }
 				 sw->Close();
 				 cout <<"Fit parameters saved";
