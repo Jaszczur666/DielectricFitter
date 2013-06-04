@@ -318,6 +318,13 @@ complex <double> d;
 d=parameters(0)+parameters(1)/(1.0+pow(ii*frequency/parameters(2),1-parameters(3)))+parameters(4)/(1.0+pow(ii*frequency/parameters(5),1-parameters(6)))+parameters(7)/(1.0+pow(ii*frequency/parameters(8),1-parameters(9)));
 return d;
 }
+
+std::complex<double> SimpleColeDavidson(double frequency, double delta, double peakfreq, double alpha){
+complex <double> d;
+d=delta/(1.0+pow(ii*frequency/peakfreq,1-alpha));
+return d;
+}
+
 std::complex<double> RelaxationFunction(int type,double frequency,const MatrixXd &parameters){
 	complex <double> d;
 	int parsize;
