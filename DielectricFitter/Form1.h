@@ -150,6 +150,9 @@ private: System::Windows::Forms::TextBox^  tbde3;
 private: System::Windows::Forms::TextBox^  tbfp3;
 private: System::Windows::Forms::TextBox^  tba3;
 private: System::Windows::Forms::NumericUpDown^  Funnum;
+private: System::Windows::Forms::Label^  label18;
+private: System::Windows::Forms::Button^  nextcrv;
+private: System::Windows::Forms::Button^  prvcrv;
 
 
 
@@ -282,6 +285,9 @@ private: System::Windows::Forms::NumericUpDown^  Funnum;
 			this->PlotButton = (gcnew System::Windows::Forms::Button());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->progressBar1 = (gcnew System::Windows::Forms::ProgressBar());
+			this->label18 = (gcnew System::Windows::Forms::Label());
+			this->nextcrv = (gcnew System::Windows::Forms::Button());
+			this->prvcrv = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->chart1))->BeginInit();
 			this->tabControl1->SuspendLayout();
 			this->tabPage1->SuspendLayout();
@@ -461,15 +467,15 @@ private: System::Windows::Forms::NumericUpDown^  Funnum;
 			// panel2
 			// 
 			this->panel2->Controls->Add(this->Funnum);
+			this->panel2->Controls->Add(this->nextcrv);
 			this->panel2->Controls->Add(this->label17);
+			this->panel2->Controls->Add(this->prvcrv);
 			this->panel2->Controls->Add(this->label16);
 			this->panel2->Controls->Add(this->label15);
 			this->panel2->Controls->Add(this->tbde3);
 			this->panel2->Controls->Add(this->tbfp3);
 			this->panel2->Controls->Add(this->label1);
 			this->panel2->Controls->Add(this->tba3);
-			this->panel2->Controls->Add(this->NextCurveButton);
-			this->panel2->Controls->Add(this->PrevCurveButton);
 			this->panel2->Controls->Add(this->button13);
 			this->panel2->Controls->Add(this->label3);
 			this->panel2->Controls->Add(this->tbeps);
@@ -571,7 +577,7 @@ private: System::Windows::Forms::NumericUpDown^  Funnum;
 			// 
 			// NextCurveButton
 			// 
-			this->NextCurveButton->Location = System::Drawing::Point(56, 408);
+			this->NextCurveButton->Location = System::Drawing::Point(129, 36);
 			this->NextCurveButton->Name = L"NextCurveButton";
 			this->NextCurveButton->Size = System::Drawing::Size(24, 23);
 			this->NextCurveButton->TabIndex = 12;
@@ -581,7 +587,7 @@ private: System::Windows::Forms::NumericUpDown^  Funnum;
 			// 
 			// PrevCurveButton
 			// 
-			this->PrevCurveButton->Location = System::Drawing::Point(26, 408);
+			this->PrevCurveButton->Location = System::Drawing::Point(99, 36);
 			this->PrevCurveButton->Name = L"PrevCurveButton";
 			this->PrevCurveButton->Size = System::Drawing::Size(24, 23);
 			this->PrevCurveButton->TabIndex = 15;
@@ -1311,19 +1317,51 @@ private: System::Windows::Forms::NumericUpDown^  Funnum;
 			this->progressBar1->TabIndex = 29;
 			this->progressBar1->Visible = false;
 			// 
+			// label18
+			// 
+			this->label18->AutoSize = true;
+			this->label18->Location = System::Drawing::Point(159, 41);
+			this->label18->Name = L"label18";
+			this->label18->Size = System::Drawing::Size(13, 13);
+			this->label18->TabIndex = 31;
+			this->label18->Text = L"1";
+			// 
+			// nextcrv
+			// 
+			this->nextcrv->Location = System::Drawing::Point(55, 408);
+			this->nextcrv->Name = L"nextcrv";
+			this->nextcrv->Size = System::Drawing::Size(24, 23);
+			this->nextcrv->TabIndex = 30;
+			this->nextcrv->Text = L">";
+			this->nextcrv->UseVisualStyleBackColor = true;
+			this->nextcrv->Click += gcnew System::EventHandler(this, &Form1::nextcrv_Click);
+			// 
+			// prvcrv
+			// 
+			this->prvcrv->Location = System::Drawing::Point(25, 408);
+			this->prvcrv->Name = L"prvcrv";
+			this->prvcrv->Size = System::Drawing::Size(24, 23);
+			this->prvcrv->TabIndex = 32;
+			this->prvcrv->Text = L"<";
+			this->prvcrv->UseVisualStyleBackColor = true;
+			this->prvcrv->Click += gcnew System::EventHandler(this, &Form1::prvcrv_Click);
+			// 
 			// Form1
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1246, 785);
+			this->Controls->Add(this->label18);
 			this->Controls->Add(this->progressBar1);
 			this->Controls->Add(this->textBox1);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->PlotButton);
 			this->Controls->Add(this->textBox9);
 			this->Controls->Add(this->button7);
+			this->Controls->Add(this->PrevCurveButton);
 			this->Controls->Add(this->tabControl1);
 			this->Controls->Add(this->LoadButton);
+			this->Controls->Add(this->NextCurveButton);
 			this->Controls->Add(this->menuStrip1);
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^  >(resources->GetObject(L"$this.Icon")));
 			this->MainMenuStrip = this->menuStrip1;
@@ -1569,6 +1607,7 @@ private: System::Void NextCurveButton_Click(System::Object^  sender, System::Eve
 			 int i,size;
 			 if (Position<CurveSet.size()) Position++;
 			 label1->Text=Position.ToString()+"/"+CurveSet.size();
+			 label18->Text=Position.ToString()+"/"+CurveSet.size();
 			 this->Text=openFileDialog1->FileNames[Position-1];
 			 chart1->Series[0]->Points->Clear();
 			 chart2->Series["Series1"]->Points->Clear();
@@ -1582,16 +1621,16 @@ private: System::Void NextCurveButton_Click(System::Object^  sender, System::Eve
 			 chart1->Series[3]->Points->Clear();
 			 label2->Text=CurveSet[Position-1].temperature.ToString();
 			 if (CurveSet[Position-1].fitted){
-				 tbeps->Text=CurveSet[Position-1].en.ToString();
-				 tbde1->Text=CurveSet[Position-1].de1.ToString();
-				 tbf1->Text=CurveSet[Position-1].fp1.ToString();
-				 tba1->Text=CurveSet[Position-1].a1.ToString();
-				 tbde2->Text=CurveSet[Position-1].de2.ToString();
-				 tbfp2->Text=CurveSet[Position-1].fp2.ToString();
-				 tba2->Text=CurveSet[Position-1].a2.ToString();
-				 tbde3->Text=CurveSet[Position-1].de3.ToString();
-				 tbfp3->Text=CurveSet[Position-1].fp3.ToString();
-				 tba3->Text=CurveSet[Position-1].a3.ToString();
+				 tbeps->Text=CurveSet[Position-1].en.ToString("g4");
+				 tbde1->Text=CurveSet[Position-1].de1.ToString("g4");
+				 tbf1->Text=CurveSet[Position-1].fp1.ToString("g4");
+				 tba1->Text=CurveSet[Position-1].a1.ToString("g4");
+				 tbde2->Text=CurveSet[Position-1].de2.ToString("g4");
+				 tbfp2->Text=CurveSet[Position-1].fp2.ToString("g4");
+				 tba2->Text=CurveSet[Position-1].a2.ToString("g4");
+				 tbde3->Text=CurveSet[Position-1].de3.ToString("g4");
+				 tbfp3->Text=CurveSet[Position-1].fp3.ToString("g4");
+				 tba3->Text=CurveSet[Position-1].a3.ToString("g4");
 				 ChiSqrButton->PerformClick();
 			 }
 			 size=CurveSet[Position-1].Dataf.size();
@@ -1604,30 +1643,31 @@ private: System::Void NextCurveButton_Click(System::Object^  sender, System::Eve
 			 }
 		 }
 private: System::Void PrevCurveButton_Click(System::Object^  sender, System::EventArgs^  e) {
-			 		 int i,size;
+			 int i,size;
 			 if (Position>1) Position--;
 			 this->Text=openFileDialog1->FileNames[Position-1];
 			 label1->Text=Position.ToString()+"/"+CurveSet.size();
-			  label2->Text=CurveSet[Position-1].temperature.ToString();
+			 label18->Text=Position.ToString()+"/"+CurveSet.size();
+			 label2->Text=CurveSet[Position-1].temperature.ToString();
 			 chart1->Series[0]->Points->Clear();
-			  chart1->Series[4]->Points->Clear();
-				 chart1->Series[5]->Points->Clear();
+			 chart1->Series[4]->Points->Clear();
+			 chart1->Series[5]->Points->Clear();
 			 chart2->Series["Series1"]->Points->Clear();
 			 chart1->Series[1]->Points->Clear();
 			 chart2->Series["Series2"]->Points->Clear();
 			 chart1->Series[2]->Points->Clear();
 			 chart1->Series[3]->Points->Clear();
 			 if (CurveSet[Position-1].fitted){
-				 tbeps->Text=CurveSet[Position-1].en.ToString();
-				 tbde1->Text=CurveSet[Position-1].de1.ToString();
-				 tbf1->Text=CurveSet[Position-1].fp1.ToString();
-				 tba1->Text=CurveSet[Position-1].a1.ToString();
-				 tbde2->Text=CurveSet[Position-1].de2.ToString();
-				 tbfp2->Text=CurveSet[Position-1].fp2.ToString();
-				 tba2->Text=CurveSet[Position-1].a2.ToString();
-				 tbde3->Text=CurveSet[Position-1].de3.ToString();
-				 tbfp3->Text=CurveSet[Position-1].fp3.ToString();
-				 tba3->Text=CurveSet[Position-1].a3.ToString("e4");
+				 tbeps->Text=CurveSet[Position-1].en.ToString("g4");
+				 tbde1->Text=CurveSet[Position-1].de1.ToString("g4");
+				 tbf1->Text=CurveSet[Position-1].fp1.ToString("g6");
+				 tba1->Text=CurveSet[Position-1].a1.ToString("g4");
+				 tbde2->Text=CurveSet[Position-1].de2.ToString("g4");
+				 tbfp2->Text=CurveSet[Position-1].fp2.ToString("g6");
+				 tba2->Text=CurveSet[Position-1].a2.ToString("g4");
+				 tbde3->Text=CurveSet[Position-1].de3.ToString("g4");
+				 tbfp3->Text=CurveSet[Position-1].fp3.ToString("g6");
+				 tba3->Text=CurveSet[Position-1].a3.ToString("g4");
 				 ChiSqrButton->PerformClick();
 			 }
 			 size=CurveSet[Position-1].Dataf.size();
@@ -1920,6 +1960,12 @@ private: System::Void Funnum_ValueChanged(System::Object^  sender, System::Event
 			 }
 		 }
 private: System::Void chart1_Click(System::Object^  sender, System::EventArgs^  e) {
+		 }
+private: System::Void nextcrv_Click(System::Object^  sender, System::EventArgs^  e) {
+			 NextCurveButton->PerformClick();
+		 }
+private: System::Void prvcrv_Click(System::Object^  sender, System::EventArgs^  e) {
+			 PrevCurveButton->PerformClick();
 		 }
 };
 }
