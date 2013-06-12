@@ -153,6 +153,7 @@ private: System::Windows::Forms::NumericUpDown^  Funnum;
 private: System::Windows::Forms::Label^  label18;
 private: System::Windows::Forms::Button^  nextcrv;
 private: System::Windows::Forms::Button^  prvcrv;
+private: System::Windows::Forms::ToolStripMenuItem^  saveAllFilesIntoOneToolStripMenuItem;
 
 
 
@@ -208,15 +209,15 @@ private: System::Windows::Forms::Button^  prvcrv;
 			this->tableLayoutPanel2 = (gcnew System::Windows::Forms::TableLayoutPanel());
 			this->panel2 = (gcnew System::Windows::Forms::Panel());
 			this->Funnum = (gcnew System::Windows::Forms::NumericUpDown());
+			this->nextcrv = (gcnew System::Windows::Forms::Button());
 			this->label17 = (gcnew System::Windows::Forms::Label());
+			this->prvcrv = (gcnew System::Windows::Forms::Button());
 			this->label16 = (gcnew System::Windows::Forms::Label());
 			this->label15 = (gcnew System::Windows::Forms::Label());
 			this->tbde3 = (gcnew System::Windows::Forms::TextBox());
 			this->tbfp3 = (gcnew System::Windows::Forms::TextBox());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->tba3 = (gcnew System::Windows::Forms::TextBox());
-			this->NextCurveButton = (gcnew System::Windows::Forms::Button());
-			this->PrevCurveButton = (gcnew System::Windows::Forms::Button());
 			this->button13 = (gcnew System::Windows::Forms::Button());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->tbeps = (gcnew System::Windows::Forms::TextBox());
@@ -269,6 +270,8 @@ private: System::Windows::Forms::Button^  prvcrv;
 			this->CalcGeomCap = (gcnew System::Windows::Forms::Button());
 			this->textBoxheigth = (gcnew System::Windows::Forms::TextBox());
 			this->textBoxradius = (gcnew System::Windows::Forms::TextBox());
+			this->NextCurveButton = (gcnew System::Windows::Forms::Button());
+			this->PrevCurveButton = (gcnew System::Windows::Forms::Button());
 			this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
 			this->FileToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->loadFileToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
@@ -286,8 +289,7 @@ private: System::Windows::Forms::Button^  prvcrv;
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->progressBar1 = (gcnew System::Windows::Forms::ProgressBar());
 			this->label18 = (gcnew System::Windows::Forms::Label());
-			this->nextcrv = (gcnew System::Windows::Forms::Button());
-			this->prvcrv = (gcnew System::Windows::Forms::Button());
+			this->saveAllFilesIntoOneToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->chart1))->BeginInit();
 			this->tabControl1->SuspendLayout();
 			this->tabPage1->SuspendLayout();
@@ -512,6 +514,16 @@ private: System::Windows::Forms::Button^  prvcrv;
 			this->Funnum->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) {1, 0, 0, 0});
 			this->Funnum->ValueChanged += gcnew System::EventHandler(this, &Form1::Funnum_ValueChanged);
 			// 
+			// nextcrv
+			// 
+			this->nextcrv->Location = System::Drawing::Point(55, 408);
+			this->nextcrv->Name = L"nextcrv";
+			this->nextcrv->Size = System::Drawing::Size(24, 23);
+			this->nextcrv->TabIndex = 30;
+			this->nextcrv->Text = L">";
+			this->nextcrv->UseVisualStyleBackColor = true;
+			this->nextcrv->Click += gcnew System::EventHandler(this, &Form1::nextcrv_Click);
+			// 
 			// label17
 			// 
 			this->label17->AutoSize = true;
@@ -520,6 +532,16 @@ private: System::Windows::Forms::Button^  prvcrv;
 			this->label17->Size = System::Drawing::Size(25, 13);
 			this->label17->TabIndex = 36;
 			this->label17->Text = L"de3";
+			// 
+			// prvcrv
+			// 
+			this->prvcrv->Location = System::Drawing::Point(25, 408);
+			this->prvcrv->Name = L"prvcrv";
+			this->prvcrv->Size = System::Drawing::Size(24, 23);
+			this->prvcrv->TabIndex = 32;
+			this->prvcrv->Text = L"<";
+			this->prvcrv->UseVisualStyleBackColor = true;
+			this->prvcrv->Click += gcnew System::EventHandler(this, &Form1::prvcrv_Click);
 			// 
 			// label16
 			// 
@@ -574,26 +596,6 @@ private: System::Windows::Forms::Button^  prvcrv;
 			this->tba3->Size = System::Drawing::Size(78, 20);
 			this->tba3->TabIndex = 31;
 			this->tba3->Text = L"1";
-			// 
-			// NextCurveButton
-			// 
-			this->NextCurveButton->Location = System::Drawing::Point(129, 36);
-			this->NextCurveButton->Name = L"NextCurveButton";
-			this->NextCurveButton->Size = System::Drawing::Size(24, 23);
-			this->NextCurveButton->TabIndex = 12;
-			this->NextCurveButton->Text = L">";
-			this->NextCurveButton->UseVisualStyleBackColor = true;
-			this->NextCurveButton->Click += gcnew System::EventHandler(this, &Form1::NextCurveButton_Click);
-			// 
-			// PrevCurveButton
-			// 
-			this->PrevCurveButton->Location = System::Drawing::Point(99, 36);
-			this->PrevCurveButton->Name = L"PrevCurveButton";
-			this->PrevCurveButton->Size = System::Drawing::Size(24, 23);
-			this->PrevCurveButton->TabIndex = 15;
-			this->PrevCurveButton->Text = L"<";
-			this->PrevCurveButton->UseVisualStyleBackColor = true;
-			this->PrevCurveButton->Click += gcnew System::EventHandler(this, &Form1::PrevCurveButton_Click);
 			// 
 			// button13
 			// 
@@ -1189,6 +1191,26 @@ private: System::Windows::Forms::Button^  prvcrv;
 			this->textBoxradius->TabIndex = 0;
 			this->textBoxradius->Text = L"3";
 			// 
+			// NextCurveButton
+			// 
+			this->NextCurveButton->Location = System::Drawing::Point(129, 36);
+			this->NextCurveButton->Name = L"NextCurveButton";
+			this->NextCurveButton->Size = System::Drawing::Size(24, 23);
+			this->NextCurveButton->TabIndex = 12;
+			this->NextCurveButton->Text = L">";
+			this->NextCurveButton->UseVisualStyleBackColor = true;
+			this->NextCurveButton->Click += gcnew System::EventHandler(this, &Form1::NextCurveButton_Click);
+			// 
+			// PrevCurveButton
+			// 
+			this->PrevCurveButton->Location = System::Drawing::Point(99, 36);
+			this->PrevCurveButton->Name = L"PrevCurveButton";
+			this->PrevCurveButton->Size = System::Drawing::Size(24, 23);
+			this->PrevCurveButton->TabIndex = 15;
+			this->PrevCurveButton->Text = L"<";
+			this->PrevCurveButton->UseVisualStyleBackColor = true;
+			this->PrevCurveButton->Click += gcnew System::EventHandler(this, &Form1::PrevCurveButton_Click);
+			// 
 			// menuStrip1
 			// 
 			this->menuStrip1->BackColor = System::Drawing::SystemColors::Control;
@@ -1203,9 +1225,9 @@ private: System::Windows::Forms::Button^  prvcrv;
 			// 
 			// FileToolStripMenuItem
 			// 
-			this->FileToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(6) {this->loadFileToolStripMenuItem, 
-				this->writeTemperatureDependenciesToolStripMenuItem, this->saveToolStripMenuItem, this->saveTempImpedanceToolStripMenuItem, this->impedanceToolStripMenuItem, 
-				this->exitToolStripMenuItem});
+			this->FileToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(7) {this->loadFileToolStripMenuItem, 
+				this->writeTemperatureDependenciesToolStripMenuItem, this->saveToolStripMenuItem, this->saveAllFilesIntoOneToolStripMenuItem, 
+				this->saveTempImpedanceToolStripMenuItem, this->impedanceToolStripMenuItem, this->exitToolStripMenuItem});
 			this->FileToolStripMenuItem->Name = L"FileToolStripMenuItem";
 			this->FileToolStripMenuItem->Size = System::Drawing::Size(35, 20);
 			this->FileToolStripMenuItem->Text = L"File";
@@ -1326,25 +1348,12 @@ private: System::Windows::Forms::Button^  prvcrv;
 			this->label18->TabIndex = 31;
 			this->label18->Text = L"1";
 			// 
-			// nextcrv
+			// saveAllFilesIntoOneToolStripMenuItem
 			// 
-			this->nextcrv->Location = System::Drawing::Point(55, 408);
-			this->nextcrv->Name = L"nextcrv";
-			this->nextcrv->Size = System::Drawing::Size(24, 23);
-			this->nextcrv->TabIndex = 30;
-			this->nextcrv->Text = L">";
-			this->nextcrv->UseVisualStyleBackColor = true;
-			this->nextcrv->Click += gcnew System::EventHandler(this, &Form1::nextcrv_Click);
-			// 
-			// prvcrv
-			// 
-			this->prvcrv->Location = System::Drawing::Point(25, 408);
-			this->prvcrv->Name = L"prvcrv";
-			this->prvcrv->Size = System::Drawing::Size(24, 23);
-			this->prvcrv->TabIndex = 32;
-			this->prvcrv->Text = L"<";
-			this->prvcrv->UseVisualStyleBackColor = true;
-			this->prvcrv->Click += gcnew System::EventHandler(this, &Form1::prvcrv_Click);
+			this->saveAllFilesIntoOneToolStripMenuItem->Name = L"saveAllFilesIntoOneToolStripMenuItem";
+			this->saveAllFilesIntoOneToolStripMenuItem->Size = System::Drawing::Size(244, 22);
+			this->saveAllFilesIntoOneToolStripMenuItem->Text = L"Save All files into one";
+			this->saveAllFilesIntoOneToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::saveAllFilesIntoOneToolStripMenuItem_Click);
 			// 
 			// Form1
 			// 
@@ -1448,7 +1457,7 @@ private: System::Windows::Forms::Button^  prvcrv;
 	private: System::Void FitButton_Click(System::Object^  sender, System::EventArgs^  e) {
 				 MatrixXd parameters(4,1);
 				 complex<double> d;
-				 double en,de,fp,a,de2,fp2,a2,de3,fp3,a3,pom;
+				 double en,de,fp,a,de2,fp2,a2,de3,fp3,a3;
 				 int funnum;
 				 funnum=Funnum->Value.ToInt32(Funnum->Value);
 				 chart1->Series[2]->Points->Clear();
@@ -1529,7 +1538,7 @@ private: System::Void abooutToolStripMenuItem_Click(System::Object^  sender, Sys
 		rgForm->Show();			 
 		 }
 private: System::Void ChiSqrButton_Click(System::Object^  sender, System::EventArgs^  e) {
-			  double ep,ep1,ep2,eb,eb1,eb2,de,de3,fp3,a3,en,fp,f,a,maxf,minf,df,de2,fp2,a2;
+			  double ep,eb,eb1,eb2,de,de3,fp3,a3,en,fp,f,a,maxf,minf,df,de2,fp2,a2;
 				 int i,size;
 				 MatrixXd parameters;
 				 complex<double> d;
@@ -1737,7 +1746,7 @@ private: System::Void button7_Click(System::Object^  sender, System::EventArgs^ 
 			 MatrixXd param(4,1);
 			  param<<2,80,45e3,1;
 			 MatrixXd h,j;
-			 Double chi2;
+//			 Double chi2;
 			//CalculateHessianGeneral(CurveSet[0].Dataf,CurveSet[0].Dataep,CurveSet[0].Dataeb,1,param,h,j,chi2);
 			 //temperature=CurveSet[Position-1].temperature;
 			 //cout << temperature;
@@ -1966,6 +1975,26 @@ private: System::Void nextcrv_Click(System::Object^  sender, System::EventArgs^ 
 		 }
 private: System::Void prvcrv_Click(System::Object^  sender, System::EventArgs^  e) {
 			 PrevCurveButton->PerformClick();
+		 }
+private: System::Void saveAllFilesIntoOneToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+			 CultureInfo^ MyCI = gcnew CultureInfo( "en-US",false );
+			 NumberFormatInfo^ nfi = MyCI->NumberFormat;
+			 nfi->NumberDecimalSeparator = ".";
+			 if (saveFileDialog1->ShowDialog() == ::System::Windows::Forms::DialogResult::OK ){
+				 StreamWriter^ sw = gcnew StreamWriter(saveFileDialog1->FileName+".dat");
+				 size_t  i,j;
+				 double ep,eb;
+				 for (i=0;i<CurveSet[0].Dataf.size();i++)
+				 {
+					 for (j=0;j<CurveSet.size();j++){
+						 ep=CurveSet[j].Dataep[i];
+						 eb=CurveSet[j].Dataeb[i];
+						 sw->WriteLine(j.ToString("g5",nfi)+" "+CurveSet[j].temperature.ToString("g5",nfi)+" "+CurveSet[j].Dataf[i].ToString("g6",nfi)+" "+ep.ToString("g6",nfi)+" "+(-eb).ToString("g6",nfi));
+					 }
+				 }
+				 sw->Close();
+			 }
+
 		 }
 };
 }
