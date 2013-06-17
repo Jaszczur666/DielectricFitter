@@ -350,6 +350,18 @@ void CalculateResidueGeneral(int type,double f,double ep,double eb, MatrixXd par
 	rb=eb-peb;
 }
 
+void CalculateResidueEntropyGeneral(int type,double f,double ep,double eb, MatrixXd parameters,double &rp,double&rb)
+{
+	double pep,peb;
+	complex <double> d;
+	d=RelaxationFunction(type,f,parameters);
+	pep=std::real(d);
+	peb=-std::imag(d);
+	rp=ep-pep-ep*log10(abs(ep/pep));
+	rb=eb-peb;
+	cout <<"Residue " <<ep<<" "<<pep<<" "<<eb<<" "<<peb<<" "<< rp<<" " << rb<<endl;
+}
+
 void CalculateHessianGeneral(vector<double> dataf,vector<double> dataep,vector<double> dataeb, int type, MatrixXd parameters,MatrixXd &Hess, MatrixXd &Grad, double &chi2)
 {
 	int i,j,size,parsize;
@@ -382,6 +394,39 @@ void CalculateHessianGeneral(vector<double> dataf,vector<double> dataep,vector<d
 	Grad=Jaco.transpose()*Res;
 }
 
+void CalculateHessianEntropyGeneral(vector<double> dataf,vector<double> dataep,vector<double> dataeb, int type, MatrixXd parameters,MatrixXd &Hess, MatrixXd &Grad, double &chi2)
+{
+	int i,j,size,parsize;
+	MatrixXd Hessian;
+	double rp,rb,rsp,rsb;
+	double eps;
+	size=dataf.size();
+	parsize=parameters.rows();
+	MatrixXd delta(parsize,1);
+	MatrixXd Jaco(2*size,parsize);
+	MatrixXd Res(2*size,1);
+	complex <double> d;
+	eps=1e-7;
+	chi2=0;
+	cout << "Rheingold " << parameters<<endl<<"_____________"<<endl;
+	for (i=0;i<=size-1;i++)
+	{
+		CalculateResidueEntropyGeneral(type,dataf[i],dataep[i],dataeb[i],parameters,rp,rb);
+		for (j=0;j<parsize;j++){
+		delta=MatrixXd::Zero(parsize,1);
+		delta(j,0)=eps;
+		CalculateResidueEntropyGeneral(type,dataf[i],dataep[i],dataeb[i],parameters+delta,rsp,rsb);
+		Jaco(i*2,j)=(rsp-rp)/eps;
+		Jaco(i*2+1,j)=(rsb-rb)/eps;
+		}
+		Res(i*2,0)=rp;
+		Res(i*2+1,0)=rb;
+		chi2=chi2+0.5*(rp*rp+rb*rb);
+	}
+	Hess=Jaco.transpose()*Jaco;
+	Grad=Jaco.transpose()*Res;
+}
+
 double chi2MatGeneral( vector<double>& dataf,vector<double>& dataep,vector<double>& dataeb,int type,MatrixXd parameters)
 {
 	complex <double> d;
@@ -395,6 +440,25 @@ double chi2MatGeneral( vector<double>& dataf,vector<double>& dataep,vector<doubl
 		ep= std::real(d);
 		eb=-std::imag(d);
 		chi2temp=chi2temp+pow(dataep[i]-ep,2.0)+pow(dataeb[i]+eb,2.0);
+	}
+	return chi2temp/2.0;
+}
+
+double chi2MatEntropyGeneral( vector<double>& dataf,vector<double>& dataep,vector<double>& dataeb,int type,MatrixXd parameters)
+{
+	complex <double> d;
+	int i, size;
+	double ep,eb;
+	double chi2temp=0.0;
+	size=dataf.size();
+	for (i=0;i<=size-1;i++)
+	{
+		d=RelaxationFunction(type,dataf[i],parameters);
+		ep= std::real(d);
+		eb=std::imag(d);
+		chi2temp=chi2temp+pow(dataep[i]-ep-dataep[i]*log10(abs(dataep[i]/ep)),2.0)+pow(dataeb[i]-eb-dataeb[i]*log10(abs(dataeb[i]/eb)),2.0);
+	    cout <<i<<" "<<type << " "<<chi2temp<<" "<<" "<<ep<<" "<<dataep[i]<<endl;
+		cout <<"chi2matentgen Parameters --------------------"<<endl <<parameters<<endl<<"--------------------------------"<<endl;
 	}
 	return chi2temp/2.0;
 }
@@ -426,13 +490,52 @@ void FitLMGeneral(vector<double> Dataf, vector<double>Dataep, vector<double> Dat
 		{
 			lambda=lambda/8.0;
 		}
-		
 	}
 	size=parameters.rows();
 	size2=Dataf.size();
 	error=(Hessiandiag.inverse().diagonal()*chi2/(size2-size));
 	for (i=0;i<size;i++) error(i)=sqrt(error(i));
 	//cout<<error<<endl<< "----------------------------------------------------- "<<endl;
+	cout <<chi2<<endl;
+	end=clock();
+	cout <<(double(end - start) / CLOCKS_PER_SEC) <<" s"<<endl;//<<" "<< CLOCKS_PER_SEC<<endl;
+	return;
+}
+
+void FitLMEntropyGeneral(vector<double> Dataf, vector<double>Dataep, vector<double> Dataeb,int type,MatrixXd &parameters)
+{
+	int i,size,size2;
+	double lambda;
+	double chi2,chi2n;
+	MatrixXd Hessian,Hessiandiag, Grad, newParams,error;
+	lambda=1/1024.0;
+	chi2=0;
+	clock_t start, end;
+	start=clock();
+	for(i=1;i<2;i++)
+	{
+		CalculateHessianEntropyGeneral(Dataf,Dataep,Dataeb,type,parameters, Hessian, Grad,chi2);
+		Hessiandiag=Hessian.diagonal().asDiagonal();
+		cout<<"Rosenrot " <<parameters<<endl<<"____________________"<<endl;
+		newParams=parameters-((Hessian+lambda*Hessiandiag).inverse()*Grad);
+		chi2n=chi2MatEntropyGeneral(Dataf,Dataep,Dataeb,type,newParams);
+		cout <<"Sigurd "<<endl <<newParams<<endl<<"________________________"<<endl;
+		//cout <<chi2n<< " Lambda =" <<lambda<<endl;
+		if (chi2n<chi2){
+			parameters=newParams;
+			lambda=lambda*8;
+		}
+		else
+		{
+			lambda=lambda/8.0;
+		}
+		
+	}
+	
+	size=parameters.rows();
+	size2=Dataf.size();
+	error=(Hessiandiag.inverse().diagonal()*chi2/(size2-size));
+	for (i=0;i<size;i++) error(i)=sqrt(error(i));
 	cout <<chi2<<endl;
 	end=clock();
 	cout <<(double(end - start) / CLOCKS_PER_SEC) <<" s"<<endl;//<<" "<< CLOCKS_PER_SEC<<endl;

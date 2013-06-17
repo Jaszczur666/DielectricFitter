@@ -154,6 +154,7 @@ private: System::Windows::Forms::Label^  label18;
 private: System::Windows::Forms::Button^  nextcrv;
 private: System::Windows::Forms::Button^  prvcrv;
 private: System::Windows::Forms::ToolStripMenuItem^  saveAllFilesIntoOneToolStripMenuItem;
+private: System::Windows::Forms::Button^  fitentropbutton;
 
 
 
@@ -277,6 +278,7 @@ private: System::Windows::Forms::ToolStripMenuItem^  saveAllFilesIntoOneToolStri
 			this->loadFileToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->writeTemperatureDependenciesToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->saveToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->saveAllFilesIntoOneToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->saveTempImpedanceToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->impedanceToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->exitToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
@@ -289,7 +291,7 @@ private: System::Windows::Forms::ToolStripMenuItem^  saveAllFilesIntoOneToolStri
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->progressBar1 = (gcnew System::Windows::Forms::ProgressBar());
 			this->label18 = (gcnew System::Windows::Forms::Label());
-			this->saveAllFilesIntoOneToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->fitentropbutton = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->chart1))->BeginInit();
 			this->tabControl1->SuspendLayout();
 			this->tabPage1->SuspendLayout();
@@ -468,6 +470,7 @@ private: System::Windows::Forms::ToolStripMenuItem^  saveAllFilesIntoOneToolStri
 			// 
 			// panel2
 			// 
+			this->panel2->Controls->Add(this->fitentropbutton);
 			this->panel2->Controls->Add(this->Funnum);
 			this->panel2->Controls->Add(this->nextcrv);
 			this->panel2->Controls->Add(this->label17);
@@ -599,7 +602,7 @@ private: System::Windows::Forms::ToolStripMenuItem^  saveAllFilesIntoOneToolStri
 			// 
 			// button13
 			// 
-			this->button13->Location = System::Drawing::Point(17, 466);
+			this->button13->Location = System::Drawing::Point(17, 506);
 			this->button13->Name = L"button13";
 			this->button13->Size = System::Drawing::Size(32, 23);
 			this->button13->TabIndex = 30;
@@ -887,6 +890,7 @@ private: System::Windows::Forms::ToolStripMenuItem^  saveAllFilesIntoOneToolStri
 			this->chart4->Size = System::Drawing::Size(1232, 688);
 			this->chart4->TabIndex = 0;
 			this->chart4->Text = L"chart4";
+			this->chart4->Click += gcnew System::EventHandler(this, &Form1::chart4_Click);
 			// 
 			// tabPage5
 			// 
@@ -1253,6 +1257,13 @@ private: System::Windows::Forms::ToolStripMenuItem^  saveAllFilesIntoOneToolStri
 			this->saveToolStripMenuItem->Text = L"Save Fit Parameters";
 			this->saveToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::saveToolStripMenuItem_Click);
 			// 
+			// saveAllFilesIntoOneToolStripMenuItem
+			// 
+			this->saveAllFilesIntoOneToolStripMenuItem->Name = L"saveAllFilesIntoOneToolStripMenuItem";
+			this->saveAllFilesIntoOneToolStripMenuItem->Size = System::Drawing::Size(244, 22);
+			this->saveAllFilesIntoOneToolStripMenuItem->Text = L"Save All files into one";
+			this->saveAllFilesIntoOneToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::saveAllFilesIntoOneToolStripMenuItem_Click);
+			// 
 			// saveTempImpedanceToolStripMenuItem
 			// 
 			this->saveTempImpedanceToolStripMenuItem->Name = L"saveTempImpedanceToolStripMenuItem";
@@ -1348,12 +1359,15 @@ private: System::Windows::Forms::ToolStripMenuItem^  saveAllFilesIntoOneToolStri
 			this->label18->TabIndex = 31;
 			this->label18->Text = L"1";
 			// 
-			// saveAllFilesIntoOneToolStripMenuItem
+			// fitentropbutton
 			// 
-			this->saveAllFilesIntoOneToolStripMenuItem->Name = L"saveAllFilesIntoOneToolStripMenuItem";
-			this->saveAllFilesIntoOneToolStripMenuItem->Size = System::Drawing::Size(244, 22);
-			this->saveAllFilesIntoOneToolStripMenuItem->Text = L"Save All files into one";
-			this->saveAllFilesIntoOneToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::saveAllFilesIntoOneToolStripMenuItem_Click);
+			this->fitentropbutton->Location = System::Drawing::Point(17, 466);
+			this->fitentropbutton->Name = L"fitentropbutton";
+			this->fitentropbutton->Size = System::Drawing::Size(75, 23);
+			this->fitentropbutton->TabIndex = 38;
+			this->fitentropbutton->Text = L"Fit entrop";
+			this->fitentropbutton->UseVisualStyleBackColor = true;
+			this->fitentropbutton->Click += gcnew System::EventHandler(this, &Form1::fitentropbutton_Click);
 			// 
 			// Form1
 			// 
@@ -1995,6 +2009,89 @@ private: System::Void saveAllFilesIntoOneToolStripMenuItem_Click(System::Object^
 				 sw->Close();
 			 }
 
+		 }
+private: System::Void chart4_Click(System::Object^  sender, System::EventArgs^  e) {
+		 }
+private: System::Void fitentropbutton_Click(System::Object^  sender, System::EventArgs^  e) {
+			 		 MatrixXd parameters(4,1);
+				 complex<double> d;
+				 double en,de,fp,a,de2,fp2,a2,de3,fp3,a3;
+				 int funnum;
+				 funnum=Funnum->Value.ToInt32(Funnum->Value);
+				 chart1->Series[2]->Points->Clear();
+				 chart1->Series[3]->Points->Clear();
+				 chart2->Series["Series2"]->Points->Clear();
+				 en=(Convert::ToDouble(tbeps->Text));
+				 de=(Convert::ToDouble(tbde1->Text));
+				 fp=(Convert::ToDouble(tbf1->Text));
+				 a=(Convert::ToDouble(tba1->Text));
+				 de2=(Convert::ToDouble(tbde2->Text));
+				 fp2=(Convert::ToDouble(tbfp2->Text));
+				 a2=(Convert::ToDouble(tba2->Text));
+				 de3=(Convert::ToDouble(tbde3->Text));
+				 fp3=(Convert::ToDouble(tbfp3->Text));
+				 a3=(Convert::ToDouble(tba3->Text));
+				 if (funnum==1){
+					 parameters<<en,de,fp,a;
+				 };
+				 if (funnum==2){
+					 parameters.resize(7,1);
+					 parameters<<en,de,fp,a,de2,fp2,a2;
+				 };
+				 if (funnum==3){
+					 parameters.resize(10,1);
+					 parameters<<en,de,fp,a,de2,fp2,a2,de3,fp3,a3;
+				 };
+				// cout << "_____________________________________________________________"<<endl;
+				// cout <<parameters<<endl;
+				// cout << "-------------------------------------------------------------"<<endl;
+				 FitLMEntropyGeneral(CurveSet[Position-1].Dataf,CurveSet[Position-1].Dataep,CurveSet[Position-1].Dataeb,funnum,parameters);
+				 en=parameters(0,0);
+				 de=parameters(1,0);
+				 fp=parameters(2,0);
+				 a=parameters(3,0);
+				 de2=0;
+				 fp2=0;
+				 a2=0;
+				 de3=0;
+				 fp3=0;
+				 a3=0;
+				 if (Funnum->Value==2){
+					 de2=parameters(4,0);
+					 fp2=parameters(5,0);
+					 a2=parameters(6,0);
+				 };
+				  if (Funnum->Value==3){
+					   de2=parameters(4,0);
+					 fp2=parameters(5,0);
+					 a2=parameters(6,0);
+					 de3=parameters(7,0);
+					 fp3=parameters(8,0);
+					 a3=parameters(9,0);
+				 };
+				 tbeps->Text=en.ToString();
+				 tbde1->Text=de.ToString();
+				 tbf1->Text=fp.ToString();
+				 tba1->Text=a.ToString();
+				 tbde2->Text=de2.ToString();
+				 tbfp2->Text=fp2.ToString();
+				 tba2->Text=a2.ToString();
+				  tbde3->Text=de3.ToString();
+				 tbfp3->Text=fp3.ToString();
+				 tba3->Text=a3.ToString();
+				 CurveSet[Position-1].en=en;
+				 CurveSet[Position-1].de1=de;
+				 CurveSet[Position-1].fp1=fp;
+				 CurveSet[Position-1].a1=a;
+				 CurveSet[Position-1].fitted=true;
+				 CurveSet[Position-1].de2=de2;
+				 CurveSet[Position-1].fp2=fp2;
+				 CurveSet[Position-1].a2=a2;
+				  CurveSet[Position-1].de3=de3;
+				 CurveSet[Position-1].fp3=fp3;
+				 CurveSet[Position-1].a3=a3;
+				 
+				 ChiSqrButton->PerformClick();
 		 }
 };
 }
