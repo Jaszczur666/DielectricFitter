@@ -484,11 +484,11 @@ void FitLMGeneral(vector<double> Dataf, vector<double>Dataep, vector<double> Dat
 		chi2n=chi2MatGeneral(Dataf,Dataep,Dataeb,type,newParams);
 		if (chi2n<chi2){
 			parameters=newParams;
-			lambda=lambda*8;
+			lambda=lambda*sqrt(2.0);
 		}
 		else
 		{
-			lambda=lambda/8.0;
+			lambda=lambda/sqrt(2.0);
 		}
 	}
 	size=parameters.rows();
