@@ -155,6 +155,7 @@ private: System::Windows::Forms::Button^  nextcrv;
 private: System::Windows::Forms::Button^  prvcrv;
 private: System::Windows::Forms::ToolStripMenuItem^  saveAllFilesIntoOneToolStripMenuItem;
 private: System::Windows::Forms::Button^  fitentropbutton;
+private: System::Windows::Forms::Button^  Findmaxbutton;
 
 
 
@@ -209,6 +210,7 @@ private: System::Windows::Forms::Button^  fitentropbutton;
 			this->tabPage1 = (gcnew System::Windows::Forms::TabPage());
 			this->tableLayoutPanel2 = (gcnew System::Windows::Forms::TableLayoutPanel());
 			this->panel2 = (gcnew System::Windows::Forms::Panel());
+			this->fitentropbutton = (gcnew System::Windows::Forms::Button());
 			this->Funnum = (gcnew System::Windows::Forms::NumericUpDown());
 			this->nextcrv = (gcnew System::Windows::Forms::Button());
 			this->label17 = (gcnew System::Windows::Forms::Label());
@@ -291,7 +293,7 @@ private: System::Windows::Forms::Button^  fitentropbutton;
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->progressBar1 = (gcnew System::Windows::Forms::ProgressBar());
 			this->label18 = (gcnew System::Windows::Forms::Label());
-			this->fitentropbutton = (gcnew System::Windows::Forms::Button());
+			this->Findmaxbutton = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->chart1))->BeginInit();
 			this->tabControl1->SuspendLayout();
 			this->tabPage1->SuspendLayout();
@@ -505,6 +507,16 @@ private: System::Windows::Forms::Button^  fitentropbutton;
 			this->panel2->Name = L"panel2";
 			this->panel2->Size = System::Drawing::Size(134, 682);
 			this->panel2->TabIndex = 1;
+			// 
+			// fitentropbutton
+			// 
+			this->fitentropbutton->Location = System::Drawing::Point(17, 466);
+			this->fitentropbutton->Name = L"fitentropbutton";
+			this->fitentropbutton->Size = System::Drawing::Size(75, 23);
+			this->fitentropbutton->TabIndex = 38;
+			this->fitentropbutton->Text = L"Fit entrop";
+			this->fitentropbutton->UseVisualStyleBackColor = true;
+			this->fitentropbutton->Click += gcnew System::EventHandler(this, &Form1::fitentropbutton_Click);
 			// 
 			// Funnum
 			// 
@@ -1359,21 +1371,22 @@ private: System::Windows::Forms::Button^  fitentropbutton;
 			this->label18->TabIndex = 31;
 			this->label18->Text = L"1";
 			// 
-			// fitentropbutton
+			// Findmaxbutton
 			// 
-			this->fitentropbutton->Location = System::Drawing::Point(17, 466);
-			this->fitentropbutton->Name = L"fitentropbutton";
-			this->fitentropbutton->Size = System::Drawing::Size(75, 23);
-			this->fitentropbutton->TabIndex = 38;
-			this->fitentropbutton->Text = L"Fit entrop";
-			this->fitentropbutton->UseVisualStyleBackColor = true;
-			this->fitentropbutton->Click += gcnew System::EventHandler(this, &Form1::fitentropbutton_Click);
+			this->Findmaxbutton->Location = System::Drawing::Point(568, 54);
+			this->Findmaxbutton->Name = L"Findmaxbutton";
+			this->Findmaxbutton->Size = System::Drawing::Size(58, 23);
+			this->Findmaxbutton->TabIndex = 32;
+			this->Findmaxbutton->Text = L"Find maxima";
+			this->Findmaxbutton->UseVisualStyleBackColor = true;
+			this->Findmaxbutton->Click += gcnew System::EventHandler(this, &Form1::Findmaxbutton_Click);
 			// 
 			// Form1
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1246, 785);
+			this->Controls->Add(this->Findmaxbutton);
 			this->Controls->Add(this->label18);
 			this->Controls->Add(this->progressBar1);
 			this->Controls->Add(this->textBox1);
@@ -2093,6 +2106,30 @@ private: System::Void fitentropbutton_Click(System::Object^  sender, System::Eve
 				 
 				 ChiSqrButton->PerformClick();
 		 }
+private: System::Void Findmaxbutton_Click(System::Object^  sender, System::EventArgs^  e) {
+			 int size,size2;
+			 double epmax,ebmax,tepmax,tebmax;
+			 size=CurveSet.size();
+			 size2=CurveSet[0].Dataf.size();
+			 for (int j=0;j<size2;j++)
+			 {
+			 //cout<<CurveSet[0].Dataf[j]<<endl;
+			 tebmax=CurveSet[0].temperature;
+			 tepmax=CurveSet[0].temperature;
+			 for (int i=1;i<size-1;i++){
+			/*	 if ((CurveSet[i].Dataep[j]>CurveSet[i-1].Dataep[j])&&(CurveSet[i].Dataep[j]>CurveSet[i+1].Dataep[j])) {
+					 cout <<"Temp= "<<CurveSet[i].temperature<<" "<<endl;
+				 }*/
+				 if (CurveSet[i].Dataep[j]>epmax) {
+					 epmax=CurveSet[i].Dataep[j];
+					 tepmax=CurveSet[i].temperature;
+				 }
+
+			 }
+			 				 cout<<CurveSet[0].Dataf[j] <<" "<<epmax<<" "<<tepmax<<endl;
+			 }
+		 }
 };
 }
+
 
