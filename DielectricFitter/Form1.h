@@ -2111,17 +2111,22 @@ private: System::Void Findmaxbutton_Click(System::Object^  sender, System::Event
 			 double epmax,ebmax,tepmax,tebmax;
 			 size=CurveSet.size();
 			 size2=CurveSet[0].Dataf.size();
+			 vector<double> tmpavg;
 			 for (int j=0;j<size2;j++)
 			 {
 			 //cout<<CurveSet[0].Dataf[j]<<endl;
 			 tebmax=CurveSet[0].temperature;
 			 tepmax=CurveSet[0].temperature;
-			 for (int i=1;i<size-1;i++){
+			 tmpavg.clear();
+			 for (int i=0;i<size;i++) tmpavg.push_back(CurveSet[i].Dataep[j]);
+			 for (int i=5;i<size-5;i++) tmpavg[i]=(tmpavg[i-5]+tmpavg[i-4]+tmpavg[i-3]+tmpavg[i-2]+tmpavg[i-1]+tmpavg[i]+tmpavg[i+1]+tmpavg[i+2]+tmpavg[i+3]+tmpavg[i+4]+tmpavg[i+5])/11.0;
+			 epmax=CurveSet[0].Dataep[j];
+			 for (int i=0;i<size;i++){
 			/*	 if ((CurveSet[i].Dataep[j]>CurveSet[i-1].Dataep[j])&&(CurveSet[i].Dataep[j]>CurveSet[i+1].Dataep[j])) {
 					 cout <<"Temp= "<<CurveSet[i].temperature<<" "<<endl;
 				 }*/
-				 if (CurveSet[i].Dataep[j]>epmax) {
-					 epmax=CurveSet[i].Dataep[j];
+				  if (tmpavg[i]>epmax) { //CurveSet[i].Dataep[j]>epmax
+					 epmax=tmpavg[i];
 					 tepmax=CurveSet[i].temperature;
 				 }
 
