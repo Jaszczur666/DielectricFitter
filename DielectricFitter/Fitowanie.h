@@ -541,3 +541,22 @@ void FitLMEntropyGeneral(vector<double> Dataf, vector<double>Dataep, vector<doub
 	cout <<(double(end - start) / CLOCKS_PER_SEC) <<" s"<<endl;//<<" "<< CLOCKS_PER_SEC<<endl;
 	return;
 }
+
+void linearFit(vector <double>x, vector <double>y,double &a,double &b,double &r2){
+	int size;
+	double s,sx,sy,sxx,sxy,syy,d;
+	size=x.size();
+	s=size;
+	sx=sy=sxx=sxy=syy=d=0;
+	for (int i=0;i<size;i++){
+		sx+=x[i];
+		sy+=y[i];
+		sxx+=x[i]*x[i];
+		sxy+=x[i]*y[i];
+	syy+=y[i]*y[i];
+	}
+	d=s*sxx-sx*sx;
+	a=(s*sxy-sx*sy)/d;
+	b=(sxx*sy-sx*sxy)/d;
+	r2=(s*sxy-sx*sy)/(sqrt((s*sxx-sx*sx)*(s*syy-sy*sy)));
+}

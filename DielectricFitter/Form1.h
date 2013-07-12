@@ -163,6 +163,7 @@ private: System::Windows::Forms::Button^  Findmaxbutton;
 
 
 
+
 	private:
 		/// <summary>
 		/// Required designer variable.
@@ -2114,26 +2115,27 @@ private: System::Void Findmaxbutton_Click(System::Object^  sender, System::Event
 			 vector<double> tmpavg;
 			 for (int j=0;j<size2;j++)
 			 {
-			 //cout<<CurveSet[0].Dataf[j]<<endl;
-			 tebmax=CurveSet[0].temperature;
-			 tepmax=CurveSet[0].temperature;
-			 tmpavg.clear();
-			 for (int i=0;i<size;i++) tmpavg.push_back(CurveSet[i].Dataep[j]);
-			 for (int i=5;i<size-5;i++) tmpavg[i]=(tmpavg[i-5]+tmpavg[i-4]+tmpavg[i-3]+tmpavg[i-2]+tmpavg[i-1]+tmpavg[i]+tmpavg[i+1]+tmpavg[i+2]+tmpavg[i+3]+tmpavg[i+4]+tmpavg[i+5])/11.0;
-			 epmax=CurveSet[0].Dataep[j];
-			 for (int i=0;i<size;i++){
-			/*	 if ((CurveSet[i].Dataep[j]>CurveSet[i-1].Dataep[j])&&(CurveSet[i].Dataep[j]>CurveSet[i+1].Dataep[j])) {
+				 //cout<<CurveSet[0].Dataf[j]<<endl;
+				 tebmax=CurveSet[0].temperature;
+				 tepmax=CurveSet[0].temperature;
+				 tmpavg.clear();
+				 for (int i=0;i<size;i++) tmpavg.push_back(CurveSet[i].Dataep[j]);
+				 for (int i=5;i<size-5;i++) tmpavg[i]=(tmpavg[i-5]+tmpavg[i-4]+tmpavg[i-3]+tmpavg[i-2]+tmpavg[i-1]+tmpavg[i]+tmpavg[i+1]+tmpavg[i+2]+tmpavg[i+3]+tmpavg[i+4]+tmpavg[i+5])/11.0;
+				 epmax=CurveSet[0].Dataep[j];
+				 for (int i=0;i<size;i++){
+					 /*	 if ((CurveSet[i].Dataep[j]>CurveSet[i-1].Dataep[j])&&(CurveSet[i].Dataep[j]>CurveSet[i+1].Dataep[j])) {
 					 cout <<"Temp= "<<CurveSet[i].temperature<<" "<<endl;
-				 }*/
-				  if (tmpavg[i]>epmax) { //CurveSet[i].Dataep[j]>epmax
-					 epmax=tmpavg[i];
-					 tepmax=CurveSet[i].temperature;
-				 }
+					 }*/
+					 if (tmpavg[i]>epmax) { //CurveSet[i].Dataep[j]>epmax
+						 epmax=tmpavg[i];
+						 tepmax=CurveSet[i].temperature;
+					 }
 
-			 }
-			 				 cout<<CurveSet[0].Dataf[j] <<" "<<epmax<<" "<<tepmax<<endl;
+				 }
+				 cout<<CurveSet[0].Dataf[j] <<" "<<epmax<<" "<<tepmax<<endl;
 			 }
 		 }
+
 };
 }
 
