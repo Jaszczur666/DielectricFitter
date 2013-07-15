@@ -156,6 +156,7 @@ private: System::Windows::Forms::Button^  prvcrv;
 private: System::Windows::Forms::ToolStripMenuItem^  saveAllFilesIntoOneToolStripMenuItem;
 private: System::Windows::Forms::Button^  fitentropbutton;
 private: System::Windows::Forms::Button^  Findmaxbutton;
+private: System::Windows::Forms::Button^  removelowerButton;
 
 
 
@@ -295,6 +296,7 @@ private: System::Windows::Forms::Button^  Findmaxbutton;
 			this->progressBar1 = (gcnew System::Windows::Forms::ProgressBar());
 			this->label18 = (gcnew System::Windows::Forms::Label());
 			this->Findmaxbutton = (gcnew System::Windows::Forms::Button());
+			this->removelowerButton = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->chart1))->BeginInit();
 			this->tabControl1->SuspendLayout();
 			this->tabPage1->SuspendLayout();
@@ -1382,11 +1384,22 @@ private: System::Windows::Forms::Button^  Findmaxbutton;
 			this->Findmaxbutton->UseVisualStyleBackColor = true;
 			this->Findmaxbutton->Click += gcnew System::EventHandler(this, &Form1::Findmaxbutton_Click);
 			// 
+			// removelowerButton
+			// 
+			this->removelowerButton->Location = System::Drawing::Point(652, 55);
+			this->removelowerButton->Name = L"removelowerButton";
+			this->removelowerButton->Size = System::Drawing::Size(75, 23);
+			this->removelowerButton->TabIndex = 2;
+			this->removelowerButton->Text = L"Subtract";
+			this->removelowerButton->UseVisualStyleBackColor = true;
+			this->removelowerButton->Click += gcnew System::EventHandler(this, &Form1::removelowerButton_Click);
+			// 
 			// Form1
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1246, 785);
+			this->Controls->Add(this->removelowerButton);
 			this->Controls->Add(this->Findmaxbutton);
 			this->Controls->Add(this->label18);
 			this->Controls->Add(this->progressBar1);
@@ -2136,6 +2149,26 @@ private: System::Void Findmaxbutton_Click(System::Object^  sender, System::Event
 			 }
 		 }
 
+private: System::Void removelowerButton_Click(System::Object^  sender, System::EventArgs^  e) {
+			 int size,size2;
+			 complex <double> eps,epslow;
+			 MatrixXd parameters(4,1);
+			 size=CurveSet.size();
+			 size2=CurveSet[0].Dataf.size();
+			 for (int i=0;i<size;i++){
+				 if (CurveSet[i].fitted){
+					 parameters<<0,CurveSet[i].de1,CurveSet[i].fp1,CurveSet[i].a1;
+					 for (int j=0;j<size2;j++){
+					 eps=CurveSet[i].Dataep[j]+ii*CurveSet[i].Dataeb[j];
+					 epslow=RelaxationFunction(1,CurveSet[i].Dataf[j],parameters);
+					 eps-=epslow;
+					 CurveSet[i].Dataep[j]=real(eps);
+					 CurveSet[i].Dataeb[j]=imag(eps);
+					 }
+				 }
+			 }
+
+		 }
 };
 }
 
