@@ -12,5 +12,3 @@ Done for Cole-cole functions - they are better for most crystalline solids anywa
 * Some form of weighting
 * logarithmic least squares
 * conductivity
-
-Test to see if i can make git work

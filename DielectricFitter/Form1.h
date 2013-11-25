@@ -1073,7 +1073,9 @@ private: System::Windows::Forms::Button^  removelowerButton;
 			// 
 			// tabPage6
 			// 
+			this->tabPage6->Controls->Add(this->removelowerButton);
 			this->tabPage6->Controls->Add(this->CapacityLabel2);
+			this->tabPage6->Controls->Add(this->Findmaxbutton);
 			this->tabPage6->Controls->Add(this->label14);
 			this->tabPage6->Controls->Add(this->label13);
 			this->tabPage6->Controls->Add(this->toepsbutton);
@@ -1376,7 +1378,7 @@ private: System::Windows::Forms::Button^  removelowerButton;
 			// 
 			// Findmaxbutton
 			// 
-			this->Findmaxbutton->Location = System::Drawing::Point(568, 54);
+			this->Findmaxbutton->Location = System::Drawing::Point(64, 320);
 			this->Findmaxbutton->Name = L"Findmaxbutton";
 			this->Findmaxbutton->Size = System::Drawing::Size(58, 23);
 			this->Findmaxbutton->TabIndex = 32;
@@ -1386,7 +1388,7 @@ private: System::Windows::Forms::Button^  removelowerButton;
 			// 
 			// removelowerButton
 			// 
-			this->removelowerButton->Location = System::Drawing::Point(652, 55);
+			this->removelowerButton->Location = System::Drawing::Point(145, 320);
 			this->removelowerButton->Name = L"removelowerButton";
 			this->removelowerButton->Size = System::Drawing::Size(75, 23);
 			this->removelowerButton->TabIndex = 2;
@@ -1399,8 +1401,6 @@ private: System::Windows::Forms::Button^  removelowerButton;
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1246, 785);
-			this->Controls->Add(this->removelowerButton);
-			this->Controls->Add(this->Findmaxbutton);
 			this->Controls->Add(this->label18);
 			this->Controls->Add(this->progressBar1);
 			this->Controls->Add(this->textBox1);
