@@ -3,6 +3,8 @@
 #include <vector>
 #include "Dense"
 #include <ctime>
+#include <limits>
+#include <boost/timer/timer.hpp>
 using Eigen::MatrixXd;
 
 void CalculateResidue(double f,double ep,double eb, MatrixXd parameters,double &rp,double&rb);
@@ -475,6 +477,7 @@ void FitLMGeneral(vector<double> Dataf, vector<double>Dataep, vector<double> Dat
 	chi2=0;
 	clock_t start, end;
 	start=clock();
+	boost::timer::cpu_timer timer;
 	for(i=1;i<100;i++)
 	{
 		//chi2c=chi2;
@@ -497,8 +500,10 @@ void FitLMGeneral(vector<double> Dataf, vector<double>Dataep, vector<double> Dat
 	for (i=0;i<size;i++) error(i)=sqrt(error(i));
 	//cout<<error<<endl<< "----------------------------------------------------- "<<endl;
 	cout <<chi2<<endl;
+	boost::timer::cpu_times elapsed = timer.elapsed();
 	end=clock();
 	cout <<(double(end - start) / CLOCKS_PER_SEC) <<" s"<<endl;//<<" "<< CLOCKS_PER_SEC<<endl;
+	std::cout << " CPU TIME: " << (elapsed.user + elapsed.system) / 1e9 << " seconds" << " WALLCLOCK TIME: " << elapsed.wall / 1e9 << " seconds"<< std::endl;
 	return;
 }
 

@@ -3,6 +3,7 @@
 #include "stdafx.h"
 #include "Form1.h"
 #include "About.h"
+
 #define EIGEN_NO_CPUID
 
 using namespace DielectricFitter;
