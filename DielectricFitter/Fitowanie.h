@@ -7,6 +7,17 @@
 #include <boost/timer/timer.hpp>
 using Eigen::MatrixXd;
 
+class curve{
+public:
+vector<double> Dataf;
+vector<double> Dataep;
+vector<double> Dataeb;
+double temperature;
+double en,de1,fp1,a1,de2,fp2,a2,de3,fp3,a3;
+bool fitted;
+bool twofunctions;
+};
+
 void CalculateResidue(double f,double ep,double eb, MatrixXd parameters,double &rp,double&rb);
 void CalculateResidue2(double f,double ep,double eb, MatrixXd parameters,double &rp,double&rb);
 

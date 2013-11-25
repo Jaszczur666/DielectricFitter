@@ -10,15 +10,7 @@ using Eigen::MatrixXd;
 vector<double> Dataf;
 vector<double> Dataep;
 vector<double> Dataeb;
-struct curve{
-vector<double> Dataf;
-vector<double> Dataep;
-vector<double> Dataeb;
-double temperature;
-double en,de1,fp1,a1,de2,fp2,a2,de3,fp3,a3;
-bool fitted;
-bool twofunctions;
-};
+
 vector <curve> CurveSet;
 size_t  Position,Positionfreq;
 double vacuumcapacity=1.0;
