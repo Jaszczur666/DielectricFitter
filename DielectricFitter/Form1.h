@@ -74,7 +74,7 @@ namespace DielectricFitter {
 	private: System::Windows::Forms::Button^  PrevCurveButton;
 	private: System::Windows::Forms::Button^  NextCurveButton;
 	private: System::Windows::Forms::Label^  label1;
-	private: System::Windows::Forms::Button^  Fit2Button;
+
 	private: System::Windows::Forms::TextBox^  tbde2;
 	private: System::Windows::Forms::TextBox^  tbfp2;
 	private: System::Windows::Forms::TextBox^  tba2;
@@ -146,7 +146,7 @@ private: System::Windows::Forms::Label^  label18;
 private: System::Windows::Forms::Button^  nextcrv;
 private: System::Windows::Forms::Button^  prvcrv;
 private: System::Windows::Forms::ToolStripMenuItem^  saveAllFilesIntoOneToolStripMenuItem;
-private: System::Windows::Forms::Button^  fitentropbutton;
+
 private: System::Windows::Forms::Button^  Findmaxbutton;
 private: System::Windows::Forms::Button^  removelowerButton;
 private: System::Windows::Forms::ToolStripMenuItem^  saveSeparateContributionsToolStripMenuItem;
@@ -205,7 +205,6 @@ private: System::Windows::Forms::ToolStripMenuItem^  saveSeparateContributionsTo
 			this->tabPage1 = (gcnew System::Windows::Forms::TabPage());
 			this->tableLayoutPanel2 = (gcnew System::Windows::Forms::TableLayoutPanel());
 			this->panel2 = (gcnew System::Windows::Forms::Panel());
-			this->fitentropbutton = (gcnew System::Windows::Forms::Button());
 			this->Funnum = (gcnew System::Windows::Forms::NumericUpDown());
 			this->nextcrv = (gcnew System::Windows::Forms::Button());
 			this->label17 = (gcnew System::Windows::Forms::Label());
@@ -222,7 +221,6 @@ private: System::Windows::Forms::ToolStripMenuItem^  saveSeparateContributionsTo
 			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->label6 = (gcnew System::Windows::Forms::Label());
 			this->label8 = (gcnew System::Windows::Forms::Label());
-			this->Fit2Button = (gcnew System::Windows::Forms::Button());
 			this->label9 = (gcnew System::Windows::Forms::Label());
 			this->label7 = (gcnew System::Windows::Forms::Label());
 			this->TwoFunCheckBox = (gcnew System::Windows::Forms::CheckBox());
@@ -255,7 +253,9 @@ private: System::Windows::Forms::ToolStripMenuItem^  saveSeparateContributionsTo
 			this->textBox11 = (gcnew System::Windows::Forms::TextBox());
 			this->textBox10 = (gcnew System::Windows::Forms::TextBox());
 			this->tabPage6 = (gcnew System::Windows::Forms::TabPage());
+			this->removelowerButton = (gcnew System::Windows::Forms::Button());
 			this->CapacityLabel2 = (gcnew System::Windows::Forms::Label());
+			this->Findmaxbutton = (gcnew System::Windows::Forms::Button());
 			this->label14 = (gcnew System::Windows::Forms::Label());
 			this->label13 = (gcnew System::Windows::Forms::Label());
 			this->toepsbutton = (gcnew System::Windows::Forms::Button());
@@ -275,6 +275,7 @@ private: System::Windows::Forms::ToolStripMenuItem^  saveSeparateContributionsTo
 			this->loadFileToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->writeTemperatureDependenciesToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->saveToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->saveSeparateContributionsToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->saveAllFilesIntoOneToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->saveTempImpedanceToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->impedanceToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
@@ -288,9 +289,6 @@ private: System::Windows::Forms::ToolStripMenuItem^  saveSeparateContributionsTo
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->progressBar1 = (gcnew System::Windows::Forms::ProgressBar());
 			this->label18 = (gcnew System::Windows::Forms::Label());
-			this->Findmaxbutton = (gcnew System::Windows::Forms::Button());
-			this->removelowerButton = (gcnew System::Windows::Forms::Button());
-			this->saveSeparateContributionsToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->chart1))->BeginInit();
 			this->tabControl1->SuspendLayout();
 			this->tabPage1->SuspendLayout();
@@ -469,7 +467,6 @@ private: System::Windows::Forms::ToolStripMenuItem^  saveSeparateContributionsTo
 			// 
 			// panel2
 			// 
-			this->panel2->Controls->Add(this->fitentropbutton);
 			this->panel2->Controls->Add(this->Funnum);
 			this->panel2->Controls->Add(this->nextcrv);
 			this->panel2->Controls->Add(this->label17);
@@ -486,7 +483,6 @@ private: System::Windows::Forms::ToolStripMenuItem^  saveSeparateContributionsTo
 			this->panel2->Controls->Add(this->label5);
 			this->panel2->Controls->Add(this->label6);
 			this->panel2->Controls->Add(this->label8);
-			this->panel2->Controls->Add(this->Fit2Button);
 			this->panel2->Controls->Add(this->label9);
 			this->panel2->Controls->Add(this->label7);
 			this->panel2->Controls->Add(this->TwoFunCheckBox);
@@ -504,16 +500,6 @@ private: System::Windows::Forms::ToolStripMenuItem^  saveSeparateContributionsTo
 			this->panel2->Name = L"panel2";
 			this->panel2->Size = System::Drawing::Size(134, 682);
 			this->panel2->TabIndex = 1;
-			// 
-			// fitentropbutton
-			// 
-			this->fitentropbutton->Location = System::Drawing::Point(17, 466);
-			this->fitentropbutton->Name = L"fitentropbutton";
-			this->fitentropbutton->Size = System::Drawing::Size(75, 23);
-			this->fitentropbutton->TabIndex = 38;
-			this->fitentropbutton->Text = L"Fit entrop";
-			this->fitentropbutton->UseVisualStyleBackColor = true;
-			this->fitentropbutton->Click += gcnew System::EventHandler(this, &Form1::fitentropbutton_Click);
 			// 
 			// Funnum
 			// 
@@ -662,18 +648,6 @@ private: System::Windows::Forms::ToolStripMenuItem^  saveSeparateContributionsTo
 			this->label8->Size = System::Drawing::Size(25, 13);
 			this->label8->TabIndex = 27;
 			this->label8->Text = L"de2";
-			// 
-			// Fit2Button
-			// 
-			this->Fit2Button->BackColor = System::Drawing::SystemColors::ButtonFace;
-			this->Fit2Button->FlatAppearance->BorderSize = 0;
-			this->Fit2Button->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->Fit2Button->Location = System::Drawing::Point(17, 326);
-			this->Fit2Button->Name = L"Fit2Button";
-			this->Fit2Button->Size = System::Drawing::Size(39, 23);
-			this->Fit2Button->TabIndex = 14;
-			this->Fit2Button->UseVisualStyleBackColor = false;
-			this->Fit2Button->Click += gcnew System::EventHandler(this, &Form1::Fit2Button_Click);
 			// 
 			// label9
 			// 
@@ -1090,6 +1064,16 @@ private: System::Windows::Forms::ToolStripMenuItem^  saveSeparateContributionsTo
 			this->tabPage6->Text = L"Sample Geometry";
 			this->tabPage6->UseVisualStyleBackColor = true;
 			// 
+			// removelowerButton
+			// 
+			this->removelowerButton->Location = System::Drawing::Point(145, 320);
+			this->removelowerButton->Name = L"removelowerButton";
+			this->removelowerButton->Size = System::Drawing::Size(75, 23);
+			this->removelowerButton->TabIndex = 2;
+			this->removelowerButton->Text = L"Subtract";
+			this->removelowerButton->UseVisualStyleBackColor = true;
+			this->removelowerButton->Click += gcnew System::EventHandler(this, &Form1::removelowerButton_Click);
+			// 
 			// CapacityLabel2
 			// 
 			this->CapacityLabel2->AutoSize = true;
@@ -1098,6 +1082,16 @@ private: System::Windows::Forms::ToolStripMenuItem^  saveSeparateContributionsTo
 			this->CapacityLabel2->Size = System::Drawing::Size(41, 13);
 			this->CapacityLabel2->TabIndex = 12;
 			this->CapacityLabel2->Text = L"C0=-pF";
+			// 
+			// Findmaxbutton
+			// 
+			this->Findmaxbutton->Location = System::Drawing::Point(64, 320);
+			this->Findmaxbutton->Name = L"Findmaxbutton";
+			this->Findmaxbutton->Size = System::Drawing::Size(58, 23);
+			this->Findmaxbutton->TabIndex = 32;
+			this->Findmaxbutton->Text = L"Find maxima";
+			this->Findmaxbutton->UseVisualStyleBackColor = true;
+			this->Findmaxbutton->Click += gcnew System::EventHandler(this, &Form1::Findmaxbutton_Click);
 			// 
 			// label14
 			// 
@@ -1268,6 +1262,13 @@ private: System::Windows::Forms::ToolStripMenuItem^  saveSeparateContributionsTo
 			this->saveToolStripMenuItem->Text = L"Save Fit Parameters";
 			this->saveToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::saveToolStripMenuItem_Click);
 			// 
+			// saveSeparateContributionsToolStripMenuItem
+			// 
+			this->saveSeparateContributionsToolStripMenuItem->Name = L"saveSeparateContributionsToolStripMenuItem";
+			this->saveSeparateContributionsToolStripMenuItem->Size = System::Drawing::Size(244, 22);
+			this->saveSeparateContributionsToolStripMenuItem->Text = L"Save separate contributions";
+			this->saveSeparateContributionsToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::saveSeparateContributionsToolStripMenuItem_Click);
+			// 
 			// saveAllFilesIntoOneToolStripMenuItem
 			// 
 			this->saveAllFilesIntoOneToolStripMenuItem->Name = L"saveAllFilesIntoOneToolStripMenuItem";
@@ -1369,33 +1370,6 @@ private: System::Windows::Forms::ToolStripMenuItem^  saveSeparateContributionsTo
 			this->label18->Size = System::Drawing::Size(13, 13);
 			this->label18->TabIndex = 31;
 			this->label18->Text = L"1";
-			// 
-			// Findmaxbutton
-			// 
-			this->Findmaxbutton->Location = System::Drawing::Point(64, 320);
-			this->Findmaxbutton->Name = L"Findmaxbutton";
-			this->Findmaxbutton->Size = System::Drawing::Size(58, 23);
-			this->Findmaxbutton->TabIndex = 32;
-			this->Findmaxbutton->Text = L"Find maxima";
-			this->Findmaxbutton->UseVisualStyleBackColor = true;
-			this->Findmaxbutton->Click += gcnew System::EventHandler(this, &Form1::Findmaxbutton_Click);
-			// 
-			// removelowerButton
-			// 
-			this->removelowerButton->Location = System::Drawing::Point(145, 320);
-			this->removelowerButton->Name = L"removelowerButton";
-			this->removelowerButton->Size = System::Drawing::Size(75, 23);
-			this->removelowerButton->TabIndex = 2;
-			this->removelowerButton->Text = L"Subtract";
-			this->removelowerButton->UseVisualStyleBackColor = true;
-			this->removelowerButton->Click += gcnew System::EventHandler(this, &Form1::removelowerButton_Click);
-			// 
-			// saveSeparateContributionsToolStripMenuItem
-			// 
-			this->saveSeparateContributionsToolStripMenuItem->Name = L"saveSeparateContributionsToolStripMenuItem";
-			this->saveSeparateContributionsToolStripMenuItem->Size = System::Drawing::Size(244, 22);
-			this->saveSeparateContributionsToolStripMenuItem->Text = L"Save separate contributions";
-			this->saveSeparateContributionsToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::saveSeparateContributionsToolStripMenuItem_Click);
 			// 
 			// Form1
 			// 
@@ -1731,57 +1705,57 @@ private: System::Void PrevCurveButton_Click(System::Object^  sender, System::Eve
 					 }
 
 		 }
-private: System::Void Fit2Button_Click(System::Object^  sender, System::EventArgs^  e) {
-			 double es,de1,fp1,a1,de2,fp2,a2;
-			 complex<double> d;
-			 MatrixXd parameters(7,1);
-			 chart1->Series[2]->Points->Clear();
-			 chart1->Series[3]->Points->Clear();
-			 chart2->Series["Series2"]->Points->Clear();
-			 es=(Convert::ToDouble(tbeps->Text));
-			 de1=(Convert::ToDouble(tbde1->Text));
-			 fp1=(Convert::ToDouble(tbf1->Text));
-			 a1=(Convert::ToDouble(tba1->Text));
-			 de2=(Convert::ToDouble(tbde2->Text));
-			 fp2=(Convert::ToDouble(tbfp2->Text));
-			 a2=(Convert::ToDouble(tba2->Text));
-			 parameters<<es,de1,fp1,a1,de2,fp2,a2;
-			 FitLM2(CurveSet[Position-1].Dataf,CurveSet[Position-1].Dataep,CurveSet[Position-1].Dataeb,parameters);
-			 es=parameters(0,0);
-			 tbeps->Text=es.ToString();
-			 de1=parameters(1,0);
-			 tbde1->Text=de1.ToString();
-			 fp1=parameters(2,0);
-			 tbf1->Text=fp1.ToString();
-			 a1=parameters(3,0);
-			 tba1->Text=a1.ToString();
-			 de2=parameters(4,0);
-			 tbde2->Text=de2.ToString();
-			 fp2=parameters(5,0);
-			 tbfp2->Text=fp2.ToString();
-			 a2=parameters(6,0);
-			 tba2->Text=a2.ToString();
-			 CurveSet[Position-1].en=es;
-			 CurveSet[Position-1].de1=de1;
-			 CurveSet[Position-1].fp1=fp1;
-			 CurveSet[Position-1].a1=a1;
-			 CurveSet[Position-1].fitted=true;
-			 CurveSet[Position-1].de2=de2;
-			 CurveSet[Position-1].fp2=fp2;
-			 CurveSet[Position-1].a2=a2;
-			 CurveSet[Position-1].twofunctions=true;
-		/*	 for (i=0;i<=size-1;i++)
-			 {
-					 d=es+de1/(1.0+pow(ii*CurveSet[Position-1].Dataf[i]/fp1,1-a1))+de2/(1.0+pow(ii*CurveSet[Position-1].Dataf[i]/fp2,1-a2));
-					 ep= std::real(d);
-					 eb=-std::imag(d);
-					 chart1->Series[2]->Points->AddXY(log10(CurveSet[Position-1].Dataf[i]),ep);
-					 chart1->Series[3]->Points->AddXY(log10(CurveSet[Position-1].Dataf[i]),eb);
-					 chart2->Series["Series2"]->Points->AddXY(ep,eb);
-				 }*/
-			 ChiSqrButton->PerformClick();
-			 //PlotButton->PerformClick();
-		 }
+//private: System::Void Fit2Button_Click(System::Object^  sender, System::EventArgs^  e) {
+//			 double es,de1,fp1,a1,de2,fp2,a2;
+//			 complex<double> d;
+//			 MatrixXd parameters(7,1);
+//			 chart1->Series[2]->Points->Clear();
+//			 chart1->Series[3]->Points->Clear();
+//			 chart2->Series["Series2"]->Points->Clear();
+//			 es=(Convert::ToDouble(tbeps->Text));
+//			 de1=(Convert::ToDouble(tbde1->Text));
+//			 fp1=(Convert::ToDouble(tbf1->Text));
+//			 a1=(Convert::ToDouble(tba1->Text));
+//			 de2=(Convert::ToDouble(tbde2->Text));
+//			 fp2=(Convert::ToDouble(tbfp2->Text));
+//			 a2=(Convert::ToDouble(tba2->Text));
+//			 parameters<<es,de1,fp1,a1,de2,fp2,a2;
+//			 FitLM2(CurveSet[Position-1].Dataf,CurveSet[Position-1].Dataep,CurveSet[Position-1].Dataeb,parameters);
+//			 es=parameters(0,0);
+//			 tbeps->Text=es.ToString();
+//			 de1=parameters(1,0);
+//			 tbde1->Text=de1.ToString();
+//			 fp1=parameters(2,0);
+//			 tbf1->Text=fp1.ToString();
+//			 a1=parameters(3,0);
+//			 tba1->Text=a1.ToString();
+//			 de2=parameters(4,0);
+//			 tbde2->Text=de2.ToString();
+//			 fp2=parameters(5,0);
+//			 tbfp2->Text=fp2.ToString();
+//			 a2=parameters(6,0);
+//			 tba2->Text=a2.ToString();
+//			 CurveSet[Position-1].en=es;
+//			 CurveSet[Position-1].de1=de1;
+//			 CurveSet[Position-1].fp1=fp1;
+//			 CurveSet[Position-1].a1=a1;
+//			 CurveSet[Position-1].fitted=true;
+//			 CurveSet[Position-1].de2=de2;
+//			 CurveSet[Position-1].fp2=fp2;
+//			 CurveSet[Position-1].a2=a2;
+//			 CurveSet[Position-1].twofunctions=true;
+//		/*	 for (i=0;i<=size-1;i++)
+//			 {
+//					 d=es+de1/(1.0+pow(ii*CurveSet[Position-1].Dataf[i]/fp1,1-a1))+de2/(1.0+pow(ii*CurveSet[Position-1].Dataf[i]/fp2,1-a2));
+//					 ep= std::real(d);
+//					 eb=-std::imag(d);
+//					 chart1->Series[2]->Points->AddXY(log10(CurveSet[Position-1].Dataf[i]),ep);
+//					 chart1->Series[3]->Points->AddXY(log10(CurveSet[Position-1].Dataf[i]),eb);
+//					 chart2->Series["Series2"]->Points->AddXY(ep,eb);
+//				 }*/
+//			 ChiSqrButton->PerformClick();
+//			 //PlotButton->PerformClick();
+//		 }
 private: System::Void button7_Click(System::Object^  sender, System::EventArgs^  e) {
 			 int i,size;
 			 size=CurveSet.size();
@@ -2043,87 +2017,87 @@ private: System::Void saveAllFilesIntoOneToolStripMenuItem_Click(System::Object^
 		 }
 private: System::Void chart4_Click(System::Object^  sender, System::EventArgs^  e) {
 		 }
-private: System::Void fitentropbutton_Click(System::Object^  sender, System::EventArgs^  e) {
-			 		 MatrixXd parameters(4,1);
-				 complex<double> d;
-				 double en,de,fp,a,de2,fp2,a2,de3,fp3,a3;
-				 int funnum;
-				 funnum=Funnum->Value.ToInt32(Funnum->Value);
-				 chart1->Series[2]->Points->Clear();
-				 chart1->Series[3]->Points->Clear();
-				 chart2->Series["Series2"]->Points->Clear();
-				 en=(Convert::ToDouble(tbeps->Text));
-				 de=(Convert::ToDouble(tbde1->Text));
-				 fp=(Convert::ToDouble(tbf1->Text));
-				 a=(Convert::ToDouble(tba1->Text));
-				 de2=(Convert::ToDouble(tbde2->Text));
-				 fp2=(Convert::ToDouble(tbfp2->Text));
-				 a2=(Convert::ToDouble(tba2->Text));
-				 de3=(Convert::ToDouble(tbde3->Text));
-				 fp3=(Convert::ToDouble(tbfp3->Text));
-				 a3=(Convert::ToDouble(tba3->Text));
-				 if (funnum==1){
-					 parameters<<en,de,fp,a;
-				 };
-				 if (funnum==2){
-					 parameters.resize(7,1);
-					 parameters<<en,de,fp,a,de2,fp2,a2;
-				 };
-				 if (funnum==3){
-					 parameters.resize(10,1);
-					 parameters<<en,de,fp,a,de2,fp2,a2,de3,fp3,a3;
-				 };
-				// cout << "_____________________________________________________________"<<endl;
-				// cout <<parameters<<endl;
-				// cout << "-------------------------------------------------------------"<<endl;
-				 FitLMEntropyGeneral(CurveSet[Position-1].Dataf,CurveSet[Position-1].Dataep,CurveSet[Position-1].Dataeb,funnum,parameters);
-				 en=parameters(0,0);
-				 de=parameters(1,0);
-				 fp=parameters(2,0);
-				 a=parameters(3,0);
-				 de2=0;
-				 fp2=0;
-				 a2=0;
-				 de3=0;
-				 fp3=0;
-				 a3=0;
-				 if (Funnum->Value==2){
-					 de2=parameters(4,0);
-					 fp2=parameters(5,0);
-					 a2=parameters(6,0);
-				 };
-				  if (Funnum->Value==3){
-					   de2=parameters(4,0);
-					 fp2=parameters(5,0);
-					 a2=parameters(6,0);
-					 de3=parameters(7,0);
-					 fp3=parameters(8,0);
-					 a3=parameters(9,0);
-				 };
-				 tbeps->Text=en.ToString();
-				 tbde1->Text=de.ToString();
-				 tbf1->Text=fp.ToString();
-				 tba1->Text=a.ToString();
-				 tbde2->Text=de2.ToString();
-				 tbfp2->Text=fp2.ToString();
-				 tba2->Text=a2.ToString();
-				  tbde3->Text=de3.ToString();
-				 tbfp3->Text=fp3.ToString();
-				 tba3->Text=a3.ToString();
-				 CurveSet[Position-1].en=en;
-				 CurveSet[Position-1].de1=de;
-				 CurveSet[Position-1].fp1=fp;
-				 CurveSet[Position-1].a1=a;
-				 CurveSet[Position-1].fitted=true;
-				 CurveSet[Position-1].de2=de2;
-				 CurveSet[Position-1].fp2=fp2;
-				 CurveSet[Position-1].a2=a2;
-				  CurveSet[Position-1].de3=de3;
-				 CurveSet[Position-1].fp3=fp3;
-				 CurveSet[Position-1].a3=a3;
-				 
-				 ChiSqrButton->PerformClick();
-		 }
+////private: System::Void fitentropbutton_Click(System::Object^  sender, System::EventArgs^  e) {
+//			 		 MatrixXd parameters(4,1);
+//				 complex<double> d;
+//				 double en,de,fp,a,de2,fp2,a2,de3,fp3,a3;
+//				 int funnum;
+//				 funnum=Funnum->Value.ToInt32(Funnum->Value);
+//				 chart1->Series[2]->Points->Clear();
+//				 chart1->Series[3]->Points->Clear();
+//				 chart2->Series["Series2"]->Points->Clear();
+//				 en=(Convert::ToDouble(tbeps->Text));
+//				 de=(Convert::ToDouble(tbde1->Text));
+//				 fp=(Convert::ToDouble(tbf1->Text));
+//				 a=(Convert::ToDouble(tba1->Text));
+//				 de2=(Convert::ToDouble(tbde2->Text));
+//				 fp2=(Convert::ToDouble(tbfp2->Text));
+//				 a2=(Convert::ToDouble(tba2->Text));
+//				 de3=(Convert::ToDouble(tbde3->Text));
+//				 fp3=(Convert::ToDouble(tbfp3->Text));
+//				 a3=(Convert::ToDouble(tba3->Text));
+//				 if (funnum==1){
+//					 parameters<<en,de,fp,a;
+//				 };
+//				 if (funnum==2){
+//					 parameters.resize(7,1);
+//					 parameters<<en,de,fp,a,de2,fp2,a2;
+//				 };
+//				 if (funnum==3){
+//					 parameters.resize(10,1);
+//					 parameters<<en,de,fp,a,de2,fp2,a2,de3,fp3,a3;
+//				 };
+//				// cout << "_____________________________________________________________"<<endl;
+//				// cout <<parameters<<endl;
+//				// cout << "-------------------------------------------------------------"<<endl;
+////				 FitLMEntropyGeneral(CurveSet[Position-1].Dataf,CurveSet[Position-1].Dataep,CurveSet[Position-1].Dataeb,funnum,parameters);
+//				 en=parameters(0,0);
+//				 de=parameters(1,0);
+//				 fp=parameters(2,0);
+//				 a=parameters(3,0);
+//				 de2=0;
+//				 fp2=0;
+//				 a2=0;
+//				 de3=0;
+//				 fp3=0;
+//				 a3=0;
+//				 if (Funnum->Value==2){
+//					 de2=parameters(4,0);
+//					 fp2=parameters(5,0);
+//					 a2=parameters(6,0);
+//				 };
+//				  if (Funnum->Value==3){
+//					   de2=parameters(4,0);
+//					 fp2=parameters(5,0);
+//					 a2=parameters(6,0);
+//					 de3=parameters(7,0);
+//					 fp3=parameters(8,0);
+//					 a3=parameters(9,0);
+//				 };
+//				 tbeps->Text=en.ToString();
+//				 tbde1->Text=de.ToString();
+//				 tbf1->Text=fp.ToString();
+//				 tba1->Text=a.ToString();
+//				 tbde2->Text=de2.ToString();
+//				 tbfp2->Text=fp2.ToString();
+//				 tba2->Text=a2.ToString();
+//				  tbde3->Text=de3.ToString();
+//				 tbfp3->Text=fp3.ToString();
+//				 tba3->Text=a3.ToString();
+//				 CurveSet[Position-1].en=en;
+//				 CurveSet[Position-1].de1=de;
+//				 CurveSet[Position-1].fp1=fp;
+//				 CurveSet[Position-1].a1=a;
+//				 CurveSet[Position-1].fitted=true;
+//				 CurveSet[Position-1].de2=de2;
+//				 CurveSet[Position-1].fp2=fp2;
+//				 CurveSet[Position-1].a2=a2;
+//				  CurveSet[Position-1].de3=de3;
+//				 CurveSet[Position-1].fp3=fp3;
+//				 CurveSet[Position-1].a3=a3;
+//				 
+//				 ChiSqrButton->PerformClick();
+//		 }
 private: System::Void Findmaxbutton_Click(System::Object^  sender, System::EventArgs^  e) {
 			 int size,size2;
 			 double epmax,ebmax,tepmax,tebmax;
