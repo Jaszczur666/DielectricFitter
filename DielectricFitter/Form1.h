@@ -157,6 +157,7 @@ private: System::Windows::Forms::ToolStripMenuItem^  saveAllFilesIntoOneToolStri
 private: System::Windows::Forms::Button^  fitentropbutton;
 private: System::Windows::Forms::Button^  Findmaxbutton;
 private: System::Windows::Forms::Button^  removelowerButton;
+private: System::Windows::Forms::ToolStripMenuItem^  saveSeparateContributionsToolStripMenuItem;
 
 
 
@@ -297,6 +298,7 @@ private: System::Windows::Forms::Button^  removelowerButton;
 			this->label18 = (gcnew System::Windows::Forms::Label());
 			this->Findmaxbutton = (gcnew System::Windows::Forms::Button());
 			this->removelowerButton = (gcnew System::Windows::Forms::Button());
+			this->saveSeparateContributionsToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->chart1))->BeginInit();
 			this->tabControl1->SuspendLayout();
 			this->tabPage1->SuspendLayout();
@@ -1246,9 +1248,9 @@ private: System::Windows::Forms::Button^  removelowerButton;
 			// 
 			// FileToolStripMenuItem
 			// 
-			this->FileToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(7) {this->loadFileToolStripMenuItem, 
-				this->writeTemperatureDependenciesToolStripMenuItem, this->saveToolStripMenuItem, this->saveAllFilesIntoOneToolStripMenuItem, 
-				this->saveTempImpedanceToolStripMenuItem, this->impedanceToolStripMenuItem, this->exitToolStripMenuItem});
+			this->FileToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(8) {this->loadFileToolStripMenuItem, 
+				this->writeTemperatureDependenciesToolStripMenuItem, this->saveToolStripMenuItem, this->saveSeparateContributionsToolStripMenuItem, 
+				this->saveAllFilesIntoOneToolStripMenuItem, this->saveTempImpedanceToolStripMenuItem, this->impedanceToolStripMenuItem, this->exitToolStripMenuItem});
 			this->FileToolStripMenuItem->Name = L"FileToolStripMenuItem";
 			this->FileToolStripMenuItem->Size = System::Drawing::Size(35, 20);
 			this->FileToolStripMenuItem->Text = L"File";
@@ -1395,6 +1397,13 @@ private: System::Windows::Forms::Button^  removelowerButton;
 			this->removelowerButton->Text = L"Subtract";
 			this->removelowerButton->UseVisualStyleBackColor = true;
 			this->removelowerButton->Click += gcnew System::EventHandler(this, &Form1::removelowerButton_Click);
+			// 
+			// saveSeparateContributionsToolStripMenuItem
+			// 
+			this->saveSeparateContributionsToolStripMenuItem->Name = L"saveSeparateContributionsToolStripMenuItem";
+			this->saveSeparateContributionsToolStripMenuItem->Size = System::Drawing::Size(244, 22);
+			this->saveSeparateContributionsToolStripMenuItem->Text = L"Save separate contributions";
+			this->saveSeparateContributionsToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::saveSeparateContributionsToolStripMenuItem_Click);
 			// 
 			// Form1
 			// 
@@ -1837,6 +1846,9 @@ private: System::Void PlotButton_Click(System::Object^  sender, System::EventArg
 			 }
 		 }
 private: System::Void writeTemperatureDependenciesToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+			 			 CultureInfo^ MyCI = gcnew CultureInfo( "en-US",false );
+			 NumberFormatInfo^ nfi = MyCI->NumberFormat;
+			 nfi->NumberDecimalSeparator = ".";
 			 if (saveFileDialog1->ShowDialog() == ::System::Windows::Forms::DialogResult::OK ){
 			 			 size_t  i,j;
 				 for (i=0;i<CurveSet[0].Dataf.size();i++)
@@ -1844,7 +1856,7 @@ private: System::Void writeTemperatureDependenciesToolStripMenuItem_Click(System
 					 StreamWriter^ sw = gcnew StreamWriter(saveFileDialog1->FileName+i.ToString()+".dat");
 					 sw->WriteLine("Frequency = "+ CurveSet[0].Dataf[i]);
 					 for (j=0;j<CurveSet.size();j++){
-						 sw->WriteLine(CurveSet[j].temperature+" "+ CurveSet[j].Dataep[i]+" "+-CurveSet[j].Dataeb[i]);
+						 sw->WriteLine(CurveSet[j].temperature.ToString("e6",nfi)+" "+ CurveSet[j].Dataep[i].ToString("e6",nfi)+" "+(-CurveSet[j].Dataeb[i]).ToString("e6",nfi));
 					 }
 					 sw->Close();
 				 }
@@ -2166,6 +2178,34 @@ private: System::Void removelowerButton_Click(System::Object^  sender, System::E
 					 CurveSet[i].Dataeb[j]=imag(eps);
 					 }
 				 }
+			 }
+
+		 }
+private: System::Void saveSeparateContributionsToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+			 CultureInfo^ MyCI = gcnew CultureInfo( "en-US",false );
+			 int i,size,size2;
+			  MatrixXd parameters(4,1);
+			 complex <double> epsilon1,epsilon2,epsilon3;
+			 NumberFormatInfo^ nfi = MyCI->NumberFormat;
+			 nfi->NumberDecimalSeparator = ".";
+			 //button7->PerformClick();
+			 size=CurveSet.size();
+			 size2=CurveSet[0].Dataf.size();
+			 if (saveFileDialog1->ShowDialog() == ::System::Windows::Forms::DialogResult::OK ){
+				 StreamWriter^ sw = gcnew StreamWriter(saveFileDialog1->FileName);
+				 for (i=0;i<size;i++){
+					 for (int j=0;j<size2;j++){
+						 parameters<<CurveSet[i].en,CurveSet[i].de1,CurveSet[i].fp1,CurveSet[i].a1;
+						 epsilon1=RelaxationFunction(1,CurveSet[i].Dataf[j],parameters);
+						 parameters<<CurveSet[i].en,CurveSet[i].de2,CurveSet[i].fp2,CurveSet[i].a2;
+						 epsilon2=RelaxationFunction(1,CurveSet[i].Dataf[j],parameters);
+						 parameters<<CurveSet[i].en,CurveSet[i].de3,CurveSet[i].fp3,CurveSet[i].a3;
+						 epsilon3=RelaxationFunction(1,CurveSet[i].Dataf[j],parameters);
+						 if(CurveSet[i].fitted) sw->WriteLine(CurveSet[i].temperature.ToString("g6",nfi)+" "+CurveSet[i].Dataf[j].ToString("g6",nfi)+" "+real(epsilon1)+" "+imag(epsilon1)+" "+real(epsilon2)+" "+imag(epsilon2));
+					 }
+				 }
+				 sw->Close();
+				 cout <<"Fitcurve saved";
 			 }
 
 		 }
