@@ -12,6 +12,7 @@ vector<double> Dataep;
 vector<double> Dataeb;
 
 vector <curve> CurveSet;
+curvesetrev auxcurveset; 
 size_t  Position,Positionfreq;
 double vacuumcapacity=1.0;
 const double pi  =3.1415926535897932384626433;
@@ -150,6 +151,8 @@ private: System::Windows::Forms::ToolStripMenuItem^  saveAllFilesIntoOneToolStri
 private: System::Windows::Forms::Button^  Findmaxbutton;
 private: System::Windows::Forms::Button^  removelowerButton;
 private: System::Windows::Forms::ToolStripMenuItem^  saveSeparateContributionsToolStripMenuItem;
+private: System::Windows::Forms::ToolStripMenuItem^  loadTempProfileToolStripMenuItem;
+private: System::Windows::Forms::ToolStripMenuItem^  permittivityToolStripMenuItem;
 
 
 
@@ -273,6 +276,7 @@ private: System::Windows::Forms::ToolStripMenuItem^  saveSeparateContributionsTo
 			this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
 			this->FileToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->loadFileToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->loadTempProfileToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->writeTemperatureDependenciesToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->saveToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->saveSeparateContributionsToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
@@ -289,6 +293,7 @@ private: System::Windows::Forms::ToolStripMenuItem^  saveSeparateContributionsTo
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->progressBar1 = (gcnew System::Windows::Forms::ProgressBar());
 			this->label18 = (gcnew System::Windows::Forms::Label());
+			this->permittivityToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->chart1))->BeginInit();
 			this->tabControl1->SuspendLayout();
 			this->tabPage1->SuspendLayout();
@@ -1234,9 +1239,10 @@ private: System::Windows::Forms::ToolStripMenuItem^  saveSeparateContributionsTo
 			// 
 			// FileToolStripMenuItem
 			// 
-			this->FileToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(8) {this->loadFileToolStripMenuItem, 
-				this->writeTemperatureDependenciesToolStripMenuItem, this->saveToolStripMenuItem, this->saveSeparateContributionsToolStripMenuItem, 
-				this->saveAllFilesIntoOneToolStripMenuItem, this->saveTempImpedanceToolStripMenuItem, this->impedanceToolStripMenuItem, this->exitToolStripMenuItem});
+			this->FileToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(10) {this->loadFileToolStripMenuItem, 
+				this->loadTempProfileToolStripMenuItem, this->writeTemperatureDependenciesToolStripMenuItem, this->saveToolStripMenuItem, this->saveSeparateContributionsToolStripMenuItem, 
+				this->saveAllFilesIntoOneToolStripMenuItem, this->saveTempImpedanceToolStripMenuItem, this->impedanceToolStripMenuItem, this->exitToolStripMenuItem, 
+				this->permittivityToolStripMenuItem});
 			this->FileToolStripMenuItem->Name = L"FileToolStripMenuItem";
 			this->FileToolStripMenuItem->Size = System::Drawing::Size(35, 20);
 			this->FileToolStripMenuItem->Text = L"File";
@@ -1247,6 +1253,13 @@ private: System::Windows::Forms::ToolStripMenuItem^  saveSeparateContributionsTo
 			this->loadFileToolStripMenuItem->Size = System::Drawing::Size(244, 22);
 			this->loadFileToolStripMenuItem->Text = L"Load file";
 			this->loadFileToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::loadFileToolStripMenuItem_Click);
+			// 
+			// loadTempProfileToolStripMenuItem
+			// 
+			this->loadTempProfileToolStripMenuItem->Name = L"loadTempProfileToolStripMenuItem";
+			this->loadTempProfileToolStripMenuItem->Size = System::Drawing::Size(244, 22);
+			this->loadTempProfileToolStripMenuItem->Text = L"Load temp profile";
+			this->loadTempProfileToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::loadTempProfileToolStripMenuItem_Click);
 			// 
 			// writeTemperatureDependenciesToolStripMenuItem
 			// 
@@ -1370,6 +1383,13 @@ private: System::Windows::Forms::ToolStripMenuItem^  saveSeparateContributionsTo
 			this->label18->Size = System::Drawing::Size(13, 13);
 			this->label18->TabIndex = 31;
 			this->label18->Text = L"1";
+			// 
+			// permittivityToolStripMenuItem
+			// 
+			this->permittivityToolStripMenuItem->Name = L"permittivityToolStripMenuItem";
+			this->permittivityToolStripMenuItem->Size = System::Drawing::Size(244, 22);
+			this->permittivityToolStripMenuItem->Text = L"Permittivity";
+			this->permittivityToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::permittivityToolStripMenuItem_Click);
 			// 
 			// Form1
 			// 
@@ -1500,7 +1520,7 @@ private: System::Windows::Forms::ToolStripMenuItem^  saveSeparateContributionsTo
 					 parameters.resize(10,1);
 					 parameters<<en,de,fp,a,de2,fp2,a2,de3,fp3,a3;
 				 };
-				 FitLMGeneral(CurveSet[Position-1].Dataf,CurveSet[Position-1].Dataep,CurveSet[Position-1].Dataeb,funnum,parameters);
+				 CurveSet[Position-1].FitLMGeneral(funnum,parameters);
 				 en=parameters(0,0);
 				 de=parameters(1,0);
 				 fp=parameters(2,0);
@@ -1551,7 +1571,7 @@ private: System::Windows::Forms::ToolStripMenuItem^  saveSeparateContributionsTo
 
 private: System::Void abooutToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 		Form^ rgForm = gcnew About();
-		rgForm->Show();			 
+		rgForm->ShowDialog();			 
 		 }
 private: System::Void ChiSqrButton_Click(System::Object^  sender, System::EventArgs^  e) {
 			  double ep,eb,eb1,eb2,de,de3,fp3,a3,en,fp,f,a,maxf,minf,df,de2,fp2,a2;
@@ -2126,6 +2146,50 @@ private: System::Void Findmaxbutton_Click(System::Object^  sender, System::Event
 				 cout<<CurveSet[0].Dataf[j] <<" "<<epmax<<" "<<tepmax<<endl;
 			 }
 		 }
+		 private: System::Void loadTempProfileToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+					  				 curve  SingleCurve;
+			 
+				 if (openFileDialog1->ShowDialog() == ::System::Windows::Forms::DialogResult::OK )
+				 {
+				 int i,j,numload;
+				 int size,size2;
+					 numload=openFileDialog1->FileNames->Length;
+					 cout<<"Number of files to load "<<numload<<endl;
+					 progressBar1->Value=0;
+					 progressBar1->Visible=true;
+					 for (i=0;i<numload;i++)
+					 {
+						 auxcurveset.LoadTempProfFromFile(openFileDialog1->FileNames[i]);
+						 cout << 100*i/numload<<"%"<<endl;
+						 progressBar1->Value=100*(i+1)/numload;
+					 }
+					 progressBar1->Visible=false;
+					 CurveSet.clear();
+					 size=auxcurveset.eb.size();//30
+					 size2=auxcurveset.eb[0].size();
+					 for (i=0;i<size;i++) cout << auxcurveset.f[i]<<"  "<< auxcurveset.eb[i].size()<<endl;
+//					 cout <<size<<"---"<<size2<<" i uj "<<auxcurveset.f.size() <<endl;
+					 for (i=0;i<size2;i++){
+						 for (j=0;j<size;j++){
+//						 cout <<"Accessing"<< i<<" "<<j<<endl;//<<" "<<auxcurveset.ep[j][i]<<" "<<auxcurveset.eb[j][i]<<endl;
+						 SingleCurve.Dataep.push_back(auxcurveset.ep[j][i]);
+						 SingleCurve.Dataeb.push_back(auxcurveset.eb[j][i]);
+						 SingleCurve.Dataf.push_back(auxcurveset.f[j]);
+						 }
+						 SingleCurve.temperature=auxcurveset.temp[0][i];
+						 CurveSet.push_back(SingleCurve);
+						 SingleCurve.Dataep.clear();
+						 SingleCurve.Dataeb.clear();
+						 SingleCurve.Dataf.clear();
+//						 cout<<i<<endl;
+					 }
+					 cout << "Done";
+					 label1->Text="1/"+CurveSet.size().ToString();
+					 Position=1;
+					 Positionfreq=1;
+					 }
+				  
+}
 
 private: System::Void removelowerButton_Click(System::Object^  sender, System::EventArgs^  e) {
 			 int size,size2;
@@ -2174,6 +2238,35 @@ private: System::Void saveSeparateContributionsToolStripMenuItem_Click(System::O
 				 cout <<"Fitcurve saved";
 			 }
 
+		 }
+private: System::Void permittivityToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+			 CultureInfo^ MyCI = gcnew CultureInfo( "en-US",false );
+			 NumberFormatInfo^ nfi = MyCI->NumberFormat;
+			 nfi->NumberDecimalSeparator = ".";
+			 complex<double> eps;
+			 complex<double> zs;
+			 if (saveFileDialog1->ShowDialog() == ::System::Windows::Forms::DialogResult::OK ){
+			size_t  i,j,size,size2;
+			 double ep,eb;
+			 size=CurveSet[0].Dataf.size();
+			 size2=CurveSet.size();
+			 for (j=0;j<size2;j++){
+				 //cout << CurveSet[j].temperature <<" "<<  Correction(CurveSet[j].temperature) <<endl;
+			 StreamWriter^ sw = gcnew StreamWriter(saveFileDialog1->FileName+j.ToString()+".dat");
+			 sw->WriteLine("Temperature = "+ CurveSet[j].temperature);
+			 sw->WriteLine("Freq. [Hz]\tZs' [Ohms]\tZs'' [Ohms]");
+			 for (i=0;i<size;i++){
+			 ep=CurveSet[j].Dataep[i];
+			 eb=CurveSet[j].Dataeb[i];
+			 eps=ep+ii*eb;
+			 zs=(-ii*1.0/eps)/(vacuumcapacity*2.0*pi*CurveSet[j].Dataf[i]);
+			 sw->WriteLine(CurveSet[j].Dataf[i].ToString("e6",nfi)+"\t"+ep.ToString("g6",nfi)+"\t"+eb.ToString("g6",nfi));
+			 //cout <<CurveSet[j].Dataf[i]<<" " <<real(zs)<< " "<<imag(zs)<<endl;
+			 }
+			 sw->Close();
+			 }
+			 
+			 }
 		 }
 };
 }

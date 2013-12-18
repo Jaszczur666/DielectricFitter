@@ -14,11 +14,45 @@ vector<double> Dataep;
 vector<double> Dataeb;
 double temperature;
 double en,de1,fp1,a1,de2,fp2,a2,de3,fp3,a3;
+double chi2;
 bool fitted;
 bool twofunctions;
+void GuesstimateParameters(vector<double> Dataf, vector<double>Dataep, vector<double> Dataeb,MatrixXd &parameters);
+void FitLMGeneral(int type,MatrixXd &parameters);
 };
 
-void GuesstimateParameters(vector<double> Dataf, vector<double>Dataep, vector<double> Dataeb,MatrixXd &parameters)
+class  curvesetrev{
+public:
+	vector<vector<double>> ep;
+	vector<vector<double>> eb;
+	vector<vector<double>> temp;
+	vector<double> f;
+	void LoadTempProfFromFile(String^ Filename);
+};
+void curvesetrev::LoadTempProfFromFile(String^ Filename){
+wstring name;
+string printname;
+double ep,eb,f,t,fp,fb;
+vector<double> vep,veb,vt;
+MarshalString(Filename,name);
+MarshalString(Filename,printname);
+cout <<"Reading file "<<printname<<endl;
+ifstream inpfile(name);
+inpfile>>f;
+//cout<<f<<endl;
+while(inpfile >> t >> ep>>eb>>fp>>fb){
+//cout<<t<<" "<<ep<<" "<<eb<<endl;
+vt.push_back(t);
+vep.push_back(ep);
+veb.push_back(eb);
+};
+this->f.push_back(f);
+this->temp.push_back(vt);
+this->ep.push_back(vep);
+this->eb.push_back(veb);
+};
+
+void curve::GuesstimateParameters(vector<double> Dataf, vector<double>Dataep, vector<double> Dataeb,MatrixXd &parameters)
 {
 	int i,size;
 	double maxeb,maxep,minep,maxebf;
@@ -146,7 +180,7 @@ double chi2MatGeneral( vector<double>& dataf,vector<double>& dataep,vector<doubl
 	return chi2temp/2.0;
 }
 
-void FitLMGeneral(vector<double> Dataf, vector<double>Dataep, vector<double> Dataeb,int type,MatrixXd &parameters)
+void curve::FitLMGeneral(int type,MatrixXd &parameters)
 {
 	int i,size,size2;
 	double lambda;
@@ -156,16 +190,16 @@ void FitLMGeneral(vector<double> Dataf, vector<double>Dataep, vector<double> Dat
 //	growing=false;
 	lambda=1/1024.0;
 	chi2=0;
-	clock_t start, end;
-	start=clock();
+	//clock_t start, end;
+	//start=clock();
 	boost::timer::cpu_timer timer;
 	for(i=1;i<100;i++)
 	{
 		//chi2c=chi2;
-		CalculateHessianGeneral(Dataf,Dataep,Dataeb,type,parameters, Hessian, Grad,chi2);
+		CalculateHessianGeneral(this->Dataf,this->Dataep,this->Dataeb,type,parameters, Hessian, Grad,chi2);
 		Hessiandiag=Hessian.diagonal().asDiagonal();
 		newParams=parameters-((Hessian+lambda*Hessiandiag).inverse()*Grad);
-		chi2n=chi2MatGeneral(Dataf,Dataep,Dataeb,type,newParams);
+		chi2n=chi2MatGeneral(this->Dataf,this->Dataep,this->Dataeb,type,newParams);
 		if (chi2n<chi2){
 			parameters=newParams;
 			lambda=lambda*sqrt(2.0);
@@ -182,9 +216,9 @@ void FitLMGeneral(vector<double> Dataf, vector<double>Dataep, vector<double> Dat
 	//cout<<error<<endl<< "----------------------------------------------------- "<<endl;
 	cout <<chi2<<endl;
 	boost::timer::cpu_times elapsed = timer.elapsed();
-	end=clock();
-	cout <<(double(end - start) / CLOCKS_PER_SEC) <<" s"<<endl;//<<" "<< CLOCKS_PER_SEC<<endl;
-	std::cout << " CPU TIME: " << (elapsed.user + elapsed.system) / 1e9 << " seconds" << " WALLCLOCK TIME: " << elapsed.wall / 1e9 << " seconds"<< std::endl;
+	//end=clock();
+	//cout <<(double(end - start) / CLOCKS_PER_SEC) <<" s"<<endl;//<<" "<< CLOCKS_PER_SEC<<endl;
+	std::cout << "Fitting took " << elapsed.wall / 1e9 << " seconds"<< std::endl;
 	return;
 }
 

@@ -27,7 +27,8 @@ void MarshalString ( String ^ s, wstring& os ) {
 
 void LoadDielectric(String^ Filename, vector<double>& dataf,vector<double>& dataep,vector<double>& dataeb,double& temperature)
 {
-	string name,str;
+	wstring name;
+	string str;
 	vector<double> ldataf;
 	vector<double> ldataep;
 	vector<double> ldataeb;
