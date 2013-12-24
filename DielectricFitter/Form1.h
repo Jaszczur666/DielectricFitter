@@ -283,8 +283,8 @@ private: System::Windows::Forms::ToolStripMenuItem^  permittivityToolStripMenuIt
 			this->saveAllFilesIntoOneToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->saveTempImpedanceToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->impedanceToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->exitToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->permittivityToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->exitToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->helpToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->abooutToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->button7 = (gcnew System::Windows::Forms::Button());
@@ -391,7 +391,7 @@ private: System::Windows::Forms::ToolStripMenuItem^  permittivityToolStripMenuIt
 			// 
 			// LoadButton
 			// 
-			this->LoadButton->Location = System::Drawing::Point(4, 31);
+			this->LoadButton->Location = System::Drawing::Point(672, 29);
 			this->LoadButton->Name = L"LoadButton";
 			this->LoadButton->Size = System::Drawing::Size(75, 23);
 			this->LoadButton->TabIndex = 1;
@@ -1303,19 +1303,19 @@ private: System::Windows::Forms::ToolStripMenuItem^  permittivityToolStripMenuIt
 			this->impedanceToolStripMenuItem->Text = L"Impedance";
 			this->impedanceToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::impedanceToolStripMenuItem_Click);
 			// 
-			// exitToolStripMenuItem
-			// 
-			this->exitToolStripMenuItem->Name = L"exitToolStripMenuItem";
-			this->exitToolStripMenuItem->Size = System::Drawing::Size(244, 22);
-			this->exitToolStripMenuItem->Text = L"Exit";
-			this->exitToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::exitToolStripMenuItem_Click);
-			// 
 			// permittivityToolStripMenuItem
 			// 
 			this->permittivityToolStripMenuItem->Name = L"permittivityToolStripMenuItem";
 			this->permittivityToolStripMenuItem->Size = System::Drawing::Size(244, 22);
 			this->permittivityToolStripMenuItem->Text = L"Permittivity";
 			this->permittivityToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::permittivityToolStripMenuItem_Click);
+			// 
+			// exitToolStripMenuItem
+			// 
+			this->exitToolStripMenuItem->Name = L"exitToolStripMenuItem";
+			this->exitToolStripMenuItem->Size = System::Drawing::Size(244, 22);
+			this->exitToolStripMenuItem->Text = L"Exit";
+			this->exitToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::exitToolStripMenuItem_Click);
 			// 
 			// helpToolStripMenuItem
 			// 
@@ -1327,7 +1327,7 @@ private: System::Windows::Forms::ToolStripMenuItem^  permittivityToolStripMenuIt
 			// abooutToolStripMenuItem
 			// 
 			this->abooutToolStripMenuItem->Name = L"abooutToolStripMenuItem";
-			this->abooutToolStripMenuItem->Size = System::Drawing::Size(152, 22);
+			this->abooutToolStripMenuItem->Size = System::Drawing::Size(114, 22);
 			this->abooutToolStripMenuItem->Text = L"About";
 			this->abooutToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::abooutToolStripMenuItem_Click);
 			// 
@@ -2125,7 +2125,7 @@ private: System::Void chart4_Click(System::Object^  sender, System::EventArgs^  
 //		 }
 private: System::Void Findmaxbutton_Click(System::Object^  sender, System::EventArgs^  e) {
 			 int size,size2;
-			 double epmax,ebmax,tepmax,tebmax;
+			 double epmax,tepmax,tebmax;
 			 size=CurveSet.size();
 			 size2=CurveSet[0].Dataf.size();
 			 vector<double> tmpavg;
@@ -2184,7 +2184,7 @@ private: System::Void Findmaxbutton_Click(System::Object^  sender, System::Event
 								  SingleCurve.Dataf.push_back(auxcurveset.f[j]);
 							  }
 							  SingleCurve.temperature=auxcurveset.temp[0][i];
-////							  Normalize(SingleCurve.Dataep,SingleCurve.Dataeb,c0);
+							  Normalize(SingleCurve.Dataep,SingleCurve.Dataeb,c0);
 							  SingleCurve.fitted=false;
 							  CurveSet.push_back(SingleCurve);
 							  SingleCurve.Dataep.clear();
@@ -2279,13 +2279,17 @@ private: System::Void permittivityToolStripMenuItem_Click(System::Object^  sende
 			 for (j=0;j<size2;j++){
 				 //cout << CurveSet[j].temperature <<" "<<  Correction(CurveSet[j].temperature) <<endl;
 			 StreamWriter^ sw = gcnew StreamWriter(saveFileDialog1->FileName+j.ToString()+".dat");
-			 sw->WriteLine("Temperature = "+ CurveSet[j].temperature);
+			 sw->WriteLine("Insert data here");
+			 sw->WriteLine("Temperature="+ CurveSet[j].temperature.ToString("g6",nfi)+"  AC Volt  [Vrms]=xxx");
 			 sw->WriteLine("Freq. [Hz]\tZs' [Ohms]\tZs'' [Ohms]");
+			 sw->WriteLine("");
+			 sw->WriteLine("");
+			 sw->WriteLine("");
+			 sw->WriteLine("");
+			 sw->WriteLine("");
 			 for (i=0;i<size;i++){
 			 ep=CurveSet[j].Dataep[i];
-			 eb=CurveSet[j].Dataeb[i];
-			 eps=ep+ii*eb;
-			 zs=(-ii*1.0/eps)/(vacuumcapacity*2.0*pi*CurveSet[j].Dataf[i]);
+			 eb=-CurveSet[j].Dataeb[i];
 			 sw->WriteLine(CurveSet[j].Dataf[i].ToString("e6",nfi)+"\t"+ep.ToString("g6",nfi)+"\t"+eb.ToString("g6",nfi));
 			 //cout <<CurveSet[j].Dataf[i]<<" " <<real(zs)<< " "<<imag(zs)<<endl;
 			 }
