@@ -13,10 +13,11 @@ vector<double> Dataf;
 vector<double> Dataep;
 vector<double> Dataeb;
 double temperature;
+wstring filename;
 double en,de1,fp1,a1,de2,fp2,a2,de3,fp3,a3;
 double chi2;
 bool fitted;
-bool twofunctions;
+int funnum;
 void GuesstimateParameters(vector<double> Dataf, vector<double>Dataep, vector<double> Dataeb,MatrixXd &parameters);
 void FitLMGeneral(int type,MatrixXd &parameters);
 curve()
@@ -39,6 +40,12 @@ public:
 	vector <curve> CurveSet;
 	double c0;
 	bool IsGeometrySpecified;
+	bool IsGenerated;
+	experiment()
+	{
+		IsGeometrySpecified=false;
+		IsGenerated=false;
+	}
 };
 
 class  curvesetrev{
