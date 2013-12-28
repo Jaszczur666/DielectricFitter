@@ -34,6 +34,12 @@ curve()
 	a3=0;
 }
 };
+class experiment{
+public:
+	vector <curve> CurveSet;
+	double c0;
+	bool IsGeometrySpecified;
+};
 
 class  curvesetrev{
 public:

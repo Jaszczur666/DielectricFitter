@@ -57,7 +57,7 @@ namespace DielectricFitter {
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(67, 51);
+			this->button1->Location = System::Drawing::Point(62, 104);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(75, 23);
 			this->button1->TabIndex = 0;
@@ -72,13 +72,14 @@ namespace DielectricFitter {
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(143, 39);
 			this->label1->TabIndex = 1;
-			this->label1->Text = L"Dielectric Fitter Alpha 0.0.0.0\r\nUses Eigen library ver 3.1.2\r\nCopyleft";
+			this->label1->Text = L"Dielectric Fitter Alpha 0.0.0.0\r\nUses Eigen library ver 3.1.2\r\nCopyright jaszczur" 
+				L"666 2013";
 			// 
 			// About
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(217, 83);
+			this->ClientSize = System::Drawing::Size(196, 138);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->button1);
 			this->Name = L"About";
