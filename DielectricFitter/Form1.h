@@ -562,6 +562,7 @@ private: System::Windows::Forms::Label^  labelsigma;
 			this->tbs0->Size = System::Drawing::Size(78, 20);
 			this->tbs0->TabIndex = 39;
 			this->tbs0->Text = L"0";
+			this->tbs0->TextChanged += gcnew System::EventHandler(this, &Form1::tbeps_TextChanged);
 			// 
 			// labelsigma
 			// 
@@ -638,6 +639,7 @@ private: System::Windows::Forms::Label^  labelsigma;
 			this->tbde3->Size = System::Drawing::Size(78, 20);
 			this->tbde3->TabIndex = 33;
 			this->tbde3->Text = L"1";
+			this->tbde3->TextChanged += gcnew System::EventHandler(this, &Form1::tbeps_TextChanged);
 			// 
 			// tbfp3
 			// 
@@ -647,6 +649,7 @@ private: System::Windows::Forms::Label^  labelsigma;
 			this->tbfp3->Size = System::Drawing::Size(78, 20);
 			this->tbfp3->TabIndex = 32;
 			this->tbfp3->Text = L"1";
+			this->tbfp3->TextChanged += gcnew System::EventHandler(this, &Form1::tbeps_TextChanged);
 			// 
 			// label1
 			// 
@@ -665,6 +668,7 @@ private: System::Windows::Forms::Label^  labelsigma;
 			this->tba3->Size = System::Drawing::Size(78, 20);
 			this->tba3->TabIndex = 31;
 			this->tba3->Text = L"1";
+			this->tba3->TextChanged += gcnew System::EventHandler(this, &Form1::tbeps_TextChanged);
 			// 
 			// button13
 			// 
@@ -755,6 +759,7 @@ private: System::Windows::Forms::Label^  labelsigma;
 			this->tbde1->Size = System::Drawing::Size(78, 20);
 			this->tbde1->TabIndex = 7;
 			this->tbde1->Text = L"1";
+			this->tbde1->TextChanged += gcnew System::EventHandler(this, &Form1::tbeps_TextChanged);
 			// 
 			// tbf1
 			// 
@@ -763,6 +768,7 @@ private: System::Windows::Forms::Label^  labelsigma;
 			this->tbf1->Size = System::Drawing::Size(78, 20);
 			this->tbf1->TabIndex = 8;
 			this->tbf1->Text = L"1";
+			this->tbf1->TextChanged += gcnew System::EventHandler(this, &Form1::tbeps_TextChanged);
 			// 
 			// tba1
 			// 
@@ -771,6 +777,7 @@ private: System::Windows::Forms::Label^  labelsigma;
 			this->tba1->Size = System::Drawing::Size(78, 20);
 			this->tba1->TabIndex = 9;
 			this->tba1->Text = L"1";
+			this->tba1->TextChanged += gcnew System::EventHandler(this, &Form1::tbeps_TextChanged);
 			// 
 			// tbde2
 			// 
@@ -780,6 +787,7 @@ private: System::Windows::Forms::Label^  labelsigma;
 			this->tbde2->Size = System::Drawing::Size(78, 20);
 			this->tbde2->TabIndex = 10;
 			this->tbde2->Text = L"1";
+			this->tbde2->TextChanged += gcnew System::EventHandler(this, &Form1::tbeps_TextChanged);
 			// 
 			// ChiSqrButton
 			// 
@@ -799,6 +807,7 @@ private: System::Windows::Forms::Label^  labelsigma;
 			this->tbfp2->Size = System::Drawing::Size(78, 20);
 			this->tbfp2->TabIndex = 11;
 			this->tbfp2->Text = L"1";
+			this->tbfp2->TextChanged += gcnew System::EventHandler(this, &Form1::tbeps_TextChanged);
 			// 
 			// tba2
 			// 
@@ -808,6 +817,7 @@ private: System::Windows::Forms::Label^  labelsigma;
 			this->tba2->Size = System::Drawing::Size(78, 20);
 			this->tba2->TabIndex = 12;
 			this->tba2->Text = L"1";
+			this->tba2->TextChanged += gcnew System::EventHandler(this, &Form1::tbeps_TextChanged);
 			// 
 			// tabPage2
 			// 
@@ -1753,6 +1763,7 @@ private: System::Windows::Forms::Label^  labelsigma;
 				 expmnt.CurveSet[Position-1].fp1=fp;
 				 expmnt.CurveSet[Position-1].a1=a;
 				 expmnt.CurveSet[Position-1].fitted=true;
+				 cout<<"random text"<<expmnt.CurveSet[Position-1].fitted<<endl;
 				 expmnt.CurveSet[Position-1].de2=de2;
 				 expmnt.CurveSet[Position-1].fp2=fp2;
 				 expmnt.CurveSet[Position-1].a2=a2;
@@ -1904,6 +1915,8 @@ private: System::Void NextCurveButton_Click(System::Object^  sender, System::Eve
 				 tbde3->Text=expmnt.CurveSet[Position-1].de3.ToString("g4");
 				 tbfp3->Text=expmnt.CurveSet[Position-1].fp3.ToString("g4");
 				 tba3->Text=expmnt.CurveSet[Position-1].a3.ToString("g4");
+				 tbs0->Text=expmnt.CurveSet[Position-1].s0.ToString("g4");
+				 expmnt.CurveSet[Position-1].fitted=true;
 				 this->ChiSqrButton_Click(sender,e);
 				 //ChiSqrButton->PerformClick();
 			 }
@@ -1943,6 +1956,8 @@ private: System::Void PrevCurveButton_Click(System::Object^  sender, System::Eve
 				 tbde3->Text=expmnt.CurveSet[Position-1].de3.ToString("g4");
 				 tbfp3->Text=expmnt.CurveSet[Position-1].fp3.ToString("g6");
 				 tba3->Text=expmnt.CurveSet[Position-1].a3.ToString("g4");
+				 tbs0->Text=expmnt.CurveSet[Position-1].s0.ToString("g4");
+				 expmnt.CurveSet[Position-1].fitted=true;
 				 //ChiSqrButton->PerformClick();
 				 this->ChiSqrButton_Click(sender,e);
 			 }
@@ -2558,6 +2573,7 @@ private: System::Void geomlabel1_Click(System::Object^  sender, System::EventArg
 
 private: System::Void tbeps_TextChanged(System::Object^  sender, System::EventArgs^  e) {
 			 /* invalidate fitting*/
+			 expmnt.CurveSet[Position-1].fitted=false;
 		 }
 };
 }
