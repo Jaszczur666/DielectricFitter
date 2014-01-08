@@ -1,4 +1,5 @@
 #define ii std::complex <double>(0.0,1.0)
+const double pi  =3.1415926535897932384626433;
 #include <complex>
 #include <vector>
 #include "Dense"
@@ -14,7 +15,7 @@ vector<double> Dataep;
 vector<double> Dataeb;
 double temperature;
 wstring filename;
-double en,de1,fp1,a1,de2,fp2,a2,de3,fp3,a3;
+double en,de1,fp1,a1,de2,fp2,a2,de3,fp3,a3,s0;
 double chi2;
 bool fitted;
 int funnum;
@@ -33,6 +34,7 @@ curve()
 	de3=1;
 	fp3=100;
 	a3=0;
+	s0=0;
 }
 };
 class experiment{
@@ -125,6 +127,16 @@ complex <double> d;
 d=parameters(0)+parameters(1)/(1.0+pow(ii*frequency/parameters(2),1-parameters(3)))+parameters(4)/(1.0+pow(ii*frequency/parameters(5),1-parameters(6)))+parameters(7)/(1.0+pow(ii*frequency/parameters(8),1-parameters(9)));
 return d;
 }
+std::complex<double> DoubleColeDavidsonWithConductivity(double frequency,MatrixXd parameters){
+complex <double> d;
+d=parameters(0)+parameters(1)/(1.0+pow(ii*frequency/parameters(2),1-parameters(3)))+parameters(4)/(1.0+pow(ii*frequency/parameters(5),1-parameters(6)))+1.0/(ii*2.0*pi*frequency*8.85e-12)*parameters(7);
+return d;
+}
+std::complex<double> TripleColeDavidsonWithConductivity(double frequency,MatrixXd parameters){
+complex <double> d;
+d=parameters(0)+parameters(1)/(1.0+pow(ii*frequency/parameters(2),1-parameters(3)))+parameters(4)/(1.0+pow(ii*frequency/parameters(5),1-parameters(6)))+parameters(7)/(1.0+pow(ii*frequency/parameters(8),1-parameters(9)))+1.0/(ii*2.0*pi*frequency*8.85e-12)*parameters(10);
+return d;
+}
 
 std::complex<double> SimpleColeDavidson(double frequency, double delta, double peakfreq, double alpha){
 complex <double> d;
@@ -141,6 +153,9 @@ std::complex<double> RelaxationFunction(int type,double frequency,const MatrixXd
 	if (type==1)  d=parameters(0)+parameters(1)/(1.0+pow(ii*frequency/parameters(2),1-parameters(3)));
 	if (type==2)  d=DoubleColeDavidson(frequency,parameters);
 	if (type==3)  d=TripleColeDavidson(frequency,parameters);
+	if (type==4)  d=parameters(0)+parameters(1)/(1.0+pow(ii*frequency/parameters(2),1-parameters(3)))+1.0/(ii*2.0*pi*frequency*8.85e-12)*parameters(4);
+	if (type==5)  d=DoubleColeDavidsonWithConductivity(frequency,parameters);
+	if (type==6)  d=TripleColeDavidsonWithConductivity(frequency,parameters);
 	//cout<<d<<endl;
 	return d;
 }
