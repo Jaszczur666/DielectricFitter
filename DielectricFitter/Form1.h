@@ -80,8 +80,8 @@ namespace DielectricFitter {
 	private: System::Windows::Forms::TextBox^  tbfp2;
 	private: System::Windows::Forms::TextBox^  tba2;
 
-	private: System::Windows::Forms::Button^  button7;
-	private: System::Windows::Forms::TextBox^  textBox9;
+
+
 	private: System::Windows::Forms::ToolStripMenuItem^  saveToolStripMenuItem;
 	private: System::Windows::Forms::SaveFileDialog^  saveFileDialog1;
 	private: System::Windows::Forms::TabPage^  tabPage3;
@@ -311,8 +311,6 @@ private: System::Windows::Forms::Label^  labelsigma;
 			this->exitToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->helpToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->abooutToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->button7 = (gcnew System::Windows::Forms::Button());
-			this->textBox9 = (gcnew System::Windows::Forms::TextBox());
 			this->saveFileDialog1 = (gcnew System::Windows::Forms::SaveFileDialog());
 			this->PlotButton = (gcnew System::Windows::Forms::Button());
 			this->label2 = (gcnew System::Windows::Forms::Label());
@@ -1463,27 +1461,6 @@ private: System::Windows::Forms::Label^  labelsigma;
 			this->abooutToolStripMenuItem->Text = L"About";
 			this->abooutToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::abooutToolStripMenuItem_Click);
 			// 
-			// button7
-			// 
-			this->button7->Location = System::Drawing::Point(484, 55);
-			this->button7->Name = L"button7";
-			this->button7->Size = System::Drawing::Size(42, 23);
-			this->button7->TabIndex = 19;
-			this->button7->Text = L"Store";
-			this->button7->UseVisualStyleBackColor = true;
-			this->button7->Click += gcnew System::EventHandler(this, &Form1::button7_Click);
-			// 
-			// textBox9
-			// 
-			this->textBox9->BackColor = System::Drawing::SystemColors::Control;
-			this->textBox9->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->textBox9->Location = System::Drawing::Point(1240, 12);
-			this->textBox9->Multiline = true;
-			this->textBox9->Name = L"textBox9";
-			this->textBox9->Size = System::Drawing::Size(10, 13);
-			this->textBox9->TabIndex = 20;
-			this->textBox9->WordWrap = false;
-			// 
 			// PlotButton
 			// 
 			this->PlotButton->Location = System::Drawing::Point(422, 55);
@@ -1534,8 +1511,6 @@ private: System::Windows::Forms::Label^  labelsigma;
 			this->Controls->Add(this->textBox1);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->PlotButton);
-			this->Controls->Add(this->textBox9);
-			this->Controls->Add(this->button7);
 			this->Controls->Add(this->PrevCurveButton);
 			this->Controls->Add(this->tabControl1);
 			this->Controls->Add(this->LoadButton);
@@ -2022,23 +1997,7 @@ private: System::Void PrevCurveButton_Click(System::Object^  sender, System::Eve
 //			 ChiSqrButton->PerformClick();
 //			 //PlotButton->PerformClick();
 //		 }
-private: System::Void button7_Click(System::Object^  sender, System::EventArgs^  e) {
-			 int i,size;
-			 size=expmnt.CurveSet.size();
-			 MatrixXd param(4,1);
-			  param<<2,80,45e3,1;
-			 MatrixXd h,j;
-//			 Double chi2;
-			//CalculateHessianGeneral(expmnt.CurveSet[0].Dataf,expmnt.CurveSet[0].Dataep,expmnt.CurveSet[0].Dataeb,1,param,h,j,chi2);
-			 //temperature=expmnt.CurveSet[Position-1].temperature;
-			 //cout << temperature;
-			 //textBox9->Text+=temperature.ToString()+" "+tbeps->Text+" "+tbde1->Text+" "+tbf1->Text+" "+tba1->Text+" "+tbde2->Text+" "+tbfp2->Text+" "+tba2->Text+System::Environment::NewLine;
-			 textBox9->Text="";
-			 for (i=0;i<size;i++){
-				if(expmnt.CurveSet[i].fitted) textBox9->Text+=expmnt.CurveSet[i].temperature+" "+expmnt.CurveSet[i].en+" "+expmnt.CurveSet[i].de1+" "+expmnt.CurveSet[i].fp1+" "+expmnt.CurveSet[i].a1+" "+expmnt.CurveSet[i].de2+" "+expmnt.CurveSet[i].fp2+" "+expmnt.CurveSet[i].a2+System::Environment::NewLine;
-			 }
 
-		 }
 private: System::Void saveToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 			 CultureInfo^ MyCI = gcnew CultureInfo( "en-US",false );
 			 int i,size;
@@ -2073,7 +2032,7 @@ private: System::Void PlotButton_Click(System::Object^  sender, System::EventArg
 					 chart3->Series["Series2"]->Points->AddXY(temperature,expmnt.CurveSet[i].de1);
 					 chart3->Series["Series3"]->Points->AddXY(temperature,expmnt.CurveSet[i].de2);
 					 chart4->Series["Series1"]->Points->AddXY(1.0/(temperature+273.15),log(expmnt.CurveSet[i].fp1));
-					 chart4->Series["Series2"]->Points->AddXY(1.0/(temperature+273.15),log(expmnt.CurveSet[i].fp2));
+					 if (expmnt.CurveSet[i].fp2!=0) chart4->Series["Series2"]->Points->AddXY(1.0/(temperature+273.15),log(expmnt.CurveSet[i].fp2));
 				 }
 			 }
 		 }
