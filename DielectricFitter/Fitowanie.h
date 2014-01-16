@@ -10,32 +10,32 @@ using Eigen::MatrixXd;
 
 class curve{
 public:
-vector<double> Dataf;
-vector<double> Dataep;
-vector<double> Dataeb;
-double temperature;
-wstring filename;
-double en,de1,fp1,a1,de2,fp2,a2,de3,fp3,a3,s0;
-double chi2;
-bool fitted;
-int funnum;
-void GuesstimateParameters(vector<double> Dataf, vector<double>Dataep, vector<double> Dataeb,MatrixXd &parameters);
-void FitLMGeneral(int type,MatrixXd &parameters);
-curve()
-{
-	fitted=false;
-	en=1;
-	de1=1;
-	fp1=1;
-	a1=0;
-	de2=1;
-	fp2=10;
-	a2=0;
-	de3=1;
-	fp3=100;
-	a3=0;
-	s0=0;
-}
+	vector<double> Dataf;
+	vector<double> Dataep;
+	vector<double> Dataeb;
+	double temperature;
+	wstring filename;
+	double en,de1,fp1,a1,de2,fp2,a2,de3,fp3,a3,s0;
+	double chi2;
+	bool fitted;
+	int funnum;
+	void GuesstimateParameters(vector<double> Dataf, vector<double>Dataep, vector<double> Dataeb,MatrixXd &parameters);
+	void FitLMGeneral(int type,MatrixXd &parameters);
+	curve()
+	{
+		fitted=false;
+		en=1;
+		de1=1;
+		fp1=1;
+		a1=0;
+		de2=1;
+		fp2=10;
+		a2=0;
+		de3=1;
+		fp3=100;
+		a3=0;
+		s0=0;
+	}
 };
 class experiment{
 public:
@@ -57,28 +57,51 @@ public:
 	vector<vector<double>> temp;
 	vector<double> f;
 	void LoadTempProfFromFile(String^ Filename);
+	void LoadTempProfFromFile(wstring Filename);
 };
 void curvesetrev::LoadTempProfFromFile(String^ Filename){
-wstring name;
-string printname;
-double ep,eb,f,t,fp,fb;
-vector<double> vep,veb,vt;
-MarshalString(Filename,name);
-MarshalString(Filename,printname);
-cout <<"Reading file "<<printname<<endl;
-ifstream inpfile(name);
-inpfile>>f;
-//cout<<f<<endl;
-while(inpfile >> t >> ep>>eb>>fp>>fb){
-//cout<<t<<" "<<ep<<" "<<eb<<endl;
-vt.push_back(t);
-vep.push_back(ep);
-veb.push_back(eb);
+	wstring name;
+	string printname;
+	double ep,eb,f,t,fp,fb;
+	vector<double> vep,veb,vt;
+	MarshalString(Filename,name);
+	MarshalString(Filename,printname);
+	cout <<"Reading file "<<printname<<endl;
+	ifstream inpfile(name);
+	inpfile>>f;
+	//cout<<f<<endl;
+	while(inpfile >> t >> ep>>eb>>fp>>fb){
+		//cout<<t<<" "<<ep<<" "<<eb<<endl;
+		vt.push_back(t);
+		vep.push_back(ep);
+		veb.push_back(eb);
+	};
+	this->f.push_back(f);
+	this->temp.push_back(vt);
+	this->ep.push_back(vep);
+	this->eb.push_back(veb);
 };
-this->f.push_back(f);
-this->temp.push_back(vt);
-this->ep.push_back(vep);
-this->eb.push_back(veb);
+void curvesetrev::LoadTempProfFromFile(wstring Filename){
+	wstring name;
+	string printname;
+	double ep,eb,f,t,fp,fb;
+	vector<double> vep,veb,vt;
+	name=Filename;
+	printname=string( Filename.begin(), Filename.end() );;
+	cout <<"Reading file "<<printname<<endl;
+	ifstream inpfile(name);
+	inpfile>>f;
+	//cout<<f<<endl;
+	while(inpfile >> t >> ep>>eb>>fp>>fb){
+		//cout<<t<<" "<<ep<<" "<<eb<<endl;
+		vt.push_back(t);
+		vep.push_back(ep);
+		veb.push_back(eb);
+	};
+	this->f.push_back(f);
+	this->temp.push_back(vt);
+	this->ep.push_back(vep);
+	this->eb.push_back(veb);
 };
 
 void curve::GuesstimateParameters(vector<double> Dataf, vector<double>Dataep, vector<double> Dataeb,MatrixXd &parameters)
@@ -118,30 +141,30 @@ std::complex<double> HNRelaxation(double frequency,MatrixXd parameters){
 }
 
 std::complex<double> DoubleColeDavidson(double frequency,MatrixXd parameters){
-complex <double> d;
-d=parameters(0)+parameters(1)/(1.0+pow(ii*frequency/parameters(2),1-parameters(3)))+parameters(4)/(1.0+pow(ii*frequency/parameters(5),1-parameters(6)));
-return d;
+	complex <double> d;
+	d=parameters(0)+parameters(1)/(1.0+pow(ii*frequency/parameters(2),1-parameters(3)))+parameters(4)/(1.0+pow(ii*frequency/parameters(5),1-parameters(6)));
+	return d;
 }
 std::complex<double> TripleColeDavidson(double frequency,MatrixXd parameters){
-complex <double> d;
-d=parameters(0)+parameters(1)/(1.0+pow(ii*frequency/parameters(2),1-parameters(3)))+parameters(4)/(1.0+pow(ii*frequency/parameters(5),1-parameters(6)))+parameters(7)/(1.0+pow(ii*frequency/parameters(8),1-parameters(9)));
-return d;
+	complex <double> d;
+	d=parameters(0)+parameters(1)/(1.0+pow(ii*frequency/parameters(2),1-parameters(3)))+parameters(4)/(1.0+pow(ii*frequency/parameters(5),1-parameters(6)))+parameters(7)/(1.0+pow(ii*frequency/parameters(8),1-parameters(9)));
+	return d;
 }
 std::complex<double> DoubleColeDavidsonWithConductivity(double frequency,MatrixXd parameters){
-complex <double> d;
-d=parameters(0)+parameters(1)/(1.0+pow(ii*frequency/parameters(2),1-parameters(3)))+parameters(4)/(1.0+pow(ii*frequency/parameters(5),1-parameters(6)))+1.0/(ii*2.0*pi*frequency*8.85e-12)*parameters(7);
-return d;
+	complex <double> d;
+	d=parameters(0)+parameters(1)/(1.0+pow(ii*frequency/parameters(2),1-parameters(3)))+parameters(4)/(1.0+pow(ii*frequency/parameters(5),1-parameters(6)))+1.0/(ii*2.0*pi*frequency*8.85e-12)*parameters(7);
+	return d;
 }
 std::complex<double> TripleColeDavidsonWithConductivity(double frequency,MatrixXd parameters){
-complex <double> d;
-d=parameters(0)+parameters(1)/(1.0+pow(ii*frequency/parameters(2),1-parameters(3)))+parameters(4)/(1.0+pow(ii*frequency/parameters(5),1-parameters(6)))+parameters(7)/(1.0+pow(ii*frequency/parameters(8),1-parameters(9)))+1.0/(ii*2.0*pi*frequency*8.85e-12)*parameters(10);
-return d;
+	complex <double> d;
+	d=parameters(0)+parameters(1)/(1.0+pow(ii*frequency/parameters(2),1-parameters(3)))+parameters(4)/(1.0+pow(ii*frequency/parameters(5),1-parameters(6)))+parameters(7)/(1.0+pow(ii*frequency/parameters(8),1-parameters(9)))+1.0/(ii*2.0*pi*frequency*8.85e-12)*parameters(10);
+	return d;
 }
 
 std::complex<double> SimpleColeDavidson(double frequency, double delta, double peakfreq, double alpha){
-complex <double> d;
-d=delta/(1.0+pow(ii*frequency/peakfreq,1-alpha));
-return d;
+	complex <double> d;
+	d=delta/(1.0+pow(ii*frequency/peakfreq,1-alpha));
+	return d;
 }
 
 std::complex<double> RelaxationFunction(int type,double frequency,const MatrixXd &parameters){
@@ -190,11 +213,11 @@ void CalculateHessianGeneral(vector<double> dataf,vector<double> dataep,vector<d
 	{
 		CalculateResidueGeneral(type,dataf[i],dataep[i],dataeb[i],parameters,rp,rb);
 		for (j=0;j<parsize;j++){
-		delta=MatrixXd::Zero(parsize,1);
-		delta(j,0)=eps;
-		CalculateResidueGeneral(type,dataf[i],dataep[i],dataeb[i],parameters+delta,rsp,rsb);
-		Jaco(i*2,j)=(rsp-rp)/eps;
-		Jaco(i*2+1,j)=(rsb-rb)/eps;
+			delta=MatrixXd::Zero(parsize,1);
+			delta(j,0)=eps;
+			CalculateResidueGeneral(type,dataf[i],dataep[i],dataeb[i],parameters+delta,rsp,rsb);
+			Jaco(i*2,j)=(rsp-rp)/eps;
+			Jaco(i*2+1,j)=(rsb-rb)/eps;
 		}
 		Res(i*2,0)=rp;
 		Res(i*2+1,0)=rb;
@@ -227,9 +250,9 @@ void curve::FitLMGeneral(int type,MatrixXd &parameters)
 	int i,size,size2;
 	double lambda;
 	double chi2,chi2n;//,chi2c;
-//	bool growing;
+	//	bool growing;
 	MatrixXd Hessian,Hessiandiag, Grad, newParams,error;
-//	growing=false;
+	//	growing=false;
 	lambda=1/1024.0;
 	chi2=0;
 	//clock_t start, end;
@@ -276,7 +299,7 @@ void linearFit(vector <double>x, vector <double>y,double &a,double &b,double &r2
 		sy+=y[i];
 		sxx+=x[i]*x[i];
 		sxy+=x[i]*y[i];
-	syy+=y[i]*y[i];
+		syy+=y[i]*y[i];
 	}
 	d=s*sxx-sx*sx;
 	a=(s*sxy-sx*sy)/d;

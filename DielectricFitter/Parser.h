@@ -53,7 +53,7 @@ void LoadDielectric(String^ Filename, vector<double>& dataf,vector<double>& data
 	cout<<str <<endl;
 	temperature=atof(str.c_str());
 	getline(inpfile,str);
-//	cout <<str<<endl;
+	//	cout <<str<<endl;
 	while (!inpfile.eof())
 	{
 		getline(inpfile,str);
@@ -80,22 +80,22 @@ void LoadDielectric(String^ Filename, vector<double>& dataf,vector<double>& data
 
 			i++;
 		}	
-	//	inpfile.close();
+		//	inpfile.close();
 
-/*		if (i ==4){
-			ldataf.push_back (f);
-			ldataep.push_back (ep);
-			ldataeb.push_back (eb);
+		/*		if (i ==4){
+		ldataf.push_back (f);
+		ldataep.push_back (ep);
+		ldataeb.push_back (eb);
 		}
-*/
+		*/
 	}
 	dataf.swap(ldataf);
 	dataep.swap(ldataep);
 	dataeb.swap(ldataeb);
-//	size=dataf.size();
-/*	for (i=0;i<=size-1;i++)
+	//	size=dataf.size();
+	/*	for (i=0;i<=size-1;i++)
 	{
-		cout << i <<";"<<dataf[i]<<endl;
+	cout << i <<";"<<dataf[i]<<endl;
 	}*/
 }
 

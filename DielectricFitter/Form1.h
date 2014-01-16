@@ -133,38 +133,38 @@ namespace DielectricFitter {
 	private: System::Windows::Forms::TextBox^  textBoxsurface;
 
 	private: System::Windows::Forms::Button^  GeomButton2;
-private: System::Windows::Forms::Label^  CapacityLabel2;
-private: System::Windows::Forms::TableLayoutPanel^  tableLayoutPanel2;
-private: System::Windows::Forms::Panel^  panel2;
-private: System::Windows::Forms::Label^  label17;
-private: System::Windows::Forms::Label^  label16;
-private: System::Windows::Forms::Label^  label15;
-private: System::Windows::Forms::TextBox^  tbde3;
-private: System::Windows::Forms::TextBox^  tbfp3;
-private: System::Windows::Forms::TextBox^  tba3;
-private: System::Windows::Forms::NumericUpDown^  Funnum;
-private: System::Windows::Forms::Label^  label18;
-private: System::Windows::Forms::Button^  nextcrv;
-private: System::Windows::Forms::Button^  prvcrv;
-private: System::Windows::Forms::ToolStripMenuItem^  saveAllFilesIntoOneToolStripMenuItem;
+	private: System::Windows::Forms::Label^  CapacityLabel2;
+	private: System::Windows::Forms::TableLayoutPanel^  tableLayoutPanel2;
+	private: System::Windows::Forms::Panel^  panel2;
+	private: System::Windows::Forms::Label^  label17;
+	private: System::Windows::Forms::Label^  label16;
+	private: System::Windows::Forms::Label^  label15;
+	private: System::Windows::Forms::TextBox^  tbde3;
+	private: System::Windows::Forms::TextBox^  tbfp3;
+	private: System::Windows::Forms::TextBox^  tba3;
+	private: System::Windows::Forms::NumericUpDown^  Funnum;
+	private: System::Windows::Forms::Label^  label18;
+	private: System::Windows::Forms::Button^  nextcrv;
+	private: System::Windows::Forms::Button^  prvcrv;
+	private: System::Windows::Forms::ToolStripMenuItem^  saveAllFilesIntoOneToolStripMenuItem;
 
-private: System::Windows::Forms::Button^  Findmaxbutton;
-private: System::Windows::Forms::Button^  removelowerButton;
-private: System::Windows::Forms::ToolStripMenuItem^  saveSeparateContributionsToolStripMenuItem;
-private: System::Windows::Forms::ToolStripMenuItem^  loadTempProfileToolStripMenuItem;
-private: System::Windows::Forms::ToolStripMenuItem^  permittivityToolStripMenuItem;
-private: System::Windows::Forms::TextBox^  textBox2;
-private: System::Windows::Forms::StatusStrip^  statusStrip1;
-private: System::Windows::Forms::ToolStripStatusLabel^  StatusLabel;
+	private: System::Windows::Forms::Button^  Findmaxbutton;
+	private: System::Windows::Forms::Button^  removelowerButton;
+	private: System::Windows::Forms::ToolStripMenuItem^  saveSeparateContributionsToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^  loadTempProfileToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^  permittivityToolStripMenuItem;
+	private: System::Windows::Forms::TextBox^  textBox2;
+	private: System::Windows::Forms::StatusStrip^  statusStrip1;
+	private: System::Windows::Forms::ToolStripStatusLabel^  StatusLabel;
 
-private: System::Windows::Forms::ToolStripProgressBar^  toolStripProgressBar1;
-private: System::Windows::Forms::ToolStripStatusLabel^  GeometryStatusLabel;
-private: System::Windows::Forms::ToolStripStatusLabel^  StatusDataSource;
-private: System::Windows::Forms::Label^  geomlabel1;
-private: System::Windows::Forms::CheckBox^  condcb;
-private: System::Windows::Forms::Label^  label19;
-private: System::Windows::Forms::TextBox^  tbs0;
-private: System::Windows::Forms::Label^  labelsigma;
+	private: System::Windows::Forms::ToolStripProgressBar^  toolStripProgressBar1;
+	private: System::Windows::Forms::ToolStripStatusLabel^  GeometryStatusLabel;
+	private: System::Windows::Forms::ToolStripStatusLabel^  StatusDataSource;
+	private: System::Windows::Forms::Label^  geomlabel1;
+	private: System::Windows::Forms::CheckBox^  condcb;
+	private: System::Windows::Forms::Label^  label19;
+	private: System::Windows::Forms::TextBox^  tbs0;
+	private: System::Windows::Forms::Label^  labelsigma;
 
 
 
@@ -1557,9 +1557,9 @@ private: System::Windows::Forms::Label^  labelsigma;
 				 MatrixXd parameters(4,1);
 				 if (openFileDialog1->ShowDialog() == ::System::Windows::Forms::DialogResult::OK )
 				 {
-				 double c0;//,ep,eb;
-				 int i,numload;
-				 int size;
+					 double c0;//,ep,eb;
+					 int i,numload;
+					 int size;
 					 expmnt.CurveSet.clear();
 					 c0=(Convert::ToDouble(textBox1->Text));
 					 complex<double> d;
@@ -1750,12 +1750,12 @@ private: System::Windows::Forms::Label^  labelsigma;
 				 ChiSqrButton->PerformClick();
 			 }
 
-private: System::Void abooutToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
-		Form^ rgForm = gcnew About();
-		rgForm->ShowDialog();			 
-		 }
-private: System::Void ChiSqrButton_Click(System::Object^  sender, System::EventArgs^  e) {
-			  double ep,eb,eb1,eb2,de,de3,fp3,a3,en,fp,f,a,maxf,minf,df,de2,fp2,a2,s0;
+	private: System::Void abooutToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+				 Form^ rgForm = gcnew About();
+				 rgForm->ShowDialog();			 
+			 }
+	private: System::Void ChiSqrButton_Click(System::Object^  sender, System::EventArgs^  e) {
+				 double ep,eb,eb1,eb2,de,de3,fp3,a3,en,fp,f,a,maxf,minf,df,de2,fp2,a2,s0;
 				 int i,size;
 				 MatrixXd parameters;
 				 complex<double> d;
@@ -1789,43 +1789,43 @@ private: System::Void ChiSqrButton_Click(System::Object^  sender, System::EventA
 				 a3=(Convert::ToDouble(tba3->Text));
 				 s0=(Convert::ToDouble(tbs0->Text));
 				 //if (funnum==1) {
-					// parameters.resize(4,1);
-					// parameters<<en,de,fp,a;
+				 // parameters.resize(4,1);
+				 // parameters<<en,de,fp,a;
 				 //};
 				 // if (funnum==2) {
-					// parameters.resize(7,1);
-					// parameters<<en,de,fp,a,de2,fp2,a2;
+				 // parameters.resize(7,1);
+				 // parameters<<en,de,fp,a,de2,fp2,a2;
 				 //};
 				 //  if (funnum==3) {
-					// parameters.resize(10,1);
-					// parameters<<en,de,fp,a,de2,fp2,a2,de3,fp3,a3;
+				 // parameters.resize(10,1);
+				 // parameters<<en,de,fp,a,de2,fp2,a2,de3,fp3,a3;
 				 //};
-				   switch (funnum){
-				   case 1:
-					   parameters.resize(4,1);
-					   parameters<<en,de,fp,a;
-					   break;
-				   case 2:
-					   parameters.resize(7,1);
-					   parameters<<en,de,fp,a,de2,fp2,a2;
-					   break;
-				   case 3:
-					   parameters.resize(10,1);
-					   parameters<<en,de,fp,a,de2,fp2,a2,de3,fp3,a3;
-					   break;
-				   case 4:
-					   parameters.resize(5,1);
-					   parameters<<en,de,fp,a,s0;
-					   break;
-				   case 5:
-					   parameters.resize(8,1);
-					   parameters<<en,de,fp,a,de2,fp2,a2,s0;
-					   break;
-				   case 6:
-					   parameters.resize(11,1);
-					   parameters<<en,de,fp,a,de2,fp2,a2,de3,fp3,a3,s0;
-					   break;
-				   };
+				 switch (funnum){
+				 case 1:
+					 parameters.resize(4,1);
+					 parameters<<en,de,fp,a;
+					 break;
+				 case 2:
+					 parameters.resize(7,1);
+					 parameters<<en,de,fp,a,de2,fp2,a2;
+					 break;
+				 case 3:
+					 parameters.resize(10,1);
+					 parameters<<en,de,fp,a,de2,fp2,a2,de3,fp3,a3;
+					 break;
+				 case 4:
+					 parameters.resize(5,1);
+					 parameters<<en,de,fp,a,s0;
+					 break;
+				 case 5:
+					 parameters.resize(8,1);
+					 parameters<<en,de,fp,a,de2,fp2,a2,s0;
+					 break;
+				 case 6:
+					 parameters.resize(11,1);
+					 parameters<<en,de,fp,a,de2,fp2,a2,de3,fp3,a3,s0;
+					 break;
+				 };
 				 for (i=0;i<=100;i++)
 				 {
 					 f=pow(10,log10(minf)+(i/100.0)*df);
@@ -1842,290 +1842,290 @@ private: System::Void ChiSqrButton_Click(System::Object^  sender, System::EventA
 					 eb=-std::imag(d);
 					 chart1->Series[2]->Points->AddXY(log10(f),ep);
 					 chart1->Series[3]->Points->AddXY(log10(f),eb);
-					// chart1->Series[4]->Points->AddXY(f,eb1);
+					 // chart1->Series[4]->Points->AddXY(f,eb1);
 					 if (funnum==2||funnum==3) {
 						 chart1->Series[4]->Points->AddXY(log10(f),eb1);
-					 	 chart1->Series[5]->Points->AddXY(log10(f),eb2);
+						 chart1->Series[5]->Points->AddXY(log10(f),eb2);
 					 }
 					 chart2->Series["Series2"]->Points->AddXY(ep,eb);
-					 
-				/*	 if (expmnt.CurveSet[Position-1].twofunctions) chart2->Series["Series3"]->Points->AddXY(ep1,eb1);
+
+					 /*	 if (expmnt.CurveSet[Position-1].twofunctions) chart2->Series["Series3"]->Points->AddXY(ep1,eb1);
 					 if (expmnt.CurveSet[Position-1].twofunctions) chart2->Series["Series4"]->Points->AddXY(ep2,eb2);
-				 */}
+					 */}
 				 chisquared=chi2MatGeneral(expmnt.CurveSet[Position-1].Dataf,expmnt.CurveSet[Position-1].Dataep,expmnt.CurveSet[Position-1].Dataeb,funnum,parameters);
-					 cout<<"chi2 test "<<chisquared<<endl;
-		 }
-private: System::Void loadFileToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
-			 LoadButton->PerformClick();
-		 }
-private: System::Void exitToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
-			 exit(0);
-		 }
-private: System::Void NextCurveButton_Click(System::Object^  sender, System::EventArgs^  e) {
-			 int i,size;
-			 if (Position<expmnt.CurveSet.size()) Position++;
-			 label1->Text=Position.ToString()+"/"+expmnt.CurveSet.size();
-			 label18->Text=Position.ToString()+"/"+expmnt.CurveSet.size();
-			 if (!expmnt.IsGenerated)this->Text=gcnew String(expmnt.CurveSet[Position-1].filename.c_str());
-			 else this->Text="Generated";
-			 chart1->Series[0]->Points->Clear();
-			 chart2->Series["Series1"]->Points->Clear();
-			 chart1->Series[1]->Points->Clear();
-			 chart2->Series["Series2"]->Points->Clear();
-			 chart2->Series["Series3"]->Points->Clear();
-			 chart2->Series["Series4"]->Points->Clear();
-			 chart1->Series[4]->Points->Clear();
-			 chart1->Series[5]->Points->Clear();
-			 chart1->Series[2]->Points->Clear();
-			 chart1->Series[3]->Points->Clear();
-			 label2->Text=expmnt.CurveSet[Position-1].temperature.ToString();
-			 if (expmnt.CurveSet[Position-1].fitted){
-				 tbeps->Text=expmnt.CurveSet[Position-1].en.ToString("g4");
-				 tbde1->Text=expmnt.CurveSet[Position-1].de1.ToString("g4");
-				 tbf1->Text=expmnt.CurveSet[Position-1].fp1.ToString("g4");
-				 tba1->Text=expmnt.CurveSet[Position-1].a1.ToString("g4");
-				 tbde2->Text=expmnt.CurveSet[Position-1].de2.ToString("g4");
-				 tbfp2->Text=expmnt.CurveSet[Position-1].fp2.ToString("g4");
-				 tba2->Text=expmnt.CurveSet[Position-1].a2.ToString("g4");
-				 tbde3->Text=expmnt.CurveSet[Position-1].de3.ToString("g4");
-				 tbfp3->Text=expmnt.CurveSet[Position-1].fp3.ToString("g4");
-				 tba3->Text=expmnt.CurveSet[Position-1].a3.ToString("g4");
-				 tbs0->Text=expmnt.CurveSet[Position-1].s0.ToString("g4");
-				 expmnt.CurveSet[Position-1].fitted=true;
-				 this->ChiSqrButton_Click(sender,e);
-				 //ChiSqrButton->PerformClick();
+				 cout<<"chi2 test "<<chisquared<<endl;
 			 }
-			 size=expmnt.CurveSet[Position-1].Dataf.size();
-			 for (i=0;i<=size-1;i++)
-			 {
-				 chart1->Series[0]->Points->AddXY(log10(expmnt.CurveSet[Position-1].Dataf[i]),expmnt.CurveSet[Position-1].Dataep[i]);
-				 chart1->Series[1]->Points->AddXY(log10(expmnt.CurveSet[Position-1].Dataf[i]),-expmnt.CurveSet[Position-1].Dataeb[i]);
-				 chart2->Series["Series1"]->Points->AddXY(expmnt.CurveSet[Position-1].Dataep[i],-expmnt.CurveSet[Position-1].Dataeb[i]);
-
+	private: System::Void loadFileToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+				 LoadButton->PerformClick();
 			 }
-		 }
-private: System::Void PrevCurveButton_Click(System::Object^  sender, System::EventArgs^  e) {
-			 int i,size;
-			 if (Position>1) Position--;
-			 if (!expmnt.IsGenerated)this->Text=gcnew String(expmnt.CurveSet[Position-1].filename.c_str());
-			 else this->Text="Generated";
-			 label1->Text=Position.ToString()+"/"+expmnt.CurveSet.size();
-			 label18->Text=Position.ToString()+"/"+expmnt.CurveSet.size();
-			 label2->Text=expmnt.CurveSet[Position-1].temperature.ToString();
-			 chart1->Series[0]->Points->Clear();
-			 chart1->Series[4]->Points->Clear();
-			 chart1->Series[5]->Points->Clear();
-			 chart2->Series["Series1"]->Points->Clear();
-			 chart1->Series[1]->Points->Clear();
-			 chart2->Series["Series2"]->Points->Clear();
-			 chart1->Series[2]->Points->Clear();
-			 chart1->Series[3]->Points->Clear();
-			 if (expmnt.CurveSet[Position-1].fitted){
-				 tbeps->Text=expmnt.CurveSet[Position-1].en.ToString("g4");
-				 tbde1->Text=expmnt.CurveSet[Position-1].de1.ToString("g4");
-				 tbf1->Text=expmnt.CurveSet[Position-1].fp1.ToString("g6");
-				 tba1->Text=expmnt.CurveSet[Position-1].a1.ToString("g4");
-				 tbde2->Text=expmnt.CurveSet[Position-1].de2.ToString("g4");
-				 tbfp2->Text=expmnt.CurveSet[Position-1].fp2.ToString("g6");
-				 tba2->Text=expmnt.CurveSet[Position-1].a2.ToString("g4");
-				 tbde3->Text=expmnt.CurveSet[Position-1].de3.ToString("g4");
-				 tbfp3->Text=expmnt.CurveSet[Position-1].fp3.ToString("g6");
-				 tba3->Text=expmnt.CurveSet[Position-1].a3.ToString("g4");
-				 tbs0->Text=expmnt.CurveSet[Position-1].s0.ToString("g4");
-				 expmnt.CurveSet[Position-1].fitted=true;
-				 //ChiSqrButton->PerformClick();
-				 this->ChiSqrButton_Click(sender,e);
+	private: System::Void exitToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+				 exit(0);
 			 }
-			 size=expmnt.CurveSet[Position-1].Dataf.size();
-					  for (i=0;i<=size-1;i++)
-					 {
-						 chart1->Series[0]->Points->AddXY(log10(expmnt.CurveSet[Position-1].Dataf[i]),expmnt.CurveSet[Position-1].Dataep[i]);
-						 chart1->Series[1]->Points->AddXY(log10(expmnt.CurveSet[Position-1].Dataf[i]),-expmnt.CurveSet[Position-1].Dataeb[i]);
-						 chart2->Series["Series1"]->Points->AddXY(expmnt.CurveSet[Position-1].Dataep[i],-expmnt.CurveSet[Position-1].Dataeb[i]);
-
-					 }
-
-		 }
-//private: System::Void Fit2Button_Click(System::Object^  sender, System::EventArgs^  e) {
-//			 double es,de1,fp1,a1,de2,fp2,a2;
-//			 complex<double> d;
-//			 MatrixXd parameters(7,1);
-//			 chart1->Series[2]->Points->Clear();
-//			 chart1->Series[3]->Points->Clear();
-//			 chart2->Series["Series2"]->Points->Clear();
-//			 es=(Convert::ToDouble(tbeps->Text));
-//			 de1=(Convert::ToDouble(tbde1->Text));
-//			 fp1=(Convert::ToDouble(tbf1->Text));
-//			 a1=(Convert::ToDouble(tba1->Text));
-//			 de2=(Convert::ToDouble(tbde2->Text));
-//			 fp2=(Convert::ToDouble(tbfp2->Text));
-//			 a2=(Convert::ToDouble(tba2->Text));
-//			 parameters<<es,de1,fp1,a1,de2,fp2,a2;
-//			 FitLM2(expmnt.CurveSet[Position-1].Dataf,expmnt.CurveSet[Position-1].Dataep,expmnt.CurveSet[Position-1].Dataeb,parameters);
-//			 es=parameters(0,0);
-//			 tbeps->Text=es.ToString();
-//			 de1=parameters(1,0);
-//			 tbde1->Text=de1.ToString();
-//			 fp1=parameters(2,0);
-//			 tbf1->Text=fp1.ToString();
-//			 a1=parameters(3,0);
-//			 tba1->Text=a1.ToString();
-//			 de2=parameters(4,0);
-//			 tbde2->Text=de2.ToString();
-//			 fp2=parameters(5,0);
-//			 tbfp2->Text=fp2.ToString();
-//			 a2=parameters(6,0);
-//			 tba2->Text=a2.ToString();
-//			 expmnt.CurveSet[Position-1].en=es;
-//			 expmnt.CurveSet[Position-1].de1=de1;
-//			 expmnt.CurveSet[Position-1].fp1=fp1;
-//			 expmnt.CurveSet[Position-1].a1=a1;
-//			 expmnt.CurveSet[Position-1].fitted=true;
-//			 expmnt.CurveSet[Position-1].de2=de2;
-//			 expmnt.CurveSet[Position-1].fp2=fp2;
-//			 expmnt.CurveSet[Position-1].a2=a2;
-//			 expmnt.CurveSet[Position-1].twofunctions=true;
-//		/*	 for (i=0;i<=size-1;i++)
-//			 {
-//					 d=es+de1/(1.0+pow(ii*expmnt.CurveSet[Position-1].Dataf[i]/fp1,1-a1))+de2/(1.0+pow(ii*expmnt.CurveSet[Position-1].Dataf[i]/fp2,1-a2));
-//					 ep= std::real(d);
-//					 eb=-std::imag(d);
-//					 chart1->Series[2]->Points->AddXY(log10(expmnt.CurveSet[Position-1].Dataf[i]),ep);
-//					 chart1->Series[3]->Points->AddXY(log10(expmnt.CurveSet[Position-1].Dataf[i]),eb);
-//					 chart2->Series["Series2"]->Points->AddXY(ep,eb);
-//				 }*/
-//			 ChiSqrButton->PerformClick();
-//			 //PlotButton->PerformClick();
-//		 }
-
-private: System::Void saveToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
-			 CultureInfo^ MyCI = gcnew CultureInfo( "en-US",false );
-			 int i,size;
-			 NumberFormatInfo^ nfi = MyCI->NumberFormat;
-			 nfi->NumberDecimalSeparator = ".";
-			 //button7->PerformClick();
-			 size=expmnt.CurveSet.size();
-			 if (saveFileDialog1->ShowDialog() == ::System::Windows::Forms::DialogResult::OK ){
-				 StreamWriter^ sw = gcnew StreamWriter(saveFileDialog1->FileName);
-				 for (i=0;i<size;i++){
-					 if(expmnt.CurveSet[i].fitted) sw->WriteLine(expmnt.CurveSet[i].temperature.ToString("g6",nfi)+" "+expmnt.CurveSet[i].en.ToString("g6",nfi)+" "+expmnt.CurveSet[i].de1.ToString("g6",nfi)+" "+expmnt.CurveSet[i].fp1.ToString("g6",nfi)+" "+expmnt.CurveSet[i].a1.ToString("g6",nfi)+" "+expmnt.CurveSet[i].de2.ToString("g6",nfi)+" "+expmnt.CurveSet[i].fp2.ToString("g6",nfi)+" "+expmnt.CurveSet[i].a2.ToString("g6",nfi)+" "+expmnt.CurveSet[i].de3.ToString("g6",nfi)+" "+expmnt.CurveSet[i].fp3.ToString("g6",nfi)+" "+expmnt.CurveSet[i].a3.ToString("g6",nfi)+" "+expmnt.CurveSet[i].chi2.ToString("g6",nfi));
+	private: System::Void NextCurveButton_Click(System::Object^  sender, System::EventArgs^  e) {
+				 int i,size;
+				 if (Position<expmnt.CurveSet.size()) Position++;
+				 label1->Text=Position.ToString()+"/"+expmnt.CurveSet.size();
+				 label18->Text=Position.ToString()+"/"+expmnt.CurveSet.size();
+				 if (!expmnt.IsGenerated)this->Text=gcnew String(expmnt.CurveSet[Position-1].filename.c_str());
+				 else this->Text="Generated";
+				 chart1->Series[0]->Points->Clear();
+				 chart2->Series["Series1"]->Points->Clear();
+				 chart1->Series[1]->Points->Clear();
+				 chart2->Series["Series2"]->Points->Clear();
+				 chart2->Series["Series3"]->Points->Clear();
+				 chart2->Series["Series4"]->Points->Clear();
+				 chart1->Series[4]->Points->Clear();
+				 chart1->Series[5]->Points->Clear();
+				 chart1->Series[2]->Points->Clear();
+				 chart1->Series[3]->Points->Clear();
+				 label2->Text=expmnt.CurveSet[Position-1].temperature.ToString();
+				 if (expmnt.CurveSet[Position-1].fitted){
+					 tbeps->Text=expmnt.CurveSet[Position-1].en.ToString("g4");
+					 tbde1->Text=expmnt.CurveSet[Position-1].de1.ToString("g4");
+					 tbf1->Text=expmnt.CurveSet[Position-1].fp1.ToString("g4");
+					 tba1->Text=expmnt.CurveSet[Position-1].a1.ToString("g4");
+					 tbde2->Text=expmnt.CurveSet[Position-1].de2.ToString("g4");
+					 tbfp2->Text=expmnt.CurveSet[Position-1].fp2.ToString("g4");
+					 tba2->Text=expmnt.CurveSet[Position-1].a2.ToString("g4");
+					 tbde3->Text=expmnt.CurveSet[Position-1].de3.ToString("g4");
+					 tbfp3->Text=expmnt.CurveSet[Position-1].fp3.ToString("g4");
+					 tba3->Text=expmnt.CurveSet[Position-1].a3.ToString("g4");
+					 tbs0->Text=expmnt.CurveSet[Position-1].s0.ToString("g4");
+					 expmnt.CurveSet[Position-1].fitted=true;
+					 this->ChiSqrButton_Click(sender,e);
+					 //ChiSqrButton->PerformClick();
 				 }
-				 sw->Close();
-				 cout <<"Fit parameters saved";
-			 }
-		 }
-private: System::Void PlotButton_Click(System::Object^  sender, System::EventArgs^  e) {
-			 chart3->Series["Series1"]->Points->Clear();
-			 chart3->Series["Series2"]->Points->Clear();
-			 chart4->Series["Series1"]->Points->Clear();
-			 chart4->Series["Series2"]->Points->Clear();
-			 chart3->Series["Series3"]->Points->Clear();
-			 int i,size;
-			 double temperature;
-			 size=expmnt.CurveSet.size();
-			 //cout << temperature;
-			 //textBox9->Text+=temperature.ToString()+" "+tbeps->Text+" "+tbde1->Text+" "+tbf1->Text+" "+tba1->Text+" "+tbde2->Text+" "+tbfp2->Text+" "+tba2->Text+System::Environment::NewLine;
-			 for (i=0;i<size;i++){
-				 if(expmnt.CurveSet[i].fitted){
-					 temperature=expmnt.CurveSet[i].temperature;
-					 chart3->Series["Series1"]->Points->AddXY(temperature,expmnt.CurveSet[i].en);
-					 chart3->Series["Series2"]->Points->AddXY(temperature,expmnt.CurveSet[i].de1);
-					 chart3->Series["Series3"]->Points->AddXY(temperature,expmnt.CurveSet[i].de2);
-					 chart4->Series["Series1"]->Points->AddXY(1.0/(temperature+273.15),log(expmnt.CurveSet[i].fp1));
-					 if (expmnt.CurveSet[i].fp2!=0) chart4->Series["Series2"]->Points->AddXY(1.0/(temperature+273.15),log(expmnt.CurveSet[i].fp2));
-				 }
-			 }
-		 }
-private: System::Void writeTemperatureDependenciesToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
-			 			 CultureInfo^ MyCI = gcnew CultureInfo( "en-US",false );
-			 NumberFormatInfo^ nfi = MyCI->NumberFormat;
-			 nfi->NumberDecimalSeparator = ".";
-			 if (saveFileDialog1->ShowDialog() == ::System::Windows::Forms::DialogResult::OK ){
-			 			 size_t  i,j;
-				 for (i=0;i<expmnt.CurveSet[0].Dataf.size();i++)
+				 size=expmnt.CurveSet[Position-1].Dataf.size();
+				 for (i=0;i<=size-1;i++)
 				 {
-					 StreamWriter^ sw = gcnew StreamWriter(saveFileDialog1->FileName+i.ToString()+".dat");
-					 sw->WriteLine("Frequency = "+ expmnt.CurveSet[0].Dataf[i]);
-					 for (j=0;j<expmnt.CurveSet.size();j++){
-						 sw->WriteLine(expmnt.CurveSet[j].temperature.ToString("e6",nfi)+" "+ expmnt.CurveSet[j].Dataep[i].ToString("e6",nfi)+" "+(-expmnt.CurveSet[j].Dataeb[i]).ToString("e6",nfi));
+					 chart1->Series[0]->Points->AddXY(log10(expmnt.CurveSet[Position-1].Dataf[i]),expmnt.CurveSet[Position-1].Dataep[i]);
+					 chart1->Series[1]->Points->AddXY(log10(expmnt.CurveSet[Position-1].Dataf[i]),-expmnt.CurveSet[Position-1].Dataeb[i]);
+					 chart2->Series["Series1"]->Points->AddXY(expmnt.CurveSet[Position-1].Dataep[i],-expmnt.CurveSet[Position-1].Dataeb[i]);
+
+				 }
+			 }
+	private: System::Void PrevCurveButton_Click(System::Object^  sender, System::EventArgs^  e) {
+				 int i,size;
+				 if (Position>1) Position--;
+				 if (!expmnt.IsGenerated)this->Text=gcnew String(expmnt.CurveSet[Position-1].filename.c_str());
+				 else this->Text="Generated";
+				 label1->Text=Position.ToString()+"/"+expmnt.CurveSet.size();
+				 label18->Text=Position.ToString()+"/"+expmnt.CurveSet.size();
+				 label2->Text=expmnt.CurveSet[Position-1].temperature.ToString();
+				 chart1->Series[0]->Points->Clear();
+				 chart1->Series[4]->Points->Clear();
+				 chart1->Series[5]->Points->Clear();
+				 chart2->Series["Series1"]->Points->Clear();
+				 chart1->Series[1]->Points->Clear();
+				 chart2->Series["Series2"]->Points->Clear();
+				 chart1->Series[2]->Points->Clear();
+				 chart1->Series[3]->Points->Clear();
+				 if (expmnt.CurveSet[Position-1].fitted){
+					 tbeps->Text=expmnt.CurveSet[Position-1].en.ToString("g4");
+					 tbde1->Text=expmnt.CurveSet[Position-1].de1.ToString("g4");
+					 tbf1->Text=expmnt.CurveSet[Position-1].fp1.ToString("g6");
+					 tba1->Text=expmnt.CurveSet[Position-1].a1.ToString("g4");
+					 tbde2->Text=expmnt.CurveSet[Position-1].de2.ToString("g4");
+					 tbfp2->Text=expmnt.CurveSet[Position-1].fp2.ToString("g6");
+					 tba2->Text=expmnt.CurveSet[Position-1].a2.ToString("g4");
+					 tbde3->Text=expmnt.CurveSet[Position-1].de3.ToString("g4");
+					 tbfp3->Text=expmnt.CurveSet[Position-1].fp3.ToString("g6");
+					 tba3->Text=expmnt.CurveSet[Position-1].a3.ToString("g4");
+					 tbs0->Text=expmnt.CurveSet[Position-1].s0.ToString("g4");
+					 expmnt.CurveSet[Position-1].fitted=true;
+					 //ChiSqrButton->PerformClick();
+					 this->ChiSqrButton_Click(sender,e);
+				 }
+				 size=expmnt.CurveSet[Position-1].Dataf.size();
+				 for (i=0;i<=size-1;i++)
+				 {
+					 chart1->Series[0]->Points->AddXY(log10(expmnt.CurveSet[Position-1].Dataf[i]),expmnt.CurveSet[Position-1].Dataep[i]);
+					 chart1->Series[1]->Points->AddXY(log10(expmnt.CurveSet[Position-1].Dataf[i]),-expmnt.CurveSet[Position-1].Dataeb[i]);
+					 chart2->Series["Series1"]->Points->AddXY(expmnt.CurveSet[Position-1].Dataep[i],-expmnt.CurveSet[Position-1].Dataeb[i]);
+
+				 }
+
+			 }
+			 //private: System::Void Fit2Button_Click(System::Object^  sender, System::EventArgs^  e) {
+			 //			 double es,de1,fp1,a1,de2,fp2,a2;
+			 //			 complex<double> d;
+			 //			 MatrixXd parameters(7,1);
+			 //			 chart1->Series[2]->Points->Clear();
+			 //			 chart1->Series[3]->Points->Clear();
+			 //			 chart2->Series["Series2"]->Points->Clear();
+			 //			 es=(Convert::ToDouble(tbeps->Text));
+			 //			 de1=(Convert::ToDouble(tbde1->Text));
+			 //			 fp1=(Convert::ToDouble(tbf1->Text));
+			 //			 a1=(Convert::ToDouble(tba1->Text));
+			 //			 de2=(Convert::ToDouble(tbde2->Text));
+			 //			 fp2=(Convert::ToDouble(tbfp2->Text));
+			 //			 a2=(Convert::ToDouble(tba2->Text));
+			 //			 parameters<<es,de1,fp1,a1,de2,fp2,a2;
+			 //			 FitLM2(expmnt.CurveSet[Position-1].Dataf,expmnt.CurveSet[Position-1].Dataep,expmnt.CurveSet[Position-1].Dataeb,parameters);
+			 //			 es=parameters(0,0);
+			 //			 tbeps->Text=es.ToString();
+			 //			 de1=parameters(1,0);
+			 //			 tbde1->Text=de1.ToString();
+			 //			 fp1=parameters(2,0);
+			 //			 tbf1->Text=fp1.ToString();
+			 //			 a1=parameters(3,0);
+			 //			 tba1->Text=a1.ToString();
+			 //			 de2=parameters(4,0);
+			 //			 tbde2->Text=de2.ToString();
+			 //			 fp2=parameters(5,0);
+			 //			 tbfp2->Text=fp2.ToString();
+			 //			 a2=parameters(6,0);
+			 //			 tba2->Text=a2.ToString();
+			 //			 expmnt.CurveSet[Position-1].en=es;
+			 //			 expmnt.CurveSet[Position-1].de1=de1;
+			 //			 expmnt.CurveSet[Position-1].fp1=fp1;
+			 //			 expmnt.CurveSet[Position-1].a1=a1;
+			 //			 expmnt.CurveSet[Position-1].fitted=true;
+			 //			 expmnt.CurveSet[Position-1].de2=de2;
+			 //			 expmnt.CurveSet[Position-1].fp2=fp2;
+			 //			 expmnt.CurveSet[Position-1].a2=a2;
+			 //			 expmnt.CurveSet[Position-1].twofunctions=true;
+			 //		/*	 for (i=0;i<=size-1;i++)
+			 //			 {
+			 //					 d=es+de1/(1.0+pow(ii*expmnt.CurveSet[Position-1].Dataf[i]/fp1,1-a1))+de2/(1.0+pow(ii*expmnt.CurveSet[Position-1].Dataf[i]/fp2,1-a2));
+			 //					 ep= std::real(d);
+			 //					 eb=-std::imag(d);
+			 //					 chart1->Series[2]->Points->AddXY(log10(expmnt.CurveSet[Position-1].Dataf[i]),ep);
+			 //					 chart1->Series[3]->Points->AddXY(log10(expmnt.CurveSet[Position-1].Dataf[i]),eb);
+			 //					 chart2->Series["Series2"]->Points->AddXY(ep,eb);
+			 //				 }*/
+			 //			 ChiSqrButton->PerformClick();
+			 //			 //PlotButton->PerformClick();
+			 //		 }
+
+	private: System::Void saveToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+				 CultureInfo^ MyCI = gcnew CultureInfo( "en-US",false );
+				 int i,size;
+				 NumberFormatInfo^ nfi = MyCI->NumberFormat;
+				 nfi->NumberDecimalSeparator = ".";
+				 //button7->PerformClick();
+				 size=expmnt.CurveSet.size();
+				 if (saveFileDialog1->ShowDialog() == ::System::Windows::Forms::DialogResult::OK ){
+					 StreamWriter^ sw = gcnew StreamWriter(saveFileDialog1->FileName);
+					 for (i=0;i<size;i++){
+						 if(expmnt.CurveSet[i].fitted) sw->WriteLine(expmnt.CurveSet[i].temperature.ToString("g6",nfi)+" "+expmnt.CurveSet[i].en.ToString("g6",nfi)+" "+expmnt.CurveSet[i].de1.ToString("g6",nfi)+" "+expmnt.CurveSet[i].fp1.ToString("g6",nfi)+" "+expmnt.CurveSet[i].a1.ToString("g6",nfi)+" "+expmnt.CurveSet[i].de2.ToString("g6",nfi)+" "+expmnt.CurveSet[i].fp2.ToString("g6",nfi)+" "+expmnt.CurveSet[i].a2.ToString("g6",nfi)+" "+expmnt.CurveSet[i].de3.ToString("g6",nfi)+" "+expmnt.CurveSet[i].fp3.ToString("g6",nfi)+" "+expmnt.CurveSet[i].a3.ToString("g6",nfi)+" "+expmnt.CurveSet[i].chi2.ToString("g6",nfi));
 					 }
 					 sw->Close();
+					 cout <<"Fit parameters saved";
 				 }
 			 }
-		 }
-private: System::Void impedanceToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
-			 CultureInfo^ MyCI = gcnew CultureInfo( "en-US",false );
-			 NumberFormatInfo^ nfi = MyCI->NumberFormat;
-			 nfi->NumberDecimalSeparator = ".";
-			 complex<double> eps;
-			 complex<double> zs;
-			 if (expmnt.IsGeometrySpecified){
-				 if (saveFileDialog1->ShowDialog() == ::System::Windows::Forms::DialogResult::OK ){
-					 size_t  i,j,size,size2;
-					 double ep,eb;
-					 size=expmnt.CurveSet[0].Dataf.size();
-					 size2=expmnt.CurveSet.size();
-					 for (j=0;j<size2;j++){
-						 //cout << expmnt.CurveSet[j].temperature <<" "<<  Correction(expmnt.CurveSet[j].temperature) <<endl;
-						 StreamWriter^ sw = gcnew StreamWriter(saveFileDialog1->FileName+j.ToString()+".dat");
-						 sw->WriteLine("Temperature="+ expmnt.CurveSet[j].temperature.ToString("g6",nfi)+" ");
-						 sw->WriteLine("");
-						 sw->WriteLine("");
-						 sw->WriteLine("");
-						 sw->WriteLine("");
-						 sw->WriteLine("");
-						 sw->WriteLine("Freq. [Hz]\tZs' [Ohms]\tZs'' [Ohms]");
-						 for (i=0;i<size;i++){
-							 ep=expmnt.CurveSet[j].Dataep[i];
-							 eb=expmnt.CurveSet[j].Dataeb[i];
-							 eps=ep+ii*eb;
-							 zs=(-ii*1.0/eps)/(vacuumcapacity*2.0*pi*expmnt.CurveSet[j].Dataf[i]);
-							 sw->WriteLine(expmnt.CurveSet[j].Dataf[i].ToString("e6",nfi)+"\t"+real(zs).ToString("g6",nfi)+"\t"+imag(zs).ToString("g6",nfi)+"\t"+ep.ToString("g6",nfi)+"\t"+eb.ToString("g6",nfi));
-							 //cout <<expmnt.CurveSet[j].Dataf[i]<<" " <<real(zs)<< " "<<imag(zs)<<endl;
-						 }
-						 sw->Close();
+	private: System::Void PlotButton_Click(System::Object^  sender, System::EventArgs^  e) {
+				 chart3->Series["Series1"]->Points->Clear();
+				 chart3->Series["Series2"]->Points->Clear();
+				 chart4->Series["Series1"]->Points->Clear();
+				 chart4->Series["Series2"]->Points->Clear();
+				 chart3->Series["Series3"]->Points->Clear();
+				 int i,size;
+				 double temperature;
+				 size=expmnt.CurveSet.size();
+				 //cout << temperature;
+				 //textBox9->Text+=temperature.ToString()+" "+tbeps->Text+" "+tbde1->Text+" "+tbf1->Text+" "+tba1->Text+" "+tbde2->Text+" "+tbfp2->Text+" "+tba2->Text+System::Environment::NewLine;
+				 for (i=0;i<size;i++){
+					 if(expmnt.CurveSet[i].fitted){
+						 temperature=expmnt.CurveSet[i].temperature;
+						 chart3->Series["Series1"]->Points->AddXY(temperature,expmnt.CurveSet[i].en);
+						 chart3->Series["Series2"]->Points->AddXY(temperature,expmnt.CurveSet[i].de1);
+						 chart3->Series["Series3"]->Points->AddXY(temperature,expmnt.CurveSet[i].de2);
+						 chart4->Series["Series1"]->Points->AddXY(1.0/(temperature+273.15),log(expmnt.CurveSet[i].fp1));
+						 if (expmnt.CurveSet[i].fp2!=0) chart4->Series["Series2"]->Points->AddXY(1.0/(temperature+273.15),log(expmnt.CurveSet[i].fp2));
 					 }
 				 }
 			 }
-			 else {  
-				 MessageBox::Show("Geometry unspecified !!","Dielectric Fitter", MessageBoxButtons::OK,MessageBoxIcon::Asterisk);
-				 tabControl1->SelectedIndex = 5;
-			 };
-		 }
-private: System::Void saveTempImpedanceToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
-			 complex<double> eps;
-			 complex<double> zs;
-			 CultureInfo^ MyCI = gcnew CultureInfo( "en-US",false );
-			 NumberFormatInfo^ nfi = MyCI->NumberFormat;
-			 nfi->NumberDecimalSeparator = ".";
-			 if (expmnt.IsGeometrySpecified){
+	private: System::Void writeTemperatureDependenciesToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+				 CultureInfo^ MyCI = gcnew CultureInfo( "en-US",false );
+				 NumberFormatInfo^ nfi = MyCI->NumberFormat;
+				 nfi->NumberDecimalSeparator = ".";
 				 if (saveFileDialog1->ShowDialog() == ::System::Windows::Forms::DialogResult::OK ){
 					 size_t  i,j;
-					 double ep,eb;
 					 for (i=0;i<expmnt.CurveSet[0].Dataf.size();i++)
 					 {
 						 StreamWriter^ sw = gcnew StreamWriter(saveFileDialog1->FileName+i.ToString()+".dat");
 						 sw->WriteLine("Frequency = "+ expmnt.CurveSet[0].Dataf[i]);
 						 for (j=0;j<expmnt.CurveSet.size();j++){
-							 ep=expmnt.CurveSet[j].Dataep[i];
-							 eb=expmnt.CurveSet[j].Dataeb[i];
-							 eps=ep+ii*eb;
-							 zs=(-ii*1.0/eps)/(vacuumcapacity*2.0*pi*expmnt.CurveSet[j].Dataf[i]);
-							 sw->WriteLine(expmnt.CurveSet[j].temperature.ToString("g5",nfi)+" "+ real(zs).ToString("g6",nfi)+" "+imag(zs).ToString("g6",nfi)+" "+ep.ToString("g6",nfi)+" "+eb.ToString("g6",nfi));
+							 sw->WriteLine(expmnt.CurveSet[j].temperature.ToString("e6",nfi)+" "+ expmnt.CurveSet[j].Dataep[i].ToString("e6",nfi)+" "+(-expmnt.CurveSet[j].Dataeb[i]).ToString("e6",nfi));
 						 }
 						 sw->Close();
 					 }
-				 }}
+				 }
+			 }
+	private: System::Void impedanceToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+				 CultureInfo^ MyCI = gcnew CultureInfo( "en-US",false );
+				 NumberFormatInfo^ nfi = MyCI->NumberFormat;
+				 nfi->NumberDecimalSeparator = ".";
+				 complex<double> eps;
+				 complex<double> zs;
+				 if (expmnt.IsGeometrySpecified){
+					 if (saveFileDialog1->ShowDialog() == ::System::Windows::Forms::DialogResult::OK ){
+						 size_t  i,j,size,size2;
+						 double ep,eb;
+						 size=expmnt.CurveSet[0].Dataf.size();
+						 size2=expmnt.CurveSet.size();
+						 for (j=0;j<size2;j++){
+							 //cout << expmnt.CurveSet[j].temperature <<" "<<  Correction(expmnt.CurveSet[j].temperature) <<endl;
+							 StreamWriter^ sw = gcnew StreamWriter(saveFileDialog1->FileName+j.ToString()+".dat");
+							 sw->WriteLine("Temperature="+ expmnt.CurveSet[j].temperature.ToString("g6",nfi)+" ");
+							 sw->WriteLine("");
+							 sw->WriteLine("");
+							 sw->WriteLine("");
+							 sw->WriteLine("");
+							 sw->WriteLine("");
+							 sw->WriteLine("Freq. [Hz]\tZs' [Ohms]\tZs'' [Ohms]");
+							 for (i=0;i<size;i++){
+								 ep=expmnt.CurveSet[j].Dataep[i];
+								 eb=expmnt.CurveSet[j].Dataeb[i];
+								 eps=ep+ii*eb;
+								 zs=(-ii*1.0/eps)/(vacuumcapacity*2.0*pi*expmnt.CurveSet[j].Dataf[i]);
+								 sw->WriteLine(expmnt.CurveSet[j].Dataf[i].ToString("e6",nfi)+"\t"+real(zs).ToString("g6",nfi)+"\t"+imag(zs).ToString("g6",nfi)+"\t"+ep.ToString("g6",nfi)+"\t"+eb.ToString("g6",nfi));
+								 //cout <<expmnt.CurveSet[j].Dataf[i]<<" " <<real(zs)<< " "<<imag(zs)<<endl;
+							 }
+							 sw->Close();
+						 }
+					 }
+				 }
+				 else {  
+					 MessageBox::Show("Geometry unspecified !!","Dielectric Fitter", MessageBoxButtons::OK,MessageBoxIcon::Asterisk);
+					 tabControl1->SelectedIndex = 5;
+				 };
+			 }
+	private: System::Void saveTempImpedanceToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+				 complex<double> eps;
+				 complex<double> zs;
+				 CultureInfo^ MyCI = gcnew CultureInfo( "en-US",false );
+				 NumberFormatInfo^ nfi = MyCI->NumberFormat;
+				 nfi->NumberDecimalSeparator = ".";
+				 if (expmnt.IsGeometrySpecified){
+					 if (saveFileDialog1->ShowDialog() == ::System::Windows::Forms::DialogResult::OK ){
+						 size_t  i,j;
+						 double ep,eb;
+						 for (i=0;i<expmnt.CurveSet[0].Dataf.size();i++)
+						 {
+							 StreamWriter^ sw = gcnew StreamWriter(saveFileDialog1->FileName+i.ToString()+".dat");
+							 sw->WriteLine("Frequency = "+ expmnt.CurveSet[0].Dataf[i]);
+							 for (j=0;j<expmnt.CurveSet.size();j++){
+								 ep=expmnt.CurveSet[j].Dataep[i];
+								 eb=expmnt.CurveSet[j].Dataeb[i];
+								 eps=ep+ii*eb;
+								 zs=(-ii*1.0/eps)/(vacuumcapacity*2.0*pi*expmnt.CurveSet[j].Dataf[i]);
+								 sw->WriteLine(expmnt.CurveSet[j].temperature.ToString("g5",nfi)+" "+ real(zs).ToString("g6",nfi)+" "+imag(zs).ToString("g6",nfi)+" "+ep.ToString("g6",nfi)+" "+eb.ToString("g6",nfi));
+							 }
+							 sw->Close();
+						 }
+					 }}
 				 else {  
 					 MessageBox::Show("Geometry unspecified !!","Dielectric Fitter", MessageBoxButtons::OK,MessageBoxIcon::Asterisk);
 					 tabControl1->SelectedIndex = 5;
 				 }
-			 
-		 }
-private: System::Void button9_Click(System::Object^  sender, System::EventArgs^  e) {
-			 int i,size;
-			 double temperature,midt,jump,scale,maxx,minx;
-			 	 size=expmnt.CurveSet.size();
+
+			 }
+	private: System::Void button9_Click(System::Object^  sender, System::EventArgs^  e) {
+				 int i,size;
+				 double temperature,midt,jump,scale,maxx,minx;
+				 size=expmnt.CurveSet.size();
 				 label10->Text=Positionfreq.ToString();
 				 chart5->Series["Series1"]->Points->Clear();
 				 chart5->Series["Series2"]->Points->Clear();
@@ -2135,406 +2135,406 @@ private: System::Void button9_Click(System::Object^  sender, System::EventArgs^ 
 				 jump=(Convert::ToDouble(textBox12->Text));
 				 minx=(Convert::ToDouble(corgraphmin->Text));
 				 maxx=(Convert::ToDouble(corgraphmax->Text));
-			 for (i=0;i<size;i++){
-				 temperature=expmnt.CurveSet[i].temperature;
-				 if ((temperature > minx)&&(temperature<maxx)){
-				 chart5->Series["Series1"]->Points->AddXY(temperature,expmnt.CurveSet[i].Dataep[Positionfreq-1]);
-				 chart5->Series["Series2"]->Points->AddXY(temperature,expmnt.CurveSet[i].Dataep[Positionfreq-1]-Correction(temperature,midt,scale,jump));
-				 chart5->Series["Series3"]->Points->AddXY(temperature,Correction(temperature,midt,scale,jump));
-				 }
-			 }
-		 }
-private: System::Void button10_Click(System::Object^  sender, System::EventArgs^  e) {
-			 int i,j,size,size2;
-			 double temperature,midt,jump,scale;
-			 size=expmnt.CurveSet.size();
-			 size2=expmnt.CurveSet[0].Dataf.size();
-			 midt=(Convert::ToDouble(textBox10->Text));
-			 scale=(Convert::ToDouble(textBox11->Text));
-			 jump=(Convert::ToDouble(textBox12->Text));
-			 for (i=0;i<size;i++){
-				 temperature=expmnt.CurveSet[i].temperature;
-				 for (j=0;j<size2;j++) expmnt.CurveSet[i].Dataep[j]-=Correction(temperature,midt,scale,jump);
-			 }
-		 }
-private: System::Void button11_Click(System::Object^  sender, System::EventArgs^  e) {
-			  if (Positionfreq>1) Positionfreq--;
-			  button9->PerformClick();
-		 }
-private: System::Void button12_Click(System::Object^  sender, System::EventArgs^  e) {
-			   if (Positionfreq<expmnt.CurveSet[0].Dataf.size()) Positionfreq++;
-			   button9->PerformClick();
-		 }
-private: System::Void CalcGeomCap_Click(System::Object^  sender, System::EventArgs^  e) {
-			 double r,d,c0;
-			 r=(Convert::ToDouble(textBoxradius->Text));
-			 d=(Convert::ToDouble(textBoxheigth->Text));
-			 c0=8.85e-12*pi*r*1e-6*r/(d*1.0e-3);
-			 vacuumcapacity=c0;
-			 expmnt.c0=c0;
-			 expmnt.IsGeometrySpecified=true;
-			 CapacityLabel1->Text="C0= "+(c0/1.0e-12).ToString("G5") + " pF";
-			 geomlabel1->Text="Geometric capacity of sample equals "+(c0/1.0e-12).ToString("G4") + " pF";
-			 GeometryStatusLabel->Text="Geometric capacity "+(c0/1.0e-12).ToString("G2")+" pF";
-		 }
-private: System::Void button13_Click(System::Object^  sender, System::EventArgs^  e) {
-			 int i;
-			 for (i=1;i<=20;i++){
-				 NextCurveButton->PerformClick();
-				 FitButton->PerformClick();
-			 }
-		 }
-
-private: System::Void GeomButton2_Click(System::Object^  sender, System::EventArgs^  e) {
-			 double r,d,c0;
-			 r=(Convert::ToDouble(textBoxsurface->Text));
-			 d=(Convert::ToDouble(textBoxheight2->Text));
-			 c0=8.85e-12*r*1e-6/(d*1.0e-3);
-			 vacuumcapacity=c0;
-			 expmnt.c0=c0;
-			 expmnt.IsGeometrySpecified=true;
-			 CapacityLabel2->Text="C0= "+(c0/1.0e-12).ToString("G5") + " pF";
-			 geomlabel1->Text="Geometric capacity of sample equals "+(c0/1.0e-12).ToString("G4") + " pF";
-			 GeometryStatusLabel->Text="Geometric capacity "+(c0/1.0e-12).ToString("G2")+" pF";
-		 }
-private: System::Void toepsbutton_Click(System::Object^  sender, System::EventArgs^  e) {
-			 size_t size,i;
-			 size=expmnt.CurveSet.size();
-			 for (i=0;i<size;i++){
-			 Normalize(expmnt.CurveSet[i].Dataep,expmnt.CurveSet[i].Dataeb,vacuumcapacity);
-			 }
-		 }
-private: System::Void Funnum_ValueChanged(System::Object^  sender, System::EventArgs^  e) {
-			 int helper;
-			 helper=Funnum->Value.ToInt16(Funnum->Value);
-			 cout << "Helper "<<helper<<endl;
-			 switch (helper){
-			 case 1: {
-				 tbfp2->BackColor = System::Drawing::SystemColors::Control;
-				 tbde2->BackColor = System::Drawing::SystemColors::Control;
-				 tba2->BackColor = System::Drawing::SystemColors::Control;
-				 tbfp3->BackColor = System::Drawing::SystemColors::Control;
-				 tbde3->BackColor = System::Drawing::SystemColors::Control;
-				 tba3->BackColor = System::Drawing::SystemColors::Control;
-				 break;
-					 };
-			 case 2: {tbfp2->BackColor = System::Drawing::SystemColors::Window;
-				 tbde2->BackColor = System::Drawing::SystemColors::Window;
-				 tba2->BackColor = System::Drawing::SystemColors::Window;
-				 tbfp3->BackColor = System::Drawing::SystemColors::ScrollBar;
-				 tbde3->BackColor = System::Drawing::SystemColors::ScrollBar;
-				 tba3->BackColor = System::Drawing::SystemColors::ScrollBar;
-				 break;
-					 };
-			 case 3: {tbfp2->BackColor = System::Drawing::SystemColors::Window;
-				 tbde2->BackColor = System::Drawing::SystemColors::Window;
-				 tba2->BackColor = System::Drawing::SystemColors::Window;
-				 tbfp3->BackColor = System::Drawing::SystemColors::Window;
-				 tbde3->BackColor = System::Drawing::SystemColors::Window;
-				 tba3->BackColor = System::Drawing::SystemColors::Window;
-				 break;
-					 };
-			 }
-		 }
-private: System::Void chart1_Click(System::Object^  sender, System::EventArgs^  e) {
-		 }
-private: System::Void nextcrv_Click(System::Object^  sender, System::EventArgs^  e) {
-			 NextCurveButton->PerformClick();
-		 }
-private: System::Void prvcrv_Click(System::Object^  sender, System::EventArgs^  e) {
-			 PrevCurveButton->PerformClick();
-		 }
-private: System::Void saveAllFilesIntoOneToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
-			 CultureInfo^ MyCI = gcnew CultureInfo( "en-US",false );
-			 NumberFormatInfo^ nfi = MyCI->NumberFormat;
-			 nfi->NumberDecimalSeparator = ".";
-			 if (saveFileDialog1->ShowDialog() == ::System::Windows::Forms::DialogResult::OK ){
-				 StreamWriter^ sw = gcnew StreamWriter(saveFileDialog1->FileName+".dat");
-				 size_t  i,j;
-				 double ep,eb;
-				 for (i=0;i<expmnt.CurveSet[0].Dataf.size();i++)
-				 {
-					 for (j=0;j<expmnt.CurveSet.size();j++){
-						 ep=expmnt.CurveSet[j].Dataep[i];
-						 eb=expmnt.CurveSet[j].Dataeb[i];
-						 sw->WriteLine(j.ToString("g5",nfi)+" "+expmnt.CurveSet[j].temperature.ToString("g5",nfi)+" "+expmnt.CurveSet[j].Dataf[i].ToString("g6",nfi)+" "+ep.ToString("g6",nfi)+" "+(-eb).ToString("g6",nfi));
-					 }
-				 }
-				 sw->Close();
-			 }
-
-		 }
-private: System::Void chart4_Click(System::Object^  sender, System::EventArgs^  e) {
-		 }
-////private: System::Void fitentropbutton_Click(System::Object^  sender, System::EventArgs^  e) {
-//			 		 MatrixXd parameters(4,1);
-//				 complex<double> d;
-//				 double en,de,fp,a,de2,fp2,a2,de3,fp3,a3;
-//				 int funnum;
-//				 funnum=Funnum->Value.ToInt32(Funnum->Value);
-//				 chart1->Series[2]->Points->Clear();
-//				 chart1->Series[3]->Points->Clear();
-//				 chart2->Series["Series2"]->Points->Clear();
-//				 en=(Convert::ToDouble(tbeps->Text));
-//				 de=(Convert::ToDouble(tbde1->Text));
-//				 fp=(Convert::ToDouble(tbf1->Text));
-//				 a=(Convert::ToDouble(tba1->Text));
-//				 de2=(Convert::ToDouble(tbde2->Text));
-//				 fp2=(Convert::ToDouble(tbfp2->Text));
-//				 a2=(Convert::ToDouble(tba2->Text));
-//				 de3=(Convert::ToDouble(tbde3->Text));
-//				 fp3=(Convert::ToDouble(tbfp3->Text));
-//				 a3=(Convert::ToDouble(tba3->Text));
-//				 if (funnum==1){
-//					 parameters<<en,de,fp,a;
-//				 };
-//				 if (funnum==2){
-//					 parameters.resize(7,1);
-//					 parameters<<en,de,fp,a,de2,fp2,a2;
-//				 };
-//				 if (funnum==3){
-//					 parameters.resize(10,1);
-//					 parameters<<en,de,fp,a,de2,fp2,a2,de3,fp3,a3;
-//				 };
-//				// cout << "_____________________________________________________________"<<endl;
-//				// cout <<parameters<<endl;
-//				// cout << "-------------------------------------------------------------"<<endl;
-////				 FitLMEntropyGeneral(expmnt.CurveSet[Position-1].Dataf,expmnt.CurveSet[Position-1].Dataep,expmnt.CurveSet[Position-1].Dataeb,funnum,parameters);
-//				 en=parameters(0,0);
-//				 de=parameters(1,0);
-//				 fp=parameters(2,0);
-//				 a=parameters(3,0);
-//				 de2=0;
-//				 fp2=0;
-//				 a2=0;
-//				 de3=0;
-//				 fp3=0;
-//				 a3=0;
-//				 if (Funnum->Value==2){
-//					 de2=parameters(4,0);
-//					 fp2=parameters(5,0);
-//					 a2=parameters(6,0);
-//				 };
-//				  if (Funnum->Value==3){
-//					   de2=parameters(4,0);
-//					 fp2=parameters(5,0);
-//					 a2=parameters(6,0);
-//					 de3=parameters(7,0);
-//					 fp3=parameters(8,0);
-//					 a3=parameters(9,0);
-//				 };
-//				 tbeps->Text=en.ToString();
-//				 tbde1->Text=de.ToString();
-//				 tbf1->Text=fp.ToString();
-//				 tba1->Text=a.ToString();
-//				 tbde2->Text=de2.ToString();
-//				 tbfp2->Text=fp2.ToString();
-//				 tba2->Text=a2.ToString();
-//				  tbde3->Text=de3.ToString();
-//				 tbfp3->Text=fp3.ToString();
-//				 tba3->Text=a3.ToString();
-//				 expmnt.CurveSet[Position-1].en=en;
-//				 expmnt.CurveSet[Position-1].de1=de;
-//				 expmnt.CurveSet[Position-1].fp1=fp;
-//				 expmnt.CurveSet[Position-1].a1=a;
-//				 expmnt.CurveSet[Position-1].fitted=true;
-//				 expmnt.CurveSet[Position-1].de2=de2;
-//				 expmnt.CurveSet[Position-1].fp2=fp2;
-//				 expmnt.CurveSet[Position-1].a2=a2;
-//				  expmnt.CurveSet[Position-1].de3=de3;
-//				 expmnt.CurveSet[Position-1].fp3=fp3;
-//				 expmnt.CurveSet[Position-1].a3=a3;
-//				 
-//				 ChiSqrButton->PerformClick();
-//		 }
-private: System::Void Findmaxbutton_Click(System::Object^  sender, System::EventArgs^  e) {
-			 int size,size2;
-			 double epmax,tepmax,tebmax;
-			 size=expmnt.CurveSet.size();
-			 size2=expmnt.CurveSet[0].Dataf.size();
-			 vector<double> tmpavg;
-			 for (int j=0;j<size2;j++)
-			 {
-				 //cout<<expmnt.CurveSet[0].Dataf[j]<<endl;
-				 tebmax=expmnt.CurveSet[0].temperature;
-				 tepmax=expmnt.CurveSet[0].temperature;
-				 tmpavg.clear();
-				 for (int i=0;i<size;i++) tmpavg.push_back(expmnt.CurveSet[i].Dataep[j]);
-				 for (int i=5;i<size-5;i++) tmpavg[i]=(tmpavg[i-5]+tmpavg[i-4]+tmpavg[i-3]+tmpavg[i-2]+tmpavg[i-1]+tmpavg[i]+tmpavg[i+1]+tmpavg[i+2]+tmpavg[i+3]+tmpavg[i+4]+tmpavg[i+5])/11.0;
-				 epmax=expmnt.CurveSet[0].Dataep[j];
-				 for (int i=0;i<size;i++){
-					 /*	 if ((expmnt.CurveSet[i].Dataep[j]>expmnt.CurveSet[i-1].Dataep[j])&&(expmnt.CurveSet[i].Dataep[j]>expmnt.CurveSet[i+1].Dataep[j])) {
-					 cout <<"Temp= "<<expmnt.CurveSet[i].temperature<<" "<<endl;
-					 }*/
-					 if (tmpavg[i]>epmax) { //expmnt.CurveSet[i].Dataep[j]>epmax
-						 epmax=tmpavg[i];
-						 tepmax=expmnt.CurveSet[i].temperature;
-					 }
-
-				 }
-				 cout<<expmnt.CurveSet[0].Dataf[j] <<" "<<epmax<<" "<<tepmax<<endl;
-			 }
-		 }
-		 private: System::Void loadTempProfileToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
-					  curve  SingleCurve;
-					  double c0;
-					  c0=(Convert::ToDouble(textBox1->Text));
-
-					  if (openFileDialog1->ShowDialog() == ::System::Windows::Forms::DialogResult::OK )
-					  {
-						  int i,j,numload;
-						  int size,size2;
-						  numload=openFileDialog1->FileNames->Length;
-						  cout<<"Number of files to load "<<numload<<endl;
-						  toolStripProgressBar1->Value=0;
-						  toolStripProgressBar1->Visible=true;
-						  for (i=0;i<numload;i++)
-						  {
-							  auxcurveset.LoadTempProfFromFile(openFileDialog1->FileNames[i]);
-							  cout << 100*i/numload<<"%"<<endl;
-							  toolStripProgressBar1->Value=100*(i+1)/numload;
-						  }
-						  toolStripProgressBar1->Visible=false;
-						  expmnt.CurveSet.clear();
-						  expmnt.IsGenerated=true;
-						  size=auxcurveset.eb.size();//30
-						  size2=auxcurveset.eb[0].size();
-						  StatusLabel->Text=numload+" files loaded.";						  
-						  StatusDataSource->Text=size2+" curves generated from "+numload+" files.";
-						  for (i=0;i<size;i++) cout << auxcurveset.f[i]<<"  "<< auxcurveset.eb[i].size()<<endl;
-						  //					 cout <<size<<"---"<<size2<<" i uj "<<auxcurveset.f.size() <<endl;
-						  for (i=0;i<size2;i++){
-							  for (j=0;j<size;j++){
-								  //						 cout <<"Accessing"<< i<<" "<<j<<endl;//<<" "<<auxcurveset.ep[j][i]<<" "<<auxcurveset.eb[j][i]<<endl;
-								  SingleCurve.Dataep.push_back(auxcurveset.ep[j][i]);
-								  SingleCurve.Dataeb.push_back(auxcurveset.eb[j][i]);
-								  SingleCurve.Dataf.push_back(auxcurveset.f[j]);
-							  }
-							  SingleCurve.temperature=auxcurveset.temp[0][i];
-							  Normalize(SingleCurve.Dataep,SingleCurve.Dataeb,c0);
-							  SingleCurve.fitted=false;
-							  expmnt.CurveSet.push_back(SingleCurve);
-							  SingleCurve.Dataep.clear();
-							  SingleCurve.Dataeb.clear();
-							  SingleCurve.Dataf.clear();
-							  //						 cout<<i<<endl;
-						  }
-						  cout << "Done";
-						  label1->Text="1/"+expmnt.CurveSet.size().ToString();
-						  Position=1;
-						  Positionfreq=1;
-						  chart1->Series[0]->Points->Clear();
-						  chart2->Series["Series1"]->Points->Clear();
-						  chart1->Series[1]->Points->Clear();
-						  chart2->Series["Series2"]->Points->Clear();
-						  chart1->Series[2]->Points->Clear();
-						  chart1->Series[3]->Points->Clear();
-						  size=expmnt.CurveSet[Position-1].Dataf.size();
-						  label1->Text=Position.ToString()+"/"+expmnt.CurveSet.size();
-						  label2->Text=expmnt.CurveSet[0].temperature.ToString();
-						  progressBar1->Visible=false;
-						  for (i=0;i<=size-1;i++)
-						  {
-							  chart1->Series[0]->Points->AddXY(log10(expmnt.CurveSet[Position-1].Dataf[i]),expmnt.CurveSet[Position-1].Dataep[i]);
-							  chart1->Series[1]->Points->AddXY(log10(expmnt.CurveSet[Position-1].Dataf[i]),-expmnt.CurveSet[Position-1].Dataeb[i]);
-							  chart2->Series[0]->Points->AddXY(expmnt.CurveSet[Position-1].Dataep[i],-expmnt.CurveSet[Position-1].Dataeb[i]);
-
-						  }
-					  }
-
-				  }
-
-private: System::Void removelowerButton_Click(System::Object^  sender, System::EventArgs^  e) {
-			 int size,size2;
-			 complex <double> eps,epslow;
-			 MatrixXd parameters(4,1);
-			 size=expmnt.CurveSet.size();
-			 size2=expmnt.CurveSet[0].Dataf.size();
-			 for (int i=0;i<size;i++){
-				 if (expmnt.CurveSet[i].fitted){
-					 parameters<<0,expmnt.CurveSet[i].de1,expmnt.CurveSet[i].fp1,expmnt.CurveSet[i].a1;
-					 for (int j=0;j<size2;j++){
-					 eps=expmnt.CurveSet[i].Dataep[j]+ii*expmnt.CurveSet[i].Dataeb[j];
-					 epslow=RelaxationFunction(1,expmnt.CurveSet[i].Dataf[j],parameters);
-					 eps-=epslow;
-					 expmnt.CurveSet[i].Dataep[j]=real(eps);
-					 expmnt.CurveSet[i].Dataeb[j]=imag(eps);
-					 }
-				 }
-			 }
-
-		 }
-private: System::Void saveSeparateContributionsToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
-			 CultureInfo^ MyCI = gcnew CultureInfo( "en-US",false );
-			 int i,size,size2;
-			  MatrixXd parameters(4,1);
-			 complex <double> epsilon1,epsilon2,epsilon3;
-			 NumberFormatInfo^ nfi = MyCI->NumberFormat;
-			 nfi->NumberDecimalSeparator = ".";
-			 //button7->PerformClick();
-			 size=expmnt.CurveSet.size();
-			 size2=expmnt.CurveSet[0].Dataf.size();
-			 if (saveFileDialog1->ShowDialog() == ::System::Windows::Forms::DialogResult::OK ){
-				 StreamWriter^ sw = gcnew StreamWriter(saveFileDialog1->FileName);
 				 for (i=0;i<size;i++){
-					 for (int j=0;j<size2;j++){
-						 parameters<<expmnt.CurveSet[i].en,expmnt.CurveSet[i].de1,expmnt.CurveSet[i].fp1,expmnt.CurveSet[i].a1;
-						 epsilon1=RelaxationFunction(1,expmnt.CurveSet[i].Dataf[j],parameters);
-						 parameters<<expmnt.CurveSet[i].en,expmnt.CurveSet[i].de2,expmnt.CurveSet[i].fp2,expmnt.CurveSet[i].a2;
-						 epsilon2=RelaxationFunction(1,expmnt.CurveSet[i].Dataf[j],parameters);
-						 parameters<<expmnt.CurveSet[i].en,expmnt.CurveSet[i].de3,expmnt.CurveSet[i].fp3,expmnt.CurveSet[i].a3;
-						 epsilon3=RelaxationFunction(1,expmnt.CurveSet[i].Dataf[j],parameters);
-						 if(expmnt.CurveSet[i].fitted) sw->WriteLine(expmnt.CurveSet[i].temperature.ToString("g6",nfi)+" "+expmnt.CurveSet[i].Dataf[j].ToString("g6",nfi)+" "+real(epsilon1)+" "+imag(epsilon1)+" "+real(epsilon2)+" "+imag(epsilon2));
+					 temperature=expmnt.CurveSet[i].temperature;
+					 if ((temperature > minx)&&(temperature<maxx)){
+						 chart5->Series["Series1"]->Points->AddXY(temperature,expmnt.CurveSet[i].Dataep[Positionfreq-1]);
+						 chart5->Series["Series2"]->Points->AddXY(temperature,expmnt.CurveSet[i].Dataep[Positionfreq-1]-Correction(temperature,midt,scale,jump));
+						 chart5->Series["Series3"]->Points->AddXY(temperature,Correction(temperature,midt,scale,jump));
 					 }
 				 }
-				 sw->Close();
-				 cout <<"Fitcurve saved";
+			 }
+	private: System::Void button10_Click(System::Object^  sender, System::EventArgs^  e) {
+				 int i,j,size,size2;
+				 double temperature,midt,jump,scale;
+				 size=expmnt.CurveSet.size();
+				 size2=expmnt.CurveSet[0].Dataf.size();
+				 midt=(Convert::ToDouble(textBox10->Text));
+				 scale=(Convert::ToDouble(textBox11->Text));
+				 jump=(Convert::ToDouble(textBox12->Text));
+				 for (i=0;i<size;i++){
+					 temperature=expmnt.CurveSet[i].temperature;
+					 for (j=0;j<size2;j++) expmnt.CurveSet[i].Dataep[j]-=Correction(temperature,midt,scale,jump);
+				 }
+			 }
+	private: System::Void button11_Click(System::Object^  sender, System::EventArgs^  e) {
+				 if (Positionfreq>1) Positionfreq--;
+				 button9->PerformClick();
+			 }
+	private: System::Void button12_Click(System::Object^  sender, System::EventArgs^  e) {
+				 if (Positionfreq<expmnt.CurveSet[0].Dataf.size()) Positionfreq++;
+				 button9->PerformClick();
+			 }
+	private: System::Void CalcGeomCap_Click(System::Object^  sender, System::EventArgs^  e) {
+				 double r,d,c0;
+				 r=(Convert::ToDouble(textBoxradius->Text));
+				 d=(Convert::ToDouble(textBoxheigth->Text));
+				 c0=8.85e-12*pi*r*1e-6*r/(d*1.0e-3);
+				 vacuumcapacity=c0;
+				 expmnt.c0=c0;
+				 expmnt.IsGeometrySpecified=true;
+				 CapacityLabel1->Text="C0= "+(c0/1.0e-12).ToString("G5") + " pF";
+				 geomlabel1->Text="Geometric capacity of sample equals "+(c0/1.0e-12).ToString("G4") + " pF";
+				 GeometryStatusLabel->Text="Geometric capacity "+(c0/1.0e-12).ToString("G2")+" pF";
+			 }
+	private: System::Void button13_Click(System::Object^  sender, System::EventArgs^  e) {
+				 int i;
+				 for (i=1;i<=20;i++){
+					 NextCurveButton->PerformClick();
+					 FitButton->PerformClick();
+				 }
 			 }
 
-		 }
-private: System::Void permittivityToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
-			 CultureInfo^ MyCI = gcnew CultureInfo( "en-US",false );
-			 NumberFormatInfo^ nfi = MyCI->NumberFormat;
-			 nfi->NumberDecimalSeparator = ".";
-			 complex<double> eps;
-			 complex<double> zs;
-			 if (saveFileDialog1->ShowDialog() == ::System::Windows::Forms::DialogResult::OK ){
-			size_t  i,j,size,size2;
-			 double ep,eb;
-			 size=expmnt.CurveSet[0].Dataf.size();
-			 size2=expmnt.CurveSet.size();
-			 for (j=0;j<size2;j++){
-				 //cout << expmnt.CurveSet[j].temperature <<" "<<  Correction(expmnt.CurveSet[j].temperature) <<endl;
-			 StreamWriter^ sw = gcnew StreamWriter(saveFileDialog1->FileName+j.ToString()+".dat");
-			 sw->WriteLine("Insert data here");
-			 sw->WriteLine("Temperature="+ expmnt.CurveSet[j].temperature.ToString("g6",nfi)+"  AC Volt  [Vrms]=xxx");
-			 sw->WriteLine("Freq. [Hz]\tZs' [Ohms]\tZs'' [Ohms]");
-			 sw->WriteLine("");
-			 sw->WriteLine("");
-			 sw->WriteLine("");
-			 sw->WriteLine("");
-			 sw->WriteLine("");
-			 for (i=0;i<size;i++){
-			 ep=expmnt.CurveSet[j].Dataep[i];
-			 eb=-expmnt.CurveSet[j].Dataeb[i];
-			 sw->WriteLine(expmnt.CurveSet[j].Dataf[i].ToString("e6",nfi)+"\t"+ep.ToString("g6",nfi)+"\t"+eb.ToString("g6",nfi));
-			 //cout <<expmnt.CurveSet[j].Dataf[i]<<" " <<real(zs)<< " "<<imag(zs)<<endl;
+	private: System::Void GeomButton2_Click(System::Object^  sender, System::EventArgs^  e) {
+				 double r,d,c0;
+				 r=(Convert::ToDouble(textBoxsurface->Text));
+				 d=(Convert::ToDouble(textBoxheight2->Text));
+				 c0=8.85e-12*r*1e-6/(d*1.0e-3);
+				 vacuumcapacity=c0;
+				 expmnt.c0=c0;
+				 expmnt.IsGeometrySpecified=true;
+				 CapacityLabel2->Text="C0= "+(c0/1.0e-12).ToString("G5") + " pF";
+				 geomlabel1->Text="Geometric capacity of sample equals "+(c0/1.0e-12).ToString("G4") + " pF";
+				 GeometryStatusLabel->Text="Geometric capacity "+(c0/1.0e-12).ToString("G2")+" pF";
 			 }
-			 sw->Close();
+	private: System::Void toepsbutton_Click(System::Object^  sender, System::EventArgs^  e) {
+				 size_t size,i;
+				 size=expmnt.CurveSet.size();
+				 for (i=0;i<size;i++){
+					 Normalize(expmnt.CurveSet[i].Dataep,expmnt.CurveSet[i].Dataeb,vacuumcapacity);
+				 }
 			 }
-			 
+	private: System::Void Funnum_ValueChanged(System::Object^  sender, System::EventArgs^  e) {
+				 int helper;
+				 helper=Funnum->Value.ToInt16(Funnum->Value);
+				 cout << "Helper "<<helper<<endl;
+				 switch (helper){
+				 case 1: {
+					 tbfp2->BackColor = System::Drawing::SystemColors::Control;
+					 tbde2->BackColor = System::Drawing::SystemColors::Control;
+					 tba2->BackColor = System::Drawing::SystemColors::Control;
+					 tbfp3->BackColor = System::Drawing::SystemColors::Control;
+					 tbde3->BackColor = System::Drawing::SystemColors::Control;
+					 tba3->BackColor = System::Drawing::SystemColors::Control;
+					 break;
+						 };
+				 case 2: {tbfp2->BackColor = System::Drawing::SystemColors::Window;
+					 tbde2->BackColor = System::Drawing::SystemColors::Window;
+					 tba2->BackColor = System::Drawing::SystemColors::Window;
+					 tbfp3->BackColor = System::Drawing::SystemColors::ScrollBar;
+					 tbde3->BackColor = System::Drawing::SystemColors::ScrollBar;
+					 tba3->BackColor = System::Drawing::SystemColors::ScrollBar;
+					 break;
+						 };
+				 case 3: {tbfp2->BackColor = System::Drawing::SystemColors::Window;
+					 tbde2->BackColor = System::Drawing::SystemColors::Window;
+					 tba2->BackColor = System::Drawing::SystemColors::Window;
+					 tbfp3->BackColor = System::Drawing::SystemColors::Window;
+					 tbde3->BackColor = System::Drawing::SystemColors::Window;
+					 tba3->BackColor = System::Drawing::SystemColors::Window;
+					 break;
+						 };
+				 }
 			 }
-		 }
-private: System::Void textBox2_TextChanged(System::Object^  sender, System::EventArgs^  e) {
-		 }
-private: System::Void geomlabel1_Click(System::Object^  sender, System::EventArgs^  e) {
-		 }
+	private: System::Void chart1_Click(System::Object^  sender, System::EventArgs^  e) {
+			 }
+	private: System::Void nextcrv_Click(System::Object^  sender, System::EventArgs^  e) {
+				 NextCurveButton->PerformClick();
+			 }
+	private: System::Void prvcrv_Click(System::Object^  sender, System::EventArgs^  e) {
+				 PrevCurveButton->PerformClick();
+			 }
+	private: System::Void saveAllFilesIntoOneToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+				 CultureInfo^ MyCI = gcnew CultureInfo( "en-US",false );
+				 NumberFormatInfo^ nfi = MyCI->NumberFormat;
+				 nfi->NumberDecimalSeparator = ".";
+				 if (saveFileDialog1->ShowDialog() == ::System::Windows::Forms::DialogResult::OK ){
+					 StreamWriter^ sw = gcnew StreamWriter(saveFileDialog1->FileName+".dat");
+					 size_t  i,j;
+					 double ep,eb;
+					 for (i=0;i<expmnt.CurveSet[0].Dataf.size();i++)
+					 {
+						 for (j=0;j<expmnt.CurveSet.size();j++){
+							 ep=expmnt.CurveSet[j].Dataep[i];
+							 eb=expmnt.CurveSet[j].Dataeb[i];
+							 sw->WriteLine(j.ToString("g5",nfi)+" "+expmnt.CurveSet[j].temperature.ToString("g5",nfi)+" "+expmnt.CurveSet[j].Dataf[i].ToString("g6",nfi)+" "+ep.ToString("g6",nfi)+" "+(-eb).ToString("g6",nfi));
+						 }
+					 }
+					 sw->Close();
+				 }
 
-private: System::Void tbeps_TextChanged(System::Object^  sender, System::EventArgs^  e) {
-			 /* invalidate fitting*/
-			 expmnt.CurveSet[Position-1].fitted=false;
-		 }
-};
+			 }
+	private: System::Void chart4_Click(System::Object^  sender, System::EventArgs^  e) {
+			 }
+			 ////private: System::Void fitentropbutton_Click(System::Object^  sender, System::EventArgs^  e) {
+			 //			 		 MatrixXd parameters(4,1);
+			 //				 complex<double> d;
+			 //				 double en,de,fp,a,de2,fp2,a2,de3,fp3,a3;
+			 //				 int funnum;
+			 //				 funnum=Funnum->Value.ToInt32(Funnum->Value);
+			 //				 chart1->Series[2]->Points->Clear();
+			 //				 chart1->Series[3]->Points->Clear();
+			 //				 chart2->Series["Series2"]->Points->Clear();
+			 //				 en=(Convert::ToDouble(tbeps->Text));
+			 //				 de=(Convert::ToDouble(tbde1->Text));
+			 //				 fp=(Convert::ToDouble(tbf1->Text));
+			 //				 a=(Convert::ToDouble(tba1->Text));
+			 //				 de2=(Convert::ToDouble(tbde2->Text));
+			 //				 fp2=(Convert::ToDouble(tbfp2->Text));
+			 //				 a2=(Convert::ToDouble(tba2->Text));
+			 //				 de3=(Convert::ToDouble(tbde3->Text));
+			 //				 fp3=(Convert::ToDouble(tbfp3->Text));
+			 //				 a3=(Convert::ToDouble(tba3->Text));
+			 //				 if (funnum==1){
+			 //					 parameters<<en,de,fp,a;
+			 //				 };
+			 //				 if (funnum==2){
+			 //					 parameters.resize(7,1);
+			 //					 parameters<<en,de,fp,a,de2,fp2,a2;
+			 //				 };
+			 //				 if (funnum==3){
+			 //					 parameters.resize(10,1);
+			 //					 parameters<<en,de,fp,a,de2,fp2,a2,de3,fp3,a3;
+			 //				 };
+			 //				// cout << "_____________________________________________________________"<<endl;
+			 //				// cout <<parameters<<endl;
+			 //				// cout << "-------------------------------------------------------------"<<endl;
+			 ////				 FitLMEntropyGeneral(expmnt.CurveSet[Position-1].Dataf,expmnt.CurveSet[Position-1].Dataep,expmnt.CurveSet[Position-1].Dataeb,funnum,parameters);
+			 //				 en=parameters(0,0);
+			 //				 de=parameters(1,0);
+			 //				 fp=parameters(2,0);
+			 //				 a=parameters(3,0);
+			 //				 de2=0;
+			 //				 fp2=0;
+			 //				 a2=0;
+			 //				 de3=0;
+			 //				 fp3=0;
+			 //				 a3=0;
+			 //				 if (Funnum->Value==2){
+			 //					 de2=parameters(4,0);
+			 //					 fp2=parameters(5,0);
+			 //					 a2=parameters(6,0);
+			 //				 };
+			 //				  if (Funnum->Value==3){
+			 //					   de2=parameters(4,0);
+			 //					 fp2=parameters(5,0);
+			 //					 a2=parameters(6,0);
+			 //					 de3=parameters(7,0);
+			 //					 fp3=parameters(8,0);
+			 //					 a3=parameters(9,0);
+			 //				 };
+			 //				 tbeps->Text=en.ToString();
+			 //				 tbde1->Text=de.ToString();
+			 //				 tbf1->Text=fp.ToString();
+			 //				 tba1->Text=a.ToString();
+			 //				 tbde2->Text=de2.ToString();
+			 //				 tbfp2->Text=fp2.ToString();
+			 //				 tba2->Text=a2.ToString();
+			 //				  tbde3->Text=de3.ToString();
+			 //				 tbfp3->Text=fp3.ToString();
+			 //				 tba3->Text=a3.ToString();
+			 //				 expmnt.CurveSet[Position-1].en=en;
+			 //				 expmnt.CurveSet[Position-1].de1=de;
+			 //				 expmnt.CurveSet[Position-1].fp1=fp;
+			 //				 expmnt.CurveSet[Position-1].a1=a;
+			 //				 expmnt.CurveSet[Position-1].fitted=true;
+			 //				 expmnt.CurveSet[Position-1].de2=de2;
+			 //				 expmnt.CurveSet[Position-1].fp2=fp2;
+			 //				 expmnt.CurveSet[Position-1].a2=a2;
+			 //				  expmnt.CurveSet[Position-1].de3=de3;
+			 //				 expmnt.CurveSet[Position-1].fp3=fp3;
+			 //				 expmnt.CurveSet[Position-1].a3=a3;
+			 //				 
+			 //				 ChiSqrButton->PerformClick();
+			 //		 }
+	private: System::Void Findmaxbutton_Click(System::Object^  sender, System::EventArgs^  e) {
+				 int size,size2;
+				 double epmax,tepmax,tebmax;
+				 size=expmnt.CurveSet.size();
+				 size2=expmnt.CurveSet[0].Dataf.size();
+				 vector<double> tmpavg;
+				 for (int j=0;j<size2;j++)
+				 {
+					 //cout<<expmnt.CurveSet[0].Dataf[j]<<endl;
+					 tebmax=expmnt.CurveSet[0].temperature;
+					 tepmax=expmnt.CurveSet[0].temperature;
+					 tmpavg.clear();
+					 for (int i=0;i<size;i++) tmpavg.push_back(expmnt.CurveSet[i].Dataep[j]);
+					 for (int i=5;i<size-5;i++) tmpavg[i]=(tmpavg[i-5]+tmpavg[i-4]+tmpavg[i-3]+tmpavg[i-2]+tmpavg[i-1]+tmpavg[i]+tmpavg[i+1]+tmpavg[i+2]+tmpavg[i+3]+tmpavg[i+4]+tmpavg[i+5])/11.0;
+					 epmax=expmnt.CurveSet[0].Dataep[j];
+					 for (int i=0;i<size;i++){
+						 /*	 if ((expmnt.CurveSet[i].Dataep[j]>expmnt.CurveSet[i-1].Dataep[j])&&(expmnt.CurveSet[i].Dataep[j]>expmnt.CurveSet[i+1].Dataep[j])) {
+						 cout <<"Temp= "<<expmnt.CurveSet[i].temperature<<" "<<endl;
+						 }*/
+						 if (tmpavg[i]>epmax) { //expmnt.CurveSet[i].Dataep[j]>epmax
+							 epmax=tmpavg[i];
+							 tepmax=expmnt.CurveSet[i].temperature;
+						 }
+
+					 }
+					 cout<<expmnt.CurveSet[0].Dataf[j] <<" "<<epmax<<" "<<tepmax<<endl;
+				 }
+			 }
+	private: System::Void loadTempProfileToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+				 curve  SingleCurve;
+				 double c0;
+				 c0=(Convert::ToDouble(textBox1->Text));
+
+				 if (openFileDialog1->ShowDialog() == ::System::Windows::Forms::DialogResult::OK )
+				 {
+					 int i,j,numload;
+					 int size,size2;
+					 numload=openFileDialog1->FileNames->Length;
+					 cout<<"Number of files to load "<<numload<<endl;
+					 toolStripProgressBar1->Value=0;
+					 toolStripProgressBar1->Visible=true;
+					 for (i=0;i<numload;i++)
+					 {
+						 auxcurveset.LoadTempProfFromFile(openFileDialog1->FileNames[i]);
+						 cout << 100*i/numload<<"%"<<endl;
+						 toolStripProgressBar1->Value=100*(i+1)/numload;
+					 }
+					 toolStripProgressBar1->Visible=false;
+					 expmnt.CurveSet.clear();
+					 expmnt.IsGenerated=true;
+					 size=auxcurveset.eb.size();//30
+					 size2=auxcurveset.eb[0].size();
+					 StatusLabel->Text=numload+" files loaded.";						  
+					 StatusDataSource->Text=size2+" curves generated from "+numload+" files.";
+					 for (i=0;i<size;i++) cout << auxcurveset.f[i]<<"  "<< auxcurveset.eb[i].size()<<endl;
+					 //					 cout <<size<<"---"<<size2<<" i uj "<<auxcurveset.f.size() <<endl;
+					 for (i=0;i<size2;i++){
+						 for (j=0;j<size;j++){
+							 //						 cout <<"Accessing"<< i<<" "<<j<<endl;//<<" "<<auxcurveset.ep[j][i]<<" "<<auxcurveset.eb[j][i]<<endl;
+							 SingleCurve.Dataep.push_back(auxcurveset.ep[j][i]);
+							 SingleCurve.Dataeb.push_back(auxcurveset.eb[j][i]);
+							 SingleCurve.Dataf.push_back(auxcurveset.f[j]);
+						 }
+						 SingleCurve.temperature=auxcurveset.temp[0][i];
+						 Normalize(SingleCurve.Dataep,SingleCurve.Dataeb,c0);
+						 SingleCurve.fitted=false;
+						 expmnt.CurveSet.push_back(SingleCurve);
+						 SingleCurve.Dataep.clear();
+						 SingleCurve.Dataeb.clear();
+						 SingleCurve.Dataf.clear();
+						 //						 cout<<i<<endl;
+					 }
+					 cout << "Done";
+					 label1->Text="1/"+expmnt.CurveSet.size().ToString();
+					 Position=1;
+					 Positionfreq=1;
+					 chart1->Series[0]->Points->Clear();
+					 chart2->Series["Series1"]->Points->Clear();
+					 chart1->Series[1]->Points->Clear();
+					 chart2->Series["Series2"]->Points->Clear();
+					 chart1->Series[2]->Points->Clear();
+					 chart1->Series[3]->Points->Clear();
+					 size=expmnt.CurveSet[Position-1].Dataf.size();
+					 label1->Text=Position.ToString()+"/"+expmnt.CurveSet.size();
+					 label2->Text=expmnt.CurveSet[0].temperature.ToString();
+					 progressBar1->Visible=false;
+					 for (i=0;i<=size-1;i++)
+					 {
+						 chart1->Series[0]->Points->AddXY(log10(expmnt.CurveSet[Position-1].Dataf[i]),expmnt.CurveSet[Position-1].Dataep[i]);
+						 chart1->Series[1]->Points->AddXY(log10(expmnt.CurveSet[Position-1].Dataf[i]),-expmnt.CurveSet[Position-1].Dataeb[i]);
+						 chart2->Series[0]->Points->AddXY(expmnt.CurveSet[Position-1].Dataep[i],-expmnt.CurveSet[Position-1].Dataeb[i]);
+
+					 }
+				 }
+
+			 }
+
+	private: System::Void removelowerButton_Click(System::Object^  sender, System::EventArgs^  e) {
+				 int size,size2;
+				 complex <double> eps,epslow;
+				 MatrixXd parameters(4,1);
+				 size=expmnt.CurveSet.size();
+				 size2=expmnt.CurveSet[0].Dataf.size();
+				 for (int i=0;i<size;i++){
+					 if (expmnt.CurveSet[i].fitted){
+						 parameters<<0,expmnt.CurveSet[i].de1,expmnt.CurveSet[i].fp1,expmnt.CurveSet[i].a1;
+						 for (int j=0;j<size2;j++){
+							 eps=expmnt.CurveSet[i].Dataep[j]+ii*expmnt.CurveSet[i].Dataeb[j];
+							 epslow=RelaxationFunction(1,expmnt.CurveSet[i].Dataf[j],parameters);
+							 eps-=epslow;
+							 expmnt.CurveSet[i].Dataep[j]=real(eps);
+							 expmnt.CurveSet[i].Dataeb[j]=imag(eps);
+						 }
+					 }
+				 }
+
+			 }
+	private: System::Void saveSeparateContributionsToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+				 CultureInfo^ MyCI = gcnew CultureInfo( "en-US",false );
+				 int i,size,size2;
+				 MatrixXd parameters(4,1);
+				 complex <double> epsilon1,epsilon2,epsilon3;
+				 NumberFormatInfo^ nfi = MyCI->NumberFormat;
+				 nfi->NumberDecimalSeparator = ".";
+				 //button7->PerformClick();
+				 size=expmnt.CurveSet.size();
+				 size2=expmnt.CurveSet[0].Dataf.size();
+				 if (saveFileDialog1->ShowDialog() == ::System::Windows::Forms::DialogResult::OK ){
+					 StreamWriter^ sw = gcnew StreamWriter(saveFileDialog1->FileName);
+					 for (i=0;i<size;i++){
+						 for (int j=0;j<size2;j++){
+							 parameters<<expmnt.CurveSet[i].en,expmnt.CurveSet[i].de1,expmnt.CurveSet[i].fp1,expmnt.CurveSet[i].a1;
+							 epsilon1=RelaxationFunction(1,expmnt.CurveSet[i].Dataf[j],parameters);
+							 parameters<<expmnt.CurveSet[i].en,expmnt.CurveSet[i].de2,expmnt.CurveSet[i].fp2,expmnt.CurveSet[i].a2;
+							 epsilon2=RelaxationFunction(1,expmnt.CurveSet[i].Dataf[j],parameters);
+							 parameters<<expmnt.CurveSet[i].en,expmnt.CurveSet[i].de3,expmnt.CurveSet[i].fp3,expmnt.CurveSet[i].a3;
+							 epsilon3=RelaxationFunction(1,expmnt.CurveSet[i].Dataf[j],parameters);
+							 if(expmnt.CurveSet[i].fitted) sw->WriteLine(expmnt.CurveSet[i].temperature.ToString("g6",nfi)+" "+expmnt.CurveSet[i].Dataf[j].ToString("g6",nfi)+" "+real(epsilon1)+" "+imag(epsilon1)+" "+real(epsilon2)+" "+imag(epsilon2));
+						 }
+					 }
+					 sw->Close();
+					 cout <<"Fitcurve saved";
+				 }
+
+			 }
+	private: System::Void permittivityToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+				 CultureInfo^ MyCI = gcnew CultureInfo( "en-US",false );
+				 NumberFormatInfo^ nfi = MyCI->NumberFormat;
+				 nfi->NumberDecimalSeparator = ".";
+				 complex<double> eps;
+				 complex<double> zs;
+				 if (saveFileDialog1->ShowDialog() == ::System::Windows::Forms::DialogResult::OK ){
+					 size_t  i,j,size,size2;
+					 double ep,eb;
+					 size=expmnt.CurveSet[0].Dataf.size();
+					 size2=expmnt.CurveSet.size();
+					 for (j=0;j<size2;j++){
+						 //cout << expmnt.CurveSet[j].temperature <<" "<<  Correction(expmnt.CurveSet[j].temperature) <<endl;
+						 StreamWriter^ sw = gcnew StreamWriter(saveFileDialog1->FileName+j.ToString()+".dat");
+						 sw->WriteLine("Insert data here");
+						 sw->WriteLine("Temperature="+ expmnt.CurveSet[j].temperature.ToString("g6",nfi)+"  AC Volt  [Vrms]=xxx");
+						 sw->WriteLine("Freq. [Hz]\tZs' [Ohms]\tZs'' [Ohms]");
+						 sw->WriteLine("");
+						 sw->WriteLine("");
+						 sw->WriteLine("");
+						 sw->WriteLine("");
+						 sw->WriteLine("");
+						 for (i=0;i<size;i++){
+							 ep=expmnt.CurveSet[j].Dataep[i];
+							 eb=-expmnt.CurveSet[j].Dataeb[i];
+							 sw->WriteLine(expmnt.CurveSet[j].Dataf[i].ToString("e6",nfi)+"\t"+ep.ToString("g6",nfi)+"\t"+eb.ToString("g6",nfi));
+							 //cout <<expmnt.CurveSet[j].Dataf[i]<<" " <<real(zs)<< " "<<imag(zs)<<endl;
+						 }
+						 sw->Close();
+					 }
+
+				 }
+			 }
+	private: System::Void textBox2_TextChanged(System::Object^  sender, System::EventArgs^  e) {
+			 }
+	private: System::Void geomlabel1_Click(System::Object^  sender, System::EventArgs^  e) {
+			 }
+
+	private: System::Void tbeps_TextChanged(System::Object^  sender, System::EventArgs^  e) {
+				 /* invalidate fitting*/
+				 expmnt.CurveSet[Position-1].fitted=false;
+			 }
+	};
 }
 
 
