@@ -12,6 +12,7 @@ int main(array<System::String ^> ^args)
 	wstring ws;
 	ws=L"d:\\test.dat";
 	cs.LoadTempProfFromFile(ws);
-    Console::WriteLine(L"Hello World");
+	Console::WriteLine(cs.f.size().ToString()+" files loaded");
+	Console::WriteLine(cs.f[0].ToString()+" freq");
     return 0;
 }
