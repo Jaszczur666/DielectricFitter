@@ -58,7 +58,16 @@ public:
 	vector<double> f;
 	void LoadTempProfFromFile(String^ Filename);
 	void LoadTempProfFromFile(wstring Filename);
+	bool IsSame(curvesetrev compared);
+	bool operator==(const curvesetrev &compared) const;
 };
+
+bool curvesetrev::IsSame(curvesetrev compared){
+return ((this->f==compared.f)&&(this->ep==compared.ep)&&(this->eb==compared.eb)&&(this->temp==compared.temp));
+};
+bool curvesetrev::operator==(const curvesetrev &compared) const {
+    return ((this->f==compared.f)&&(this->ep==compared.ep)&&(this->eb==compared.eb)&&(this->temp==compared.temp));
+  };
 void curvesetrev::LoadTempProfFromFile(String^ Filename){
 	wstring name;
 	string printname;
