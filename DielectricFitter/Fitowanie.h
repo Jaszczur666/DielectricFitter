@@ -96,7 +96,7 @@ void curvesetrev::LoadTempProfFromFile(String^ Filename){
 };
 void curvesetrev::LoadTempProfFromFile(wstring Filename){
 	wstring name;
-	string printname;
+	string printname,line;
 	double ep,eb,f,t,fp,fb;
 	vector<double> vep,veb,vt;
 	name=Filename;
@@ -104,9 +104,13 @@ void curvesetrev::LoadTempProfFromFile(wstring Filename){
 	cout <<"Reading file "<<printname<<endl;
 	ifstream inpfile(name);
 	inpfile>>f;
+		getline(inpfile,line);
 	//cout<<f<<endl;
-	while(inpfile >> t >> ep>>eb>>fp>>fb){
+	//while(inpfile >> t >> ep>>eb>>fp>>fb){
 		//cout<<t<<" "<<ep<<" "<<eb<<endl;
+		while (getline(inpfile, line)){
+    stringstream lineStream(line);
+	lineStream>>t>>ep>>eb;
 		vt.push_back(t);
 		vep.push_back(ep);
 		veb.push_back(eb);
