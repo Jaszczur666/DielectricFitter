@@ -70,7 +70,7 @@ bool curvesetrev::operator==(const curvesetrev &compared) const {
   };
 void curvesetrev::LoadTempProfFromFile(String^ Filename){
 	wstring name;
-	string printname;
+	string printname,line;
 	double ep,eb,f,t,fp,fb;
 	vector<double> vep,veb,vt;
 	MarshalString(Filename,name);
@@ -78,9 +78,13 @@ void curvesetrev::LoadTempProfFromFile(String^ Filename){
 	cout <<"Reading file "<<printname<<endl;
 	ifstream inpfile(name);
 	inpfile>>f;
+	getline(inpfile,line);
 	//cout<<f<<endl;
-	while(inpfile >> t >> ep>>eb>>fp>>fb){
+	while (getline(inpfile, line)){
+    stringstream lineStream(line);
+	//while(inpfile >> t >> ep>>eb>>fp>>fb){
 		//cout<<t<<" "<<ep<<" "<<eb<<endl;
+		lineStream>>t>>ep>>eb;
 		vt.push_back(t);
 		vep.push_back(ep);
 		veb.push_back(eb);
