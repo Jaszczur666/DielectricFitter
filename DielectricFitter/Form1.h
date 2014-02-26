@@ -1670,9 +1670,9 @@ namespace DielectricFitter {
 					 parameters<<en,de,fp,a,de2,fp2,a2,de3,fp3,a3,s0;
 					 break;
 				 };
-				 cout <<" ---"<<endl<< parameters<<endl;
+			//	 cout <<" ---"<<endl<< parameters<<endl;
 				 expmnt.CurveSet[Position-1].FitLMGeneral(funnum,parameters);
-				 cout<<"funnum "<<funnum<<endl <<" "<<parameters<<endl;
+				// cout<<"funnum "<<funnum<<endl <<" "<<parameters<<endl;
 				 en=parameters(0,0);
 				 de=parameters(1,0);
 				 fp=parameters(2,0);
@@ -1738,7 +1738,7 @@ namespace DielectricFitter {
 				 expmnt.CurveSet[Position-1].fp1=fp;
 				 expmnt.CurveSet[Position-1].a1=a;
 				 expmnt.CurveSet[Position-1].fitted=true;
-				 cout<<"random text"<<expmnt.CurveSet[Position-1].fitted<<endl;
+				 //cout<<"random text"<<expmnt.CurveSet[Position-1].fitted<<endl;
 				 expmnt.CurveSet[Position-1].de2=de2;
 				 expmnt.CurveSet[Position-1].fp2=fp2;
 				 expmnt.CurveSet[Position-1].a2=a2;

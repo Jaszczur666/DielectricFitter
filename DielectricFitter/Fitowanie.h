@@ -212,6 +212,34 @@ void CalculateResidueGeneral(int type,double f,double ep,double eb, MatrixXd par
 	rb=eb-peb;
 }
 
+void linearFit(vector <double>x, vector <double>y,double &a,double &b,double &r2);
+void linearFit(MatrixXd x, MatrixXd y,double &a,double &b,double &r2);
+
+void CalculateCorrelation(vector<double> dataf,vector<double> dataep,vector<double> dataeb, int type, MatrixXd parameters)
+{	
+	int size,i;
+	double pep,peb,a,b,r;
+	complex <double> d;
+	size=dataf.size();
+	MatrixXd Theor(2*size,1);
+	MatrixXd Exp(2*size,1);
+	for (i=0;i<=size-1;i++)
+	{
+	d=RelaxationFunction(type,dataf[i],parameters);
+	pep=std::real(d);
+	peb=std::imag(d);
+		Theor(i*2,0)=pep;
+		Theor(i*2+1,0)=peb;
+		Exp(2*i,0)=dataep[i];
+		Exp(2*i+1,0)=dataeb[i];
+	}
+	a=0;
+	b=0;
+	r=0;
+	linearFit(Exp,Theor,a,b,r);
+	cout<<"R2 = "<<r<<" 1-r^2 = "<<1-r <<endl;
+
+}
 void CalculateHessianGeneral(vector<double> dataf,vector<double> dataep,vector<double> dataeb, int type, MatrixXd parameters,MatrixXd &Hess, MatrixXd &Grad, double &chi2)
 {
 	int i,j,size,parsize;
@@ -291,6 +319,7 @@ void curve::FitLMGeneral(int type,MatrixXd &parameters)
 			lambda=lambda/sqrt(2.0);
 		}
 	}
+	CalculateCorrelation(this->Dataf,this->Dataep,this->Dataeb,type,parameters);
 	size=parameters.rows();
 	size2=Dataf.size();
 	error=(Hessiandiag.inverse().diagonal()*chi2/(size2-size));
@@ -317,6 +346,25 @@ void linearFit(vector <double>x, vector <double>y,double &a,double &b,double &r2
 		sxx+=x[i]*x[i];
 		sxy+=x[i]*y[i];
 		syy+=y[i]*y[i];
+	}
+	d=s*sxx-sx*sx;
+	a=(s*sxy-sx*sy)/d;
+	b=(sxx*sy-sx*sxy)/d;
+	r2=(s*sxy-sx*sy)/(sqrt((s*sxx-sx*sx)*(s*syy-sy*sy)));
+}
+
+void linearFit(MatrixXd x, MatrixXd y,double &a,double &b,double &r2){
+	int size;
+	double s,sx,sy,sxx,sxy,syy,d;
+	size=x.size();
+	s=size;
+	sx=sy=sxx=sxy=syy=d=0;
+	for (int i=0;i<size;i++){
+		sx+=x(i);
+		sy+=y(i);
+		sxx+=x(i)*x(i);
+		sxy+=x(i)*y(i);
+		syy+=y(i)*y(i);
 	}
 	d=s*sxx-sx*sx;
 	a=(s*sxy-sx*sy)/d;
