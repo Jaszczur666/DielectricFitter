@@ -5,6 +5,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DielectricFitter", "Dielect
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tests", "Tests\Tests.vcxproj", "{6D454BBF-0DF3-4278-9D2D-A42D4524E56C}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Data Manipulator", "Data Manipulator\Data Manipulator.vcxproj", "{8D2AB3D1-7527-4146-B459-9092C87ED605}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -19,6 +21,10 @@ Global
 		{6D454BBF-0DF3-4278-9D2D-A42D4524E56C}.Debug|Win32.Build.0 = Debug|Win32
 		{6D454BBF-0DF3-4278-9D2D-A42D4524E56C}.Release|Win32.ActiveCfg = Release|Win32
 		{6D454BBF-0DF3-4278-9D2D-A42D4524E56C}.Release|Win32.Build.0 = Release|Win32
+		{8D2AB3D1-7527-4146-B459-9092C87ED605}.Debug|Win32.ActiveCfg = Debug|Win32
+		{8D2AB3D1-7527-4146-B459-9092C87ED605}.Debug|Win32.Build.0 = Debug|Win32
+		{8D2AB3D1-7527-4146-B459-9092C87ED605}.Release|Win32.ActiveCfg = Release|Win32
+		{8D2AB3D1-7527-4146-B459-9092C87ED605}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

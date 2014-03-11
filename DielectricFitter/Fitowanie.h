@@ -6,6 +6,7 @@ const double pi  =3.1415926535897932384626433;
 #include <ctime>
 #include <limits>
 #include <boost/timer/timer.hpp>
+#include <boost/tr1/regex.hpp>
 using Eigen::MatrixXd;
 
 class curve{
@@ -71,7 +72,7 @@ bool curvesetrev::operator==(const curvesetrev &compared) const {
 void curvesetrev::LoadTempProfFromFile(String^ Filename){
 	wstring name;
 	string printname,line;
-	double ep,eb,f,t,fp,fb;
+	double ep,eb,f,t;//,fp,fb;
 	vector<double> vep,veb,vt;
 	MarshalString(Filename,name);
 	MarshalString(Filename,printname);
@@ -97,7 +98,7 @@ void curvesetrev::LoadTempProfFromFile(String^ Filename){
 void curvesetrev::LoadTempProfFromFile(wstring Filename){
 	wstring name;
 	string printname,line;
-	double ep,eb,f,t,fp,fb;
+	double ep,eb,f,t;//,fp,fb;
 	vector<double> vep,veb,vt;
 	name=Filename;
 	printname=string( Filename.begin(), Filename.end() );;
@@ -237,6 +238,7 @@ void CalculateCorrelation(vector<double> dataf,vector<double> dataep,vector<doub
 	b=0;
 	r=0;
 	linearFit(Exp,Theor,a,b,r);
+	cout<<"a= "<<a<<" b= "<<b<<endl;
 	cout<<"R2 = "<<r<<" 1-r^2 = "<<1-r <<endl;
 
 }
