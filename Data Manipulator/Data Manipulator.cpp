@@ -4,7 +4,7 @@
 #include "Manipulator.h"
 
 using namespace DataManipulator;
-
+using namespace std;
 [STAThreadAttribute]
 int main(array<System::String ^> ^args)
 {

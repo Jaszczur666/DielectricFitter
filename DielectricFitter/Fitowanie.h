@@ -22,6 +22,7 @@ public:
 	int funnum;
 	void GuesstimateParameters(vector<double> Dataf, vector<double>Dataep, vector<double> Dataeb,MatrixXd &parameters);
 	void FitLMGeneral(int type,MatrixXd &parameters);
+	void RegexHeader();
 	curve()
 	{
 		fitted=false;
@@ -63,6 +64,41 @@ public:
 	bool operator==(const curvesetrev &compared) const;
 };
 
+void curve::RegexHeader()
+{
+	string line;
+	string name;
+	name="d:\\DME0.txt";
+	ifstream inpfile(name);
+	inpfile.clear();
+	cout << "Attempting to read from "<<name<<endl;
+	while (getline(inpfile,line)){
+	regex namedate("([A-Za-z0-9_]+), (\\d\\d\\.\\d\\d?.\\d\\d\\d\\d), (\\d\\d:\\d\\d)");
+	regex expr("Fixed value\\(s\\) :  Temp\\. \\[°C\\]=([-+]?[0-9]*\\.?[0-9]*)  AC Volt  \\[Vrms\\]=([-+]?[0-9]*\\.?[0-9]*)");
+	regex data("([-| ]?\\d+\\.?\\d+e?[+|-]?\\d+)\\t([-| ]?\\d+\\.?\\d+e?[+|-]?\\d+)\\t([-| ]?\\d+\\.?\\d+e?[+|-]?\\d+)");
+	smatch match;
+	//cout<<"Line is "<<line<<endl;
+	if ( regex_search( line, match, expr ) ) {
+    string dots = match[1];
+    string chars = match[2];
+	cout <<dots <<" "<<chars <<endl;
+    }
+	else
+	{
+	//cout <<"no match"<<endl;
+	}
+	if ( regex_search( line, match, data) ) {
+    string name = match[1];
+    string date = match[2];
+	string hour = match[3];
+	cout <<name <<" "<<date <<" "<<hour <<endl;
+    }
+	else
+	{
+	//cout <<"no match"<<endl;
+	}
+	}
+};
 bool curvesetrev::IsSame(curvesetrev compared){
 return ((this->f==compared.f)&&(this->ep==compared.ep)&&(this->eb==compared.eb)&&(this->temp==compared.temp));
 };
@@ -79,6 +115,7 @@ void curvesetrev::LoadTempProfFromFile(String^ Filename){
 	cout <<"Reading file "<<printname<<endl;
 	ifstream inpfile(name);
 	inpfile>>f;
+
 	getline(inpfile,line);
 	//cout<<f<<endl;
 	while (getline(inpfile, line)){

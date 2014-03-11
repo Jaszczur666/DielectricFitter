@@ -22,10 +22,13 @@ void TestInput(){
 	Console::WriteLine(cs2.f[0].ToString()+" freq "+cs2.ep[0].size().ToString());
 	Console::WriteLine(cs1.IsSame(cs2)+" "+cs2.IsSame(cs1));
 	Console::WriteLine(cs1==cs2);
+
 }
 
 int main(array<System::String ^> ^args)
 {
-	TestInput();
+	curve d;
+	//TestInput();
+	d.RegexHeader();
 	return 0;
 }
