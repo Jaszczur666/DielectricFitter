@@ -185,6 +185,8 @@ DielectricFitter/PaStiXSupport
 DielectricFitter/QR
 DielectricFitter/QtAlignedMalloc
 DielectricFitter/Sparse
+DielectricFitter/SparseLU
+DielectricFitter/SparseQR
 DielectricFitter/SparseCholesky
 DielectricFitter/SparseCore
 DielectricFitter/StdDeque
@@ -192,4 +194,6 @@ DielectricFitter/StdList
 DielectricFitter/StdVector
 DielectricFitter/SuperLUSupport
 DielectricFitter/SVD
+DielectricFitter/MetisSupport
+DielectricFitter/SPQRSupport
 DielectricFitter/UmfPackSupport
