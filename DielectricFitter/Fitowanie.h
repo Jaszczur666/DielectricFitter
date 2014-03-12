@@ -74,8 +74,8 @@ void curve::RegexHeader()
 	cout << "Attempting to read from "<<name<<endl;
 	while (getline(inpfile,line)){
 	regex namedate("([A-Za-z0-9_]+), (\\d\\d\\.\\d\\d?.\\d\\d\\d\\d), (\\d\\d:\\d\\d)");
-	regex expr("Fixed value\\(s\\) :  Temp\\. \\[°C\\]=([-+]?[0-9]*\\.?[0-9]*)  AC Volt  \\[Vrms\\]=([-+]?[0-9]*\\.?[0-9]*)");
-	regex data("([-| ]?\\d+\\.?\\d+e?[+|-]?\\d+)\\t([-| ]?\\d+\\.?\\d+e?[+|-]?\\d+)\\t([-| ]?\\d+\\.?\\d+e?[+|-]?\\d+)");
+	regex expr("Fixed value\\(s\\) :  Temp\\. \\[°C\\]=([-+]?[0-9]*\\.?[0-9]*)  AC Volt  \\[Vrms\\]=([-+]?[0-9]*\\.?[0-9]*)"); // Fixed value\(s\) :  Temp\. \[°C\]=(-?\d*(?:\.\d+)?)  AC Volt  \[Vrms\]=(-?\d*(?:\.\d+)?)
+	regex data("([- ]?\\d+(?:\\.\\d+)?(?:e(?:\\+|-)\\d+)?)\\t([- ]?\\d+(?:\\.\\d+)?(?:e(?:\\+|-)\\d+)?)\\t([- ]?\\d+(?:\\.\\d+)?(?:e(?:\\+|-)\\d+)?)");
 	smatch match;
 	//cout<<"Line is "<<line<<endl;
 	if ( regex_search( line, match, expr ) ) {
@@ -95,7 +95,7 @@ void curve::RegexHeader()
     }
 	else
 	{
-	//cout <<"no match"<<endl;
+//	cout <<"no data match"<<endl;
 	}
 	}
 };
