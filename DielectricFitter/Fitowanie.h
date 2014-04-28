@@ -68,6 +68,7 @@ void curve::RegexHeader()
 {
 	string line;
 	string name;
+	double f, ep, eb;
 	name="d:\\DME0.txt";
 	ifstream inpfile(name);
 	inpfile.clear();
@@ -78,25 +79,31 @@ void curve::RegexHeader()
 	regex data("([- ]?\\d+(?:\\.\\d+)?(?:e(?:\\+|-)\\d+)?)\\t([- ]?\\d+(?:\\.\\d+)?(?:e(?:\\+|-)\\d+)?)\\t([- ]?\\d+(?:\\.\\d+)?(?:e(?:\\+|-)\\d+)?)");
 	smatch match;
 	//cout<<"Line is "<<line<<endl;
-	if ( regex_search( line, match, expr ) ) {
+	if ( regex_search( line, match, namedate ) ) {
     string dots = match[1];
     string chars = match[2];
-	cout <<dots <<" "<<chars <<endl;
+	cout <<"Name "<<match[1] <<"  date: "<<match[2]<<" hour: "<<match[3] <<endl;
     }
 	else
 	{
 	//cout <<"no match"<<endl;
 	}
 	if ( regex_search( line, match, data) ) {
-    string name = match[1];
-    string date = match[2];
-	string hour = match[3];
-	cout <<name <<" "<<date <<" "<<hour <<endl;
+   cout<<"Data block found"<<endl;
+   break;
     }
 	else
 	{
 //	cout <<"no data match"<<endl;
 	}
+	}
+	 stringstream lineStream(line);
+	lineStream>>f>>ep>>eb;
+	cout<<f<<" i " <<ep<<" oraz "<<eb<<endl;
+	while (getline(inpfile,line)){
+		 stringstream lineStream(line);
+			lineStream>>f>>ep>>eb;
+	cout<<f<<" i " <<ep<<" oraz "<<eb<<endl;
 	}
 };
 bool curvesetrev::IsSame(curvesetrev compared){
