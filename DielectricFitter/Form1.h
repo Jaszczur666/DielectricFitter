@@ -1,5 +1,6 @@
 #include "Parser.h"
 #include "Fitowanie.h"
+#include "Curve.h"
 #include <complex>
 #include <intrin.h>
 #include "About.h"
@@ -1022,7 +1023,7 @@ namespace DielectricFitter {
 			// 
 			// corgraphmax
 			// 
-			this->corgraphmax->Location = System::Drawing::Point(835, 1);
+			this->corgraphmax->Location = System::Drawing::Point(1120, 0);
 			this->corgraphmax->Name = L"corgraphmax";
 			this->corgraphmax->Size = System::Drawing::Size(100, 20);
 			this->corgraphmax->TabIndex = 9;
@@ -1030,7 +1031,7 @@ namespace DielectricFitter {
 			// 
 			// corgraphmin
 			// 
-			this->corgraphmin->Location = System::Drawing::Point(698, 0);
+			this->corgraphmin->Location = System::Drawing::Point(993, 0);
 			this->corgraphmin->Name = L"corgraphmin";
 			this->corgraphmin->Size = System::Drawing::Size(100, 20);
 			this->corgraphmin->TabIndex = 8;
@@ -1077,7 +1078,7 @@ namespace DielectricFitter {
 			// 
 			// textBox12
 			// 
-			this->textBox12->Location = System::Drawing::Point(514, 1);
+			this->textBox12->Location = System::Drawing::Point(727, 0);
 			this->textBox12->Name = L"textBox12";
 			this->textBox12->Size = System::Drawing::Size(100, 20);
 			this->textBox12->TabIndex = 3;
@@ -1095,7 +1096,7 @@ namespace DielectricFitter {
 			// 
 			// textBox11
 			// 
-			this->textBox11->Location = System::Drawing::Point(408, 1);
+			this->textBox11->Location = System::Drawing::Point(621, 0);
 			this->textBox11->Name = L"textBox11";
 			this->textBox11->Size = System::Drawing::Size(100, 20);
 			this->textBox11->TabIndex = 1;
@@ -1103,7 +1104,7 @@ namespace DielectricFitter {
 			// 
 			// textBox10
 			// 
-			this->textBox10->Location = System::Drawing::Point(302, 1);
+			this->textBox10->Location = System::Drawing::Point(515, 0);
 			this->textBox10->Name = L"textBox10";
 			this->textBox10->Size = System::Drawing::Size(100, 20);
 			this->textBox10->TabIndex = 0;
@@ -2126,7 +2127,7 @@ namespace DielectricFitter {
 				 int i,size;
 				 double temperature,midt,jump,scale,maxx,minx;
 				 size=expmnt.CurveSet.size();
-				 label10->Text=Positionfreq.ToString();
+				 label10->Text="F["+Positionfreq.ToString()+"]= "+expmnt.CurveSet[0].Dataf[Positionfreq-1].ToString()+"Hz";
 				 chart5->Series["Series1"]->Points->Clear();
 				 chart5->Series["Series2"]->Points->Clear();
 				 chart5->Series["Series3"]->Points->Clear();

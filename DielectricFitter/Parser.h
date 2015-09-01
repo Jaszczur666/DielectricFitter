@@ -1,3 +1,5 @@
+#ifndef PARSER_H
+#define PARSER_H
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -106,7 +108,7 @@ void Normalize(vector<double>& dataep,vector<double>& dataeb,double C0)
 	for (i=0;i<=size-1;i++)
 	{
 		dataep[i]=dataep[i]/C0;
-		dataeb[i]=-dataeb[i]/C0;
+		dataeb[i]=dataeb[i]/C0;
 
 	}
 }
@@ -122,3 +124,4 @@ void NormalizeCapacity(vector<double>& dataep,vector<double>& dataeb,double C0)
 
 	}
 }
+#endif

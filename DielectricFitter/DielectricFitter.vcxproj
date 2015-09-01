@@ -100,12 +100,14 @@
   <ItemGroup>
     <ClCompile Include="About.cpp" />
     <ClCompile Include="AssemblyInfo.cpp" />
+    <ClCompile Include="Curve.cpp" />
     <ClCompile Include="DielectricFitter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="About.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="Curve.h" />
     <ClInclude Include="Fitowanie.h" />
     <ClInclude Include="Form1.h">
       <FileType>CppForm</FileType>

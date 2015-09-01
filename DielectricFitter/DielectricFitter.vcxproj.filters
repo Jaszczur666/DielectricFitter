@@ -32,6 +32,9 @@
     <ClCompile Include="About.cpp">
       <Filter>Header Files</Filter>
     </ClCompile>
+    <ClCompile Include="Curve.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Form1.h">
@@ -50,6 +53,9 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="About.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Curve.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
