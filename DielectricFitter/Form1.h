@@ -166,6 +166,11 @@ namespace DielectricFitter {
 	private: System::Windows::Forms::Label^  label19;
 	private: System::Windows::Forms::TextBox^  tbs0;
 	private: System::Windows::Forms::Label^  labelsigma;
+private: System::Windows::Forms::TextBox^  tbn;
+private: System::Windows::Forms::Label^  labeln;
+private: System::Windows::Forms::CheckBox^  jonscb;
+private: System::Windows::Forms::Label^  labelsigmaj;
+private: System::Windows::Forms::TextBox^  tbsj;
 
 
 
@@ -223,6 +228,9 @@ namespace DielectricFitter {
 			this->tabPage1 = (gcnew System::Windows::Forms::TabPage());
 			this->tableLayoutPanel2 = (gcnew System::Windows::Forms::TableLayoutPanel());
 			this->panel2 = (gcnew System::Windows::Forms::Panel());
+			this->tbn = (gcnew System::Windows::Forms::TextBox());
+			this->labeln = (gcnew System::Windows::Forms::Label());
+			this->jonscb = (gcnew System::Windows::Forms::CheckBox());
 			this->condcb = (gcnew System::Windows::Forms::CheckBox());
 			this->label19 = (gcnew System::Windows::Forms::Label());
 			this->tbs0 = (gcnew System::Windows::Forms::TextBox());
@@ -317,6 +325,8 @@ namespace DielectricFitter {
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->progressBar1 = (gcnew System::Windows::Forms::ProgressBar());
 			this->label18 = (gcnew System::Windows::Forms::Label());
+			this->tbsj = (gcnew System::Windows::Forms::TextBox());
+			this->labelsigmaj = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->chart1))->BeginInit();
 			this->tabControl1->SuspendLayout();
 			this->tabPage1->SuspendLayout();
@@ -440,7 +450,7 @@ namespace DielectricFitter {
 			// 
 			// FitButton
 			// 
-			this->FitButton->Location = System::Drawing::Point(9, 405);
+			this->FitButton->Location = System::Drawing::Point(9, 461);
 			this->FitButton->Name = L"FitButton";
 			this->FitButton->Size = System::Drawing::Size(39, 23);
 			this->FitButton->TabIndex = 3;
@@ -497,6 +507,11 @@ namespace DielectricFitter {
 			// 
 			// panel2
 			// 
+			this->panel2->Controls->Add(this->labelsigmaj);
+			this->panel2->Controls->Add(this->tbsj);
+			this->panel2->Controls->Add(this->tbn);
+			this->panel2->Controls->Add(this->labeln);
+			this->panel2->Controls->Add(this->jonscb);
 			this->panel2->Controls->Add(this->condcb);
 			this->panel2->Controls->Add(this->label19);
 			this->panel2->Controls->Add(this->tbs0);
@@ -534,10 +549,38 @@ namespace DielectricFitter {
 			this->panel2->Size = System::Drawing::Size(134, 543);
 			this->panel2->TabIndex = 1;
 			// 
+			// tbn
+			// 
+			this->tbn->BackColor = System::Drawing::SystemColors::ScrollBar;
+			this->tbn->Location = System::Drawing::Point(53, 336);
+			this->tbn->Name = L"tbn";
+			this->tbn->Size = System::Drawing::Size(78, 20);
+			this->tbn->TabIndex = 45;
+			this->tbn->Text = L"0";
+			// 
+			// labeln
+			// 
+			this->labeln->AutoSize = true;
+			this->labeln->Location = System::Drawing::Point(15, 341);
+			this->labeln->Name = L"labeln";
+			this->labeln->Size = System::Drawing::Size(13, 13);
+			this->labeln->TabIndex = 44;
+			this->labeln->Text = L"n";
+			// 
+			// jonscb
+			// 
+			this->jonscb->AutoSize = true;
+			this->jonscb->Location = System::Drawing::Point(9, 411);
+			this->jonscb->Name = L"jonscb";
+			this->jonscb->Size = System::Drawing::Size(107, 17);
+			this->jonscb->TabIndex = 43;
+			this->jonscb->Text = L"Make it Jonscher";
+			this->jonscb->UseVisualStyleBackColor = true;
+			// 
 			// condcb
 			// 
 			this->condcb->AutoSize = true;
-			this->condcb->Location = System::Drawing::Point(10, 353);
+			this->condcb->Location = System::Drawing::Point(10, 396);
 			this->condcb->Name = L"condcb";
 			this->condcb->Size = System::Drawing::Size(121, 17);
 			this->condcb->TabIndex = 42;
@@ -547,7 +590,7 @@ namespace DielectricFitter {
 			// label19
 			// 
 			this->label19->AutoSize = true;
-			this->label19->Location = System::Drawing::Point(7, 311);
+			this->label19->Location = System::Drawing::Point(7, 356);
 			this->label19->Name = L"label19";
 			this->label19->Size = System::Drawing::Size(84, 13);
 			this->label19->TabIndex = 40;
@@ -574,7 +617,7 @@ namespace DielectricFitter {
 			// 
 			// Funnum
 			// 
-			this->Funnum->Location = System::Drawing::Point(10, 327);
+			this->Funnum->Location = System::Drawing::Point(10, 370);
 			this->Funnum->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {3, 0, 0, 0});
 			this->Funnum->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) {1, 0, 0, 0});
 			this->Funnum->Name = L"Funnum";
@@ -585,7 +628,7 @@ namespace DielectricFitter {
 			// 
 			// nextcrv
 			// 
-			this->nextcrv->Location = System::Drawing::Point(39, 376);
+			this->nextcrv->Location = System::Drawing::Point(39, 434);
 			this->nextcrv->Name = L"nextcrv";
 			this->nextcrv->Size = System::Drawing::Size(24, 23);
 			this->nextcrv->TabIndex = 30;
@@ -604,7 +647,7 @@ namespace DielectricFitter {
 			// 
 			// prvcrv
 			// 
-			this->prvcrv->Location = System::Drawing::Point(9, 376);
+			this->prvcrv->Location = System::Drawing::Point(9, 434);
 			this->prvcrv->Name = L"prvcrv";
 			this->prvcrv->Size = System::Drawing::Size(24, 23);
 			this->prvcrv->TabIndex = 32;
@@ -653,7 +696,7 @@ namespace DielectricFitter {
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(78, 386);
+			this->label1->Location = System::Drawing::Point(78, 447);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(13, 13);
 			this->label1->TabIndex = 14;
@@ -671,7 +714,7 @@ namespace DielectricFitter {
 			// 
 			// button13
 			// 
-			this->button13->Location = System::Drawing::Point(73, 434);
+			this->button13->Location = System::Drawing::Point(73, 498);
 			this->button13->Name = L"button13";
 			this->button13->Size = System::Drawing::Size(32, 23);
 			this->button13->TabIndex = 30;
@@ -790,7 +833,7 @@ namespace DielectricFitter {
 			// 
 			// ChiSqrButton
 			// 
-			this->ChiSqrButton->Location = System::Drawing::Point(56, 405);
+			this->ChiSqrButton->Location = System::Drawing::Point(56, 462);
 			this->ChiSqrButton->Name = L"ChiSqrButton";
 			this->ChiSqrButton->Size = System::Drawing::Size(49, 23);
 			this->ChiSqrButton->TabIndex = 13;
@@ -1501,6 +1544,24 @@ namespace DielectricFitter {
 			this->label18->TabIndex = 31;
 			this->label18->Text = L"1";
 			// 
+			// tbsj
+			// 
+			this->tbsj->BackColor = System::Drawing::SystemColors::ScrollBar;
+			this->tbsj->Location = System::Drawing::Point(53, 304);
+			this->tbsj->Name = L"tbsj";
+			this->tbsj->Size = System::Drawing::Size(78, 20);
+			this->tbsj->TabIndex = 46;
+			this->tbsj->Text = L"0";
+			// 
+			// labelsigmaj
+			// 
+			this->labelsigmaj->AutoSize = true;
+			this->labelsigmaj->Location = System::Drawing::Point(15, 311);
+			this->labelsigmaj->Name = L"labelsigmaj";
+			this->labelsigmaj->Size = System::Drawing::Size(18, 13);
+			this->labelsigmaj->TabIndex = 47;
+			this->labelsigmaj->Text = L"s0";
+			// 
 			// Form1
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -1610,10 +1671,11 @@ namespace DielectricFitter {
 	private: System::Void FitButton_Click(System::Object^  sender, System::EventArgs^  e) {
 				 MatrixXd parameters(4,1);
 				 complex<double> d;
-				 double en,de,fp,a,de2,fp2,a2,de3,fp3,a3,s0;
+				 double en,de,fp,a,de2,fp2,a2,de3,fp3,a3,s0,sj,n;
 				 int funnum;
 				 funnum=Funnum->Value.ToInt32(Funnum->Value);
 				 if (condcb->Checked) funnum+=3;
+				 if (jonscb->Checked) funnum=7;
 				 chart1->Series[2]->Points->Clear();
 				 chart1->Series[3]->Points->Clear();
 				 chart2->Series["Series2"]->Points->Clear();
@@ -1629,6 +1691,8 @@ namespace DielectricFitter {
 					 fp3=(Convert::ToDouble(tbfp3->Text));
 					 a3=(Convert::ToDouble(tba3->Text));
 					 s0=(Convert::ToDouble(tbs0->Text));
+					 sj=(Convert::ToDouble(tbsj->Text));
+					 n=(Convert::ToDouble(tbn->Text));
 				 }
 				 else
 				 {
@@ -1643,6 +1707,8 @@ namespace DielectricFitter {
 					 fp3=expmnt.CurveSet[Position-1].fp3;
 					 a3=expmnt.CurveSet[Position-1].a3;
 					 s0=expmnt.CurveSet[Position-1].s0;
+					 sj=expmnt.CurveSet[Position-1].sj;
+					 n=expmnt.CurveSet[Position-1].n;
 				 }
 
 				 switch (funnum){
@@ -1670,6 +1736,10 @@ namespace DielectricFitter {
 					 parameters.resize(11,1);
 					 parameters<<en,de,fp,a,de2,fp2,a2,de3,fp3,a3,s0;
 					 break;
+					 case 7:
+					parameters.resize(6,1);
+					 parameters<<en,de,fp,a,sj,n;
+
 				 };
 			//	 cout <<" ---"<<endl<< parameters<<endl;
 				 expmnt.CurveSet[Position-1].FitLMGeneral(funnum,parameters);
@@ -1722,6 +1792,9 @@ namespace DielectricFitter {
 					 a3=parameters(9,0);
 					 s0=parameters(10,0);
 					 break;
+				 case 7:
+					 sj=parameters(4,0);
+					 n=parameters(5,0);
 				 };
 				 tbeps->Text=en.ToString("G4");
 				 tbde1->Text=de.ToString("G4");
@@ -1734,6 +1807,8 @@ namespace DielectricFitter {
 				 tbfp3->Text=fp3.ToString("G6");
 				 tba3->Text=a3.ToString("G4");
 				 tbs0->Text=s0.ToString("G4");
+				 tbsj->Text=sj.ToString("G4");
+				 tbn->Text=n.ToString("G4");
 				 expmnt.CurveSet[Position-1].en=en;
 				 expmnt.CurveSet[Position-1].de1=de;
 				 expmnt.CurveSet[Position-1].fp1=fp;
@@ -1747,6 +1822,8 @@ namespace DielectricFitter {
 				 expmnt.CurveSet[Position-1].fp3=fp3;
 				 expmnt.CurveSet[Position-1].a3=a3;
 				 expmnt.CurveSet[Position-1].s0=s0;
+				 expmnt.CurveSet[Position-1].sj=sj;
+				 expmnt.CurveSet[Position-1].n=n;
 				 expmnt.CurveSet[Position-1].funnum=(int)Funnum->Value;
 				 ChiSqrButton->PerformClick();
 			 }
@@ -1756,7 +1833,7 @@ namespace DielectricFitter {
 				 rgForm->ShowDialog();			 
 			 }
 	private: System::Void ChiSqrButton_Click(System::Object^  sender, System::EventArgs^  e) {
-				 double ep,eb,eb1,eb2,de,de3,fp3,a3,en,fp,f,a,maxf,minf,df,de2,fp2,a2,s0;
+				 double ep,eb,eb1,eb2,de,de3,fp3,a3,en,fp,f,a,maxf,minf,df,de2,fp2,a2,s0,sj,n;
 				 int i,size;
 				 MatrixXd parameters;
 				 complex<double> d;
@@ -1767,6 +1844,7 @@ namespace DielectricFitter {
 				 double chisquared;
 				 funnum=Funnum->Value.ToInt16(Funnum->Value);
 				 if (condcb->Checked) funnum+=3;
+				 if (jonscb->Checked) funnum=7;
 				 chart1->Series[2]->Points->Clear();
 				 chart1->Series[3]->Points->Clear();
 				 chart1->Series[4]->Points->Clear();
@@ -1789,6 +1867,8 @@ namespace DielectricFitter {
 				 fp3=(Convert::ToDouble(tbfp3->Text));
 				 a3=(Convert::ToDouble(tba3->Text));
 				 s0=(Convert::ToDouble(tbs0->Text));
+				 sj=(Convert::ToDouble(tbsj->Text));
+				 n=(Convert::ToDouble(tbn->Text));
 				 //if (funnum==1) {
 				 // parameters.resize(4,1);
 				 // parameters<<en,de,fp,a;
@@ -1826,6 +1906,9 @@ namespace DielectricFitter {
 					 parameters.resize(11,1);
 					 parameters<<en,de,fp,a,de2,fp2,a2,de3,fp3,a3,s0;
 					 break;
+				 case 7:
+					 parameters.resize(6,1);
+					 parameters<<en,de,fp,a,sj,n;
 				 };
 				 for (i=0;i<=100;i++)
 				 {
@@ -1892,6 +1975,8 @@ namespace DielectricFitter {
 					 tbfp3->Text=expmnt.CurveSet[Position-1].fp3.ToString("g4");
 					 tba3->Text=expmnt.CurveSet[Position-1].a3.ToString("g4");
 					 tbs0->Text=expmnt.CurveSet[Position-1].s0.ToString("g4");
+					 tbsj->Text=expmnt.CurveSet[Position-1].sj.ToString("g4");
+					 tbn->Text=expmnt.CurveSet[Position-1].n.ToString("g4");
 					 expmnt.CurveSet[Position-1].fitted=true;
 					 this->ChiSqrButton_Click(sender,e);
 					 //ChiSqrButton->PerformClick();
@@ -1933,6 +2018,8 @@ namespace DielectricFitter {
 					 tbfp3->Text=expmnt.CurveSet[Position-1].fp3.ToString("g6");
 					 tba3->Text=expmnt.CurveSet[Position-1].a3.ToString("g4");
 					 tbs0->Text=expmnt.CurveSet[Position-1].s0.ToString("g4");
+					 tbsj->Text=expmnt.CurveSet[Position-1].sj.ToString("g4");
+					 tbn->Text=expmnt.CurveSet[Position-1].n.ToString("g4");
 					 expmnt.CurveSet[Position-1].fitted=true;
 					 //ChiSqrButton->PerformClick();
 					 this->ChiSqrButton_Click(sender,e);
@@ -2009,7 +2096,7 @@ namespace DielectricFitter {
 				 if (saveFileDialog1->ShowDialog() == ::System::Windows::Forms::DialogResult::OK ){
 					 StreamWriter^ sw = gcnew StreamWriter(saveFileDialog1->FileName);
 					 for (i=0;i<size;i++){
-						 if(expmnt.CurveSet[i].fitted) sw->WriteLine(expmnt.CurveSet[i].temperature.ToString("g6",nfi)+" "+expmnt.CurveSet[i].en.ToString("g6",nfi)+" "+expmnt.CurveSet[i].de1.ToString("g6",nfi)+" "+expmnt.CurveSet[i].fp1.ToString("g6",nfi)+" "+expmnt.CurveSet[i].a1.ToString("g6",nfi)+" "+expmnt.CurveSet[i].de2.ToString("g6",nfi)+" "+expmnt.CurveSet[i].fp2.ToString("g6",nfi)+" "+expmnt.CurveSet[i].a2.ToString("g6",nfi)+" "+expmnt.CurveSet[i].de3.ToString("g6",nfi)+" "+expmnt.CurveSet[i].fp3.ToString("g6",nfi)+" "+expmnt.CurveSet[i].a3.ToString("g6",nfi)+" "+expmnt.CurveSet[i].chi2.ToString("g6",nfi));
+						 if(expmnt.CurveSet[i].fitted) sw->WriteLine(expmnt.CurveSet[i].temperature.ToString("g6",nfi)+" "+expmnt.CurveSet[i].en.ToString("g6",nfi)+" "+expmnt.CurveSet[i].de1.ToString("g6",nfi)+" "+expmnt.CurveSet[i].fp1.ToString("g6",nfi)+" "+expmnt.CurveSet[i].a1.ToString("g6",nfi)+" "+expmnt.CurveSet[i].de2.ToString("g6",nfi)+" "+expmnt.CurveSet[i].fp2.ToString("g6",nfi)+" "+expmnt.CurveSet[i].a2.ToString("g6",nfi)+" "+expmnt.CurveSet[i].de3.ToString("g6",nfi)+" "+expmnt.CurveSet[i].fp3.ToString("g6",nfi)+" "+expmnt.CurveSet[i].a3.ToString("g6",nfi)+" "+expmnt.CurveSet[i].s0.ToString("g6",nfi)+" "+expmnt.CurveSet[i].sj.ToString("g6",nfi)+" "+expmnt.CurveSet[i].n.ToString("g6",nfi)+" "+expmnt.CurveSet[i].chi2.ToString("g6",nfi));
 					 }
 					 sw->Close();
 					 cout <<"Fit parameters saved";

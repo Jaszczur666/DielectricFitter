@@ -57,6 +57,7 @@ std::complex<double> RelaxationFunction(int type,double frequency,const MatrixXd
 	if (type==4)  d=parameters(0)+parameters(1)/(1.0+pow(ii*frequency/parameters(2),1-parameters(3)))+1.0/(ii*2.0*pi*frequency*8.85e-12)*parameters(4);
 	if (type==5)  d=DoubleColeDavidsonWithConductivity(frequency,parameters);
 	if (type==6)  d=TripleColeDavidsonWithConductivity(frequency,parameters);
+	if (type==7)  d=parameters(0)+parameters(1)/(1.0+pow(ii*frequency/parameters(2),1-parameters(3)))+1.0/(ii*2.0*pi*frequency*8.85e-12)*(parameters(4)*pow(ii*2.0*pi*frequency,parameters(5)));
 	//cout<<d<<endl;
 	return d;
 }
@@ -249,6 +250,7 @@ void curve::FitLMGeneral(int type,MatrixXd &parameters)
 	boost::timer::cpu_times elapsed = timer.elapsed();
 	//end=clock();
 	//cout <<(double(end - start) / CLOCKS_PER_SEC) <<" s"<<endl;//<<" "<< CLOCKS_PER_SEC<<endl;
+	std::cout << "Type: "<< type<<std::endl;
 	std::cout << "Fitting took " << elapsed.wall / 1e9 << " seconds"<< std::endl;
 	return;
 }

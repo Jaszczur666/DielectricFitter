@@ -18,7 +18,7 @@ public:
 	vector<double> Dataeb;
 	double temperature;
 	wstring filename;
-	double en,de1,fp1,a1,de2,fp2,a2,de3,fp3,a3,s0;
+	double en,de1,fp1,a1,de2,fp2,a2,de3,fp3,a3,s0,sj,n;
 	double chi2;
 	bool fitted;
 	int funnum;
@@ -39,6 +39,8 @@ public:
 		fp3=100;
 		a3=0;
 		s0=0;
+		sj=0;
+		n=1;
 	}
 };
 std::complex<double> RelaxationFunction(int type,double frequency,const MatrixXd &parameters);
