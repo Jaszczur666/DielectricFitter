@@ -4,13 +4,13 @@
 #include <complex>
 #include <intrin.h>
 #include "About.h"
-#include "Dense"
+#include "Eigen\Dense"
 using  System::IO::StreamWriter;
 using namespace System::Globalization;
 using Eigen::MatrixXd;
-vector<double> Dataf;
-vector<double> Dataep;
-vector<double> Dataeb;
+std::vector<double> Dataf;
+std::vector<double> Dataep;
+std::vector<double> Dataeb;
 experiment expmnt;
 //vector <curve> expmnt.CurveSet;
 curvesetrev auxcurveset; 
@@ -1624,9 +1624,9 @@ private: System::Windows::Forms::TextBox^  tbsj;
 					 int size;
 					 expmnt.CurveSet.clear();
 					 c0=(Convert::ToDouble(textBox1->Text));
-					 complex<double> d;
+					 std::complex<double> d;
 					 numload=openFileDialog1->FileNames->Length;
-					 //cout<<"Number of files to load "<<numload<<endl;
+					 //std::cout<<"Number of files to load "<<numload<<std::endl;
 					 toolStripProgressBar1->Value=0;
 					 progressBar1->Value=0;
 					 progressBar1->Visible=true;
@@ -1639,7 +1639,7 @@ private: System::Windows::Forms::TextBox^  tbsj;
 						 MarshalString(openFileDialog1->FileNames[i],SingleCurve.filename);
 						 SingleCurve.fitted=false;
 						 expmnt.CurveSet.push_back(SingleCurve);
-						 cout << 100*i/numload<<"%"<<endl;
+						 std::cout << 100*i/numload<<"%"<<std::endl;
 						 progressBar1->Value=100*(i+1)/numload;
 						 toolStripProgressBar1->Value=100*(i+1)/numload;
 					 }
@@ -1670,7 +1670,7 @@ private: System::Windows::Forms::TextBox^  tbsj;
 			 }
 	private: System::Void FitButton_Click(System::Object^  sender, System::EventArgs^  e) {
 				 MatrixXd parameters(4,1);
-				 complex<double> d;
+				 std::complex<double> d;
 				 double en,de,fp,a,de2,fp2,a2,de3,fp3,a3,s0,sj,n;
 				 int funnum;
 				 funnum=Funnum->Value.ToInt32(Funnum->Value);
@@ -1741,9 +1741,9 @@ private: System::Windows::Forms::TextBox^  tbsj;
 					 parameters<<en,de,fp,a,sj,n;
 
 				 };
-			//	 cout <<" ---"<<endl<< parameters<<endl;
+			//	 std::cout <<" ---"<<std::endl<< parameters<<std::endl;
 				 expmnt.CurveSet[Position-1].FitLMGeneral(funnum,parameters);
-				// cout<<"funnum "<<funnum<<endl <<" "<<parameters<<endl;
+				// std::cout<<"funnum "<<funnum<<std::endl <<" "<<parameters<<std::endl;
 				 en=parameters(0,0);
 				 de=parameters(1,0);
 				 fp=parameters(2,0);
@@ -1814,7 +1814,7 @@ private: System::Windows::Forms::TextBox^  tbsj;
 				 expmnt.CurveSet[Position-1].fp1=fp;
 				 expmnt.CurveSet[Position-1].a1=a;
 				 expmnt.CurveSet[Position-1].fitted=true;
-				 //cout<<"random text"<<expmnt.CurveSet[Position-1].fitted<<endl;
+				 //std::cout<<"random text"<<expmnt.CurveSet[Position-1].fitted<<std::endl;
 				 expmnt.CurveSet[Position-1].de2=de2;
 				 expmnt.CurveSet[Position-1].fp2=fp2;
 				 expmnt.CurveSet[Position-1].a2=a2;
@@ -1836,10 +1836,10 @@ private: System::Windows::Forms::TextBox^  tbsj;
 				 double ep,eb,eb1,eb2,de,de3,fp3,a3,en,fp,f,a,maxf,minf,df,de2,fp2,a2,s0,sj,n;
 				 int i,size;
 				 MatrixXd parameters;
-				 complex<double> d;
-				 complex<double> d2;
-				 complex<double> d1;
-				 complex<double> d3;
+				 std::complex<double> d;
+				 std::complex<double> d2;
+				 std::complex<double> d1;
+				 std::complex<double> d3;
 				 int funnum;
 				 double chisquared;
 				 funnum=Funnum->Value.ToInt16(Funnum->Value);
@@ -1921,7 +1921,7 @@ private: System::Windows::Forms::TextBox^  tbsj;
 						 eb2=-std::imag(d2);
 						 //ep2=std::real(d2)+en+de2;
 					 }
-					 //cout<<"Debug1234 " << parameters<<endl;
+					 //std::cout<<"Debug1234 " << parameters<<std::endl;
 					 ep= std::real(d);
 					 eb=-std::imag(d);
 					 chart1->Series[2]->Points->AddXY(log10(f),ep);
@@ -1937,7 +1937,7 @@ private: System::Windows::Forms::TextBox^  tbsj;
 					 if (expmnt.CurveSet[Position-1].twofunctions) chart2->Series["Series4"]->Points->AddXY(ep2,eb2);
 					 */}
 				 chisquared=chi2MatGeneral(expmnt.CurveSet[Position-1].Dataf,expmnt.CurveSet[Position-1].Dataep,expmnt.CurveSet[Position-1].Dataeb,funnum,parameters);
-				 cout<<"chi2 test "<<chisquared<<endl;
+				 std::cout<<"chi2 test "<<chisquared<<std::endl;
 			 }
 	private: System::Void loadFileToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 				 LoadButton->PerformClick();
@@ -2099,7 +2099,7 @@ private: System::Windows::Forms::TextBox^  tbsj;
 						 if(expmnt.CurveSet[i].fitted) sw->WriteLine(expmnt.CurveSet[i].temperature.ToString("g6",nfi)+" "+expmnt.CurveSet[i].en.ToString("g6",nfi)+" "+expmnt.CurveSet[i].de1.ToString("g6",nfi)+" "+expmnt.CurveSet[i].fp1.ToString("g6",nfi)+" "+expmnt.CurveSet[i].a1.ToString("g6",nfi)+" "+expmnt.CurveSet[i].de2.ToString("g6",nfi)+" "+expmnt.CurveSet[i].fp2.ToString("g6",nfi)+" "+expmnt.CurveSet[i].a2.ToString("g6",nfi)+" "+expmnt.CurveSet[i].de3.ToString("g6",nfi)+" "+expmnt.CurveSet[i].fp3.ToString("g6",nfi)+" "+expmnt.CurveSet[i].a3.ToString("g6",nfi)+" "+expmnt.CurveSet[i].s0.ToString("g6",nfi)+" "+expmnt.CurveSet[i].sj.ToString("g6",nfi)+" "+expmnt.CurveSet[i].n.ToString("g6",nfi)+" "+expmnt.CurveSet[i].chi2.ToString("g6",nfi));
 					 }
 					 sw->Close();
-					 cout <<"Fit parameters saved";
+					 std::cout <<"Fit parameters saved";
 				 }
 			 }
 	private: System::Void PlotButton_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -2111,7 +2111,7 @@ private: System::Windows::Forms::TextBox^  tbsj;
 				 int i,size;
 				 double temperature;
 				 size=expmnt.CurveSet.size();
-				 //cout << temperature;
+				 //std::cout << temperature;
 				 //textBox9->Text+=temperature.ToString()+" "+tbeps->Text+" "+tbde1->Text+" "+tbf1->Text+" "+tba1->Text+" "+tbde2->Text+" "+tbfp2->Text+" "+tba2->Text+System::Environment::NewLine;
 				 for (i=0;i<size;i++){
 					 if(expmnt.CurveSet[i].fitted){
@@ -2145,8 +2145,8 @@ private: System::Windows::Forms::TextBox^  tbsj;
 				 CultureInfo^ MyCI = gcnew CultureInfo( "en-US",false );
 				 NumberFormatInfo^ nfi = MyCI->NumberFormat;
 				 nfi->NumberDecimalSeparator = ".";
-				 complex<double> eps;
-				 complex<double> zs;
+				 std::complex<double> eps;
+				 std::complex<double> zs;
 				 if (expmnt.IsGeometrySpecified){
 					 if (saveFileDialog1->ShowDialog() == ::System::Windows::Forms::DialogResult::OK ){
 						 size_t  i,j,size,size2;
@@ -2154,7 +2154,7 @@ private: System::Windows::Forms::TextBox^  tbsj;
 						 size=expmnt.CurveSet[0].Dataf.size();
 						 size2=expmnt.CurveSet.size();
 						 for (j=0;j<size2;j++){
-							 //cout << expmnt.CurveSet[j].temperature <<" "<<  Correction(expmnt.CurveSet[j].temperature) <<endl;
+							 //std::cout << expmnt.CurveSet[j].temperature <<" "<<  Correction(expmnt.CurveSet[j].temperature) <<std::endl;
 							 StreamWriter^ sw = gcnew StreamWriter(saveFileDialog1->FileName+j.ToString()+".dat");
 							 sw->WriteLine("Temperature="+ expmnt.CurveSet[j].temperature.ToString("g6",nfi)+" ");
 							 sw->WriteLine("");
@@ -2169,7 +2169,7 @@ private: System::Windows::Forms::TextBox^  tbsj;
 								 eps=ep+ii*eb;
 								 zs=(-ii*1.0/eps)/(vacuumcapacity*2.0*pi*expmnt.CurveSet[j].Dataf[i]);
 								 sw->WriteLine(expmnt.CurveSet[j].Dataf[i].ToString("e6",nfi)+"\t"+real(zs).ToString("g6",nfi)+"\t"+imag(zs).ToString("g6",nfi)+"\t"+ep.ToString("g6",nfi)+"\t"+eb.ToString("g6",nfi));
-								 //cout <<expmnt.CurveSet[j].Dataf[i]<<" " <<real(zs)<< " "<<imag(zs)<<endl;
+								 //std::cout <<expmnt.CurveSet[j].Dataf[i]<<" " <<real(zs)<< " "<<imag(zs)<<std::endl;
 							 }
 							 sw->Close();
 						 }
@@ -2181,8 +2181,8 @@ private: System::Windows::Forms::TextBox^  tbsj;
 				 };
 			 }
 	private: System::Void saveTempImpedanceToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
-				 complex<double> eps;
-				 complex<double> zs;
+		std::complex<double> eps;
+				 std::complex<double> zs;
 				 CultureInfo^ MyCI = gcnew CultureInfo( "en-US",false );
 				 NumberFormatInfo^ nfi = MyCI->NumberFormat;
 				 nfi->NumberDecimalSeparator = ".";
@@ -2295,7 +2295,7 @@ private: System::Windows::Forms::TextBox^  tbsj;
 	private: System::Void Funnum_ValueChanged(System::Object^  sender, System::EventArgs^  e) {
 				 int helper;
 				 helper=Funnum->Value.ToInt16(Funnum->Value);
-				 cout << "Helper "<<helper<<endl;
+				 std::cout << "Helper "<<helper<<std::endl;
 				 switch (helper){
 				 case 1: {
 					 tbfp2->BackColor = System::Drawing::SystemColors::Control;
@@ -2384,9 +2384,9 @@ private: System::Windows::Forms::TextBox^  tbsj;
 			 //					 parameters.resize(10,1);
 			 //					 parameters<<en,de,fp,a,de2,fp2,a2,de3,fp3,a3;
 			 //				 };
-			 //				// cout << "_____________________________________________________________"<<endl;
-			 //				// cout <<parameters<<endl;
-			 //				// cout << "-------------------------------------------------------------"<<endl;
+			 //				// std::cout << "_____________________________________________________________"<<std::endl;
+			 //				// std::cout <<parameters<<std::endl;
+			 //				// std::cout << "-------------------------------------------------------------"<<std::endl;
 			 ////				 FitLMEntropyGeneral(expmnt.CurveSet[Position-1].Dataf,expmnt.CurveSet[Position-1].Dataep,expmnt.CurveSet[Position-1].Dataeb,funnum,parameters);
 			 //				 en=parameters(0,0);
 			 //				 de=parameters(1,0);
@@ -2440,10 +2440,10 @@ private: System::Windows::Forms::TextBox^  tbsj;
 				 double epmax,tepmax,tebmax;
 				 size=expmnt.CurveSet.size();
 				 size2=expmnt.CurveSet[0].Dataf.size();
-				 vector<double> tmpavg;
+				 std::vector<double> tmpavg;
 				 for (int j=0;j<size2;j++)
 				 {
-					 //cout<<expmnt.CurveSet[0].Dataf[j]<<endl;
+					 //std::cout<<expmnt.CurveSet[0].Dataf[j]<<std::endl;
 					 tebmax=expmnt.CurveSet[0].temperature;
 					 tepmax=expmnt.CurveSet[0].temperature;
 					 tmpavg.clear();
@@ -2452,7 +2452,7 @@ private: System::Windows::Forms::TextBox^  tbsj;
 					 epmax=expmnt.CurveSet[0].Dataep[j];
 					 for (int i=0;i<size;i++){
 						 /*	 if ((expmnt.CurveSet[i].Dataep[j]>expmnt.CurveSet[i-1].Dataep[j])&&(expmnt.CurveSet[i].Dataep[j]>expmnt.CurveSet[i+1].Dataep[j])) {
-						 cout <<"Temp= "<<expmnt.CurveSet[i].temperature<<" "<<endl;
+						 std::cout <<"Temp= "<<expmnt.CurveSet[i].temperature<<" "<<std::endl;
 						 }*/
 						 if (tmpavg[i]>epmax) { //expmnt.CurveSet[i].Dataep[j]>epmax
 							 epmax=tmpavg[i];
@@ -2460,7 +2460,7 @@ private: System::Windows::Forms::TextBox^  tbsj;
 						 }
 
 					 }
-					 cout<<expmnt.CurveSet[0].Dataf[j] <<" "<<epmax<<" "<<tepmax<<endl;
+					 std::cout<<expmnt.CurveSet[0].Dataf[j] <<" "<<epmax<<" "<<tepmax<<std::endl;
 				 }
 			 }
 	private: System::Void loadTempProfileToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -2473,13 +2473,13 @@ private: System::Windows::Forms::TextBox^  tbsj;
 					 int i,j,numload;
 					 int size,size2;
 					 numload=openFileDialog1->FileNames->Length;
-					 cout<<"Number of files to load "<<numload<<endl;
+					 std::cout<<"Number of files to load "<<numload<<std::endl;
 					 toolStripProgressBar1->Value=0;
 					 toolStripProgressBar1->Visible=true;
 					 for (i=0;i<numload;i++)
 					 {
 						 auxcurveset.LoadTempProfFromFile(openFileDialog1->FileNames[i]);
-						 cout << 100*i/numload<<"%"<<endl;
+						 std::cout << 100*i/numload<<"%"<<std::endl;
 						 toolStripProgressBar1->Value=100*(i+1)/numload;
 					 }
 					 toolStripProgressBar1->Visible=false;
@@ -2489,11 +2489,11 @@ private: System::Windows::Forms::TextBox^  tbsj;
 					 size2=auxcurveset.eb[0].size();
 					 StatusLabel->Text=numload+" files loaded.";						  
 					 StatusDataSource->Text=size2+" curves generated from "+numload+" files.";
-					 for (i=0;i<size;i++) cout << auxcurveset.f[i]<<"  "<< auxcurveset.eb[i].size()<<endl;
-					 //					 cout <<size<<"---"<<size2<<" i uj "<<auxcurveset.f.size() <<endl;
+					 for (i=0;i<size;i++) std::cout << auxcurveset.f[i]<<"  "<< auxcurveset.eb[i].size()<<std::endl;
+					 //					 std::cout <<size<<"---"<<size2<<" i uj "<<auxcurveset.f.size() <<std::endl;
 					 for (i=0;i<size2;i++){
 						 for (j=0;j<size;j++){
-							 //						 cout <<"Accessing"<< i<<" "<<j<<endl;//<<" "<<auxcurveset.ep[j][i]<<" "<<auxcurveset.eb[j][i]<<endl;
+							 //						 std::cout <<"Accessing"<< i<<" "<<j<<std::endl;//<<" "<<auxcurveset.ep[j][i]<<" "<<auxcurveset.eb[j][i]<<std::endl;
 							 SingleCurve.Dataep.push_back(auxcurveset.ep[j][i]);
 							 SingleCurve.Dataeb.push_back(auxcurveset.eb[j][i]);
 							 SingleCurve.Dataf.push_back(auxcurveset.f[j]);
@@ -2505,9 +2505,9 @@ private: System::Windows::Forms::TextBox^  tbsj;
 						 SingleCurve.Dataep.clear();
 						 SingleCurve.Dataeb.clear();
 						 SingleCurve.Dataf.clear();
-						 //						 cout<<i<<endl;
+						 //						 std::cout<<i<<std::endl;
 					 }
-					 cout << "Done";
+					 std::cout << "Done";
 					 label1->Text="1/"+expmnt.CurveSet.size().ToString();
 					 Position=1;
 					 Positionfreq=1;
@@ -2534,7 +2534,7 @@ private: System::Windows::Forms::TextBox^  tbsj;
 
 	private: System::Void removelowerButton_Click(System::Object^  sender, System::EventArgs^  e) {
 				 int size,size2;
-				 complex <double> eps,epslow;
+				 std::complex <double> eps,epslow;
 				 MatrixXd parameters(4,1);
 				 size=expmnt.CurveSet.size();
 				 size2=expmnt.CurveSet[0].Dataf.size();
@@ -2556,7 +2556,7 @@ private: System::Windows::Forms::TextBox^  tbsj;
 				 CultureInfo^ MyCI = gcnew CultureInfo( "en-US",false );
 				 int i,size,size2;
 				 MatrixXd parameters(4,1);
-				 complex <double> epsilon1,epsilon2,epsilon3;
+				 std::complex <double> epsilon1,epsilon2,epsilon3;
 				 NumberFormatInfo^ nfi = MyCI->NumberFormat;
 				 nfi->NumberDecimalSeparator = ".";
 				 //button7->PerformClick();
@@ -2576,7 +2576,7 @@ private: System::Windows::Forms::TextBox^  tbsj;
 						 }
 					 }
 					 sw->Close();
-					 cout <<"Fitcurve saved";
+					 std::cout <<"Fitcurve saved";
 				 }
 
 			 }
@@ -2584,15 +2584,15 @@ private: System::Windows::Forms::TextBox^  tbsj;
 				 CultureInfo^ MyCI = gcnew CultureInfo( "en-US",false );
 				 NumberFormatInfo^ nfi = MyCI->NumberFormat;
 				 nfi->NumberDecimalSeparator = ".";
-				 complex<double> eps;
-				 complex<double> zs;
+				 std::complex<double> eps;
+				 std::complex<double> zs;
 				 if (saveFileDialog1->ShowDialog() == ::System::Windows::Forms::DialogResult::OK ){
 					 size_t  i,j,size,size2;
 					 double ep,eb;
 					 size=expmnt.CurveSet[0].Dataf.size();
 					 size2=expmnt.CurveSet.size();
 					 for (j=0;j<size2;j++){
-						 //cout << expmnt.CurveSet[j].temperature <<" "<<  Correction(expmnt.CurveSet[j].temperature) <<endl;
+						 //std::cout << expmnt.CurveSet[j].temperature <<" "<<  Correction(expmnt.CurveSet[j].temperature) <<std::endl;
 						 StreamWriter^ sw = gcnew StreamWriter(saveFileDialog1->FileName+j.ToString()+".dat");
 						 sw->WriteLine("Insert data here");
 						 sw->WriteLine("Temperature="+ expmnt.CurveSet[j].temperature.ToString("g6",nfi)+"  AC Volt  [Vrms]=xxx");
@@ -2606,7 +2606,7 @@ private: System::Windows::Forms::TextBox^  tbsj;
 							 ep=expmnt.CurveSet[j].Dataep[i];
 							 eb=-expmnt.CurveSet[j].Dataeb[i];
 							 sw->WriteLine(expmnt.CurveSet[j].Dataf[i].ToString("e6",nfi)+"\t"+ep.ToString("g6",nfi)+"\t"+eb.ToString("g6",nfi));
-							 //cout <<expmnt.CurveSet[j].Dataf[i]<<" " <<real(zs)<< " "<<imag(zs)<<endl;
+							 //std::cout <<expmnt.CurveSet[j].Dataf[i]<<" " <<real(zs)<< " "<<imag(zs)<<std::endl;
 						 }
 						 sw->Close();
 					 }

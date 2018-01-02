@@ -8,7 +8,7 @@ using namespace System;
 
 void TestInput(){
 	curvesetrev cs1,cs2;
-	wstring ws;
+	std::wstring ws;
 	String^ S;
 	S="d:\\test.dat";
 	ws=L"d:\\test2.dat";

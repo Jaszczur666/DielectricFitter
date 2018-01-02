@@ -7,10 +7,10 @@
 #include <vector>
 #include <algorithm>
 using namespace System;
-using namespace std;
+//using namespace std;
 
 //void LoadDielectric(String^ Filename, vector<double>& dataf,vector<double>& dataep,vector<double>& dataeb);
-void MarshalString ( String ^ s, string& os ) {
+void MarshalString ( String ^ s, std::string& os ) {
 	using namespace Runtime::InteropServices;
 	const char* chars = 
 		(const char*)(Marshal::StringToHGlobalAnsi(s)).ToPointer();
@@ -18,7 +18,7 @@ void MarshalString ( String ^ s, string& os ) {
 	Marshal::FreeHGlobal(IntPtr((void*)chars));
 }
 
-void MarshalString ( String ^ s, wstring& os ) {
+void MarshalString ( String ^ s, std::wstring& os ) {
 	using namespace Runtime::InteropServices;
 	const wchar_t* chars = 
 		(const wchar_t*)(Marshal::StringToHGlobalUni(s)).ToPointer();
@@ -27,43 +27,43 @@ void MarshalString ( String ^ s, wstring& os ) {
 }
 
 
-void LoadDielectric(String^ Filename, vector<double>& dataf,vector<double>& dataep,vector<double>& dataeb,double& temperature)
+void LoadDielectric(String^ Filename, std::vector<double>& dataf, std::vector<double>& dataep, std::vector<double>& dataeb,double& temperature)
 {
-	wstring name;
-	string str;
-	vector<double> ldataf;
-	vector<double> ldataep;
-	vector<double> ldataeb;
+	std::wstring name;
+	std::string str;
+	std::vector<double> ldataf;
+	std::vector<double> ldataep;
+	std::vector<double> ldataeb;
 	double f,ep,eb;
 	int i=0,temppos;
 	f=0;
 	ep=0;
 	eb=0;
 	MarshalString(Filename,name);
-	ifstream inpfile(name);
+	std::ifstream inpfile(name);
 	getline(inpfile,str);
-	//cout <<str<<endl;
+	//std::cout <<str<<std::endl;
 	getline(inpfile,str);
-	cout <<str<<endl;
+	std::cout <<str<<std::endl;
 	temppos=str.find("Temp");
-	cout<<temppos <<endl;
-	if (temppos !=string::npos) str=str.substr(temppos);
+	std::cout<<temppos <<std::endl;
+	if (temppos != std::string::npos) str=str.substr(temppos);
 	temppos=str.find("=");
-	if (temppos !=string::npos) str=str.substr(temppos);
+	if (temppos != std::string::npos) str=str.substr(temppos);
 	temppos=str.find(" ");
 	str=str.substr(1,temppos);
-	cout<<str <<endl;
+	std::cout<<str <<std::endl;
 	temperature=atof(str.c_str());
 	getline(inpfile,str);
-	//	cout <<str<<endl;
+	//	std::cout <<str<<std::endl;
 	while (!inpfile.eof())
 	{
 		getline(inpfile,str);
 		i=1;
-		istringstream ss( str );
+		std::istringstream ss( str );
 		while (!ss.eof())
 		{
-			string x;               
+			std::string x;
 			getline( ss, x, '\t' );  
 			switch (i)
 			{
@@ -97,11 +97,11 @@ void LoadDielectric(String^ Filename, vector<double>& dataf,vector<double>& data
 	//	size=dataf.size();
 	/*	for (i=0;i<=size-1;i++)
 	{
-	cout << i <<";"<<dataf[i]<<endl;
+	std::cout << i <<";"<<dataf[i]<<std::endl;
 	}*/
 }
 
-void Normalize(vector<double>& dataep,vector<double>& dataeb,double C0)
+void Normalize(std::vector<double>& dataep, std::vector<double>& dataeb,double C0)
 {
 	int size,i;
 	size=dataep.size();
@@ -113,7 +113,7 @@ void Normalize(vector<double>& dataep,vector<double>& dataeb,double C0)
 	}
 }
 
-void NormalizeCapacity(vector<double>& dataep,vector<double>& dataeb,double C0)
+void NormalizeCapacity(std::vector<double>& dataep, std::vector<double>& dataeb,double C0)
 {
 	int size,i;
 	size=dataep.size();

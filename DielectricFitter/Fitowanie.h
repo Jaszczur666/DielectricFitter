@@ -4,109 +4,109 @@
 //const double pi  =3.1415926535897932384626433;
 #include <complex>
 #include <vector>
-#include "Dense"
+#include "Eigen\Dense"
 #include <ctime>
 #include <limits>
 #include <fstream> 
 #include <boost/timer/timer.hpp>
-#include <boost/tr1/regex.hpp>
+#include <boost/regex.hpp>
 #include "Curve.h"
 #include "Parser.h"
 using Eigen::MatrixXd;
 using namespace System;
-using namespace std;
+//using namespace std;
 
-class experiment{
+class experiment {
 public:
-	vector <curve> CurveSet;
+	std::vector <curve> CurveSet;
 	double c0;
 	bool IsGeometrySpecified;
 	bool IsGenerated;
 	experiment()
 	{
-		IsGeometrySpecified=false;
-		IsGenerated=false;
+		IsGeometrySpecified = false;
+		IsGenerated = false;
 	}
 };
 
-class  curvesetrev{
+class  curvesetrev {
 public:
-	vector<vector<double>> ep;
-	vector<vector<double>> eb;
-	vector<vector<double>> temp;
-	vector<double> f;
+	std::vector<std::vector<double>> ep;
+	std::vector<std::vector<double>> eb;
+	std::vector<std::vector<double>> temp;
+	std::vector<double> f;
 	void LoadTempProfFromFile(String^ Filename);
-	void LoadTempProfFromFile(wstring Filename);
+	void LoadTempProfFromFile(std::wstring Filename);
 	bool IsSame(curvesetrev compared);
 	bool operator==(const curvesetrev &compared) const;
 };
 
 void curve::RegexHeader()
 {
-	string line;
-	string name;
+	std::string line;
+	std::string name;
 	double f, ep, eb;
-	name="d:\\DME0.txt";
-	ifstream inpfile(name);
+	name = "d:\\DME0.txt";
+	std::ifstream inpfile(name);
 	inpfile.clear();
-	cout << "Attempting to read from "<<name<<endl;
-	while (getline(inpfile,line)){
-	regex namedate("([A-Za-z0-9_]+), (\\d\\d\\.\\d\\d?.\\d\\d\\d\\d), (\\d\\d:\\d\\d)");
-	regex expr("Fixed value\\(s\\) :  Temp\\. \\[°C\\]=([-+]?[0-9]*\\.?[0-9]*)  AC Volt  \\[Vrms\\]=([-+]?[0-9]*\\.?[0-9]*)"); // Fixed value\(s\) :  Temp\. \[°C\]=(-?\d*(?:\.\d+)?)  AC Volt  \[Vrms\]=(-?\d*(?:\.\d+)?)
-	regex data("([- ]?\\d+(?:\\.\\d+)?(?:e(?:\\+|-)\\d+)?)\\t([- ]?\\d+(?:\\.\\d+)?(?:e(?:\\+|-)\\d+)?)\\t([- ]?\\d+(?:\\.\\d+)?(?:e(?:\\+|-)\\d+)?)");
-	smatch match;
-	//cout<<"Line is "<<line<<endl;
-	if ( regex_search( line, match, namedate ) ) {
-    string dots = match[1];
-    string chars = match[2];
-	cout <<"Name "<<match[1] <<"  date: "<<match[2]<<" hour: "<<match[3] <<endl;
-    }
-	else
-	{
-	//cout <<"no match"<<endl;
+	std::cout << "Attempting to read from " << name << std::endl;
+	while (getline(inpfile, line)) {
+		boost::regex namedate("([A-Za-z0-9_]+), (\\d\\d\\.\\d\\d?.\\d\\d\\d\\d), (\\d\\d:\\d\\d)");
+		boost::regex expr("Fixed value\\(s\\) :  Temp\\. \\[°C\\]=([-+]?[0-9]*\\.?[0-9]*)  AC Volt  \\[Vrms\\]=([-+]?[0-9]*\\.?[0-9]*)"); // Fixed value\(s\) :  Temp\. \[°C\]=(-?\d*(?:\.\d+)?)  AC Volt  \[Vrms\]=(-?\d*(?:\.\d+)?)
+		boost::regex data("([- ]?\\d+(?:\\.\\d+)?(?:e(?:\\+|-)\\d+)?)\\t([- ]?\\d+(?:\\.\\d+)?(?:e(?:\\+|-)\\d+)?)\\t([- ]?\\d+(?:\\.\\d+)?(?:e(?:\\+|-)\\d+)?)");
+		boost::smatch match;
+		//std::cout<<"Line is "<<line<<std::endl;
+		if (regex_search(line, match, namedate)) {
+			std::string dots = match[1];
+			std::string chars = match[2];
+			std::cout << "Name " << match[1] << "  date: " << match[2] << " hour: " << match[3] << std::endl;
+		}
+		else
+		{
+			//std::cout <<"no match"<<std::endl;
+		}
+		if (regex_search(line, match, data)) {
+			std::cout << "Data block found" << std::endl;
+			break;
+		}
+		else
+		{
+			//	std::cout <<"no data match"<<std::endl;
+		}
 	}
-	if ( regex_search( line, match, data) ) {
-   cout<<"Data block found"<<endl;
-   break;
-    }
-	else
-	{
-//	cout <<"no data match"<<endl;
-	}
-	}
-	 stringstream lineStream(line);
-	lineStream>>f>>ep>>eb;
-	cout<<f<<" i " <<ep<<" oraz "<<eb<<endl;
-	while (getline(inpfile,line)){
-		 stringstream lineStream(line);
-			lineStream>>f>>ep>>eb;
-	cout<<f<<" i " <<ep<<" oraz "<<eb<<endl;
+	std::stringstream lineStream(line);
+	lineStream >> f >> ep >> eb;
+	std::cout << f << " i " << ep << " oraz " << eb << std::endl;
+	while (getline(inpfile, line)) {
+		std::stringstream lineStream(line);
+		lineStream >> f >> ep >> eb;
+		std::cout << f << " i " << ep << " oraz " << eb << std::endl;
 	}
 };
-bool curvesetrev::IsSame(curvesetrev compared){
-return ((this->f==compared.f)&&(this->ep==compared.ep)&&(this->eb==compared.eb)&&(this->temp==compared.temp));
+bool curvesetrev::IsSame(curvesetrev compared) {
+	return ((this->f == compared.f) && (this->ep == compared.ep) && (this->eb == compared.eb) && (this->temp == compared.temp));
 };
 bool curvesetrev::operator==(const curvesetrev &compared) const {
-    return ((this->f==compared.f)&&(this->ep==compared.ep)&&(this->eb==compared.eb)&&(this->temp==compared.temp));
-  };
-void curvesetrev::LoadTempProfFromFile(String^ Filename){
-	wstring name;
-	string printname,line;
-	double ep,eb,f,t;//,fp,fb;
-	vector<double> vep,veb,vt;
-	MarshalString(Filename,name);
-	MarshalString(Filename,printname);
-	cout <<"Reading file "<<printname<<endl;
-	ifstream inpfile(name);
-	inpfile>>f;
+	return ((this->f == compared.f) && (this->ep == compared.ep) && (this->eb == compared.eb) && (this->temp == compared.temp));
+};
+void curvesetrev::LoadTempProfFromFile(String^ Filename) {
+	std::wstring name;
+	std::string printname, line;
+	double ep, eb, f, t;//,fp,fb;
+	std::vector<double> vep, veb, vt;
+	MarshalString(Filename, name);
+	MarshalString(Filename, printname);
+	std::cout << "Reading file " << printname << std::endl;
+	std::ifstream inpfile(name);
+	inpfile >> f;
 
-	getline(inpfile,line);
-	//cout<<f<<endl;
-	while (getline(inpfile, line)){
-    stringstream lineStream(line);
-	//while(inpfile >> t >> ep>>eb>>fp>>fb){
-		//cout<<t<<" "<<ep<<" "<<eb<<endl;
-		lineStream>>t>>ep>>eb;
+	getline(inpfile, line);
+	//std::cout<<f<<std::endl;
+	while (getline(inpfile, line)) {
+		std::stringstream lineStream(line);
+		//while(inpfile >> t >> ep>>eb>>fp>>fb){
+			//std::cout<<t<<" "<<ep<<" "<<eb<<std::endl;
+		lineStream >> t >> ep >> eb;
 		vt.push_back(t);
 		vep.push_back(ep);
 		veb.push_back(eb);
@@ -116,23 +116,23 @@ void curvesetrev::LoadTempProfFromFile(String^ Filename){
 	this->ep.push_back(vep);
 	this->eb.push_back(veb);
 };
-void curvesetrev::LoadTempProfFromFile(wstring Filename){
-	wstring name;
-	string printname,line;
-	double ep,eb,f,t;//,fp,fb;
-	vector<double> vep,veb,vt;
-	name=Filename;
-	printname=string( Filename.begin(), Filename.end() );;
-	cout <<"Reading file "<<printname<<endl;
-	ifstream inpfile(name);
-	inpfile>>f;
-		getline(inpfile,line);
-	//cout<<f<<endl;
+void curvesetrev::LoadTempProfFromFile(std::wstring Filename) {
+	std::wstring name;
+	std::string printname, line;
+	double ep, eb, f, t;//,fp,fb;
+	std::vector<double> vep, veb, vt;
+	name = Filename;
+	printname = std::string(Filename.begin(), Filename.end());;
+	std::cout << "Reading file " << printname << std::endl;
+	std::ifstream inpfile(name);
+	inpfile >> f;
+	getline(inpfile, line);
+	//std::cout<<f<<std::endl;
 	//while(inpfile >> t >> ep>>eb>>fp>>fb){
-		//cout<<t<<" "<<ep<<" "<<eb<<endl;
-		while (getline(inpfile, line)){
-    stringstream lineStream(line);
-	lineStream>>t>>ep>>eb;
+		//std::cout<<t<<" "<<ep<<" "<<eb<<std::endl;
+	while (getline(inpfile, line)) {
+		std::stringstream lineStream(line);
+		lineStream >> t >> ep >> eb;
 		vt.push_back(t);
 		vep.push_back(ep);
 		veb.push_back(eb);
@@ -145,10 +145,10 @@ void curvesetrev::LoadTempProfFromFile(wstring Filename){
 
 
 
-double Correction(double temperature,double midjumptemp, double scalex,double jump)
+double Correction(double temperature, double midjumptemp, double scalex, double jump)
 {
 	double corr;
-	corr=0.5*jump*(1+tanh(scalex*(temperature-midjumptemp)));
+	corr = 0.5*jump*(1 + tanh(scalex*(temperature - midjumptemp)));
 	return corr;
 }
 
