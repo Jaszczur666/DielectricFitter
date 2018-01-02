@@ -12,3 +12,5 @@ Done for Cole-cole functions - they are better for most crystalline solids anywa
 * Some form of weighting
 * logarithmic least squares
 * conductivity
+
+[![Build status](https://ci.appveyor.com/api/projects/status/u6aj52p5absr2yul/branch/master?svg=true)](https://ci.appveyor.com/project/Jaszczur666/dielectricfitter/branch/master)
