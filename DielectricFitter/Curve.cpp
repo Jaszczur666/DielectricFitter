@@ -6,6 +6,7 @@
 #include <ctime>
 #include <limits>
 #include <boost/timer/timer.hpp>
+#include <boost/chrono.hpp>
 #include <boost/tr1/regex.hpp>
 #include "Curve.h"
 //#include "Fitowanie.h"
