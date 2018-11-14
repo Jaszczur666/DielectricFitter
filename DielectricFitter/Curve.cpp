@@ -124,8 +124,8 @@ void CalculateCorrelation(std::vector<double> dataf, std::vector<double> dataep,
 	b=0;
 	r=0;
 	linearFit(Exp,Theor,a,b,r);
-	std::cout<<"a= "<<a<<" b= "<<b<<endl;
-	std::cout<<"R2 = "<<r<<" 1-r^2 = "<<1-r <<endl;
+	std::cout<<"a= "<<a<<" b= "<<b<<std::endl;
+	std::cout<<"R2 = "<<r<<" 1-r^2 = "<<1-r <<std::endl;
 	std::cout<<"a= "<<a<<" b= "<<b<<std::endl;
 	std::cout<<"R2 = "<<r<<" 1-r^2 = "<<1-r <<std::endl;
 
@@ -211,7 +211,7 @@ void curve::GuesstimateParameters(std::vector<double> Dataf, std::vector<double>
 		if (Dataep[i]<minep) minep=Dataep[i];
 	}
 	parameters<<maxep,minep,maxebf,0.5+maxeb/(maxep-minep);
-	std::cout <<maxebf<<" "<<maxep<<" "<<minep<<endl;
+	std::cout <<maxebf<<" "<<maxep<<" "<<minep<<std::endl;
 	std::cout <<maxebf<<" "<<maxep<<" "<<minep<<std::endl;
 }
 void curve::FitLMGeneral(int type,MatrixXd &parameters)
@@ -249,7 +249,7 @@ void curve::FitLMGeneral(int type,MatrixXd &parameters)
 	error=(Hessiandiag.inverse().diagonal()*chi2/(size2-size));
 	for (i=0;i<size;i++) error(i)=sqrt(error(i));
 	//std::cout<<error<<std::endl<< "----------------------------------------------------- "<<std::endl;
-	std::cout <<chi2<<endl;
+	std::cout <<chi2<<std::endl;
 	this->chi2=chi2;
 	//boost::timer::cpu_times elapsed = timer.elapsed();
 	//end=clock();
