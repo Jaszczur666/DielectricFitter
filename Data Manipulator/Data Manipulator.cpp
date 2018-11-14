@@ -2,11 +2,10 @@
 
 #include "stdafx.h"
 #include "Manipulator.h"
-
 using namespace DataManipulator;
 using namespace std;
 [STAThreadAttribute]
-int main(array<System::String ^> ^args)
+int main(cli::array<System::String ^> ^args)
 {
 	// Enabling Windows XP visual effects before any controls are created
 	Application::EnableVisualStyles();

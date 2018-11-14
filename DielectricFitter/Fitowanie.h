@@ -4,18 +4,18 @@
 //const double pi  =3.1415926535897932384626433;
 #include <complex>
 #include <vector>
-#include "Dense"
+#include "Eigen/Dense"
 #include <ctime>
 #include <limits>
 #include <fstream> 
-#include <boost/timer/timer.hpp>
-#include <boost/tr1/regex.hpp>
+//#include <boost/timer/timer.hpp>
+//#include <boost/regex.hpp>
 #include "Curve.h"
 #include "Parser.h"
 using Eigen::MatrixXd;
 using namespace System;
 using namespace std;
-
+//using namespace boost;
 class experiment{
 public:
 	vector <curve> CurveSet;
@@ -41,7 +41,7 @@ public:
 	bool operator==(const curvesetrev &compared) const;
 };
 
-void curve::RegexHeader()
+/*void curve::RegexHeader()
 {
 	string line;
 	string name;
@@ -83,6 +83,7 @@ void curve::RegexHeader()
 	cout<<f<<" i " <<ep<<" oraz "<<eb<<endl;
 	}
 };
+*/
 bool curvesetrev::IsSame(curvesetrev compared){
 return ((this->f==compared.f)&&(this->ep==compared.ep)&&(this->eb==compared.eb)&&(this->temp==compared.temp));
 };

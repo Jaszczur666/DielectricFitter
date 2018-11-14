@@ -3,13 +3,12 @@
 #include "stdafx.h"
 #include "Form1.h"
 #include "About.h"
-
-#define EIGEN_NO_CPUID
+//#define EIGEN_NO_CPUID
 
 using namespace DielectricFitter;
 
 [STAThreadAttribute]
-int main(array<System::String ^> ^args)
+int main(cli::array<System::String ^> ^args)
 {
 	Application::EnableVisualStyles();
 	Application::SetCompatibleTextRenderingDefault(false); 

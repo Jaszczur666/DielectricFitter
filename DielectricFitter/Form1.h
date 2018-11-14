@@ -4,7 +4,7 @@
 #include <complex>
 #include <intrin.h>
 #include "About.h"
-#include "Dense"
+#include "Eigen/Dense"
 using  System::IO::StreamWriter;
 using namespace System::Globalization;
 using Eigen::MatrixXd;

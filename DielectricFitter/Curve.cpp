@@ -2,12 +2,13 @@
 //const double pi  =3.1415926535897932384626433;
 #include <complex>
 #include <vector>
-#include "Dense"
+#include "Eigen/Dense"
 #include <ctime>
 #include <limits>
-#include <boost/timer/timer.hpp>
-#include <boost/tr1/regex.hpp>
+//#include <boost/timer/timer.hpp>
+//#include <boost/regex.hpp>
 #include "Curve.h"
+#include <iostream>
 //#include "Fitowanie.h"
 using Eigen::MatrixXd;
 void linearFit(vector <double>x, vector <double>y,double &a,double &b,double &r2);
@@ -123,8 +124,8 @@ void CalculateCorrelation(vector<double> dataf,vector<double> dataep,vector<doub
 	b=0;
 	r=0;
 	linearFit(Exp,Theor,a,b,r);
-	cout<<"a= "<<a<<" b= "<<b<<endl;
-	cout<<"R2 = "<<r<<" 1-r^2 = "<<1-r <<endl;
+	std::cout<<"a= "<<a<<" b= "<<b<<endl;
+	std::cout<<"R2 = "<<r<<" 1-r^2 = "<<1-r <<endl;
 
 }
 
@@ -208,7 +209,7 @@ void curve::GuesstimateParameters(vector<double> Dataf, vector<double>Dataep, ve
 		if (Dataep[i]<minep) minep=Dataep[i];
 	}
 	parameters<<maxep,minep,maxebf,0.5+maxeb/(maxep-minep);
-	cout <<maxebf<<" "<<maxep<<" "<<minep<<endl;
+	std::cout <<maxebf<<" "<<maxep<<" "<<minep<<endl;
 }
 void curve::FitLMGeneral(int type,MatrixXd &parameters)
 {
@@ -222,7 +223,7 @@ void curve::FitLMGeneral(int type,MatrixXd &parameters)
 	chi2=0;
 	//clock_t start, end;
 	//start=clock();
-	boost::timer::cpu_timer timer;
+////	boost::timer::cpu_timer timer;
 	for(i=1;i<100;i++)
 	{
 		//chi2c=chi2;
@@ -245,12 +246,12 @@ void curve::FitLMGeneral(int type,MatrixXd &parameters)
 	error=(Hessiandiag.inverse().diagonal()*chi2/(size2-size));
 	for (i=0;i<size;i++) error(i)=sqrt(error(i));
 	//cout<<error<<endl<< "----------------------------------------------------- "<<endl;
-	cout <<chi2<<endl;
+	std::cout <<chi2<<endl;
 	this->chi2=chi2;
-	boost::timer::cpu_times elapsed = timer.elapsed();
+	//boost::timer::cpu_times elapsed = timer.elapsed();
 	//end=clock();
 	//cout <<(double(end - start) / CLOCKS_PER_SEC) <<" s"<<endl;//<<" "<< CLOCKS_PER_SEC<<endl;
 	std::cout << "Type: "<< type<<std::endl;
-	std::cout << "Fitting took " << elapsed.wall / 1e9 << " seconds"<< std::endl;
+	// std::cout << "Fitting took " << elapsed.wall / 1e9 << " seconds"<< std::endl;
 	return;
 }

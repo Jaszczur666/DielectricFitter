@@ -25,10 +25,10 @@ void TestInput(){
 
 }
 
-int main(array<System::String ^> ^args)
+int main(cli::array<System::String ^> ^args)
 {
 	curve d;
 	//TestInput();
-	d.RegexHeader();
+	//d.RegexHeader();
 	return 0;
 }

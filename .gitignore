@@ -197,3 +197,4 @@ DielectricFitter/SVD
 DielectricFitter/MetisSupport
 DielectricFitter/SPQRSupport
 DielectricFitter/UmfPackSupport
+*.db

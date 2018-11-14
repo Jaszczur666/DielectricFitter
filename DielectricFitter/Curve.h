@@ -4,11 +4,11 @@
 const double pi  =3.1415926535897932384626433;
 #include <complex>
 #include <vector>
-#include "Dense"
+#include "Eigen/Dense"
 #include <ctime>
 #include <limits>
-#include <boost/timer/timer.hpp>
-#include <boost/tr1/regex.hpp>
+//#include <boost/timer/timer.hpp>
+//#include <boost/regex.hpp>
 using Eigen::MatrixXd;
 using namespace std;
 class curve{
@@ -24,7 +24,7 @@ public:
 	int funnum;
 	void GuesstimateParameters(vector<double> Dataf, vector<double>Dataep, vector<double> Dataeb,MatrixXd &parameters);
 	void FitLMGeneral(int type,MatrixXd &parameters);
-	void RegexHeader();
+	//void RegexHeader();
 	curve()
 	{
 		fitted=false;
