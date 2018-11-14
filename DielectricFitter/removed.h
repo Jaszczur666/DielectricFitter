@@ -26,7 +26,7 @@ void Fit( vector<double>& dataf,vector<double>& dataep,vector<double>& dataeb,do
 	double dfdes,dfden,dfdfp,dfda,lfp;
 	double nes,nen,nlfp,na,chin;
 	lfp=log10(fp);
-	//cout << es<<" "<<en<<" "<<fp<<" "<<lfp<<" "<<a<<endl;
+	//std::cout << es<<" "<<en<<" "<<fp<<" "<<lfp<<" "<<a<<std::endl;
 	for (i=1;i<1000;i++){
 		chi0=chi2( dataf,dataep,dataeb,es,en,lfp,a);
 		chies=chi2( dataf,dataep,dataeb,es+eps,en,lfp,a);
@@ -48,13 +48,13 @@ void Fit( vector<double>& dataf,vector<double>& dataep,vector<double>& dataeb,do
 			en=nen;
 			lfp=nlfp;
 			//a=na;
-			cout <<i<<" "<< es<<" "<<en<<" "<<lfp<<" "<<a<<endl;
+			std::cout <<i<<" "<< es<<" "<<en<<" "<<lfp<<" "<<a<<std::endl;
 		}
 		else
 		{
 			gamma=gamma/pow(10,0.5);
 			if (gamma<1e-12) break;
-			//cout<<i<<" " << gamma <<endl;
+			//std::cout<<i<<" " << gamma <<std::endl;
 		}
 	}
 	fp=pow(10,lfp);
@@ -69,7 +69,7 @@ void TestFit( vector<double>& dataf,vector<double>& dataep,vector<double>& datae
 	{
 		fpf=pow(10,(6.*i/100));
 		chi0=chi2( dataf,dataep,dataeb,es,en,fpf,a);
-		cout<<i<<" "<< fpf<<" "<<chi0<<endl;
+		std::cout<<i<<" "<< fpf<<" "<<chi0<<std::endl;
 	}
 }
 
@@ -82,7 +82,7 @@ void TestFitF( vector<double>& dataf,vector<double>& dataep,vector<double>& data
 			es=79+i/50.0;
 			en=1+j/100.0;
 			chi0=chi2( dataf,dataep,dataeb,es,en,log10(fp),a);
-			cout<<" "<<en<<" "<<es<<" "<< " "<<chi0<<endl;
+			std::cout<<" "<<en<<" "<<es<<" "<< " "<<chi0<<std::endl;
 		}
 	}
 }
@@ -170,12 +170,12 @@ void CalculateHessianLog(vector<double> dataf,vector<double> dataep,vector<doubl
 		Res(i*2,0)=rp;
 		Res(i*2+1,0)=rb;
 		chi2=chi2+0.5*(rp*rp+rb*rb);
-//		cout << i<<" "<<rp<<" "<<" "<<rb<<endl;
+//		std::cout << i<<" "<<rp<<" "<<" "<<rb<<std::endl;
 	}
 	Hess=Jaco.transpose()*Jaco;
-/*	cout <<"-----------------------------------------------------------------"<<endl;
-	cout << Jaco<<endl;
-	cout <<"-----------------------------------------------------------------"<<endl; */
+/*	std::cout <<"-----------------------------------------------------------------"<<std::endl;
+	std::cout << Jaco<<std::endl;
+	std::cout <<"-----------------------------------------------------------------"<<std::endl; */
 	Grad=Jaco.transpose()*Res;
 }
 
@@ -213,7 +213,7 @@ void FitLMLog(vector<double> Dataf, vector<double>Dataep, vector<double> Dataeb,
 		if (parameters(3)>1) parameters(3)=0;
 	}
 	end=clock();
-	cout <<(double(end - start) / CLOCKS_PER_SEC)<<" "<< CLOCKS_PER_SEC<<endl;
+	std::cout <<(double(end - start) / CLOCKS_PER_SEC)<<" "<< CLOCKS_PER_SEC<<std::endl;
 	return;
 }
 private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -276,20 +276,20 @@ private: System::Void button1_Click(System::Object^  sender, System::EventArgs^ 
 		if (parameters(3)<0) parameters(3)=0;
 		if (parameters(3)>1) parameters(3)=0;
 		//if ((abs((chi2c-chi2)/chi2) <1e-6)&&(!growing)) break;
-		//cout << i <<" "<<(chi2c-chi2)/chi2 <<" "<<chi2<<" "<<parameters.transpose() <<endl;	//<<"|"<<newParams.transpose() <<std::endl;
+		//std::cout << i <<" "<<(chi2c-chi2)/chi2 <<" "<<chi2<<" "<<parameters.transpose() <<std::endl;	//<<"|"<<newParams.transpose() <<std::std::endl;
 
 	}
 	size=parameters.rows();
 	size2=Dataf.size();
-	cout << "rozmiary ="<<size<<" "<<size2<<endl;
+	std::cout << "rozmiary ="<<size<<" "<<size2<<std::endl;
 	error=(Hessiandiag.inverse().diagonal()*chi2/(size2-size));
 	for (i=0;i<size;i++) error(i)=sqrt(error(i));
-	/*cout<<Hessian.inverse()<<endl;
-		cout <<"-----------------------------------------------------------------------"<<endl;
-	cout<<error<<endl<< "----------------------------------------------------- "<<endl;
-	cout <<chi2<<endl;
+	/*std::cout<<Hessian.inverse()<<std::endl;
+		std::cout <<"-----------------------------------------------------------------------"<<std::endl;
+	std::cout<<error<<std::endl<< "----------------------------------------------------- "<<std::endl;
+	std::cout <<chi2<<std::endl;
 	*/end=clock();
-	cout <<(double(end - start) / CLOCKS_PER_SEC)<<" "<< CLOCKS_PER_SEC<<endl;
+	std::cout <<(double(end - start) / CLOCKS_PER_SEC)<<" "<< CLOCKS_PER_SEC<<std::endl;
 	return;
 }
 
@@ -326,18 +326,18 @@ void FitLM2(vector<double> Dataf, vector<double>Dataep, vector<double> Dataeb,Ma
 		if (parameters(3)<0) parameters(3)=0;
 		if (parameters(3)>1) parameters(3)=0;
 		//if ((abs((chi2c-chi2)/chi2) <1e-6)&&(!growing)) break;
-		//cout << i <<" "<<(chi2c-chi2)/chi2 <<" "<<chi2<<" "<<parameters.transpose() <<endl;	//<<"|"<<newParams.transpose() <<std::endl;
+		//std::cout << i <<" "<<(chi2c-chi2)/chi2 <<" "<<chi2<<" "<<parameters.transpose() <<std::endl;	//<<"|"<<newParams.transpose() <<std::std::endl;
 
 	}
 	size=parameters.rows();
 	size2=Dataf.size();
-	cout << "rozmiary ="<<size<<" "<<size2<<endl;
+	std::cout << "rozmiary ="<<size<<" "<<size2<<std::endl;
 	error=(Hessiandiag.inverse().diagonal()*chi2/(size2-size));
 	for (i=0;i<size;i++) error(i)=sqrt(error(i));
-	cout<<error<<endl<< "----------------------------------------------------- "<<endl;
-	cout <<chi2<<endl;
+	std::cout<<error<<std::endl<< "----------------------------------------------------- "<<std::endl;
+	std::cout <<chi2<<std::endl;
 	end=clock();
-	cout <<(double(end - start) / CLOCKS_PER_SEC)<<" "<< CLOCKS_PER_SEC<<endl;
+	std::cout <<(double(end - start) / CLOCKS_PER_SEC)<<" "<< CLOCKS_PER_SEC<<std::endl;
 	return;
 }
 
@@ -356,7 +356,7 @@ void FitLM2(vector<double> Dataf, vector<double>Dataep, vector<double> Dataeb,Ma
 //	complex <double> d;
 //	eps=1e-7;
 //	chi2=0;
-//	cout << "Rheingold " << parameters<<endl<<"_____________"<<endl;
+//	std::cout << "Rheingold " << parameters<<std::endl<<"_____________"<<std::endl;
 //	for (i=0;i<=size-1;i++)
 //	{
 //		CalculateResidueEntropyGeneral(type,dataf[i],dataep[i],dataeb[i],parameters,rp,rb);
@@ -387,8 +387,8 @@ void FitLM2(vector<double> Dataf, vector<double>Dataep, vector<double> Dataeb,Ma
 //		ep= std::real(d);
 //		eb=std::imag(d);
 //		chi2temp=chi2temp+pow(dataep[i]-ep-dataep[i]*log10(abs(dataep[i]/ep)),2.0)+pow(dataeb[i]-eb-dataeb[i]*log10(abs(dataeb[i]/eb)),2.0);
-//	    cout <<i<<" "<<type << " "<<chi2temp<<" "<<" "<<ep<<" "<<dataep[i]<<endl;
-//		cout <<"chi2matentgen Parameters --------------------"<<endl <<parameters<<endl<<"--------------------------------"<<endl;
+//	    std::cout <<i<<" "<<type << " "<<chi2temp<<" "<<" "<<ep<<" "<<dataep[i]<<std::endl;
+//		std::cout <<"chi2matentgen Parameters --------------------"<<std::endl <<parameters<<std::endl<<"--------------------------------"<<std::endl;
 //	}
 //	return chi2temp/2.0;
 //}
@@ -407,11 +407,11 @@ void FitLM2(vector<double> Dataf, vector<double>Dataep, vector<double> Dataeb,Ma
 //	{
 //		CalculateHessianEntropyGeneral(Dataf,Dataep,Dataeb,type,parameters, Hessian, Grad,chi2);
 //		Hessiandiag=Hessian.diagonal().asDiagonal();
-//		cout<<"Rosenrot " <<parameters<<endl<<"____________________"<<endl;
+//		std::cout<<"Rosenrot " <<parameters<<std::endl<<"____________________"<<std::endl;
 //		newParams=parameters-((Hessian+lambda*Hessiandiag).inverse()*Grad);
 //		chi2n=chi2MatEntropyGeneral(Dataf,Dataep,Dataeb,type,newParams);
-//		cout <<"Sigurd "<<endl <<newParams<<endl<<"________________________"<<endl;
-//		//cout <<chi2n<< " Lambda =" <<lambda<<endl;
+//		std::cout <<"Sigurd "<<std::endl <<newParams<<std::endl<<"________________________"<<std::endl;
+//		//std::cout <<chi2n<< " Lambda =" <<lambda<<std::endl;
 //		if (chi2n<chi2){
 //			parameters=newParams;
 //			lambda=lambda*8;
@@ -427,9 +427,9 @@ void FitLM2(vector<double> Dataf, vector<double>Dataep, vector<double> Dataeb,Ma
 //	size2=Dataf.size();
 //	error=(Hessiandiag.inverse().diagonal()*chi2/(size2-size));
 //	for (i=0;i<size;i++) error(i)=sqrt(error(i));
-//	cout <<chi2<<endl;
+//	std::cout <<chi2<<std::endl;
 //	end=clock();
-//	cout <<(double(end - start) / CLOCKS_PER_SEC) <<" s"<<endl;//<<" "<< CLOCKS_PER_SEC<<endl;
+//	std::cout <<(double(end - start) / CLOCKS_PER_SEC) <<" s"<<std::endl;//<<" "<< CLOCKS_PER_SEC<<std::endl;
 //	return;
 //}
 /*void CalculateResidueEntropyGeneral(int type,double f,double ep,double eb, MatrixXd parameters,double &rp,double&rb)
@@ -441,7 +441,7 @@ void FitLM2(vector<double> Dataf, vector<double>Dataep, vector<double> Dataeb,Ma
 	peb=-std::imag(d);
 	rp=ep-pep-ep*log10(abs(ep/pep));
 	rb=eb-peb;
-	cout <<"Residue " <<ep<<" "<<pep<<" "<<eb<<" "<<peb<<" "<< rp<<" " << rb<<endl;
+	std::cout <<"Residue " <<ep<<" "<<pep<<" "<<eb<<" "<<peb<<" "<< rp<<" " << rb<<std::endl;
 }*/
 void CalculateHessian2(vector<double> dataf,vector<double> dataep,vector<double> dataeb, MatrixXd parameters,MatrixXd &Hess, MatrixXd &Grad, double &chi2)
 {
@@ -493,12 +493,12 @@ void CalculateHessian2(vector<double> dataf,vector<double> dataep,vector<double>
 		Res(i*2,0)=rp;
 		Res(i*2+1,0)=rb;
 		chi2=chi2+0.5*(rp*rp+rb*rb);
-//		cout << i<<" "<<rp<<" "<<" "<<rb<<endl;
+//		std::cout << i<<" "<<rp<<" "<<" "<<rb<<std::endl;
 	}
 	Hess=Jaco.transpose()*Jaco;
-/*	cout <<"-----------------------------------------------------------------"<<endl;
-	cout << Jaco<<endl;
-	cout <<"-----------------------------------------------------------------"<<endl; */
+/*	std::cout <<"-----------------------------------------------------------------"<<std::endl;
+	std::cout << Jaco<<std::endl;
+	std::cout <<"-----------------------------------------------------------------"<<std::endl; */
 	Grad=Jaco.transpose()*Res;
 }
 void CalculateResidue(double f,double ep,double eb, MatrixXd parameters,double &rp,double&rb)
@@ -574,12 +574,12 @@ void CalculateHessian(vector<double> dataf,vector<double> dataep,vector<double> 
 		Res(i*2,0)=rp;
 		Res(i*2+1,0)=rb;
 		chi2=chi2+0.5*(rp*rp+rb*rb);
-//		cout << i<<" "<<rp<<" "<<" "<<rb<<endl;
+//		std::cout << i<<" "<<rp<<" "<<" "<<rb<<std::endl;
 	}
 	Hess=Jaco.transpose()*Jaco;
-/*	cout <<"-----------------------------------------------------------------"<<endl;
-	cout << Jaco<<endl;
-	cout <<"-----------------------------------------------------------------"<<endl; */
+/*	std::cout <<"-----------------------------------------------------------------"<<std::endl;
+	std::cout << Jaco<<std::endl;
+	std::cout <<"-----------------------------------------------------------------"<<std::endl; */
 	Grad=Jaco.transpose()*Res;
 }
 

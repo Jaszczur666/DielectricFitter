@@ -3,7 +3,7 @@
 #include "stdafx.h"
 #include "Manipulator.h"
 using namespace DataManipulator;
-using namespace std;
+//using namespace std;
 [STAThreadAttribute]
 int main(cli::array<System::String ^> ^args)
 {
