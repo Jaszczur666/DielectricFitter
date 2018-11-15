@@ -227,6 +227,9 @@ void curve::FitLMGeneral(int type,MatrixXd &parameters)
 	//clock_t start, end;
 	//start=clock();
 ////	boost::timer::cpu_timer timer;
+	System::Diagnostics::Stopwatch ^sw;
+	sw = gcnew System::Diagnostics::Stopwatch();
+	sw->Start();
 	for(i=1;i<100;i++)
 	{
 		//chi2c=chi2;
@@ -251,10 +254,12 @@ void curve::FitLMGeneral(int type,MatrixXd &parameters)
 	//std::cout<<error<<std::endl<< "----------------------------------------------------- "<<std::endl;
 	std::cout <<chi2<<std::endl;
 	this->chi2=chi2;
+	//
 	//boost::timer::cpu_times elapsed = timer.elapsed();
 	//end=clock();
 	//std::cout <<(double(end - start) / CLOCKS_PER_SEC) <<" s"<<std::endl;//<<" "<< CLOCKS_PER_SEC<<std::endl;
 	std::cout << "Type: "<< type<<std::endl;
-	// std::cout << "Fitting took " << elapsed.wall / 1e9 << " seconds"<< std::endl;
+	//std::cout << "Fitting took " << sw->Elapsed.ToString()  << " seconds"<< std::endl;
+	System::Console::WriteLine("Fitting took "+ sw->ElapsedMilliseconds/1000.0+ " seconds");
 	return;
 }

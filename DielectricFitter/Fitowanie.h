@@ -8,12 +8,11 @@
 #include <ctime>
 #include <limits>
 #include <fstream> 
-//#include <boost/timer/timer.hpp>
-//#include <boost/regex.hpp>
 #include "Curve.h"
 #include "Parser.h"
 using Eigen::MatrixXd;
 using namespace System;
+using namespace System::Diagnostics;
 //using namespace std;
 //using namespace boost;
 class experiment {
